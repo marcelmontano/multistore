@@ -1161,6 +1161,69 @@
         </div>
     </section>
 
+    <!-- EVIDENCIA DE INSTALACIÓN REAL (FOTOS CLIENTE) -->
+    <section class="py-20 bg-gray-900 border-y border-gray-800">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-10 gap-4">
+                <div>
+                    <span class="text-green-400 font-bold tracking-widest text-xs uppercase mb-2 block animate-pulse">● Trabajo Realizado Esta Semana</span>
+                    <h3 class="text-3xl md:text-4xl font-bold text-white font-tech">Acabados de <span class="text-yellow-400">Primera Calidad</span></h3>
+                    <p class="text-gray-400 mt-2 text-sm max-w-xl">
+                        Así luce una instalación certificada por SolarCuba. Sin cables colgando, con protecciones industriales y baterías de litio de última generación.
+                    </p>
+                </div>
+                <a href="#kits" class="text-yellow-400 text-sm font-bold hover:text-white transition flex items-center">
+                    Ver Precios de estos Equipos <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+
+            <!-- Grid Personalizado para 4 Fotos -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 auto-rows-[250px]">
+                
+                <!-- 1. FOTO PRINCIPAL VERTICAL (Sistema) -->
+                <!-- Ocupa 1 columna y 2 filas de alto -->
+                <div class="group relative overflow-hidden rounded-xl border border-gray-700 hover:border-yellow-500 transition duration-300 md:row-span-2 cursor-zoom-in h-full" onclick="viewComponent('imagenes/cliente_sistema.jpg', 'Sistema Completo SRNE')">
+                    <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition z-10"></div>
+                    <img src="imagenes/cliente_sistema.jpg" alt="Instalación Inversor y Batería" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-700">
+                    <div class="absolute bottom-0 left-0 bg-black/80 backdrop-blur-sm px-4 py-3 rounded-tr-xl z-20 border-t border-r border-gray-600">
+                        <p class="text-white font-bold text-sm"><i class="fas fa-check-circle text-green-500 mr-2"></i>Instalación Limpia</p>
+                        <p class="text-xs text-gray-400">Cero cables visibles.</p>
+                    </div>
+                </div>
+
+                <!-- 2. FOTO PANORÁMICA (Paneles Arriba) -->
+                <!-- Ocupa 2 columnas a lo ancho -->
+                <div class="group relative overflow-hidden rounded-xl border border-gray-700 hover:border-yellow-500 transition duration-300 md:col-span-2 cursor-zoom-in" onclick="viewComponent('imagenes/cliente_techo_paneles.jpg', 'Array de Paneles')">
+                    <img src="imagenes/cliente_techo_paneles.jpg" alt="Paneles Solares en Techo" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-700">
+                    <div class="absolute top-4 left-4 bg-blue-600/90 text-white text-[10px] font-bold px-3 py-1 rounded shadow-lg">Paneles DAH Solar</div>
+                </div>
+
+                <!-- 3. FOTO DETALLE (Estructura Abajo) -->
+                <div class="group relative overflow-hidden rounded-xl border border-gray-700 hover:border-yellow-500 transition duration-300 cursor-zoom-in" onclick="viewComponent('imagenes/cliente_estructura_abajo.jpg', 'Cableado Protegido')">
+                    <img src="imagenes/cliente_estructura_abajo.jpg" alt="Detalle Estructura" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-700">
+                    <div class="absolute bottom-0 right-0 bg-black/80 backdrop-blur-sm px-3 py-1 rounded-tl-xl z-20">
+                        <p class="text-white font-bold text-[10px]">Anclaje Sólido</p>
+                    </div>
+                </div>
+
+                <!-- 4. FOTO DETALLE (Perfil Lateral) -->
+                <div class="group relative overflow-hidden rounded-xl border border-gray-700 hover:border-yellow-500 transition duration-300 cursor-zoom-in" onclick="viewComponent('imagenes/cliente_estructura_lateral.jpg', 'Inclinación Perfecta')">
+                    <img src="imagenes/cliente_estructura_lateral.jpg" alt="Perfil Paneles" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-700">
+                    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300 bg-black/40">
+                        <i class="fas fa-search-plus text-white text-3xl"></i>
+                    </div>
+                </div>
+
+            </div>
+            
+            <!-- Nota de confianza -->
+            <div class="mt-6 flex items-center justify-center gap-2 text-xs text-gray-500">
+                <i class="fas fa-camera"></i>
+                <span>Fotos reales enviadas por nuestro cliente en La Habana.</span>
+            </div>
+        </div>
+    </section>
+
     <!-- LEAD MAGNET / DESCARGA PDF (NUEVO) -->
     <section class="py-16 bg-gradient-to-r from-yellow-900/40 to-black border-y border-yellow-600/30">
         <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center gap-8">
