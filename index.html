@@ -124,7 +124,7 @@
         <div class="flex flex-col">
             <div class="flex items-center gap-2">
                 <span class="w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
-                <span class="text-[10px] text-gray-300">Quedan <strong class="text-yellow-400" id="mobileStockCounter">14</strong> Kits</span>
+                <span class="text-[10px] text-gray-300">Quedan <strong class="text-yellow-400" id="mobileStockCounter">9</strong> Kits</span>
             </div>
             <span class="text-sm font-bold text-white">Instalación <span class="text-green-400">24h</span></span>
         </div>
@@ -184,7 +184,7 @@
                 <span class="text-[10px] text-red-200 uppercase tracking-widest hidden md:block">Disponibilidad Física:</span>
                 <div class="bg-black/40 px-3 py-1 rounded text-white font-mono text-xs font-bold border border-white/20 flex items-center">
                     <span class="w-2 h-2 bg-red-500 rounded-full animate-ping mr-2"></span>
-                    Quedan: <span id="stockCounter" class="text-yellow-400 text-lg mx-1">14</span> Kits
+                    Quedan: <span id="stockCounter" class="text-yellow-400 text-lg mx-1">9</span> Kits
                 </div>
             </div>
         </div>
@@ -223,7 +223,7 @@
                 </div>
                 <div class="flex justify-between items-center">
                     <p class="text-[10px] text-gray-500">Total Lote: 65 Unidades</p>
-                    <p class="text-xs text-white font-bold">⚠️ Solo quedan 13 disponibles</p>
+                    <p class="text-xs text-white font-bold">⚠️ Solo quedan 9 disponibles</p>
                 </div>
             </div>
             <div class="flex flex-col sm:flex-row gap-4 justify-center px-4 mb-12">
@@ -1923,11 +1923,13 @@
         const locations = ["Playa", "Marianao", "Vedado", "Boyeros", "Guanabo", "Cotorro", "Habana Vieja", "San Miguel", "Diez de Octubre"];
         const productsList = ["Kit 5kW", "Kit 6.5kW", "Kit 10kW", "Kit 10kW PLUS"];
         const messages = [
-            { type: 'buy', text: (n,l,p) => `${n} de ${l} acaba de reservar un <strong>${p}</strong>.` },
-            { type: 'install', text: (n,l,p) => `${n} solicitó instalación para la próxima semana.` },
-            { type: 'contact', text: (n,l,p) => `${n} está consultando con un ingeniero ahora mismo.` },
-            { type: 'urgency', text: () => `🔥 <strong>¡Quedan pocas unidades!</strong> 3 personas están viendo el Kit 6.5kW.` }
-        ];
+    // Mensaje de urgencia por compra masiva (NUEVO)
+    { type: 'bulk', text: (n,l,p) => `🚨 <strong>¡STOCK BAJO!</strong> ${n} (MIPYME) acaba de comprar <strong>3 Unidades</strong> del ${p}.` },
+    // Mensajes normales
+    { type: 'buy', text: (n,l,p) => `${n} de ${l} acaba de reservar un <strong>${p}</strong>.` },
+    { type: 'contact', text: (n,l,p) => `${n} está consultando disponibilidad ahora mismo.` },
+    { type: 'urgency', text: () => `🔥 <strong>Quedan 9 Kits.</strong> Se vendieron 6 unidades esta mañana.` }
+];
 
         function startSocialProof() {
             setTimeout(() => showRandomToast(), 5000);
@@ -2355,7 +2357,7 @@
         }
 
         // --- STOCK LOGIC ---
-        let currentStock = 14; 
+        let currentStock = 9; 
         function updateStockDisplay() {
             // Actualizar contador principal
             const el = document.getElementById('stockCounter');
