@@ -1336,6 +1336,110 @@
         </div>
     </section>
 
+    <!-- SECCIÓN BRIGADAS E INSTALADORES (ACTUALIZADO) -->
+    <section id="instaladores" class="py-20 bg-[#0f172a] border-y border-orange-500/30 relative overflow-hidden">
+        <!-- Fondo decorativo industrial -->
+        <div class="absolute right-0 top-0 w-1/3 h-full bg-orange-500/5 -skew-x-12 transform origin-top-right"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 relative z-10">
+            <div class="flex flex-col md:flex-row gap-12 items-center">
+                
+                <!-- Columna Texto -->
+                <div class="md:w-3/5">
+                    <div class="inline-flex items-center gap-2 bg-orange-900/30 border border-orange-500/50 text-orange-400 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-6">
+                        <i class="fas fa-hard-hat"></i> Solo para TCPs Técnicos
+                    </div>
+                    <h2 class="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+                        Tú pones la Mano de Obra, <br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-500">Nosotros el Stock.</span>
+                    </h2>
+                    <p class="text-gray-300 text-lg mb-8 leading-relaxed">
+                        ¿Eres instalador pero no tienes capital para importar contenedores? No pierdas clientes.
+                        Únete a nuestra <strong>Alianza Técnica</strong>. Tu cliente nos compra el equipo (con garantía nuestra) y <strong>tú cobras el 100% de tu instalación</strong>.
+                    </p>
+
+                    <!-- Lista de Beneficios (EDITADA) -->
+                    <div class="space-y-6 mb-10">
+                        <!-- Beneficio 1 -->
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-gray-800 rounded-lg flex items-center justify-center border border-orange-500/30 shrink-0">
+                                <i class="fas fa-wallet text-orange-400 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold text-lg">Cero Riesgo Financiero</h4>
+                                <p class="text-gray-400 text-sm">No gastes ni un centavo en inventario. Nosotros facturamos el Kit, tú facturas tu servicio directamente al cliente.</p>
+                            </div>
+                        </div>
+
+                        <!-- Beneficio 2 (Reemplazado: Logística) -->
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-gray-800 rounded-lg flex items-center justify-center border border-orange-500/30 shrink-0">
+                                <i class="fas fa-truck-loading text-orange-400 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold text-lg">Logística Resuelta</h4>
+                                <p class="text-gray-400 text-sm">
+                                    Olvídate de aduanas y transporte. El equipo está en La Habana listo para recoger o enviar. Tú solo te preocupas por instalar.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Beneficio 3 (Reemplazado: Garantía) -->
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-gray-800 rounded-lg flex items-center justify-center border border-orange-500/30 shrink-0">
+                                <i class="fas fa-shield-alt text-orange-400 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold text-lg">Respaldo de Garantía</h4>
+                                <p class="text-gray-400 text-sm">Un técnico nuestro verificará el proceso de instalación para que entre en vigor la garantía que ofrecemos. Si el equipo falla, nosotros respondemos en el taller. Tú quedas bien con tu cliente sin arriesgar tu dinero.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button onclick="openInstallerModal()" class="bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-500 hover:to-red-500 text-white font-bold py-4 px-8 rounded-xl shadow-[0_0_30px_rgba(234,88,12,0.4)] transition transform hover:scale-105 flex items-center justify-center">
+                            <i class="fas fa-handshake mr-2"></i> Registrar mi Brigada
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Columna Visual / Tarjeta (EDITADA: Sin Kit Demo) -->
+                <div class="md:w-2/5 mt-10 md:mt-0 relative">
+                    <div class="absolute -inset-1 bg-orange-500 rounded-2xl blur opacity-20 animate-pulse"></div>
+                    <div class="bg-gray-900 border border-gray-700 p-6 rounded-2xl relative shadow-2xl">
+                        <div class="flex justify-between items-start mb-6 border-b border-gray-700 pb-4">
+                            <div>
+                                <p class="text-xs text-gray-500 uppercase tracking-widest">Credencial Digital</p>
+                                <h3 class="text-white font-bold text-xl">PARTNER TÉCNICO</h3>
+                            </div>
+                            <i class="fas fa-id-badge text-4xl text-orange-500"></i>
+                        </div>
+                        
+                        <div class="space-y-4 font-mono text-sm">
+                            <div class="flex justify-between">
+                                <span class="text-gray-500">Acceso Catálogo:</span>
+                                <span class="text-green-400">Precios Mayoristas</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-500">Prioridad Stock:</span>
+                                <span class="text-yellow-400">Alta (Reserva 24h)</span>
+                            </div>
+                            <!-- Kit Demo eliminado -->
+                        </div>
+
+                        <div class="mt-6 bg-gray-800 p-4 rounded-lg border border-gray-600 flex items-center gap-3">
+                            <div class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                            <p class="text-xs text-gray-300 italic">
+                                "Yo me encargo de los cables, ustedes del contenedor. Es la alianza perfecta."
+                                <br><span class="text-orange-400 font-bold not-italic">- Roberto, TCP en Playa</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- SECCIÓN MARKETING DE AFILIADOS -->
     <section id="afiliados" class="py-20 bg-gradient-to-b from-[#0f172a] via-[#1e1b4b] to-[#0f172a] border-y border-purple-500/30 relative overflow-hidden">
         <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#a855f7 1px, transparent 1px); background-size: 40px 40px;"></div>
@@ -1829,6 +1933,60 @@
                     <div class="pt-2">
                         <button type="submit" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-bold py-3.5 rounded-lg shadow-lg flex items-center justify-center transition transform hover:scale-[1.02]">
                             <span>Obtener mi Código de Afiliado</span>
+                            <i class="fab fa-whatsapp text-xl ml-2"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Instaladores / Brigadas -->
+    <div id="installerModal" class="fixed inset-0 bg-black/90 z-[2000] hidden flex items-center justify-center p-4 backdrop-blur-md transition-opacity duration-300" onclick="if(event.target === this) closeInstallerModal()">
+        <div class="bg-[#0f172a] border border-orange-500 rounded-2xl w-full max-w-md relative shadow-[0_0_50px_rgba(234,88,12,0.15)] overflow-hidden">
+            <div class="bg-gradient-to-r from-orange-800 to-red-800 p-4 text-center">
+                <button onclick="closeInstallerModal()" class="absolute top-3 right-4 text-orange-100 hover:text-white text-2xl">&times;</button>
+                <h3 class="text-xl font-bold text-white"><i class="fas fa-tools mr-2"></i> Alta de Brigada Técnica</h3>
+                <p class="text-orange-100 text-xs mt-1">Trabaja con nuestro stock. Mantén tu independencia.</p>
+            </div>
+            <div class="p-6">
+                <form id="installerForm" onsubmit="submitInstallerForm(event)" class="space-y-4">
+                    <div>
+                        <label class="block text-gray-400 text-xs font-bold mb-1 ml-1">Nombre del Responsable</label>
+                        <input type="text" id="iName" required class="form-input w-full rounded-lg py-3 px-4 text-sm focus:ring-1 focus:ring-orange-500" placeholder="Ej: Ing. Pedro Martínez">
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-gray-400 text-xs font-bold mb-1 ml-1">Años Exp.</label>
+                            <input type="number" id="iExp" required class="form-input w-full rounded-lg py-3 px-4 text-sm focus:ring-1 focus:ring-orange-500" placeholder="Ej: 5">
+                        </div>
+                        <div>
+                            <label class="block text-gray-400 text-xs font-bold mb-1 ml-1">Tamaño Brigada</label>
+                            <select id="iSize" class="form-input w-full rounded-lg py-3 px-4 text-sm focus:ring-1 focus:ring-orange-500">
+                                <option value="Solo yo">Solo yo</option>
+                                <option value="2-3 personas">2-3 personas</option>
+                                <option value="4+ personas">4+ personas</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-gray-400 text-xs font-bold mb-1 ml-1">Zona de Cobertura</label>
+                        <input type="text" id="iZone" required class="form-input w-full rounded-lg py-3 px-4 text-sm focus:ring-1 focus:ring-orange-500" placeholder="Ej: Habana y Artemisa">
+                    </div>
+
+                    <div class="bg-gray-800/50 p-3 rounded border border-gray-700">
+                        <label class="flex items-start gap-2 cursor-pointer">
+                            <input type="checkbox" id="iClients" class="mt-1 w-4 h-4 text-orange-500 bg-gray-900 border-gray-600 rounded focus:ring-orange-500">
+                            <span class="text-xs text-gray-300">
+                                Actualmente tengo clientes interesados esperando equipos.
+                            </span>
+                        </label>
+                    </div>
+
+                    <div class="pt-2">
+                        <button type="submit" class="w-full bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-500 hover:to-red-500 text-white font-bold py-3.5 rounded-lg shadow-lg flex items-center justify-center transition transform hover:scale-[1.02]">
+                            <span>Contactar con Ingeniería</span>
                             <i class="fab fa-whatsapp text-xl ml-2"></i>
                         </button>
                     </div>
@@ -2389,6 +2547,32 @@
         window.addEventListener("focus", () => {
             document.title = docTitle;
         });
+        // --- FUNCIONES INSTALADORES / BRIGADAS ---
+    function openInstallerModal() {
+        document.getElementById('installerModal').classList.remove('hidden');
+    }
+
+    function closeInstallerModal() {
+        document.getElementById('installerModal').classList.add('hidden');
+    }
+
+    function submitInstallerForm(e) {
+        e.preventDefault();
+        const name = document.getElementById('iName').value;
+        const exp = document.getElementById('iExp').value;
+        const size = document.getElementById('iSize').value;
+        const zone = document.getElementById('iZone').value;
+        const hasClients = document.getElementById('iClients').checked ? "🔥 SÍ, tengo clientes esperando" : "Aún no, quiero prepararme";
+        
+        // Mensaje diseñado para validar la seriedad técnica
+        const text = `👷‍♂️ *SOLICITUD ALIANZA TÉCNICA* 👷‍♂️\n\nHola SolarCuba, soy Instalador/TCP y me interesa trabajar con su hardware.\n\n👤 *Responsable:* ${name}\n⚡ *Experiencia:* ${exp} años\n👥 *Equipo:* ${size}\n📍 *Zona:* ${zone}\n💼 *Estado:* ${hasClients}\n\nMe interesa que el cliente les pague el equipo a ustedes y yo encargarme del montaje. Hablemos.`;
+        
+        const url = `https://wa.me/5358183649?text=${encodeURIComponent(text)}`;
+        window.open(url, '_blank');
+        
+        closeInstallerModal();
+        document.getElementById('installerForm').reset();
+    }
     </script>
 </body>
 </html>
