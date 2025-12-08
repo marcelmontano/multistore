@@ -589,74 +589,87 @@
                         </div>
                     </div>
 
-                    <!-- COLUMNA DERECHA: PRECIOS (CORREGIDO ESPACIO) -->
-                    <!-- Usamos flex flex-col justify-between h-full para forzar que ocupen todo el alto -->
-                    <div class="lg:w-7/12 p-4 md:p-6 bg-[#0f172a]/50 flex flex-col justify-between h-full gap-4">
-                        
-                        <!-- OPCIÓN 1: 1kW -->
-                        <div class="bg-gray-800 rounded-xl p-4 border border-gray-700 hover:border-gray-500 transition flex flex-col sm:flex-row items-center gap-4 group h-full justify-center">
-                            <div class="flex-1 text-center sm:text-left">
-                                <div class="flex items-center justify-center sm:justify-start gap-2 mb-1">
-                                    <h4 class="text-lg font-bold text-white">MUST 1kW Lite</h4>
-                                    <span class="bg-gray-600 text-[10px] px-2 py-0.5 rounded text-white">Básico</span>
-                                </div>
-                                <p class="text-xs text-gray-400 mb-2">Perfecto para: TV, Luces, Ventiladores y Cargar móviles.</p>
-                                <div class="flex items-center justify-center sm:justify-start gap-3 text-xs font-mono text-gray-300">
-                                    <span><i class="fas fa-battery-half text-yellow-500"></i> 1280 Wh</span>
-                                    <span><i class="fas fa-bolt text-blue-400"></i> 1000W</span>
-                                </div>
-                            </div>
-                            <div class="flex flex-col items-end gap-2 min-w-[120px]">
-                                <span class="text-2xl font-bold text-white">$700</span>
-                                <button onclick="openOrderForm('Estación MUST 1kW - $700')" class="bg-white hover:bg-gray-200 text-black font-bold py-2 px-6 rounded-lg text-xs w-full transition shadow-lg">
-                                    Comprar
-                                </button>
-                            </div>
-                        </div>
+                    <!-- COLUMNA DERECHA: ESCALERA DE OFERTAS (CORREGIDA: Altura Automática + Textos Unidos) -->
+<div class="lg:w-7/12 p-4 md:p-6 bg-[#0f172a]/50 flex flex-col h-full gap-4">
+    
+    <!-- OPCIÓN 1: 1kW (Se estira con flex-1) -->
+    <div class="flex-1 bg-gray-800 rounded-xl p-5 border border-gray-700 hover:border-gray-500 transition flex flex-col sm:flex-row items-center gap-4 group justify-between">
+        <div class="flex-1 text-center sm:text-left">
+            <div class="flex items-center justify-center sm:justify-start gap-2 mb-2">
+                <h4 class="text-xl font-bold text-white">MUST 1kW Lite</h4>
+                <span class="bg-gray-600 text-[10px] px-2 py-0.5 rounded text-white tracking-wide">BÁSICO</span>
+            </div>
+            <p class="text-xs text-gray-400 mb-3">Perfecto para: TV, Luces, Ventiladores y Cargar móviles.</p>
+            
+            <!-- TEXTOS CONCATENADOS -->
+            <div class="inline-flex items-center bg-gray-900/80 rounded-lg px-3 py-2 border border-gray-600 text-xs font-mono text-gray-300 shadow-inner">
+                <span class="text-yellow-400 font-bold"><i class="fas fa-battery-half mr-1"></i> 1280 Wh</span>
+                <span class="mx-3 text-gray-600">|</span>
+                <span class="text-blue-400 font-bold"><i class="fas fa-bolt mr-1"></i> 1000W</span>
+            </div>
+        </div>
+        
+        <div class="flex flex-col items-center sm:items-end gap-2 min-w-[120px]">
+            <span class="text-3xl font-bold text-white">$700</span>
+            <button onclick="openOrderForm('Estación MUST 1kW - $700')" class="bg-white hover:bg-gray-200 text-black font-bold py-3 px-8 rounded-lg text-xs w-full transition shadow-lg hover:scale-105">
+                Comprar
+            </button>
+        </div>
+    </div>
 
-                        <!-- OPCIÓN 2: 2kW (BEST SELLER) -->
-                        <div class="bg-gradient-to-r from-gray-800 to-gray-900 rounded-xl p-4 border-2 border-cyan-500 relative shadow-[0_0_20px_rgba(6,182,212,0.1)] transform md:scale-[1.02] z-10 flex flex-col sm:flex-row items-center gap-4 h-full justify-center">
-                            <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-cyan-600 text-white text-[10px] font-bold px-3 py-0.5 rounded-full uppercase tracking-wider shadow-lg whitespace-nowrap">
-                                ★ Mejor Valor (Mueve Refri)
-                            </div>
-                            <div class="flex-1 text-center sm:text-left pt-2 sm:pt-0">
-                                <h4 class="text-xl font-bold text-white mb-1">MUST 2kW <span class="text-cyan-400">PRO</span></h4>
-                                <p class="text-xs text-gray-300 mb-2"><strong>Doble Batería.</strong> El equilibrio perfecto para respaldar tu refrigerador + entretenimiento.</p>
-                                <div class="flex items-center justify-center sm:justify-start gap-3 text-xs font-mono text-cyan-100">
-                                    <span><i class="fas fa-battery-full text-green-400"></i> 2560 Wh</span>
-                                    <span><i class="fas fa-bolt text-yellow-400"></i> 2000W</span>
-                                </div>
-                            </div>
-                            <div class="flex flex-col items-end gap-2 min-w-[120px]">
-                                <span class="text-3xl font-black text-white">$950</span>
-                                <button onclick="openOrderForm('Estación MUST 2kW - $950')" class="bg-cyan-500 hover:bg-cyan-400 text-black font-bold py-3 px-6 rounded-lg text-sm w-full transition shadow-lg animate-pulse">
-                                    ¡Lo Quiero!
-                                </button>
-                            </div>
-                        </div>
+    <!-- OPCIÓN 2: 2kW (BEST SELLER - Se estira con flex-1) -->
+    <div class="flex-1 bg-gradient-to-r from-gray-800 to-gray-900 rounded-xl p-5 border-2 border-cyan-500 relative shadow-[0_0_30px_rgba(6,182,212,0.15)] transform md:scale-[1.02] z-10 flex flex-col sm:flex-row items-center gap-4 justify-between">
+        <!-- Badge Flotante -->
+        <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-cyan-600 text-white text-[10px] font-bold px-4 py-1 rounded-full uppercase tracking-wider shadow-lg whitespace-nowrap">
+            ★ Mejor Valor (Mueve Refri)
+        </div>
+        
+        <div class="flex-1 text-center sm:text-left pt-2 sm:pt-0">
+            <h4 class="text-2xl font-bold text-white mb-2">MUST 2kW <span class="text-cyan-400">PRO</span></h4>
+            <p class="text-xs text-gray-300 mb-3 leading-relaxed"><strong>Doble Batería.</strong> El equilibrio perfecto para respaldar tu refrigerador + entretenimiento.</p>
+            
+            <!-- TEXTOS CONCATENADOS (Destacado) -->
+            <div class="inline-flex items-center bg-cyan-900/30 rounded-lg px-3 py-2 border border-cyan-500/30 text-xs font-mono text-cyan-100 shadow-inner">
+                <span class="text-green-400 font-bold"><i class="fas fa-battery-full mr-1"></i> 2560 Wh</span>
+                <span class="mx-3 text-cyan-700">|</span>
+                <span class="text-yellow-400 font-bold"><i class="fas fa-bolt mr-1"></i> 2000W</span>
+            </div>
+        </div>
+        
+        <div class="flex flex-col items-center sm:items-end gap-2 min-w-[120px]">
+            <span class="text-4xl font-black text-white">$950</span>
+            <button onclick="openOrderForm('Estación MUST 2kW - $950')" class="bg-cyan-500 hover:bg-cyan-400 text-black font-bold py-3 px-8 rounded-lg text-sm w-full transition shadow-lg animate-pulse hover:scale-105">
+                ¡Lo Quiero!
+            </button>
+        </div>
+    </div>
 
-                        <!-- OPCIÓN 3: 3kW -->
-                        <div class="bg-gray-800/80 rounded-xl p-4 border border-gray-700 hover:border-yellow-500 transition flex flex-col sm:flex-row items-center gap-4 group h-full justify-center">
-                            <div class="flex-1 text-center sm:text-left">
-                                <div class="flex items-center justify-center sm:justify-start gap-2 mb-1">
-                                    <h4 class="text-lg font-bold text-white">MUST 3kW Max</h4>
-                                    <span class="bg-yellow-600 text-black text-[10px] px-2 py-0.5 rounded font-bold">Tope de Gama</span>
-                                </div>
-                                <p class="text-xs text-gray-400 mb-2">Para quienes no negocian comodidad. Máxima potencia y autonomía.</p>
-                                <div class="flex items-center justify-center sm:justify-start gap-3 text-xs font-mono text-gray-300">
-                                    <span><i class="fas fa-battery-full text-green-500"></i> 3000 Wh</span>
-                                    <span><i class="fas fa-bolt text-yellow-500"></i> 3000W</span>
-                                </div>
-                            </div>
-                            <div class="flex flex-col items-end gap-2 min-w-[120px]">
-                                <span class="text-2xl font-bold text-white">$2,350</span>
-                                <button onclick="openOrderForm('Estación MUST 3kW - $2350')" class="border border-gray-500 text-gray-300 hover:bg-white hover:text-black font-bold py-2 px-6 rounded-lg text-xs w-full transition">
-                                    Ver Detalles
-                                </button>
-                            </div>
-                        </div>
+    <!-- OPCIÓN 3: 3kW (Se estira con flex-1) -->
+    <div class="flex-1 bg-gray-800/80 rounded-xl p-5 border border-gray-700 hover:border-yellow-500 transition flex flex-col sm:flex-row items-center gap-4 group justify-between">
+        <div class="flex-1 text-center sm:text-left">
+            <div class="flex items-center justify-center sm:justify-start gap-2 mb-2">
+                <h4 class="text-xl font-bold text-white">MUST 3kW Max</h4>
+                <span class="bg-yellow-600 text-black text-[10px] px-2 py-0.5 rounded font-bold">TOPE DE GAMA</span>
+            </div>
+            <p class="text-xs text-gray-400 mb-3">Para quienes no negocian comodidad. Máxima potencia y autonomía.</p>
+            
+            <!-- TEXTOS CONCATENADOS -->
+            <div class="inline-flex items-center bg-gray-900/80 rounded-lg px-3 py-2 border border-gray-600 text-xs font-mono text-gray-300 shadow-inner">
+                <span class="text-green-500 font-bold"><i class="fas fa-battery-full mr-1"></i> 3072 Wh</span>
+                <span class="mx-3 text-gray-600">|</span>
+                <span class="text-yellow-500 font-bold"><i class="fas fa-bolt mr-1"></i> 3000W</span>
+            </div>
+        </div>
+        
+        <div class="flex flex-col items-center sm:items-end gap-2 min-w-[120px]">
+            <span class="text-3xl font-bold text-white">$2,350</span>
+            <button onclick="openOrderForm('Estación MUST 3kW - $2350')" class="border border-gray-500 text-gray-300 hover:bg-white hover:text-black font-bold py-3 px-8 rounded-lg text-xs w-full transition hover:scale-105">
+                Ver Detalles
+            </button>
+        </div>
+    </div>
 
-                    </div>
+</div>
                 </div>
             </div>
         </div>
@@ -1232,9 +1245,9 @@
                         <h3 class="text-lg font-bold text-white mb-4 border-b border-gray-700 pb-2"><i class="fas fa-server text-blue-400 mr-2"></i> Elige el Kit a Probar</h3>
                         <select id="kitSelect" class="w-full bg-gray-800 border border-gray-600 text-white rounded-lg p-3 mb-4 focus:border-yellow-500 outline-none text-sm font-mono">
     <!-- NUEVOS MUST -->
-    <option value="must1">MUST 1kW (110V) - Bat 1.28 kWh</option>
-    <option value="must2">MUST 2kW (110V) - Bat 2.56 kWh</option>
-    <option value="must3">MUST 3kW (110V) - Bat 3.0 kWh</option>
+<option value="must1">MUST 1kW (110V) - Bat 1.28 kWh</option>
+<option value="must2">MUST 2kW (110V) - Bat 2.56 kWh</option>
+<option value="must3">MUST 3kW (110V) - Bat 3.07 kWh</option>
     
     <!-- ASTRA -->
     <option value="astra3">Astra 3kW (110V) - Bat 2.56 kWh</option>
@@ -2102,9 +2115,9 @@
                     <label class="block text-gray-400 text-xs font-bold mb-1 ml-1 uppercase tracking-wider">Kit Seleccionado</label>
                     <select id="oKit" required class="w-full bg-gray-900 border border-yellow-500/50 text-white rounded-lg py-3 px-4 text-sm font-bold focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 outline-none transition shadow-inner">
                         <optgroup label="⚡ FAMILIA MUST (Portátiles / Plug & Play)">
-    <option value="Estación MUST 1kW - $700">Estación MUST 1kW (1280Wh) - $700</option>
-    <option value="Estación MUST 2kW - $950">Estación MUST 2kW (2560Wh) - $950</option>
-    <option value="Estación MUST 3kW - $2350">Estación MUST 3kW (3000Wh) - $2,350</option>
+    <option value="Estación MUST 1kW - $700">Estación MUST 1kW (Bat 1280Wh) - $700</option>
+    <option value="Estación MUST 2kW - $950">Estación MUST 2kW (Bat 2560Wh) - $950</option>
+    <option value="Estación MUST 3kW - $2350">Estación MUST 3kW (Bat 3072Wh) - $2,350</option>
 </optgroup>
                         <optgroup label="🔵 LÍNEA RESIDENCIAL ASTRA (Llave en Mano)">
                             <option value="Kit Astra 3kW - $2800">Kit Astra 3kW (Básico) - $2,800</option>
@@ -2437,11 +2450,12 @@
             { id: 'split', name: 'Split Inverter 1T', w: 900, v: 220, icon: 'fa-wind', color: 'text-yellow-500', defH: 8 },
             { id: 'pump', name: 'Bomba Agua', w: 750, v: 220, icon: 'fa-water', color: 'text-blue-400', defH: 0.5 }
         ];
-        const kits = {
-    // --- FAMILIA MUST (Nuevos) ---
+        
+    const kits = {
+    // --- FAMILIA MUST (Datos Exactos) ---
     'must1': { inverter: 1000, battKwh: 1.28, voltage: 110, priceKit: 700, priceInstall: 0 },
     'must2': { inverter: 2000, battKwh: 2.56, voltage: 110, priceKit: 950, priceInstall: 0 },
-    'must3': { inverter: 3000, battKwh: 3.00, voltage: 110, priceKit: 2350, priceInstall: 0 }, // Ajustado a 3kWh o lo que tenga el modelo grande exacto
+    'must3': { inverter: 3000, battKwh: 3.072, voltage: 110, priceKit: 2350, priceInstall: 0 }, // Ajustado a 3072Wh
 
     // --- ASTRA ---
     'astra3': { inverter: 3000, battKwh: 2.56, voltage: 110, priceKit: 2800, priceInstall: 0 },
