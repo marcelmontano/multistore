@@ -2338,22 +2338,115 @@
             }
         }
 
-        // --- SOCIAL PROOF ---
-        const cubanNames = ["Yasmani", "Yulieski", "Mileidy", "Yoel", "Maritza", "Dayanara", "Alejandro", "Yusmary", "Lázaro", "Yanelis", "Osdany", "Katia"];
-        const locations = ["Playa", "Marianao", "Vedado", "Boyeros", "Guanabo", "Cotorro", "Habana Vieja", "San Miguel", "Diez de Octubre"];
-        const productsList = ["Kit 5kW", "Kit 6.5kW", "Kit 10kW", "Kit 10kW PLUS"];
+        // --- SOCIAL PROOF AVANZADO (ALEATORIO & ADAPTADO) ---
+        
+        // 1. Base de Datos Ampliada
+        const cubanNames = [
+            "Yasmani", "Yulieski", "Mileidy", "Yoel", "Maritza", "Dayanara", "Alejandro", 
+            "Yusmary", "Lázaro", "Yanelis", "Osdany", "Katia", "Reinier", "Lisandra", 
+            "Maikel", "Idalmis", "Raudel", "Yaima", "Yunior", "Dairon", "Sheila", "Javier"
+        ];
+        
+        const locations = [
+            "Playa", "Marianao", "Vedado", "Boyeros", "Guanabo", "Cotorro", 
+            "Habana Vieja", "San Miguel", "Diez de Octubre", "Artemisa", 
+            "Cárdenas", "Varadero", "Alamar", "Centro Habana", "Lisa", "Matanzas"
+        ];
+        
+        const productsList = [
+            "Estación MUST 1kW ($700)", 
+            "Estación MUST 2kW ($950)", 
+            "MUST 3kW Tope de Gama", 
+            "Kit Astra 3kW", 
+            "Kit Astra 5kW", 
+            "Kit SRNE 5kW PRO", 
+            "Kit 10kW Industrial"
+        ];
+
+        // 2. Sistema de Mensajes Dinámicos
         const messages = [
-    // Mensaje de urgencia por compra masiva (NUEVO)
-    { type: 'bulk', text: (n,l,p) => `🚨 <strong>¡STOCK BAJO!</strong> ${n} (MIPYME) acaba de comprar <strong>3 Unidades</strong> del ${p}.` },
-    // Mensajes normales
-    { type: 'buy', text: (n,l,p) => `${n} de ${l} acaba de reservar un <strong>${p}</strong>.` },
-    { type: 'contact', text: (n,l,p) => `${n} está consultando disponibilidad ahora mismo.` },
-    { type: 'urgency', text: () => `🔥 <strong>Quedan 9 Kits.</strong> Se vendieron 6 unidades esta mañana.` }
-];
+            // Compra Directa
+            { 
+                icon: '<i class="fas fa-check-circle text-green-500"></i>',
+                text: (n,l,p) => `<strong>${n}</strong> de ${l} acaba de reservar una <strong>${p}</strong>.` 
+            },
+            // Interés en Precios Bajos
+            { 
+                icon: '<i class="fab fa-whatsapp text-green-400"></i>',
+                text: (n,l,p) => `${n} está preguntando por el modelo de <strong>$700 USD</strong>.` 
+            },
+            // Visita Técnica (Servicio)
+            { 
+                icon: '<i class="fas fa-clipboard-list text-blue-400"></i>',
+                text: (n,l,p) => `<strong>${n}</strong> agendó una Visita Técnica en ${l}.` 
+            },
+            // Urgencia de Stock (Miedo)
+            { 
+                icon: '<i class="fas fa-fire text-red-500"></i>',
+                text: (n,l,p) => `🔥 <strong>Ojo:</strong> Quedan pocas unidades del <strong>MUST 2kW</strong> en almacén.` 
+            },
+            // Instalación Exitosa (Confianza)
+            { 
+                icon: '<i class="fas fa-tools text-yellow-500"></i>',
+                text: (n,l,p) => `Brigada terminando instalación de un <strong>${p}</strong> en ${l}.` 
+            },
+            // Compra Masiva (MIPYMES)
+            { 
+                icon: '<i class="fas fa-shopping-cart text-purple-400"></i>',
+                text: (n,l,p) => `Una MIPYME en ${l} acaba de comprar <strong>3 Estaciones MUST</strong>.` 
+            },
+            // Consulta de Garantía (Seguridad)
+            { 
+                icon: '<i class="fas fa-shield-alt text-gray-400"></i>',
+                text: (n,l,p) => `${n} está consultando los términos de la <strong>Garantía de 6 Meses</strong>.` 
+            }
+        ];
 
         function startSocialProof() {
-            setTimeout(() => showRandomToast(), 5000);
-            setInterval(() => showRandomToast(), Math.floor(Math.random() * (30000 - 15000 + 1) + 15000));
+            // Primer mensaje rápido a los 4 segundos
+            setTimeout(() => showRandomToast(), 4000);
+            
+            // Mensajes siguientes cada 12-25 segundos (aleatorio)
+            setInterval(() => {
+                showRandomToast();
+            }, Math.floor(Math.random() * (25000 - 12000 + 1) + 12000));
+        }
+
+        function showRandomToast() {
+            const container = document.getElementById('toast-container');
+            if(!container) return;
+
+            // Selección Aleatoria de Datos
+            const name = cubanNames[Math.floor(Math.random() * cubanNames.length)];
+            const loc = locations[Math.floor(Math.random() * locations.length)];
+            const prod = productsList[Math.floor(Math.random() * productsList.length)];
+            const msgType = messages[Math.floor(Math.random() * messages.length)]; 
+
+            // Crear el HTML
+            const wrapper = document.createElement('div');
+            wrapper.innerHTML = `
+                <div class="toast-notification p-4 rounded-xl flex items-center gap-4 text-white min-w-[320px] animate-slide-in border border-gray-700/50 shadow-2xl bg-[#0f172a]/95 backdrop-blur-md">
+                    <div class="bg-gray-800 p-3 rounded-full shrink-0 border border-gray-600">
+                        ${msgType.icon}
+                    </div>
+                    <div class="text-xs leading-relaxed text-gray-300">
+                        ${msgType.text(name, loc, prod)}
+                        <div class="text-[10px] text-gray-500 mt-1 font-mono">Hace unos instantes...</div>
+                    </div>
+                    <button onclick="this.parentElement.parentElement.remove()" class="ml-auto text-gray-500 hover:text-white pointer-events-auto self-start -mt-1">&times;</button>
+                </div>
+            `;
+
+            container.appendChild(wrapper.firstElementChild);
+
+            // Eliminar automáticamente después de 6 segundos
+            setTimeout(() => { 
+                if(container.firstElementChild) {
+                    const el = container.firstElementChild;
+                    el.classList.replace('animate-slide-in', 'animate-fade-out'); 
+                    setTimeout(() => { el.remove(); }, 500); 
+                }
+            }, 6000);
         }
 
         // --- LOGICA DE REPRODUCTORES DE AUDIO WHATSAPP ---
