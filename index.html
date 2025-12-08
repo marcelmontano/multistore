@@ -157,13 +157,18 @@
                     <i class="fas fa-solar-panel text-2xl md:text-3xl text-yellow-400"></i>
                     <span class="text-lg md:text-2xl font-tech font-bold tracking-wider text-white">SOLAR<span class="text-yellow-400">CUBA</span></span>
                 </div>
-                <div class="hidden md:flex space-x-8 items-center">
-                    <a href="#distribuidores" class="text-green-400 font-bold uppercase text-xs tracking-widest hover:text-white transition border border-green-400/30 px-4 py-1 rounded-full bg-green-900/20"><i class="fas fa-handshake mr-2"></i> Distribuidores</a>
-                    <a href="#afiliados" class="text-purple-400 hover:text-white transition font-bold uppercase text-xs tracking-widest py-1 px-4 border border-purple-500/30 rounded-full bg-purple-900/20"><i class="fas fa-bullhorn mr-1"></i> Gana Dinero</a>
-                    <a href="#empresas" class="text-blue-400 font-bold uppercase text-xs tracking-widest hover:text-white transition"><i class="fas fa-building mr-1"></i> Empresas</a>
-                    <a href="#kits" class="text-gray-300 hover:text-yellow-400 transition font-medium uppercase text-xs tracking-widest py-2">Catálogo</a>
-                    <a href="#simulador" class="text-yellow-500 hover:text-yellow-400 transition font-medium uppercase text-xs tracking-widest py-2">Simulador</a>
-                </div>
+                <!-- ESTO ES LO NUEVO -->
+<div class="hidden md:flex space-x-6 items-center">
+    <!-- Nuevo Enlace Destacado -->
+    <a href="#ofertas-blue" class="bg-blue-600 hover:bg-blue-500 text-white font-bold uppercase text-[10px] tracking-widest px-4 py-2 rounded-full shadow-[0_0_15px_rgba(37,99,235,0.5)] animate-pulse">
+        <i class="fas fa-key mr-2"></i> Llave en Mano
+    </a>
+    
+    <a href="#kits" class="text-yellow-500 hover:text-yellow-400 transition font-medium uppercase text-xs tracking-widest py-2">Serie Pro</a>
+    <a href="#distribuidores" class="text-green-400 font-bold uppercase text-xs tracking-widest hover:text-white transition border border-green-400/30 px-3 py-1 rounded-full bg-green-900/20">Distribuidores</a>
+    <a href="#afiliados" class="text-purple-400 hover:text-white transition font-bold uppercase text-xs tracking-widest">Gana Dinero</a>
+    <a href="#simulador" class="text-gray-300 hover:text-white transition font-medium uppercase text-xs tracking-widest">Simulador</a>
+</div>
             </div>
         </div>
     </nav>
@@ -477,6 +482,142 @@
     </section>
 
     <!-- KITS SOLARES: CATÁLOGO COMPLETO (6 MODELOS) -->
+     <!-- ============================================== -->
+    <!-- NUEVA SECCIÓN: LÍNEA SOLI ASTRA (TODO INCLUIDO) -->
+    <!-- ============================================== -->
+    <section id="ofertas-blue" class="py-20 bg-[#020617] relative border-b border-gray-800 overflow-hidden">
+        <!-- Fondo Decorativo Azul (Branding SoliTech) -->
+        <div class="absolute top-0 right-0 w-full h-full bg-gradient-to-bl from-blue-900/20 via-[#020617] to-[#020617] pointer-events-none"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 relative z-10">
+            <div class="text-center mb-16">
+                <span class="inline-block py-1 px-3 rounded-full bg-blue-600/20 border border-blue-400 text-blue-300 text-xs font-bold uppercase tracking-widest mb-4">
+                    <i class="fas fa-check-double mr-2"></i> Solución Residencial Completa
+                </span>
+                <h2 class="text-4xl md:text-6xl font-bold text-white mb-6 font-tech leading-tight">
+                    LÍNEA <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">SOLI ASTRA</span>
+                </h2>
+                <p class="text-gray-300 max-w-2xl mx-auto text-lg">
+                    La opción perfecta para hogares. Precios finales con <strong>Instalación y Transporte Incluido</strong> en La Habana.
+                    <br><span class="text-sm text-blue-400 font-bold mt-2 block">* Tecnología de Inversor SRNE + Paneles Astra 610W *</span>
+                </p>
+            </div>
+
+            <!-- Grid de 4 Kits -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                <!-- 1. KIT 3KW BASIC -->
+                <div class="bg-[#0f172a] rounded-2xl border border-blue-900/50 hover:border-blue-500 transition duration-300 flex flex-col overflow-hidden group shadow-lg hover:shadow-blue-900/20">
+                    <div class="bg-blue-900/30 p-4 text-center border-b border-blue-800">
+                        <h3 class="text-xl font-bold text-white">STARTER 3kW</h3>
+                        <p class="text-blue-200 text-xs">Lo esencial</p>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <div class="text-center mb-6">
+                            <span class="text-3xl font-bold text-white">$2,800</span>
+                            <span class="text-xs text-gray-500 block uppercase tracking-wide">Precio Final Instalado</span>
+                        </div>
+                        <ul class="space-y-3 text-sm text-gray-400 mb-6 flex-1">
+                            <li class="flex items-center"><i class="fas fa-microchip w-6 text-blue-500"></i> Inv. 3kW (SRNE Tech)</li>
+                            <li class="flex items-center"><i class="fas fa-battery-half w-6 text-green-500"></i> <strong>2.56 kWh</strong> (1 Bat)</li>
+                            <li class="flex items-center"><i class="fas fa-solar-panel w-6 text-yellow-500"></i> 2x Paneles 610W</li>
+                            <li class="flex items-center text-white font-bold"><i class="fas fa-tools w-6 text-blue-400"></i> Instalación Incluida</li>
+                        </ul>
+                        <button onclick="openOrderForm('Kit Astra 3kW - $2800')" class="w-full bg-white hover:bg-gray-200 text-blue-900 font-bold py-3 rounded-lg transition text-sm">
+                            Reservar Ahora
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 2. KIT 3KW AMPLIADO -->
+                <div class="bg-[#0f172a] rounded-2xl border border-blue-900/50 hover:border-blue-500 transition duration-300 flex flex-col overflow-hidden group shadow-lg hover:shadow-blue-900/20 relative">
+                    <div class="absolute top-0 right-0 bg-blue-600 text-white text-[10px] font-bold px-2 py-1 rounded-bl">MAS AUTONOMÍA</div>
+                    <div class="bg-blue-900/30 p-4 text-center border-b border-blue-800">
+                        <h3 class="text-xl font-bold text-white">3kW PLUS</h3>
+                        <p class="text-blue-200 text-xs">Respaldo Extendido</p>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <div class="text-center mb-6">
+                            <span class="text-3xl font-bold text-white">$3,850</span>
+                            <span class="text-xs text-gray-500 block uppercase tracking-wide">Precio Final Instalado</span>
+                        </div>
+                        <ul class="space-y-3 text-sm text-gray-400 mb-6 flex-1">
+                            <li class="flex items-center"><i class="fas fa-microchip w-6 text-blue-500"></i> Inv. 3kW (SRNE Tech)</li>
+                            <li class="flex items-center"><i class="fas fa-battery-full w-6 text-green-500"></i> <strong>7.68 kWh</strong> (3 Bat)</li>
+                            <li class="flex items-center"><i class="fas fa-solar-panel w-6 text-yellow-500"></i> 2x Paneles 610W</li>
+                            <li class="flex items-center text-white font-bold"><i class="fas fa-tools w-6 text-blue-400"></i> Instalación Incluida</li>
+                        </ul>
+                        <button onclick="openOrderForm('Kit Astra 3kW PLUS - $3850')" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 rounded-lg transition text-sm">
+                            Reservar Ahora
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 3. KIT 5KW ESTÁNDAR -->
+                <div class="bg-gradient-to-b from-blue-900/20 to-[#0f172a] rounded-2xl border-2 border-blue-500 transition duration-300 flex flex-col overflow-hidden group shadow-[0_0_30px_rgba(59,130,246,0.15)] transform md:-translate-y-4">
+                    <div class="bg-blue-600 p-1 text-center text-white text-[10px] font-bold tracking-widest uppercase">
+                        ★ Recomendado Hogar
+                    </div>
+                    <div class="p-4 text-center border-b border-blue-800/50">
+                        <h3 class="text-2xl font-bold text-white">HOME 5kW</h3>
+                        <p class="text-blue-200 text-xs">El equilibrio perfecto</p>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <div class="text-center mb-6">
+                            <span class="text-4xl font-bold text-white">$4,500</span>
+                            <span class="text-xs text-gray-400 block uppercase tracking-wide">Precio Final Instalado</span>
+                        </div>
+                        <ul class="space-y-3 text-sm text-gray-300 mb-6 flex-1">
+                            <li class="flex items-center"><i class="fas fa-bolt w-6 text-yellow-400"></i> Inv. 5kW Potencia</li>
+                            <li class="flex items-center"><i class="fas fa-battery-half w-6 text-green-400"></i> <strong>5.12 kWh</strong> (2 Bat)</li>
+                            <li class="flex items-center"><i class="fas fa-solar-panel w-6 text-yellow-400"></i> 4x Paneles 610W</li>
+                            <li class="flex items-center bg-blue-900/40 p-1 rounded"><i class="fas fa-truck w-6 text-blue-300"></i> Envío Gratis Habana</li>
+                            <li class="flex items-center bg-blue-900/40 p-1 rounded"><i class="fas fa-tools w-6 text-blue-300"></i> Instalación Incluida</li>
+                        </ul>
+                        <button onclick="openOrderForm('Kit Astra 5kW - $4500')" class="w-full bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 text-white font-bold py-4 rounded-lg transition text-sm shadow-lg animate-pulse-fast">
+                            ¡Lo Quiero!
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 4. KIT 5KW MAX -->
+                <div class="bg-[#0f172a] rounded-2xl border border-blue-900/50 hover:border-blue-500 transition duration-300 flex flex-col overflow-hidden group shadow-lg hover:shadow-blue-900/20">
+                    <div class="bg-blue-900/30 p-4 text-center border-b border-blue-800">
+                        <h3 class="text-xl font-bold text-white">5kW MAX</h3>
+                        <p class="text-blue-200 text-xs">Máxima Capacidad</p>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <div class="text-center mb-6">
+                            <span class="text-3xl font-bold text-white">$7,200</span>
+                            <span class="text-xs text-gray-500 block uppercase tracking-wide">Precio Final Instalado</span>
+                        </div>
+                        <ul class="space-y-3 text-sm text-gray-400 mb-6 flex-1">
+                            <li class="flex items-center"><i class="fas fa-bolt w-6 text-yellow-500"></i> Inv. 5kW Potencia</li>
+                            <li class="flex items-center"><i class="fas fa-battery-full w-6 text-green-500"></i> <strong>15.36 kWh</strong> (6 Bat)</li>
+                            <li class="flex items-center"><i class="fas fa-solar-panel w-6 text-yellow-500"></i> 9x Paneles 610W</li>
+                            <li class="flex items-center text-white font-bold"><i class="fas fa-tools w-6 text-blue-400"></i> Instalación Incluida</li>
+                        </ul>
+                        <button onclick="openOrderForm('Kit Astra 5kW MAX - $7200')" class="w-full bg-white hover:bg-gray-200 text-blue-900 font-bold py-3 rounded-lg transition text-sm">
+                            Reservar Ahora
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Notas de la Serie Blue -->
+            <div class="mt-8 bg-blue-900/10 border border-blue-800 rounded-lg p-4 flex flex-col md:flex-row justify-between items-center text-xs text-gray-400 gap-4">
+                <div class="flex items-center gap-2">
+                    <i class="fas fa-info-circle text-blue-400"></i>
+                    <span><strong>Nota:</strong> Esta línea "Astra" es exclusiva para clientes finales. Incluye montaje básico y transporte en La Habana. Garantía: 6 Meses.</span>
+                </div>
+                <div class="flex gap-3">
+                    <span class="flex items-center gap-1"><i class="fas fa-check text-green-500"></i> Paneles Astra N-Type</span>
+                    <span class="flex items-center gap-1"><i class="fas fa-check text-green-500"></i> Inversores SRNE Quality</span>
+                </div>
+            </div>
+        </div>
+    </section>
     <section id="kits" class="py-20 relative bg-[#0b1120]">
         <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray-700 to-transparent"></div>
         
@@ -1813,12 +1954,20 @@
                     <div>
                         <label class="block text-gray-400 text-xs font-bold mb-1 ml-1">Seleccionar Kit</label>
                         <select id="oKit" required class="form-input w-full rounded-lg py-3 px-4 text-sm focus:ring-1 focus:ring-yellow-500 bg-gray-800">
-                            <option value="Kit 5kW (Residencial)">Kit 5kW (Residencial) - $4,685</option>
-                            <option value="Kit 6.5kW (Familiar)">Kit 6.5kW (Familiar) - $6,985</option>
-                            <option value="Kit 10kW (Profesional)">Kit 10kW (Profesional) - $8,605</option>
-                            <option value="Kit 10kW PLUS">Kit 10kW PLUS - $9,930</option>
-                            <option value="General/Asesoría">No estoy seguro / Necesito Asesoría</option>
-                        </select>
+    <optgroup label="🔵 LÍNEA ASTRA (Todo Incluido + Instalación)">
+        <option value="Kit Astra 3kW - $2800">Kit Astra 3kW (Básico) - $2,800</option>
+        <option value="Kit Astra 3kW PLUS - $3850">Kit Astra 3kW PLUS (3 Bat) - $3,850</option>
+        <option value="Kit Astra 5kW - $4500">Kit Astra 5kW (Hogar) - $4,500</option>
+        <option value="Kit Astra 5kW MAX - $7200">Kit Astra 5kW MAX (9 Paneles) - $7,200</option>
+    </optgroup>
+    <optgroup label="🟡 LÍNEA INDUSTRIAL (Solo Equipo)">
+        <option value="Kit 5kW PRO (Residencial)">Kit 5kW PRO (Srne/Dah) - $4,685 (+Inst)</option>
+        <option value="Kit 6.5kW PRO (Familiar)">Kit 6.5kW PRO (Split Phase) - $6,985 (+Inst)</option>
+        <option value="Kit 10kW PRO (Profesional)">Kit 10kW PRO - $8,605 (+Inst)</option>
+        <option value="Kit 10kW PLUS">Kit 10kW PLUS (Max) - $9,930 (+Inst)</option>
+    </optgroup>
+    <option value="General/Asesoría">No estoy seguro / Necesito Asesoría</option>
+</select>
                     </div>
 
                     <div class="flex items-center gap-4">
@@ -2210,7 +2359,10 @@
             '5kw': { name: "Kit 5kW Residencial", price: "$4,685 USD", install: "$500 USD", voltage: "⚠️ Solo 120V (NO soporta 220V)", battery: "10.49 kWh (1x Batería LiFePO4 51.2V 205Ah - Modelo SE10B)", panels: "6 Paneles de 620W (Total 3720Wp)", inverter: "Inversor Cargador 5KW 48V (HF4850U80-H)", extras: "Estructura 15°, Caja Protecciones DC, Cables y Conectores." },
             '6.5kw': { name: "Kit 6.5kW Familiar", price: "$6,985 USD", install: "$750 USD", voltage: "✅ 120V/240V (Fase Partida - Ideal para Splits)", battery: "14.33 kWh (1x Batería LiFePO4 51.2V 280Ah - Modelo SE15B)", panels: "12 Paneles de 620W (Total 7440Wp)", inverter: "Inversor 6.5KW 48V (ASP4865U140-H)", extras: "Soporta Aires Acondicionados 220V." },
             '10kw': { name: "Kit 10kW Profesional", price: "$8,605 USD", install: "$950 USD", voltage: "✅ 120V/240V (Fase Partida)", battery: "14.33 kWh (1x Batería LiFePO4 51.2V 280Ah - Modelo SE15B)", panels: "16 Paneles de 620W (Total 9920Wp)", inverter: "Inversor 10KW 48V (ASP48100U200-H)", extras: "Potencia para residencias grandes o negocios." },
-            '10kwplus': { name: "Kit 10kW PLUS (Max Autonomía)", price: "$9,930 USD", install: "$950 USD", voltage: "✅ 120V/240V (Fase Partida)", battery: "⭐ 20.48 kWh (4x Baterías LiFePO4 51.2V 100Ah - Modelo EOCO5B)", panels: "16 Paneles de 620W (Total 9920Wp)", inverter: "Inversor 10KW 48V (ASP48100U200-H)", extras: "Banco de baterías ampliado para uso nocturno intensivo." }
+            '10kwplus': { name: "Kit 10kW PLUS (Max Autonomía)", price: "$9,930 USD", install: "$950 USD", voltage: "✅ 120V/240V (Fase Partida)", battery: "⭐ 20.48 kWh (4x Baterías LiFePO4 51.2V 100Ah - Modelo EOCO5B)", panels: "16 Paneles de 620W (Total 9920Wp)", inverter: "Inversor 10KW 48V (ASP48100U200-H)", extras: "Banco de baterías ampliado para uso nocturno intensivo." },
+            'astra3': { name: "Astra 3kW", price: "$2,800 (Todo Incluido)", install: "INCLUIDA", voltage: "110V", battery: "2.56 kWh (1x 100Ah)", panels: "2x 610W", extras: "Garantía 6 Meses. Transporte Gratis Habana." },
+    'astra5': { name: "Astra 5kW", price: "$4,500 (Todo Incluido)", install: "INCLUIDA", voltage: "110V", battery: "5.12 kWh (2x 100Ah)", panels: "4x 610W", extras: "Garantía 6 Meses. Transporte Gratis Habana." },
+            
         };
 
         let appState = {};
@@ -2324,6 +2476,9 @@
 
         function analyzeIntent(txt) {
             let kit = null;
+            if (txt.includes('astra') || txt.includes('2800') || txt.includes('4500')) {
+        return "La línea <strong>Soli Astra</strong> es 'Llave en Mano': incluye equipo, transporte en Habana e instalación. <br>El de 3kW vale $2,800 y el de 5kW vale $4,500. <br>Garantía de 6 meses.";
+    }
             if (txt.includes('5kw') || txt.includes('5 kw') || txt.includes('4685')) kit = '5kw';
             else if (txt.includes('6.5') || txt.includes('6,5') || txt.includes('6985')) kit = '6.5kw';
             else if ((txt.includes('10kw') || txt.includes('10 kw')) && (txt.includes('plus') || txt.includes('4 baterias') || txt.includes('9930'))) kit = '10kwplus';
