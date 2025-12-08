@@ -26,8 +26,6 @@
 
     <!-- Scripts Externos -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanta/0.5.24/vanta.net.min.js"></script>
     
     <!-- Fuentes e Iconos -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
@@ -63,7 +61,13 @@
     </script>
 
     <style>
-        body { background-color: #020617; color: #e2e8f0; }
+        body { 
+    background: radial-gradient(circle at top, #1e293b 0%, #020617 100%); 
+    color: #e2e8f0; 
+    font-family: 'Montserrat', sans-serif;
+}
+/* Eliminar el div de vanta si quedó por ahí */
+#vanta-bg { display: none !important; }
         .glass-panel { background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.05); box-shadow: 0 0 40px rgba(0,0,0,0.5); }
         .tech-card { background: linear-gradient(180deg, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.95) 100%); border: 1px solid rgba(255, 255, 255, 0.1); position: relative; transition: all 0.4s ease; overflow: hidden; }
         .tech-card:hover { transform: translateY(-5px); border-color: rgba(255, 215, 0, 0.4); box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.8), 0 0 20px rgba(255, 215, 0, 0.1); }
@@ -310,6 +314,51 @@
 
     <!-- NUEVO: SECCIÓN DE MÉTRICAS (SOCIAL PROOF) -->
     <section class="py-12 bg-gradient-to-r from-slate-900 to-slate-800 border-y border-gray-700 relative overflow-hidden" id="stats-section">
+        <!-- COMPARATIVA FINANCIERA -->
+<section class="py-16 bg-gray-900 border-y border-yellow-500/30">
+    <div class="max-w-5xl mx-auto px-4">
+        <div class="text-center mb-10">
+            <span class="text-yellow-500 font-bold tracking-widest text-xs uppercase mb-2 block">Análisis Financiero</span>
+            <h2 class="text-3xl font-bold text-white mb-4">La Matemática no miente 🧮</h2>
+            <p class="text-gray-400">¿Sigues gastando en gasolina y aceite? Mira lo que ahorras.</p>
+        </div>
+        
+        <div class="overflow-x-auto rounded-xl shadow-2xl border border-gray-700">
+            <table class="w-full text-left border-collapse bg-[#0f172a]">
+                <thead>
+                    <tr class="text-gray-400 text-xs uppercase tracking-wider border-b border-gray-700 bg-gray-800">
+                        <th class="p-4">Concepto (Mensual)</th>
+                        <th class="p-4 text-center text-red-400 font-bold">Planta Eléctrica</th>
+                        <th class="p-4 text-center text-green-400 font-bold bg-green-900/10">Kit Solar 5kW</th>
+                    </tr>
+                </thead>
+                <tbody class="text-white text-sm">
+                    <tr class="border-b border-gray-700 hover:bg-gray-800/50 transition">
+                        <td class="p-4 font-bold flex items-center gap-2"><i class="fas fa-gas-pump text-gray-500"></i> Combustible</td>
+                        <td class="p-4 text-center text-red-300 font-mono">$250 - $400 USD</td>
+                        <td class="p-4 text-center text-green-400 font-bold font-mono bg-green-900/10">$0 USD</td>
+                    </tr>
+                    <tr class="border-b border-gray-700 hover:bg-gray-800/50 transition">
+                        <td class="p-4 font-bold flex items-center gap-2"><i class="fas fa-tools text-gray-500"></i> Mantenimiento</td>
+                        <td class="p-4 text-center text-red-300">Aceite cada 100h</td>
+                        <td class="p-4 text-center text-green-400 bg-green-900/10">Cero</td>
+                    </tr>
+                    <tr class="border-b border-gray-700 hover:bg-gray-800/50 transition">
+                        <td class="p-4 font-bold flex items-center gap-2"><i class="fas fa-volume-up text-gray-500"></i> Ruido</td>
+                        <td class="p-4 text-center text-red-300">Insoportable (90dB)</td>
+                        <td class="p-4 text-center text-green-400 bg-green-900/10">Silencio Total</td>
+                    </tr>
+                    <tr class="bg-yellow-900/20 border-t-2 border-yellow-500">
+                        <td class="p-4 font-bold text-yellow-500 text-base">GASTO EN 5 AÑOS</td>
+                        <td class="p-4 text-center text-red-500 font-bold text-base">⚠️ +$15,000 USD</td>
+                        <td class="p-4 text-center text-green-400 font-bold text-base bg-green-900/20">✅ PAGO ÚNICO</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p class="text-center text-xs text-gray-500 mt-4 italic">* Cálculo basado en 8 horas diarias de uso y precio actual del combustible informal.</p>
+    </div>
+</section>
         <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#60a5fa 1px, transparent 1px); background-size: 20px 20px;"></div>
         <div class="max-w-7xl mx-auto px-4 relative z-10">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-gray-700/50">
@@ -1109,11 +1158,18 @@
                     <div class="glass-panel rounded-2xl p-6">
                         <h3 class="text-lg font-bold text-white mb-4 border-b border-gray-700 pb-2"><i class="fas fa-server text-blue-400 mr-2"></i> Elige el Kit a Probar</h3>
                         <select id="kitSelect" class="w-full bg-gray-800 border border-gray-600 text-white rounded-lg p-3 mb-4 focus:border-yellow-500 outline-none text-sm font-mono">
-                            <option value="5kw">Kit 5kW (120V) - Bat 10.49 kWh</option>
-                            <option value="6.5kw" selected>Kit 6.5kW (120/240V) - Bat 14.33 kWh</option>
-                            <option value="10kwA">Kit 10kW Pro (120/240V) - Bat 14.33 kWh</option>
-                            <option value="10kwB">Kit 10kW PLUS (120/240V) - Bat 20.48 kWh</option>
-                        </select>
+    <!-- NUEVOS -->
+    <option value="must">Estación MUST 3kW (110V) - Bat 2.56 kWh</option>
+    <option value="astra3">Astra 3kW (110V) - Bat 2.56 kWh</option>
+    <option value="astra3plus">Astra 3kW PLUS (110V) - Bat 7.68 kWh</option>
+    <option value="astra5">Astra 5kW (110V) - Bat 5.12 kWh</option>
+    <option value="astra5max">Astra 5kW MAX (110V) - Bat 15.36 kWh</option>
+    <!-- ANTERIORES -->
+    <option value="5kw">Kit 5kW PRO (120V) - Bat 10.49 kWh</option>
+    <option value="6.5kw" selected>Kit 6.5kW PRO (120/240V) - Bat 14.33 kWh</option>
+    <option value="10kwA">Kit 10kW Pro (120/240V) - Bat 14.33 kWh</option>
+    <option value="10kwB">Kit 10kW PLUS (120/240V) - Bat 20.48 kWh</option>
+</select>
                         <div class="flex justify-between items-center">
                             <label class="flex items-center cursor-pointer">
                                 <input type="checkbox" id="nightMode" class="w-4 h-4 accent-yellow-500 mr-2" checked>
@@ -1241,68 +1297,50 @@
         </div>
     </section>
 
-    <!-- EVIDENCIA DE INSTALACIÓN REAL (FOTOS CLIENTE) -->
-    <section class="py-20 bg-gray-900 border-y border-gray-800">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-10 gap-4">
-                <div>
-                    <span class="text-green-400 font-bold tracking-widest text-xs uppercase mb-2 block animate-pulse">● Trabajo Realizado Esta Semana</span>
-                    <h3 class="text-3xl md:text-4xl font-bold text-white font-tech">Acabados de <span class="text-yellow-400">Primera Calidad</span></h3>
-                    <p class="text-gray-400 mt-2 text-sm max-w-xl">
-                        Así luce una instalación certificada por SolarCuba. Sin cables colgando, con protecciones industriales y baterías de litio de última generación.
-                    </p>
-                </div>
-                <a href="#kits" class="text-yellow-400 text-sm font-bold hover:text-white transition flex items-center">
-                    Ver Precios de estos Equipos <i class="fas fa-arrow-right ml-2"></i>
-                </a>
-            </div>
+    <!-- EVIDENCIA REAL MEJORADA -->
+<section class="py-20 bg-[#020617] border-b border-gray-800">
+    <div class="max-w-7xl mx-auto px-4">
+        <div class="text-center mb-12">
+            <span class="inline-block py-1 px-3 rounded-full bg-green-900/30 border border-green-500/50 text-green-400 text-xs font-bold uppercase tracking-widest mb-4">
+                <i class="fas fa-camera mr-2"></i> Instalaciones de la Semana
+            </span>
+            <h2 class="text-3xl md:text-5xl font-bold text-white mb-6">Así se ve la <span class="text-yellow-500">Calidad</span></h2>
+            <p class="text-gray-400 max-w-2xl mx-auto">
+                No usamos fotos de Google. Estos son equipos Astra y SRNE instalados por nuestras brigadas aliadas en La Habana y Matanzas.
+            </p>
+        </div>
 
-            <!-- Grid Personalizado para 4 Fotos -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 auto-rows-[250px]">
-                
-                <!-- 1. FOTO PRINCIPAL VERTICAL (Sistema Inversor/Batería) -->
-                <!-- Esta es la foto vertical del equipo en la pared -->
-                <div class="group relative overflow-hidden rounded-xl border border-gray-700 hover:border-yellow-500 transition duration-300 md:row-span-2 cursor-zoom-in h-full" onclick="viewComponent('https://i.imgur.com/cBsF4BB.jpeg', 'Sistema Completo SRNE')">
-                    <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition z-10"></div>
-                    <img src="https://i.imgur.com/cBsF4BB.jpeg" alt="Instalación Inversor y Batería" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-700">
-                    <div class="absolute bottom-0 left-0 bg-black/80 backdrop-blur-sm px-4 py-3 rounded-tr-xl z-20 border-t border-r border-gray-600">
-                        <p class="text-white font-bold text-sm"><i class="fas fa-check-circle text-green-500 mr-2"></i>Instalación Limpia</p>
-                        <p class="text-xs text-gray-400">Cero cables visibles.</p>
-                    </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 h-96 md:h-[500px]">
+            <!-- Foto 1: Grande -->
+            <div class="col-span-2 row-span-2 relative rounded-2xl overflow-hidden border border-gray-700 group cursor-zoom-in" onclick="viewComponent('https://i.imgur.com/cBsF4BB.jpeg', 'Instalación SRNE Impecable')">
+                <img src="https://i.imgur.com/cBsF4BB.jpeg" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" alt="Inversor Instalado">
+                <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/90 to-transparent p-6">
+                    <p class="text-white font-bold text-lg">Acabado Profesional</p>
+                    <p class="text-gray-300 text-xs">Cables ocultos y protecciones a la vista.</p>
                 </div>
-
-                <!-- 2. FOTO PANORÁMICA (Techo Completo) -->
-                <!-- Esta foto muestra todos los paneles -->
-                <div class="group relative overflow-hidden rounded-xl border border-gray-700 hover:border-yellow-500 transition duration-300 md:col-span-2 cursor-zoom-in" onclick="viewComponent('https://i.imgur.com/rcGgzOJ.jpeg', 'Array de Paneles')">
-                    <img src="https://i.imgur.com/rcGgzOJ.jpeg" alt="Paneles Solares en Techo" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-700">
-                    <div class="absolute top-4 left-4 bg-blue-600/90 text-white text-[10px] font-bold px-3 py-1 rounded shadow-lg">Paneles DAH Solar</div>
-                </div>
-
-                <!-- 3. FOTO DETALLE (Estructura desde atrás) -->
-                <div class="group relative overflow-hidden rounded-xl border border-gray-700 hover:border-yellow-500 transition duration-300 cursor-zoom-in" onclick="viewComponent('https://i.imgur.com/w5XyDff.jpeg', 'Estructura Robusta')">
-                    <img src="https://i.imgur.com/w5XyDff.jpeg" alt="Detalle Estructura" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-700">
-                    <div class="absolute bottom-0 right-0 bg-black/80 backdrop-blur-sm px-3 py-1 rounded-tl-xl z-20">
-                        <p class="text-white font-bold text-[10px]">Anclaje Sólido</p>
-                    </div>
-                </div>
-
-                <!-- 4. FOTO DETALLE (Perfil Lateral/Sombra) -->
-                <div class="group relative overflow-hidden rounded-xl border border-gray-700 hover:border-yellow-500 transition duration-300 cursor-zoom-in" onclick="viewComponent('https://i.imgur.com/XKz9G2J.jpeg', 'Inclinación Perfecta')">
-                    <img src="https://i.imgur.com/XKz9G2J.jpeg" alt="Perfil Paneles" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-700">
-                    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300 bg-black/40">
-                        <i class="fas fa-search-plus text-white text-3xl"></i>
-                    </div>
-                </div>
-
             </div>
             
-            <!-- Nota de confianza -->
-            <div class="mt-6 flex items-center justify-center gap-2 text-xs text-gray-500">
-                <i class="fas fa-camera"></i>
-                <span>Fotos reales enviadas por nuestro cliente en La Habana.</span>
+            <!-- Foto 2 -->
+            <div class="col-span-1 row-span-1 relative rounded-2xl overflow-hidden border border-gray-700 group cursor-zoom-in" onclick="viewComponent('https://i.imgur.com/rcGgzOJ.jpeg', 'Paneles en Techo')">
+                <img src="https://i.imgur.com/rcGgzOJ.jpeg" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" alt="Paneles Techo">
+            </div>
+
+            <!-- Foto 3 -->
+            <div class="col-span-1 row-span-1 relative rounded-2xl overflow-hidden border border-gray-700 group cursor-zoom-in" onclick="viewComponent('https://i.imgur.com/w5XyDff.jpeg', 'Estructura de Aluminio')">
+                <img src="https://i.imgur.com/w5XyDff.jpeg" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" alt="Estructura">
+                <div class="absolute top-2 right-2 bg-yellow-500 text-black text-[10px] font-bold px-2 py-1 rounded">Aluminio Anodizado</div>
+            </div>
+
+            <!-- Foto 4: Panorámica abajo -->
+            <div class="col-span-2 row-span-1 relative rounded-2xl overflow-hidden border border-gray-700 group cursor-zoom-in" onclick="viewComponent('https://i.imgur.com/XKz9G2J.jpeg', 'Perfil Paneles')">
+                <img src="https://i.imgur.com/XKz9G2J.jpeg" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" alt="Perfil">
+                <div class="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition">
+                    <span class="text-white border border-white px-4 py-2 rounded-full uppercase text-xs font-bold hover:bg-white hover:text-black transition">Ver Detalle</span>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- LEAD MAGNET / DESCARGA PDF (NUEVO) -->
     <section class="py-16 bg-gradient-to-r from-yellow-900/40 to-black border-y border-yellow-600/30">
@@ -1558,32 +1596,55 @@
     </section>
 
     <!-- SECCIÓN EMPRESAS -->
-    <section id="empresas" class="py-16 bg-gradient-to-r from-blue-950 to-slate-900 border-t border-blue-500/30">
+    <section id="empresas" class="py-20 bg-gray-100 border-t border-gray-200">
         <div class="max-w-7xl mx-auto px-4">
-            <div class="flex flex-col md:flex-row items-center justify-between gap-8">
-                <div class="md:w-2/3">
-                    <div class="inline-block bg-blue-600/20 border border-blue-400/30 text-blue-300 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4"><i class="fas fa-briefcase mr-2"></i> Carril Corporativo</div>
-                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Atención Empresas Estatales</h2>
-                    <p class="text-gray-300 text-lg mb-6 leading-relaxed">Entendemos los requerimientos fiscales y legales. Ofrecemos el marco completo para la importación y contratación de sistemas fotovoltaicos de gran escala.</p>
-                    <ul class="grid sm:grid-cols-2 gap-4 text-sm text-gray-300 mb-8">
-                        <li class="flex items-center"><i class="fas fa-check-circle text-blue-400 mr-3"></i> Factura Fiscal Internacional (Proforma)</li>
-                        <li class="flex items-center"><i class="fas fa-check-circle text-blue-400 mr-3"></i> Pagos desde cuentas en el exterior</li>
-                        <li class="flex items-center"><i class="fas fa-check-circle text-blue-400 mr-3"></i> <span class="text-white font-bold">Posibilidad de Contrato vía Copextel</span></li>
-                        <li class="flex items-center"><i class="fas fa-check-circle text-blue-400 mr-3"></i> Garantía extendida corporativa</li>
-                    </ul>
-                    <button onclick="openEmpresaForm()" class="inline-flex items-center bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-8 rounded-lg transition shadow-lg shadow-blue-500/20 cursor-pointer transform hover:scale-105">
-    <i class="far fa-file-alt mr-2"></i> Solicitar Proforma Formal
-</button>
+        <div class="flex flex-col md:flex-row items-center justify-between gap-12">
+            <div class="md:w-2/3">
+                <div class="inline-block bg-blue-100 border border-blue-200 text-blue-800 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4">
+                    <i class="fas fa-briefcase mr-2"></i> Carril Corporativo
                 </div>
-                <div class="md:w-1/3 flex justify-center">
-                    <div class="bg-blue-900/30 p-6 rounded-2xl border border-blue-500/20 text-center">
-                        <i class="fas fa-university text-5xl text-blue-400 mb-4"></i>
-                        <h3 class="text-white font-bold text-lg mb-2">Cumplimiento Legal</h3>
-                        <p class="text-gray-400 text-xs">Nuestros procesos están alineados con las regulaciones de importación vigentes para el sector estatal.</p>
+                <h2 class="text-3xl md:text-5xl font-bold text-gray-900 mb-6">Atención Empresas Estatales</h2>
+                <p class="text-gray-600 text-lg mb-8 leading-relaxed">
+                    Proveemos el marco legal y técnico para la importación de sistemas fotovoltaicos a gran escala. 
+                    Cumplimiento total con normativas de Aduana y Copextel.
+                </p>
+                
+                <div class="grid sm:grid-cols-2 gap-6 mb-8">
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center text-white"><i class="fas fa-file-invoice-dollar"></i></div>
+                        <div class="ml-4">
+                            <h4 class="text-gray-900 font-bold">Facturación Fiscal</h4>
+                            <p class="text-gray-500 text-sm">Proformas internacionales válidas.</p>
+                        </div>
                     </div>
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center text-white"><i class="fas fa-globe"></i></div>
+                        <div class="ml-4">
+                            <h4 class="text-gray-900 font-bold">Pagos Exterior</h4>
+                            <p class="text-gray-500 text-sm">Cuentas corporativas off-shore.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <button onclick="openEmpresaForm()" class="inline-flex items-center bg-blue-800 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-lg transition shadow-xl shadow-blue-900/20 cursor-pointer transform hover:scale-105">
+                    <i class="far fa-file-alt mr-2"></i> Solicitar Proforma Formal
+                </button>
+            </div>
+            
+            <div class="md:w-1/3 flex justify-center">
+                <div class="bg-white p-8 rounded-2xl border border-gray-200 shadow-2xl text-center">
+                    <div class="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-university text-4xl text-blue-800"></i>
+                    </div>
+                    <h3 class="text-gray-900 font-bold text-xl mb-2">Cumplimiento Legal</h3>
+                    <p class="text-gray-500 text-sm mb-4">
+                        Nuestros procesos están auditados para garantizar la transparencia en contrataciones estatales.
+                    </p>
+                    <div class="text-xs font-mono bg-gray-50 p-2 rounded text-gray-400">Ref: ISO-9001 / TIER-1</div>
                 </div>
             </div>
         </div>
+    </div>
     </section>
 
     <!-- Chatbot -->
@@ -1903,184 +1964,107 @@
     </div>
 </div>
 
-    <!-- === NUEVO MODAL DE PEDIDO COMPLETO === -->
-    <div id="orderModal" class="fixed inset-0 bg-black/90 z-[3000] hidden flex items-center justify-center p-4 backdrop-blur-md transition-opacity duration-300" onclick="if(event.target === this) closeOrderForm()">
-        <div class="bg-[#0f172a] border border-yellow-500 rounded-2xl w-full max-w-lg relative shadow-[0_0_50px_rgba(255,215,0,0.15)] overflow-hidden flex flex-col max-h-[90vh]">
-            <div class="bg-gradient-to-r from-yellow-700 to-yellow-600 p-4 text-center shrink-0">
-                <button onclick="closeOrderForm()" class="absolute top-3 right-4 text-yellow-100 hover:text-white text-2xl">&times;</button>
-                <h3 class="text-xl font-bold text-white"><i class="fas fa-shopping-cart mr-2"></i> Formulario de Pedido</h3>
-                <p class="text-yellow-100 text-xs mt-1">Asegura tu stock hoy mismo.</p>
-            </div>
-            <!-- Checkbox Visita -->
-<!-- AGREGAR id="visitOptionContainer" AL DIV PADRE -->
-<div id="visitOptionContainer" class="w-2/3 flex items-center bg-blue-900/20 p-3 rounded border border-blue-500/30 h-full mt-5 transition-all">
-    <input id="oVisit" type="checkbox" class="w-5 h-5 text-blue-600 bg-gray-700 border-gray-600 rounded focus:ring-blue-500 focus:ring-2">
-    <label for="oVisit" class="ml-2 text-xs text-blue-200 cursor-pointer">
-        Solicitar <strong>Visita Técnica</strong> Previa
-    </label>
-</div>
-            
-            <div class="p-6 overflow-y-auto custom-scrollbar">
-                <form id="orderForm" onsubmit="submitOrderForm(event)" class="space-y-4">
-                    
-                    <!-- Datos Personales -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-gray-400 text-xs font-bold mb-1 ml-1">Nombre Completo</label>
-                            <input type="text" id="oName" required class="form-input w-full rounded-lg py-3 px-4 text-sm focus:ring-1 focus:ring-yellow-500" placeholder="Ej: Juan Pérez">
-                        </div>
-                        <div>
-                            <label class="block text-gray-400 text-xs font-bold mb-1 ml-1">Carné de Identidad (CI)</label>
-                            <input type="number" id="oCI" required class="form-input w-full rounded-lg py-3 px-4 text-sm focus:ring-1 focus:ring-yellow-500" placeholder="Ej: 850210..." maxlength="11">
-                        </div>
-                    </div>
-
-                    <!-- Dirección -->
-                    <div>
-                        <label class="block text-gray-400 text-xs font-bold mb-1 ml-1">Dirección Exacta</label>
-                        <input type="text" id="oAddress" required class="form-input w-full rounded-lg py-3 px-4 text-sm focus:ring-1 focus:ring-yellow-500" placeholder="Calle, #, Apto, Entre calles...">
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-gray-400 text-xs font-bold mb-1 ml-1">Provincia</label>
-                            <select id="oProvince" required class="form-input w-full rounded-lg py-3 px-4 text-sm focus:ring-1 focus:ring-yellow-500 bg-gray-800">
-    <option value="" disabled selected>Selecciona tu provincia...</option>
-    <option value="Pinar del Río">Pinar del Río</option>
-    <option value="Artemisa">Artemisa</option>
-    <option value="La Habana">La Habana</option>
-    <option value="Mayabeque">Mayabeque</option>
-    <option value="Matanzas">Matanzas</option>
-    <option value="Cienfuegos">Cienfuegos</option>
-    <option value="Villa Clara">Villa Clara</option>
-    <option value="Sancti Spíritus">Sancti Spíritus</option>
-    <option value="Ciego de Ávila">Ciego de Ávila</option>
-    <option value="Camagüey">Camagüey</option>
-    <option value="Las Tunas">Las Tunas</option>
-    <option value="Holguín">Holguín</option>
-    <option value="Granma">Granma</option>
-    <option value="Santiago de Cuba">Santiago de Cuba</option>
-    <option value="Guantánamo">Guantánamo</option>
-    <option value="Isla de la Juventud">Isla de la Juventud</option>
-</select>
-                        </div>
-                        <div>
-                            <label class="block text-gray-400 text-xs font-bold mb-1 ml-1">Código de Referido (Opcional)</label>
-                            <input type="text" id="oRef" class="form-input w-full rounded-lg py-3 px-4 text-sm focus:ring-1 focus:ring-purple-500 border-purple-500/30" placeholder="Ej: MARIA24">
-                        </div>
-                    </div>
-
-                    <hr class="border-gray-700 my-2">
-
-                    <!-- Selección de Equipo -->
-                    <div>
-                        <label class="block text-gray-400 text-xs font-bold mb-1 ml-1">Seleccionar Kit</label>
-                        <select id="oKit" required class="form-input w-full rounded-lg py-3 px-4 text-sm focus:ring-1 focus:ring-yellow-500 bg-gray-800">
-    <optgroup label="⚡ NOVEDAD COMPACTA (Instalación Inmediata)">
-        <option value="Estación MUST 3kW - $2350">Estación MUST 3kW All-in-One - $2,350</option>
-    </optgroup>
-    <optgroup label="🔵 LÍNEA RESIDENCIAL ASTRA (No Visita Técnica)">
-        <option value="Kit Astra 3kW - $2800">Kit Astra 3kW (Básico) - $2,800</option>
-        <option value="Kit Astra 3kW PLUS - $3850">Kit Astra 3kW PLUS (3 Bat) - $3,850</option>
-        <option value="Kit Astra 5kW - $4500">Kit Astra 5kW (Hogar) - $4,500</option>
-        <option value="Kit Astra 5kW MAX - $7200">Kit Astra 5kW MAX (9 Paneles) - $7,200</option>
-    </optgroup>
-    <optgroup label="🟡 LÍNEA INDUSTRIAL PRO (Visita Incluida)">
-        <option value="Kit 5kW PRO (Residencial)">Kit 5kW PRO (Srne/Dah) - $4,685 (+Inst)</option>
-        <option value="Kit 6.5kW PRO (Familiar)">Kit 6.5kW PRO (Split Phase) - $6,985 (+Inst)</option>
-        <option value="Kit 10kW PRO (Profesional)">Kit 10kW PRO - $8,605 (+Inst)</option>
-    </optgroup>
-</select>
-                    </div>
-
-                    <div class="flex items-center gap-4">
-                        <div class="w-1/3">
-                            <label class="block text-gray-400 text-xs font-bold mb-1 ml-1">Cantidad</label>
-                            <input type="number" id="oQty" value="1" min="1" max="10" class="form-input w-full rounded-lg py-3 px-4 text-sm text-center font-bold">
-                        </div>
-                        <!-- Checkbox Visita -->
-                        <div class="w-2/3 flex items-center bg-blue-900/20 p-3 rounded border border-blue-500/30 h-full mt-5">
-                            <input id="oVisit" type="checkbox" class="w-5 h-5 text-blue-600 bg-gray-700 border-gray-600 rounded focus:ring-blue-500 focus:ring-2">
-                            <label for="oVisit" class="ml-2 text-xs text-blue-200 cursor-pointer">
-                                Solicitar <strong>Visita Técnica</strong> Previa
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="pt-4">
-                        <button type="submit" class="w-full bg-[#25D366] hover:bg-[#20ba5a] text-white font-bold py-4 rounded-lg shadow-lg flex items-center justify-center transition transform hover:scale-[1.02]">
-                            <span>Finalizar Pedido en WhatsApp</span>
-                            <i class="fab fa-whatsapp text-xl ml-2"></i>
-                        </button>
-                    </div>
-                </form>
-            </div>
+<!-- MODAL DE PEDIDO ESTILO PRO -->
+<div id="orderModal" class="fixed inset-0 bg-black/90 z-[3000] hidden flex items-center justify-center p-4 backdrop-blur-md transition-opacity duration-300" onclick="if(event.target === this) closeOrderForm()">
+    
+    <!-- Contenedor Principal: Fondo Gris Oscuro Sólido, Bordes Sutiles -->
+    <div class="bg-[#111827] border border-gray-700 rounded-2xl w-full max-w-lg relative shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
+        
+        <!-- Encabezado: Gris oscuro con borde inferior, más elegante -->
+        <div class="bg-[#1f2937] p-5 text-center shrink-0 border-b border-gray-700">
+            <button onclick="closeOrderForm()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl transition">&times;</button>
+            <h3 class="text-xl font-bold text-white tracking-wide"><i class="fas fa-shopping-cart mr-2 text-yellow-500"></i> Finalizar Pedido</h3>
+            <p class="text-gray-400 text-xs mt-1">Stock reservado por 15 minutos.</p>
         </div>
-    </div>
-    <!-- === FIN MODAL PEDIDO === -->
+        
+        <div class="p-6 overflow-y-auto custom-scrollbar">
+            <form id="orderForm" onsubmit="submitOrderForm(event)" class="space-y-5">
+                
+                <!-- Datos Personales -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-gray-400 text-xs font-bold mb-1 ml-1 uppercase tracking-wider">Nombre Completo</label>
+                        <input type="text" id="oName" required class="w-full bg-gray-800 border border-gray-600 text-white rounded-lg py-3 px-4 text-sm focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 outline-none transition" placeholder="Ej: Juan Pérez">
+                    </div>
+                    <div>
+                        <label class="block text-gray-400 text-xs font-bold mb-1 ml-1 uppercase tracking-wider">Carné (CI)</label>
+                        <input type="number" id="oCI" required class="w-full bg-gray-800 border border-gray-600 text-white rounded-lg py-3 px-4 text-sm focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 outline-none transition" placeholder="Ej: 850210..." maxlength="11">
+                    </div>
+                </div>
 
-    <!-- Modal Distribuidores -->
-    <div id="distModal" class="fixed inset-0 bg-black/90 z-[2000] hidden flex items-center justify-center p-4 backdrop-blur-md transition-opacity duration-300" onclick="if(event.target === this) closeDistForm()">
-        <div class="bg-[#0f172a] border border-green-500 rounded-2xl w-full max-w-md relative shadow-[0_0_50px_rgba(34,197,94,0.15)] overflow-hidden">
-            <div class="bg-gradient-to-r from-green-800 to-green-600 p-4 text-center">
-                <button onclick="closeDistForm()" class="absolute top-3 right-4 text-green-100 hover:text-white text-2xl">&times;</button>
-                <h3 class="text-xl font-bold text-white"><i class="fas fa-id-card mr-2"></i> Alta de Distribuidor</h3>
-                <p class="text-green-100 text-xs mt-1">Completa tus datos para asignarte un ejecutivo.</p>
-            </div>
-            <div class="p-6 md:p-8">
-                <form id="distForm" onsubmit="submitDistForm(event)" class="space-y-4">
+                <!-- Dirección -->
+                <div>
+                    <label class="block text-gray-400 text-xs font-bold mb-1 ml-1 uppercase tracking-wider">Dirección Exacta</label>
+                    <input type="text" id="oAddress" required class="w-full bg-gray-800 border border-gray-600 text-white rounded-lg py-3 px-4 text-sm focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 outline-none transition" placeholder="Calle, #, Apto, Entre calles...">
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-gray-400 text-xs font-bold mb-1 ml-1">Tu Nombre</label>
-                        <div class="relative"><i class="fas fa-user absolute left-3 top-3.5 text-gray-500 text-xs"></i><input type="text" id="dName" required pattern="[a-zA-ZÀ-ÿ\s]+" title="Solo letras" class="form-input w-full rounded-lg py-3 pl-10 pr-4 text-sm focus:ring-1 focus:ring-green-500" placeholder="Ej: Roberto Pérez"></div>
+                        <label class="block text-gray-400 text-xs font-bold mb-1 ml-1 uppercase tracking-wider">Provincia</label>
+                        <select id="oProvince" required class="w-full bg-gray-800 border border-gray-600 text-white rounded-lg py-3 px-4 text-sm focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 outline-none transition">
+                            <option value="" disabled selected>Selecciona...</option>
+                            <option value="La Habana">La Habana</option>
+                            <option value="Artemisa">Artemisa</option>
+                            <option value="Mayabeque">Mayabeque</option>
+                            <option value="Matanzas">Matanzas</option>
+                            <option value="Pinar del Río">Pinar del Río</option>
+                            <!-- Resto de provincias... -->
+                        </select>
                     </div>
                     <div>
-                        <label class="block text-gray-400 text-xs font-bold mb-1 ml-1">Nombre del Negocio / TCP</label>
-                        <div class="relative"><i class="fas fa-briefcase absolute left-3 top-3.5 text-gray-500 text-xs"></i><input type="text" id="dBusiness" required class="form-input w-full rounded-lg py-3 pl-10 pr-4 text-sm focus:ring-1 focus:ring-green-500" placeholder="Ej: Soluciones Eléctricas RP"></div>
+                        <label class="block text-gray-400 text-xs font-bold mb-1 ml-1 uppercase tracking-wider">Código Referido</label>
+                        <input type="text" id="oRef" class="w-full bg-gray-800 border border-gray-600 text-white rounded-lg py-3 px-4 text-sm focus:border-purple-500 focus:ring-1 focus:ring-purple-500 outline-none transition" placeholder="Opcional">
                     </div>
-                    <div>
-                        <label class="block text-gray-400 text-xs font-bold mb-1 ml-1">Provincia</label>
-                        <div class="relative">
-                            <i class="fas fa-map-marker-alt absolute left-3 top-3.5 text-gray-500 text-xs"></i>
-                            <select id="dProvince" required class="form-input w-full rounded-lg py-3 pl-10 pr-4 text-sm focus:ring-1 focus:ring-green-500 appearance-none">
-    <option value="" disabled selected>Selecciona ubicación...</option>
-    <option value="Pinar del Río">Pinar del Río</option>
-    <option value="Artemisa">Artemisa</option>
-    <option value="La Habana">La Habana</option>
-    <option value="Mayabeque">Mayabeque</option>
-    <option value="Matanzas">Matanzas</option>
-    <option value="Cienfuegos">Cienfuegos</option>
-    <option value="Villa Clara">Villa Clara</option>
-    <option value="Sancti Spíritus">Sancti Spíritus</option>
-    <option value="Ciego de Ávila">Ciego de Ávila</option>
-    <option value="Camagüey">Camagüey</option>
-    <option value="Las Tunas">Las Tunas</option>
-    <option value="Holguín">Holguín</option>
-    <option value="Granma">Granma</option>
-    <option value="Santiago de Cuba">Santiago de Cuba</option>
-    <option value="Guantánamo">Guantánamo</option>
-    <option value="Isla de la Juventud">Isla de la Juventud</option>
-</select>
-                            <i class="fas fa-chevron-down absolute right-3 top-3.5 text-gray-500 text-xs pointer-events-none"></i>
-                        </div>
+                </div>
+
+                <hr class="border-gray-700 my-2">
+
+                <!-- Selección de Equipo -->
+                <div>
+                    <label class="block text-gray-400 text-xs font-bold mb-1 ml-1 uppercase tracking-wider">Kit Seleccionado</label>
+                    <select id="oKit" required class="w-full bg-gray-900 border border-yellow-500/50 text-white rounded-lg py-3 px-4 text-sm font-bold focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 outline-none transition shadow-inner">
+                        <optgroup label="⚡ NOVEDAD COMPACTA">
+                            <option value="Estación MUST 3kW - $2350">Estación MUST 3kW All-in-One - $2,350</option>
+                        </optgroup>
+                        <optgroup label="🔵 LÍNEA RESIDENCIAL ASTRA (Llave en Mano)">
+                            <option value="Kit Astra 3kW - $2800">Kit Astra 3kW (Básico) - $2,800</option>
+                            <option value="Kit Astra 3kW PLUS - $3850">Kit Astra 3kW PLUS (3 Bat) - $3,850</option>
+                            <option value="Kit Astra 5kW - $4500">Kit Astra 5kW (Hogar) - $4,500</option>
+                            <option value="Kit Astra 5kW MAX - $7200">Kit Astra 5kW MAX (9 Paneles) - $7,200</option>
+                        </optgroup>
+                        <optgroup label="🟡 LÍNEA INDUSTRIAL PRO">
+                            <option value="Kit 5kW PRO (Residencial)">Kit 5kW PRO (Srne/Dah) - $4,685 (+Inst)</option>
+                            <option value="Kit 6.5kW PRO (Familiar)">Kit 6.5kW PRO (Split Phase) - $6,985 (+Inst)</option>
+                            <option value="Kit 10kW PRO (Profesional)">Kit 10kW PRO - $8,605 (+Inst)</option>
+                        </optgroup>
+                    </select>
+                </div>
+
+                <div class="flex items-center gap-4">
+                    <div class="w-1/3">
+                        <label class="block text-gray-400 text-xs font-bold mb-1 ml-1 uppercase tracking-wider">Cant.</label>
+                        <input type="number" id="oQty" value="1" min="1" max="10" class="w-full bg-gray-800 border border-gray-600 text-white rounded-lg py-3 px-4 text-sm text-center font-bold focus:border-yellow-500 outline-none">
                     </div>
-                    <div class="flex items-start gap-2 bg-green-900/20 p-3 rounded border border-green-500/30">
-                        <div class="flex items-center h-5">
-                            <input id="dCopextel" type="checkbox" class="w-4 h-4 text-green-600 bg-gray-700 border-gray-600 rounded focus:ring-green-500 focus:ring-2">
-                        </div>
-                        <label for="dCopextel" class="ml-2 text-xs text-gray-300">
-                            Estoy registrado en <strong>Copextel</strong> (Requisito para el 12% de descuento).
+                    
+                    <!-- Checkbox Visita (Se oculta con JS) -->
+                    <div id="visitOptionContainer" class="w-2/3 flex items-center bg-blue-900/10 border border-blue-500/20 p-3 rounded-lg h-[46px] mt-[22px] transition-all">
+                        <input id="oVisit" type="checkbox" class="w-4 h-4 rounded border-gray-600 text-blue-600 focus:ring-blue-500 bg-gray-700 cursor-pointer">
+                        <label for="oVisit" class="ml-2 text-xs text-gray-300 cursor-pointer select-none">
+                            Quiero <strong>Visita Técnica</strong> Previa
                         </label>
                     </div>
-                    <div class="pt-2">
-                        <button type="submit" class="w-full bg-[#25D366] hover:bg-[#20ba5a] text-white font-bold py-3.5 rounded-lg shadow-lg flex items-center justify-center transition transform hover:scale-[1.02]">
-                            <span>Solicitar Alta Mayorista</span>
-                            <i class="fab fa-whatsapp text-xl ml-2"></i>
-                        </button>
-                    </div>
-                </form>
-            </div>
+                </div>
+
+                <div class="pt-4">
+                    <button type="submit" class="w-full bg-[#25D366] hover:bg-[#20ba5a] text-white font-bold py-4 rounded-xl shadow-lg flex items-center justify-center transition transform hover:scale-[1.01] active:scale-95 group">
+                        <span>Confirmar Pedido en WhatsApp</span>
+                        <i class="fab fa-whatsapp text-xl ml-2 group-hover:animate-pulse"></i>
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
+</div>
 
     <!-- Modal Afiliados (MODIFICADO: SOLO EFECTIVO USD) -->
     <div id="affiliateModal" class="fixed inset-0 bg-black/90 z-[2000] hidden flex items-center justify-center p-4 backdrop-blur-md transition-opacity duration-300" onclick="if(event.target === this) closeAffiliateModal()">
@@ -2217,10 +2201,7 @@
     </div>
 
     <script>
-        // --- VANTA BACKGROUND ---
-        if (typeof VANTA !== 'undefined' && window.innerWidth > 768) {
-            VANTA.NET({ el: "#vanta-bg", mouseControls: true, touchControls: true, gyroControls: false, minHeight: 200.00, minWidth: 200.00, scale: 1.00, scaleMobile: 1.00, color: 0xffa500, backgroundColor: 0x0f172a, points: 8.00, maxDistance: 22.00, spacing: 18.00 })
-        }
+        
 
         // --- AUDIO PLAYERS ---
         function toggleRealAudio(audioId, btnId, barId, timeId) {
@@ -2377,11 +2358,18 @@
             { id: 'pump', name: 'Bomba Agua', w: 750, v: 220, icon: 'fa-water', color: 'text-blue-400', defH: 0.5 }
         ];
         const kits = {
-            '5kw': { inverter: 5000, battKwh: 10.49, voltage: 110, priceKit: 4685, priceInstall: 500 },
-            '6.5kw': { inverter: 6500, battKwh: 14.336, voltage: 220, priceKit: 6985, priceInstall: 750 },
-            '10kwA': { inverter: 10000, battKwh: 14.336, voltage: 220, priceKit: 8605, priceInstall: 950 },
-            '10kwB': { inverter: 10000, battKwh: 20.48, voltage: 220, priceKit: 9930, priceInstall: 950 }
-        };
+    // --- NUEVOS (Instalación incluida en el precio = priceInstall: 0) ---
+    'must': { inverter: 3000, battKwh: 2.56, voltage: 110, priceKit: 2350, priceInstall: 0 },
+    'astra3': { inverter: 3000, battKwh: 2.56, voltage: 110, priceKit: 2800, priceInstall: 0 },
+    'astra3plus': { inverter: 3000, battKwh: 7.68, voltage: 110, priceKit: 3850, priceInstall: 0 },
+    'astra5': { inverter: 5000, battKwh: 5.12, voltage: 110, priceKit: 4500, priceInstall: 0 },
+    'astra5max': { inverter: 5000, battKwh: 15.36, voltage: 110, priceKit: 7200, priceInstall: 0 },
+    // --- PRO (Instalación se paga aparte) ---
+    '5kw': { inverter: 5000, battKwh: 10.49, voltage: 110, priceKit: 4685, priceInstall: 500 },
+    '6.5kw': { inverter: 6500, battKwh: 14.336, voltage: 220, priceKit: 6985, priceInstall: 750 },
+    '10kwA': { inverter: 10000, battKwh: 14.336, voltage: 220, priceKit: 8605, priceInstall: 950 },
+    '10kwB': { inverter: 10000, battKwh: 20.48, voltage: 220, priceKit: 9930, priceInstall: 950 }
+};
         const technicalSheets = {
             '5kw': 'https://i.imgur.com/Gly1xLL.jpeg',
             '6.5kw': 'https://i.imgur.com/81R6G5E.jpeg',
@@ -2786,16 +2774,20 @@
     // LISTENER PARA EL SELECT DEL KIT
     document.getElementById('oKit').addEventListener('change', checkVisitRequirement);
 
+    // LISTENER PARA EL SELECT DEL KIT (Asegura que se ejecute al cambiar)
+    document.getElementById('oKit').addEventListener('change', checkVisitRequirement);
+
     function checkVisitRequirement() {
         const kitValue = document.getElementById('oKit').value;
         const visitContainer = document.getElementById('visitOptionContainer'); 
-        
-        // Si es Astra o MUST, ocultamos la opción. Si es Pro, la mostramos.
+        const visitCheckbox = document.getElementById('oVisit');
+
+        // Lógica: Si el nombre contiene "Astra" o "MUST", ocultamos.
         if (kitValue.includes('Astra') || kitValue.includes('MUST')) {
-            visitContainer.style.display = 'none';
-            document.getElementById('oVisit').checked = false; // Desmarcar por seguridad
+            visitContainer.style.display = 'none'; // Ocultar visualmente
+            visitCheckbox.checked = false;         // Desmarcar valor
         } else {
-            visitContainer.style.display = 'flex'; // Volver a mostrar para Kits Pro
+            visitContainer.style.display = 'flex'; // Mostrar para Kits Pro
         }
     }
 
