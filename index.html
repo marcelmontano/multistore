@@ -1987,6 +1987,79 @@
         </div>
     </div>
 
+    <!-- Modal Distribuidores (RESTAURADO) -->
+<div id="distModal" class="fixed inset-0 bg-black/90 z-[4000] hidden flex items-center justify-center p-4 backdrop-blur-md transition-opacity duration-300" onclick="if(event.target === this) closeDistForm()">
+    <div class="bg-[#0f172a] border border-green-500 rounded-2xl w-full max-w-md relative shadow-[0_0_50px_rgba(34,197,94,0.15)] overflow-hidden">
+        
+        <div class="bg-gradient-to-r from-green-800 to-green-600 p-4 text-center">
+            <button onclick="closeDistForm()" class="absolute top-3 right-4 text-green-100 hover:text-white text-2xl">&times;</button>
+            <h3 class="text-xl font-bold text-white"><i class="fas fa-id-card mr-2"></i> Alta de Distribuidor</h3>
+            <p class="text-green-100 text-xs mt-1">Completa tus datos para asignarte un ejecutivo.</p>
+        </div>
+        
+        <div class="p-6 md:p-8">
+            <form id="distForm" onsubmit="submitDistForm(event)" class="space-y-4">
+                <div>
+                    <label class="block text-gray-400 text-xs font-bold mb-1 ml-1">Tu Nombre</label>
+                    <div class="relative">
+                        <i class="fas fa-user absolute left-3 top-3.5 text-gray-500 text-xs"></i>
+                        <input type="text" id="dName" required class="form-input w-full rounded-lg py-3 pl-10 pr-4 text-sm focus:ring-1 focus:ring-green-500 bg-gray-800 border-gray-600" placeholder="Ej: Roberto Pérez">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-gray-400 text-xs font-bold mb-1 ml-1">Nombre del Negocio / TCP</label>
+                    <div class="relative">
+                        <i class="fas fa-briefcase absolute left-3 top-3.5 text-gray-500 text-xs"></i>
+                        <input type="text" id="dBusiness" required class="form-input w-full rounded-lg py-3 pl-10 pr-4 text-sm focus:ring-1 focus:ring-green-500 bg-gray-800 border-gray-600" placeholder="Ej: Soluciones Eléctricas RP">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-gray-400 text-xs font-bold mb-1 ml-1">Provincia</label>
+                    <div class="relative">
+                        <i class="fas fa-map-marker-alt absolute left-3 top-3.5 text-gray-500 text-xs"></i>
+                        <select id="dProvince" required class="form-input w-full rounded-lg py-3 pl-10 pr-4 text-sm focus:ring-1 focus:ring-green-500 bg-gray-800 border-gray-600 appearance-none">
+                            <option value="" disabled selected>Selecciona ubicación...</option>
+                            <option value="La Habana">La Habana</option>
+                            <option value="Artemisa">Artemisa</option>
+                            <option value="Mayabeque">Mayabeque</option>
+                            <option value="Matanzas">Matanzas</option>
+                            <option value="Pinar del Río">Pinar del Río</option>
+                            <option value="Cienfuegos">Cienfuegos</option>
+                            <option value="Villa Clara">Villa Clara</option>
+                            <option value="Sancti Spíritus">Sancti Spíritus</option>
+                            <option value="Ciego de Ávila">Ciego de Ávila</option>
+                            <option value="Camagüey">Camagüey</option>
+                            <option value="Las Tunas">Las Tunas</option>
+                            <option value="Holguín">Holguín</option>
+                            <option value="Granma">Granma</option>
+                            <option value="Santiago de Cuba">Santiago de Cuba</option>
+                            <option value="Guantánamo">Guantánamo</option>
+                            <option value="Isla de la Juventud">Isla de la Juventud</option>
+                        </select>
+                        <i class="fas fa-chevron-down absolute right-3 top-3.5 text-gray-500 text-xs pointer-events-none"></i>
+                    </div>
+                </div>
+                
+                <div class="flex items-start gap-2 bg-green-900/20 p-3 rounded border border-green-500/30">
+                    <div class="flex items-center h-5">
+                        <input id="dCopextel" type="checkbox" class="w-4 h-4 text-green-600 bg-gray-700 border-gray-600 rounded focus:ring-green-500 focus:ring-2">
+                    </div>
+                    <label for="dCopextel" class="ml-2 text-xs text-gray-300 cursor-pointer select-none">
+                        Estoy registrado en <strong>Copextel</strong> (Requisito para el 12% de descuento).
+                    </label>
+                </div>
+                
+                <div class="pt-2">
+                    <button type="submit" class="w-full bg-[#25D366] hover:bg-[#20ba5a] text-white font-bold py-3.5 rounded-lg shadow-lg flex items-center justify-center transition transform hover:scale-[1.02]">
+                        <span>Solicitar Alta Mayorista</span>
+                        <i class="fab fa-whatsapp text-xl ml-2"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
     <!-- Modal Empresas Estatales -->
 <div id="empresaModal" class="fixed inset-0 bg-black/90 z-[3000] hidden flex items-center justify-center p-4 backdrop-blur-md transition-opacity duration-300" onclick="if(event.target === this) closeEmpresaForm()">
     <div class="bg-[#0f172a] border border-blue-500 rounded-2xl w-full max-w-md relative shadow-[0_0_50px_rgba(59,130,246,0.2)] overflow-hidden">
@@ -3041,6 +3114,44 @@
             closeEmpresaForm();
             btn.innerHTML = originalHTML;
             document.getElementById('empresaForm').reset();
+        }, 1000);
+    }
+    // --- LÓGICA DISTRIBUIDORES (Restaurada) ---
+    function openDistForm() {
+        const modal = document.getElementById('distModal');
+        if (modal) {
+            modal.classList.remove('hidden');
+        } else {
+            console.error("Error: No se encuentra el modal con id='distModal'");
+        }
+    }
+
+    function closeDistForm() {
+        document.getElementById('distModal').classList.add('hidden');
+    }
+
+    function submitDistForm(e) {
+        e.preventDefault();
+        
+        const name = document.getElementById('dName').value;
+        const business = document.getElementById('dBusiness').value;
+        const prov = document.getElementById('dProvince').value;
+        const isCopextel = document.getElementById('dCopextel').checked ? "✅ SÍ" : "❌ NO";
+        
+        const text = `👋 Hola SolarCuba.\nMe interesa comercializar sus kits y el *Descuento del 12%*.\n\n📋 *Mis Datos:*\n👤 Nombre: ${name}\n💼 Negocio: ${business}\n📍 Provincia: ${prov}\n🏭 Registro Copextel: ${isCopextel}\n\nQuisiera confirmar mi alta como distribuidor.`;
+        
+        const url = `https://wa.me/5358183649?text=${encodeURIComponent(text)}`;
+        
+        // Animación simple de botón
+        const btn = e.target.querySelector('button');
+        const originalHTML = btn.innerHTML;
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Abriendo WhatsApp...';
+        
+        setTimeout(() => {
+            window.open(url, '_blank');
+            closeDistForm();
+            btn.innerHTML = originalHTML;
+            document.getElementById('distForm').reset();
         }, 1000);
     }
     </script>
