@@ -562,9 +562,11 @@
                     <!-- COLUMNA IZQUIERDA: VISUAL + ICONOS -->
                     <div class="lg:w-5/12 p-6 flex flex-col items-center justify-center bg-gradient-to-b from-gray-800 to-[#1e293b] relative border-r border-gray-700">
                         <!-- Imagen -->
-                        <div class="relative z-10 w-full cursor-zoom-in group/img mb-6" onclick="viewComponent('https://i.imgur.com/pQKaVwk.png', 'Familia MUST')">
-                            <img src="https://i.imgur.com/pQKaVwk.png" class="w-full h-auto object-contain drop-shadow-2xl transform group-hover/img:scale-105 transition duration-500 max-h-[300px]" alt="Estaciones MUST">
-                        </div>
+                        <!-- Imagen Nueva (Familia Completa) -->
+<div class="relative z-10 w-full cursor-zoom-in group/img mb-6" onclick="viewComponent('https://i.imgur.com/acNYH1t.jpeg', 'Familia MUST Completa')">
+    <!-- IMAGEN ACTUALIZADA AQUI ABAJO -->
+    <img src="https://i.imgur.com/acNYH1t.jpeg" class="w-full h-auto object-contain drop-shadow-2xl transform group-hover/img:scale-105 transition duration-500 max-h-[350px] rounded-lg" alt="Estaciones MUST 1kW, 2kW y 3kW">
+</div>
                         
                         <!-- Iconos de lo que levanta -->
                         <div class="grid grid-cols-4 gap-3 w-full max-w-sm">
@@ -1009,29 +1011,35 @@
 
     <!-- VIDEOS: EVIDENCIA VISUAL DE CALIDAD -->
     <section class="py-16 bg-[#0f172a] border-b border-gray-800 relative">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="text-center mb-10">
-                <h3 class="text-2xl font-bold text-white mb-4">No nos creas a nosotros, <span class="text-yellow-400">mira la ingeniería</span></h3>
-                <p class="text-gray-400 text-sm">Componentes reales grabados en nuestro almacén en La Habana.</p>
-            </div>
-            
-            <div class="grid md:grid-cols-2 gap-8">
-                <!-- Video 1 -->
-                <div class="bg-gray-900 rounded-2xl overflow-hidden shadow-[0_0_40px_rgba(0,0,0,0.5)] border border-gray-700 group hover:border-yellow-500 transition">
-                    <div class="relative w-full aspect-video bg-black">
-                        <video class="w-full h-full object-cover" controls playsinline poster="https://i.imgur.com/KGfXCCz.png">
-                            <!-- Asegúrate de tener este archivo o cambia la ruta -->
-                            <source src="videos/promo.mp4" type="video/mp4">
-                            Tu navegador no soporta videos.
-                        </video>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-white font-bold text-lg mb-2 flex items-center">
-                            <i class="fas fa-microchip text-yellow-500 mr-2"></i> Por qué SRNE Industrial
-                        </h3>
-                        <p class="text-gray-400 text-sm">Diferencias clave entre un inversor genérico y uno de grado industrial.</p>
-                    </div>
-                </div>
+        <!-- Video 1: ANUNCIO TV (Reemplaza al anterior) -->
+<div class="bg-gray-900 rounded-2xl overflow-hidden shadow-[0_0_40px_rgba(0,0,0,0.5)] border border-gray-700 group hover:border-green-500 transition relative">
+    
+    <!-- Etiqueta de "Nuevo" -->
+    <div class="absolute top-4 right-4 z-20 bg-red-600 text-white text-[10px] font-bold px-3 py-1 rounded animate-pulse shadow-lg">
+        🔴 EN NOTICIAS
+    </div>
+
+    <div class="relative w-full aspect-video bg-black cursor-pointer">
+        <!-- AQUI VA TU VIDEO NUEVO -->
+        <video class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition" controls playsinline poster="https://i.imgur.com/acNYH1t.jpeg">
+            <source src="videos/anuncio_cuba.mp4" type="video/mp4">
+            Tu navegador no soporta videos.
+        </video>
+    </div>
+    
+    <div class="p-6">
+        <div class="flex items-center justify-between mb-2">
+            <h3 class="text-white font-bold text-lg flex items-center">
+                <i class="fas fa-bullhorn text-green-500 mr-2"></i> ¡Llegaron a Cuba!
+            </h3>
+            <span class="text-xs text-gray-500 bg-gray-800 px-2 py-1 rounded border border-gray-700">0:08 seg</span>
+        </div>
+        <p class="text-gray-400 text-sm">
+            Resumen flash: Estaciones MUST y Kits SRNE disponibles para entrega inmediata.
+            <span class="text-yellow-500 font-bold block mt-1">📞 Contacto Directo: 5818 3649</span>
+        </p>
+    </div>
+</div>
 
                 <!-- Video 2 -->
                 <div class="bg-gray-900 rounded-2xl overflow-hidden shadow-[0_0_40px_rgba(0,0,0,0.5)] border border-gray-700 group hover:border-blue-500 transition">
