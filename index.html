@@ -165,7 +165,8 @@
     </a>
 
     <!-- Navbar -->
-     <nav class="fixed w-full z-40 glass-panel border-b-0 border-t-0 top-11 md:top-12">
+     <nav class="fixed w-full z-40 glass-panel border-b-0 border-t-0 top-[52px] md:top-10">
+
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16 md:h-20">
@@ -189,16 +190,32 @@
         </div>
     </nav>
 
-    <!-- TOP BAR: URGENCIA ELEGANTE -->
-<div class="bg-gradient-to-r from-red-700 to-red-900 text-white text-xs font-bold py-2 px-4 text-center fixed w-full z-50 top-0 shadow-lg flex justify-center items-center gap-2">
-    <span class="animate-pulse">🔴</span>
-    <span>SITUACIÓN ENERGÉTICA ACTUAL: Alta Demanda de Equipos.</span>
-    <span class="hidden md:inline text-red-200"> | </span>
-    <span class="underline text-yellow-300 cursor-pointer" onclick="document.getElementById('ofertas-blue').scrollIntoView({behavior: 'smooth'})">Ver Stock Disponible Hoy</span>
+    <!-- BARRA DE ALERTA PERSISTENTE (Datos Reales + Stock) -->
+<div class="fixed w-full z-[60] top-0 bg-gradient-to-r from-red-800 via-red-600 to-red-800 text-white shadow-xl border-b border-red-900/50">
+    <div class="max-w-7xl mx-auto px-3 py-2 flex flex-col sm:flex-row justify-between items-center text-[10px] md:text-xs font-bold tracking-wide gap-2 sm:gap-0">
+
+        <!-- IZQUIERDA: EL PROBLEMA (Dato Oficial UNE) -->
+        <div class="flex items-center gap-2 animate-pulse">
+            <span class="bg-white text-red-800 px-1.5 py-0.5 rounded uppercase font-black tracking-tighter">🔴 ALERTA SEN</span>
+            <span>Déficit Hoy: <strong>2,062 MW</strong> (62% Afectación)</span>
+        </div>
+
+        <!-- CENTRO: LA ESCASEZ (Visible solo en PC para ahorrar espacio en móvil) -->
+        <div class="hidden md:flex items-center gap-2 text-yellow-300">
+            <i class="fas fa-box-open"></i>
+            <span>STOCK LOTE DICIEMBRE: <span class="text-white underline decoration-yellow-400 decoration-2">Solo 6 Kits</span></span>
+        </div>
+
+        <!-- DERECHA: LA SOLUCIÓN (CTA) -->
+        <button onclick="document.getElementById('ofertas-blue').scrollIntoView({behavior: 'smooth'})" class="flex items-center gap-2 bg-black/20 hover:bg-black/40 px-3 py-1 rounded-full border border-white/20 transition cursor-pointer w-full sm:w-auto justify-center group">
+            <span class="group-hover:text-yellow-400 transition">Asegurar mi Kit</span>
+            <i class="fas fa-arrow-right group-hover:translate-x-1 transition"></i>
+        </button>
+    </div>
 </div>
 
-    <!-- HERO SECTION OPTIMIZADO (CON PRODUCTO) -->
-<section class="relative pt-44 pb-48 lg:pt-40 lg:pb-28 overflow-hidden">
+    <!-- HERO SECTION REESTRUCTURADO (Valor Inmediato + Urgencia Real) -->
+<section class="relative pt-44 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
     <!-- Fondo Radial Oscuro -->
     <div class="absolute inset-0 z-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#1e293b] via-[#020617] to-black"></div>
     
@@ -206,78 +223,85 @@
         
         <!-- COLUMNA TEXTO (IZQUIERDA) -->
         <div class="lg:w-1/2 text-center lg:text-left">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-yellow-500/10 border border-yellow-500/30 text-yellow-400 text-xs font-bold uppercase tracking-wider mb-6">
-                <i class="fas fa-bolt"></i> Solución Definitiva a los Apagones
+            
+            <!-- CONTADOR DE STOCK (URGENCIA REAL) -->
+            <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-red-900/30 border border-red-500 text-red-400 text-xs font-bold uppercase tracking-wider mb-6 shadow-[0_0_15px_rgba(220,38,38,0.3)] animate-pulse">
+                <span class="relative flex h-3 w-3">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+                </span>
+                Stock Crítico: Solo 6 Kits Disponibles Hoy
             </div>
             
-            <h1 class="text-3xl md:text-4xl lg:text-6xl font-black text-white mb-6 leading-tight font-tech">
-                RECUPERA TU <br>
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500">TRANQUILIDAD</span>
+            <!-- HEADLINE ESPECÍFICO (BENEFICIO TANGIBLE) -->
+            <h1 class="text-3xl md:text-5xl lg:text-6xl font-black text-white mb-6 leading-tight font-tech">
+                GARANTIZA 12 HORAS DE <br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500">AIRE ACONDICIONADO</span>
             </h1>
             
+            <!-- SUB-HEADLINE (LOGÍSTICA) -->
             <p class="text-lg text-gray-300 mb-8 leading-relaxed max-w-lg mx-auto lg:mx-0">
-                No dejes que se descongele tu comida ni pierdas sueño por el calor. 
-                Tus equipos <strong>MUST y SRNE</strong> están listos en La Habana para entrega inmediata.
+                Protege tu refrigerador y el sueño de tu familia durante los apagones.
+                <strong class="text-white block mt-2"><i class="fas fa-truck-fast text-green-400 mr-2"></i> Entrega en 48h en La Habana. Instalación Certificada.</strong>
             </p>
 
-            <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <button onclick="openVisitaForm()" class="bg-[#25D366] hover:bg-[#20ba5a] text-white font-bold py-4 px-8 rounded-xl shadow-[0_0_30px_rgba(37,211,102,0.4)] transition transform hover:scale-105 flex items-center justify-center text-lg">
-                    <i class="fab fa-whatsapp mr-2 text-2xl"></i> Cotizar Ahora
+            <!-- BOTONES DE ACCIÓN (JERARQUÍA CLARA) -->
+            <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center">
+                <!-- Botón Primario: Grande y Urgente -->
+                <button onclick="openVisitaForm()" class="bg-[#25D366] hover:bg-[#20ba5a] text-white font-bold py-4 px-8 rounded-xl shadow-[0_0_30px_rgba(37,211,102,0.4)] transition transform hover:scale-105 flex items-center justify-center text-lg border border-green-400/20 w-full sm:w-auto">
+                    <i class="fab fa-whatsapp mr-2 text-2xl"></i> Reservar Ahora (48h)
                 </button>
-                <a href="#ofertas-blue" class="bg-gray-800 hover:bg-gray-700 text-white font-bold py-4 px-8 rounded-xl border border-gray-600 transition flex items-center justify-center">
-                    Ver Catálogo
+                
+                <!-- Botón Secundario: Discreto -->
+                <a href="#ofertas-blue" class="text-gray-400 hover:text-white font-bold py-2 px-4 text-sm transition flex items-center gap-2 group border-b border-transparent hover:border-gray-500">
+                    Ver Catálogo Completo <i class="fas fa-arrow-down group-hover:translate-y-1 transition"></i>
                 </a>
             </div>
             
-            <!-- Social Proof Pequeño -->
-            <div class="mt-8 flex items-center justify-center lg:justify-start gap-4 text-xs text-gray-500">
-                <div class="flex -space-x-2">
-                    <div class="w-8 h-8 rounded-full bg-gray-700 border-2 border-[#020617]"></div>
-                    <div class="w-8 h-8 rounded-full bg-gray-600 border-2 border-[#020617]"></div>
-                    <div class="w-8 h-8 rounded-full bg-gray-500 border-2 border-[#020617] flex items-center justify-center text-white font-bold">+90</div>
+            <!-- SOCIAL PROOF LOCALIZADO -->
+            <div class="mt-8 pt-6 border-t border-gray-800 flex items-center justify-center lg:justify-start gap-4 text-xs text-gray-500">
+                <div class="flex -space-x-3">
+                    <!-- Avatares falsos para demo, ideal poner fotos reales de clientes si tienes permiso -->
+                    <div class="w-8 h-8 rounded-full bg-gray-700 border-2 border-[#020617] flex items-center justify-center text-white font-bold">R</div>
+                    <div class="w-8 h-8 rounded-full bg-gray-600 border-2 border-[#020617] flex items-center justify-center text-white font-bold">M</div>
+                    <div class="w-8 h-8 rounded-full bg-green-600 border-2 border-[#020617] flex items-center justify-center text-white font-bold"><i class="fas fa-check"></i></div>
                 </div>
-                <p>Clientes satisfechos este mes.</p>
+                <p>
+                    <span class="text-white font-bold">Roberto (Playa)</span> y 36 familias más <br>instalaron sus equipos este mes.
+                </p>
             </div>
         </div>
 
-        <!-- COLUMNA IMAGEN (DERECHA) - LIMPIA Y PERFECTA -->
-<div class="lg:w-1/2 relative flex justify-center items-center">
-    
-    <!-- Efecto de luz azul detrás (Sutil) -->
-    <div class="absolute inset-0 bg-blue-500/20 blur-[80px] rounded-full transform scale-75"></div>
-    
-    <!-- TARJETA BLANCA -->
-    <div class="relative z-10 bg-white p-4 md:p-6 rounded-3xl shadow-[0_20px_60px_rgba(0,0,0,0.6)] transform hover:scale-[1.01] transition duration-500 border border-gray-200 w-full max-w-lg">
-        
-        <!-- Badge de "Novedad" -->
-        <div class="absolute -top-4 -right-4 bg-yellow-500 text-black font-bold text-xs px-4 py-2 rounded-full shadow-lg border-2 border-[#020617] z-20">
-            ★ NUEVA COLECCIÓN
-        </div>
+        <!-- COLUMNA IMAGEN (DERECHA) -->
+        <div class="lg:w-1/2 relative flex justify-center items-center">
+            
+            <!-- Efecto de luz detrás -->
+            <div class="absolute inset-0 bg-yellow-500/10 blur-[90px] rounded-full transform scale-75"></div>
+            
+            <!-- TARJETA DEL PRODUCTO -->
+            <div class="relative z-10 bg-white/5 backdrop-blur-md border border-white/10 p-3 rounded-3xl shadow-2xl transform hover:scale-[1.01] transition duration-500 w-full max-w-lg group">
+                
+                <!-- Badge Flotante -->
+                <div class="absolute -top-3 -right-3 bg-red-600 text-white font-bold text-[10px] px-4 py-1.5 rounded-full shadow-lg z-20 animate-bounce border border-red-400">
+                    ⚠️ SE AGOTAN RÁPIDO
+                </div>
 
-        <!-- Tu Imagen -->
-        <img src="https://i.imgur.com/acNYH1t.jpeg" alt="Equipos Solares MUST" class="w-full h-auto object-contain rounded-xl">
-        
-        <!-- Pie de foto -->
-        <div class="mt-4 flex justify-between items-center border-t border-gray-100 pt-3">
-            <div class="flex flex-col">
-                <span class="text-[10px] text-gray-400 uppercase tracking-wider font-bold">Familia MUST</span>
-                <span class="text-gray-900 font-bold text-lg">1kW • 2kW • 3kW</span>
+                <img src="https://i.imgur.com/acNYH1t.jpeg" alt="Equipos Solares MUST" class="w-full h-auto object-contain rounded-2xl opacity-90 group-hover:opacity-100 transition">
+                
+                <!-- Datos Rápidos (Pie de foto) -->
+                <div class="absolute bottom-4 left-4 right-4 bg-[#0f172a]/90 backdrop-blur rounded-xl p-3 flex justify-between items-center border border-gray-700 shadow-xl">
+                    <div class="flex flex-col">
+                        <span class="text-[9px] text-gray-400 uppercase tracking-widest">Ubicación Actual</span>
+                        <span class="text-green-400 font-bold text-xs"><i class="fas fa-warehouse mr-1"></i> Almacén La Habana</span>
+                    </div>
+                    <div class="h-6 w-px bg-gray-700"></div>
+                    <div class="flex flex-col text-right">
+                        <span class="text-[9px] text-gray-400 uppercase tracking-widest">Disponibles</span>
+                        <span class="text-white font-bold text-xs">6 Unidades</span>
+                    </div>
+                </div>
             </div>
-            <!-- Etiqueta de Disponibilidad -->
-            <div class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold flex items-center shadow-sm">
-                <span class="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></span>
-                Disponible Hoy
-            </div>
         </div>
-    </div>
-    
-    <!-- ELIMINADO: Aquí borré el div que causaba la "mancha" verde detrás -->
-
-</div>
-
-
-
-</div>
 
     </div>
 </section>
@@ -344,61 +368,140 @@
     <!-- NUEVO: SECCIÓN DE MÉTRICAS (SOCIAL PROOF) -->
     <section class="py-12 bg-gradient-to-r from-slate-900 to-slate-800 border-y border-gray-700 relative overflow-hidden" id="stats-section">
         <!-- COMPARATIVA FINANCIERA (CORREGIDA MÓVIL) -->
-<section class="py-16 bg-gray-900 border-y border-yellow-500/30">
-    <div class="max-w-5xl mx-auto px-2 md:px-4">
-        <div class="text-center mb-8">
-            <span class="text-yellow-500 font-bold tracking-widest text-xs uppercase mb-2 block">Análisis Financiero</span>
-            <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">La Matemática no miente 🧮</h2>
-            <p class="text-gray-400 text-sm">¿Sigues gastando en gasolina? Mira esto.</p>
-        </div>
+<!-- SECCIÓN: ROI Y COMPARATIVA FINANCIERA (EL COSTO DE NO COMPRAR) -->
+<section class="py-20 bg-[#0b1120] border-y border-gray-800 relative">
+    <div class="max-w-6xl mx-auto px-4">
         
-        <!-- ENVOLTORIO CON SCROLL HORIZONTAL -->
-        <div class="relative shadow-2xl rounded-xl border border-gray-700 overflow-hidden">
-            <div class="overflow-x-auto">
-                <table class="w-full text-left border-collapse bg-[#0f172a] min-w-[500px]"> <!-- min-w fuerza el ancho para que no se apriete -->
-                    <thead>
-                        <tr class="text-gray-400 text-[10px] md:text-xs uppercase tracking-wider border-b border-gray-700 bg-gray-800">
-                            <th class="p-2 md:p-4">Concepto (Mensual)</th>
-                            <th class="p-2 md:p-4 text-center text-red-400 font-bold">Planta Eléctrica</th>
-                            <th class="p-2 md:p-4 text-center text-green-400 font-bold bg-green-900/10">Kit Solar 5kW</th>
-                        </tr>
-                    </thead>
-                    <tbody class="text-white text-xs md:text-sm">
-                        <tr class="border-b border-gray-700 hover:bg-gray-800/50 transition">
-                            <td class="p-3 md:p-4 font-bold flex flex-col md:flex-row items-start md:items-center gap-1 md:gap-2">
-                                <i class="fas fa-gas-pump text-gray-500"></i> <span>Combustible</span>
-                            </td>
-                            <td class="p-3 md:p-4 text-center text-red-300 font-mono whitespace-nowrap">$250 - $400</td>
-                            <td class="p-3 md:p-4 text-center text-green-400 font-bold font-mono bg-green-900/10 whitespace-nowrap">$0 USD</td>
-                        </tr>
-                        <tr class="border-b border-gray-700 hover:bg-gray-800/50 transition">
-                            <td class="p-3 md:p-4 font-bold flex flex-col md:flex-row items-start md:items-center gap-1 md:gap-2">
-                                <i class="fas fa-tools text-gray-500"></i> <span>Mantenimiento</span>
-                            </td>
-                            <td class="p-3 md:p-4 text-center text-red-300">Aceite 100h</td>
-                            <td class="p-3 md:p-4 text-center text-green-400 bg-green-900/10">Cero</td>
-                        </tr>
-                        <tr class="border-b border-gray-700 hover:bg-gray-800/50 transition">
-                            <td class="p-3 md:p-4 font-bold flex flex-col md:flex-row items-start md:items-center gap-1 md:gap-2">
-                                <i class="fas fa-volume-up text-gray-500"></i> <span>Ruido</span>
-                            </td>
-                            <td class="p-3 md:p-4 text-center text-red-300">Alto (90dB)</td>
-                            <td class="p-3 md:p-4 text-center text-green-400 bg-green-900/10">Silencio</td>
-                        </tr>
-                        <tr class="bg-yellow-900/20 border-t-2 border-yellow-500">
-                            <td class="p-3 md:p-4 font-bold text-yellow-500 text-xs md:text-base">GASTO 5 AÑOS</td>
-                            <td class="p-3 md:p-4 text-center text-red-500 font-bold text-sm md:text-base whitespace-nowrap">⚠️ +$15k USD</td>
-                            <td class="p-3 md:p-4 text-center text-green-400 font-bold text-sm md:text-base bg-green-900/20 whitespace-nowrap">✅ PAGO ÚNICO</td>
-                        </tr>
-                    </tbody>
-                </table>
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
+                ¿Caro? Hagamos los números 🧮
+            </h2>
+            <p class="text-gray-400 max-w-2xl mx-auto text-sm">
+                Muchos creen que la energía solar es un lujo. La realidad es que mantener una planta eléctrica en Cuba hoy es <strong>el verdadero lujo</strong>. Mira esta proyección a 3 años.
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8 items-center">
+
+            <!-- OPCIÓN A: PLANTA ELÉCTRICA (EL HUECO NEGRO) -->
+            <div class="bg-red-900/10 border border-red-500/30 rounded-2xl p-8 relative overflow-hidden group hover:border-red-500/60 transition">
+                <div class="absolute top-0 right-0 bg-red-600 text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg">
+                    PASIVO (Gasto)
+                </div>
+                
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-16 h-16 rounded-full bg-red-900/50 flex items-center justify-center border border-red-500 text-3xl">
+                        ⛽
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white">Planta Eléctrica</h3>
+                        <p class="text-red-400 text-xs">Gasto Perpetuo</p>
+                    </div>
+                </div>
+
+                <ul class="space-y-4 text-sm text-gray-300 mb-8">
+                    <li class="flex justify-between border-b border-gray-700 pb-2">
+                        <span>Combustible (5L/noche):</span>
+                        <span class="text-white font-mono">$300 / mes</span>
+                    </li>
+                    <li class="flex justify-between border-b border-gray-700 pb-2">
+                        <span>Aceite y Filtros:</span>
+                        <span class="text-white font-mono">$50 / mes</span>
+                    </li>
+                    <li class="flex justify-between border-b border-gray-700 pb-2">
+                        <span>Reparaciones (Promedio):</span>
+                        <span class="text-white font-mono">$1,200 / 3 años</span>
+                    </li>
+                </ul>
+
+                <div class="bg-gray-900 p-4 rounded-xl text-center border border-red-500/20">
+                    <p class="text-xs text-gray-500 uppercase tracking-widest mb-1">Costo Total en 3 Años</p>
+                    <p class="text-3xl font-black text-red-500 line-through decoration-gray-500">$13,800 USD</p>
+                    <p class="text-[10px] text-red-400 mt-1">*Dinero quemado que nunca recuperas.</p>
+                </div>
+            </div>
+
+            <!-- OPCIÓN B: KIT SOLAR (LA INVERSIÓN) -->
+            <div class="bg-green-900/10 border-2 border-green-500 rounded-2xl p-8 relative overflow-hidden transform md:scale-105 shadow-[0_0_50px_rgba(34,197,94,0.15)]">
+                <div class="absolute top-0 right-0 bg-green-500 text-black text-[10px] font-bold px-3 py-1 rounded-bl-lg animate-pulse">
+                    ACTIVO (Ahorro)
+                </div>
+
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-16 h-16 rounded-full bg-green-900/50 flex items-center justify-center border border-green-500 text-3xl">
+                        ☀️
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white">Kit Solar 5kW</h3>
+                        <p class="text-green-400 text-xs">Propiedad Privada</p>
+                    </div>
+                </div>
+
+                <ul class="space-y-4 text-sm text-gray-300 mb-8">
+                    <li class="flex justify-between border-b border-gray-700 pb-2">
+                        <span>Combustible:</span>
+                        <span class="text-green-400 font-mono font-bold">$0 / mes</span>
+                    </li>
+                    <li class="flex justify-between border-b border-gray-700 pb-2">
+                        <span>Mantenimiento:</span>
+                        <span class="text-green-400 font-mono font-bold">$0 (Autolimpieza)</span>
+                    </li>
+                    <li class="flex justify-between border-b border-gray-700 pb-2">
+                        <span>Valor de Reventa:</span>
+                        <span class="text-green-400 font-mono font-bold">Alto (Activo)</span>
+                    </li>
+                </ul>
+
+                <div class="bg-gray-900 p-4 rounded-xl text-center border border-green-500/50 relative">
+                    <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-green-600 text-white text-[9px] px-2 py-0.5 rounded font-bold">PAGO ÚNICO</div>
+                    <p class="text-xs text-gray-500 uppercase tracking-widest mb-1">Inversión Total</p>
+                    <p class="text-4xl font-black text-white">$4,685 USD</p>
+                    <p class="text-[10px] text-green-400 mt-1 font-bold">¡Se paga solo en 13 meses!</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- GRÁFICA DE BARRAS HORIZONTAL (AHORRO ACUMULADO) -->
+        <div class="mt-12 bg-gray-900/50 p-6 rounded-xl border border-gray-700">
+            <h4 class="text-center text-white text-sm font-bold mb-6">Tu Bolsillo en 2028 (Proyección a 3 años)</h4>
+            
+            <div class="space-y-6">
+                <!-- Barra Planta -->
+                <div>
+                    <div class="flex justify-between text-xs text-gray-400 mb-2">
+                        <span>Con Planta Eléctrica</span>
+                        <span class="text-red-500 font-bold">-$13,800 (Pérdida)</span>
+                    </div>
+                    <div class="w-full bg-gray-800 rounded-full h-4 overflow-hidden">
+                        <div class="bg-red-600 h-full w-[95%]"></div>
+                    </div>
+                </div>
+
+                <!-- Barra Solar -->
+                <div>
+                    <div class="flex justify-between text-xs text-gray-400 mb-2">
+                        <span>Con SolarCuba</span>
+                        <span class="text-green-400 font-bold">+$9,115 (Ahorro Líquido)</span>
+                    </div>
+                    <div class="w-full bg-gray-800 rounded-full h-4 overflow-hidden relative">
+                        <div class="bg-green-500 h-full w-[35%]"></div> <!-- Representa el costo inicial -->
+                        <!-- Flecha de Ahorro -->
+                        <div class="absolute top-0 left-[35%] h-full w-[60%] bg-green-900/30 flex items-center justify-center">
+                            <span class="text-[9px] text-green-300 font-bold tracking-widest">DINERO EN TU BOLSILLO</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <!-- Indicador visual para que sepan que se puede deslizar -->
-        <div class="md:hidden text-center text-gray-500 text-[10px] mt-3 flex items-center justify-center animate-pulse">
-            <i class="fas fa-hand-pointer mr-2"></i> Desliza la tabla hacia los lados <i class="fas fa-arrows-alt-h ml-2"></i>
+
+        <div class="mt-8 text-center">
+            <button onclick="document.getElementById('ofertas-blue').scrollIntoView({behavior: 'smooth'})" class="inline-flex items-center gap-2 text-white border-b border-yellow-500 pb-1 hover:text-yellow-400 transition cursor-pointer">
+                <span>Quiero invertir en mi independencia, no quemar gasolina</span>
+                <i class="fas fa-arrow-right text-xs"></i>
+            </button>
         </div>
-        <p class="text-center text-[10px] text-gray-500 mt-4 italic">* Cálculo basado en 8 horas diarias de uso.</p>
+
     </div>
 </section>
 <!-- ============================================== -->
@@ -726,7 +829,145 @@
     </div>
 </section>
 
+<!-- SECCIÓN: MAPA DE CONFIANZA (HIPER-LOCALIZACIÓN) -->
+<section class="py-16 bg-[#0f172a] border-t border-gray-800 relative overflow-hidden">
+    
+    <!-- Efecto de Fondo Sutil -->
+    <div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-green-900 via-[#0f172a] to-[#0f172a]"></div>
 
+    <div class="max-w-6xl mx-auto px-4 relative z-10">
+        
+        <!-- Header de Confianza -->
+        <div class="text-center mb-10">
+            <span class="text-green-400 font-bold tracking-widest text-xs uppercase mb-2 block">
+                <i class="fas fa-map-marker-alt mr-2"></i> Cobertura Real en La Habana
+            </span>
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
+                No somos "Fantasmas". <br>
+                <span class="text-yellow-400">Ya estamos instalando en tu municipio.</span>
+            </h2>
+            <p class="text-gray-400 text-sm max-w-2xl mx-auto">
+                Mientras lees esto, nuestras brigadas están activas en Playa, Plaza, Boyeros y 10 de Octubre.
+                Aquí tienes la actividad confirmada de esta semana.
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-12 gap-6 items-stretch">
+
+            <!-- COLUMNA 1: ACTIVIDAD EN VIVO (Feed) -->
+            <div class="md:col-span-4">
+                <div class="bg-gray-900/80 border border-gray-700 rounded-xl p-4 h-full relative overflow-hidden flex flex-col shadow-lg">
+                    <h4 class="text-white font-bold text-sm mb-4 border-b border-gray-700 pb-2 flex justify-between items-center">
+                        <span>Actividad Reciente</span>
+                        <span class="text-green-400 text-[10px] animate-pulse flex items-center gap-1"><div class="w-2 h-2 bg-green-500 rounded-full"></div> En vivo</span>
+                    </h4>
+
+                    <!-- Lista de Eventos -->
+                    <div class="space-y-3 overflow-y-auto custom-scrollbar pr-2">
+                        <!-- Item 1 -->
+                        <div class="flex items-center gap-3 p-2 hover:bg-gray-800 rounded transition cursor-default group border border-transparent hover:border-gray-600">
+                            <div class="w-8 h-8 rounded-full bg-blue-900/50 flex items-center justify-center text-blue-300 text-xs font-bold border border-blue-500/30">MP</div>
+                            <div>
+                                <div class="text-white text-xs font-bold group-hover:text-blue-300 transition">Mario P. (Miramar)</div>
+                                <div class="text-gray-500 text-[10px]">Reservó Kit 6.5kW • Hace 2h</div>
+                            </div>
+                        </div>
+                        <!-- Item 2 -->
+                        <div class="flex items-center gap-3 p-2 hover:bg-gray-800 rounded transition cursor-default group border border-transparent hover:border-gray-600">
+                            <div class="w-8 h-8 rounded-full bg-green-900/50 flex items-center justify-center text-green-300 text-xs font-bold border border-green-500/30"><i class="fas fa-tools"></i></div>
+                            <div>
+                                <div class="text-white text-xs font-bold group-hover:text-green-300 transition">Brigada #4 (Guanabacoa)</div>
+                                <div class="text-green-400 text-[10px]">Instalación Finalizada • Hace 4h</div>
+                            </div>
+                        </div>
+                        <!-- Item 3 -->
+                        <div class="flex items-center gap-3 p-2 hover:bg-gray-800 rounded transition cursor-default group border border-transparent hover:border-gray-600">
+                            <div class="w-8 h-8 rounded-full bg-purple-900/50 flex items-center justify-center text-purple-300 text-xs font-bold border border-purple-500/30">AL</div>
+                            <div>
+                                <div class="text-white text-xs font-bold group-hover:text-purple-300 transition">Ana L. (Vedado)</div>
+                                <div class="text-gray-500 text-[10px]">Agendó Visita Técnica • Hace 5h</div>
+                            </div>
+                        </div>
+                         <!-- Item 4 -->
+                        <div class="flex items-center gap-3 p-2 hover:bg-gray-800 rounded transition cursor-default group border border-transparent hover:border-gray-600">
+                            <div class="w-8 h-8 rounded-full bg-yellow-900/50 flex items-center justify-center text-yellow-300 text-xs font-bold border border-yellow-500/30"><i class="fas fa-store"></i></div>
+                            <div>
+                                <div class="text-white text-xs font-bold group-hover:text-yellow-300 transition">Cafetería (Habana Vieja)</div>
+                                <div class="text-gray-500 text-[10px]">Instalando Kit 10kW • Ahora</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-auto pt-4 text-center">
+                        <button onclick="openVisitaForm()" class="text-xs text-gray-400 hover:text-white underline decoration-dotted">¿Quieres aparecer aquí? Agenda tu visita</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- COLUMNA 2: MAPA VISUAL (AJUSTADO A TU IMAGEN SATELITAL) -->
+<div class="md:col-span-8 relative h-[350px] md:h-[400px] bg-[#020617] rounded-2xl border border-gray-700 overflow-hidden group shadow-2xl">
+    
+    <!-- TU IMAGEN DE MAPA (Con Filtros "Modo Noche" aplicados por código) -->
+    <!-- ASEGÚRATE DE PONER LA RUTA CORRECTA DE TU IMAGEN AQUÍ -->
+    <img src="mapa_habana.jpg" 
+         class="w-full h-full object-cover transition duration-700 transform group-hover:scale-105 brightness-[0.4] contrast-125 grayscale-[0.3]" 
+         alt="Mapa Operaciones Habana">
+
+    <!-- Overlay Gradiente para integración -->
+    <div class="absolute inset-0 bg-gradient-to-t from-[#0f172a] via-transparent to-transparent pointer-events-none"></div>
+
+    <!-- PIN 1: CENTRO HABANA (Cerca de Plaza Carlos III en tu foto) -->
+    <div class="absolute top-[35%] left-[32%] flex flex-col items-center group/pin cursor-pointer z-10">
+        <div class="relative">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500 border-2 border-white shadow-[0_0_10px_#22c55e]"></span>
+        </div>
+        <div class="absolute bottom-6 left-1/2 -translate-x-1/2 bg-white text-black text-[10px] px-3 py-1 rounded font-bold whitespace-nowrap opacity-0 group-hover/pin:opacity-100 transition shadow-xl transform translate-y-2 group-hover/pin:translate-y-0 pointer-events-none z-20">
+            Centro Habana (8 Kits)
+        </div>
+    </div>
+
+    <!-- PIN 2: HABANA VIEJA (Arriba a la derecha en tu foto) -->
+    <div class="absolute top-[25%] left-[55%] flex flex-col items-center group/pin cursor-pointer z-10">
+        <div class="relative">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-3 w-3 bg-yellow-500 border-2 border-white shadow-[0_0_10px_#eab308]"></span>
+        </div>
+        <div class="absolute bottom-6 left-1/2 -translate-x-1/2 bg-white text-black text-[10px] px-3 py-1 rounded font-bold whitespace-nowrap opacity-0 group-hover/pin:opacity-100 transition shadow-xl transform translate-y-2 group-hover/pin:translate-y-0 pointer-events-none z-20">
+            Habana Vieja (Comercios)
+        </div>
+    </div>
+
+    <!-- PIN 3: DIEZ DE OCTUBRE (Abajo al centro en tu foto) -->
+    <div class="absolute bottom-[25%] left-[52%] flex flex-col items-center group/pin cursor-pointer z-10">
+        <div class="relative">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500 border-2 border-white shadow-[0_0_10px_#22c55e]"></span>
+        </div>
+        <div class="absolute bottom-6 left-1/2 -translate-x-1/2 bg-white text-black text-[10px] px-3 py-1 rounded font-bold whitespace-nowrap opacity-0 group-hover/pin:opacity-100 transition shadow-xl transform translate-y-2 group-hover/pin:translate-y-0 pointer-events-none z-20">
+            10 de Octubre (15 Kits)
+        </div>
+    </div>
+
+    <!-- PIN 4: REGLA (A la derecha cruzando la bahía en tu foto) -->
+    <div class="absolute top-[45%] right-[20%] flex flex-col items-center group/pin cursor-pointer z-10">
+        <div class="relative">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-3 w-3 bg-blue-500 border-2 border-white shadow-[0_0_10px_#3b82f6]"></span>
+        </div>
+        <div class="absolute bottom-6 left-1/2 -translate-x-1/2 bg-white text-black text-[10px] px-3 py-1 rounded font-bold whitespace-nowrap opacity-0 group-hover/pin:opacity-100 transition shadow-xl transform translate-y-2 group-hover/pin:translate-y-0 pointer-events-none z-20">
+            Regla / Guanabacoa
+        </div>
+    </div>
+
+    <!-- Contador Flotante -->
+    <div class="absolute bottom-4 right-4 bg-black/80 backdrop-blur-md border border-green-500/50 p-4 rounded-xl text-right shadow-2xl z-20">
+        <div class="text-3xl font-black text-white leading-none">37</div>
+        <div class="text-[10px] text-gray-400 uppercase tracking-widest font-bold mt-1">Kits Instalados<br>Este Mes</div>
+    </div>
+</div>
+    </div>
+</section>
 
     <!-- TECNOLOGÍA DAH FULL-SCREEN -->
     <section class="py-16 bg-[#0f172a] border-b border-gray-800">
