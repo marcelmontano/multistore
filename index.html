@@ -1040,52 +1040,115 @@
         </div>
     </section>
 
-    <!-- VIDEOS: EVIDENCIA VISUAL DE CALIDAD -->
+    <!-- VIDEOS: EVIDENCIA VISUAL Y "MURO DE LA VERDAD" -->
     <section class="py-16 bg-[#0f172a] border-b border-gray-800 relative">
-        <!-- Video 1: ANUNCIO TV (Reemplaza al anterior) -->
-<div class="bg-gray-900 rounded-2xl overflow-hidden shadow-[0_0_40px_rgba(0,0,0,0.5)] border border-gray-700 group hover:border-green-500 transition relative">
-    
-    <!-- Etiqueta de "Nuevo" -->
-    <div class="absolute top-4 right-4 z-20 bg-red-600 text-white text-[10px] font-bold px-3 py-1 rounded animate-pulse shadow-lg">
-        🔴 EN NOTICIAS
-    </div>
+        <div class="max-w-7xl mx-auto px-4">
+            
+            <div class="text-center mb-10">
+                <span class="text-green-400 font-bold tracking-widest text-xs uppercase mb-2 block"><i class="fas fa-eye mr-2"></i> Transparencia Radical</span>
+                <h3 class="text-3xl font-bold text-white">No nos creas a nosotros... <span class="text-yellow-400">Créeles a tus ojos</span></h3>
+            </div>
 
-    <div class="relative w-full aspect-video bg-black cursor-pointer">
-        <!-- AQUI VA TU VIDEO NUEVO -->
-        <video class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition" controls playsinline poster="https://i.imgur.com/acNYH1t.jpeg">
-            <source src="videos/anuncio_cuba.mp4" type="video/mp4">
-            Tu navegador no soporta videos.
-        </video>
-    </div>
-    
-    <div class="p-6">
-        <div class="flex items-center justify-between mb-2">
-            <h3 class="text-white font-bold text-lg flex items-center">
-                <i class="fas fa-bullhorn text-green-500 mr-2"></i> ¡Llegaron a Cuba!
-            </h3>
-            <span class="text-xs text-gray-500 bg-gray-800 px-2 py-1 rounded border border-gray-700">0:08 seg</span>
-        </div>
-        <p class="text-gray-400 text-sm">
-            Resumen flash: Estaciones MUST y Kits SRNE disponibles para entrega inmediata.
-            <span class="text-yellow-500 font-bold block mt-1">📞 Contacto Directo: 5818 3649</span>
-        </p>
-    </div>
-</div>
+            <!-- 1. VIDEO DESTACADO + GALERÍA DE INSPECCIÓN -->
+            <div class="mb-12 bg-gradient-to-br from-gray-900 via-[#1e293b] to-black rounded-3xl overflow-hidden border border-yellow-500/50 shadow-[0_0_50px_rgba(255,215,0,0.15)] relative group">
+                
+                <!-- Badge de "Recién Llegado" -->
+                <div class="absolute top-0 left-0 bg-yellow-500 text-black font-black text-xs px-4 py-2 rounded-br-2xl z-20 shadow-lg flex items-center gap-2">
+                    <span class="relative flex h-3 w-3">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-3 w-3 bg-red-600"></span>
+                    </span>
+                    GRABADO EN ALMACÉN HOY
+                </div>
 
-                <!-- Video 2 -->
-                <div class="bg-gray-900 rounded-2xl overflow-hidden shadow-[0_0_40px_rgba(0,0,0,0.5)] border border-gray-700 group hover:border-blue-500 transition">
-                    <div class="relative w-full aspect-video bg-black">
-                        <video class="w-full h-full object-cover" controls playsinline poster="https://i.imgur.com/66dWEQ4.jpeg">
-                            <!-- Asegúrate de tener este archivo o cambia la ruta -->
-                            <source src="videos/promo2.mp4" type="video/mp4">
+                <div class="flex flex-col lg:flex-row">
+                    
+                    <!-- COLUMNA VIDEO -->
+                    <div class="lg:w-3/5 relative bg-black h-[350px] lg:h-auto border-r border-gray-800">
+                        <video class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition duration-500" controls playsinline poster="https://i.imgur.com/Q7QXkYX.jpeg">
+                            <source src="videos/must_real.mp4" type="video/mp4">
                             Tu navegador no soporta videos.
                         </video>
+                        <div class="absolute bottom-4 left-0 right-0 text-center pointer-events-none">
+                            <p class="text-white/70 text-[10px] uppercase tracking-widest animate-pulse">
+                                <i class="fas fa-play mr-1"></i> Dale Play para ver la evidencia
+                            </p>
+                        </div>
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-white font-bold text-lg mb-2 flex items-center">
-                            <i class="fas fa-hammer text-blue-500 mr-2"></i> Instalación Anti-Huracanes
-                        </h3>
-                        <p class="text-gray-400 text-sm">Así anclamos las estructuras para resistir el clima del Caribe.</p>
+
+                    <!-- COLUMNA VENTAS + FOTOS -->
+                    <div class="lg:w-2/5 p-6 md:p-8 flex flex-col justify-between relative overflow-hidden bg-[#111827]">
+                        
+                        <div>
+                            <h3 class="text-2xl font-bold text-white mb-2 leading-tight font-tech">
+                                ASÍ LUCE LA <span class="text-yellow-400">POTENCIA</span>
+                            </h3>
+                            <p class="text-gray-400 text-sm mb-4 leading-relaxed">
+                                Sin filtros. Esta es la <strong>Estación MUST</strong> real que recibirás. 
+                                <span class="text-green-400 font-bold text-xs">✅ Stock Físico en La Habana.</span>
+                            </p>
+
+                            <!-- GALERÍA DE INSPECCIÓN (NUEVO) -->
+                            <p class="text-[10px] text-gray-500 uppercase tracking-widest mb-2 font-bold">Inspección Visual (Click para Zoom):</p>
+                            <div class="grid grid-cols-3 gap-2 mb-6">
+                                <!-- Foto 1: Frente -->
+                                <div class="aspect-square rounded-lg overflow-hidden border border-gray-700 cursor-zoom-in hover:border-yellow-500 transition group/img relative" onclick="viewComponent('https://i.imgur.com/Q7QXkYX.jpeg', 'Panel Frontal MUST')">
+                                    <img src="https://i.imgur.com/Q7QXkYX.jpeg" class="w-full h-full object-cover opacity-70 group-hover/img:opacity-100 transition">
+                                    <div class="absolute bottom-0 w-full bg-black/60 text-[8px] text-white text-center py-1">FRENTE</div>
+                                </div>
+                                <!-- Foto 2: Puertos (Poster) -->
+                                <div class="aspect-square rounded-lg overflow-hidden border border-gray-700 cursor-zoom-in hover:border-yellow-500 transition group/img relative" onclick="viewComponent('https://i.imgur.com/F1GeE2p.jpeg', 'Puertos Traseros MUST')">
+                                    <img src="https://i.imgur.com/F1GeE2p.jpeg" class="w-full h-full object-cover opacity-70 group-hover/img:opacity-100 transition">
+                                    <div class="absolute bottom-0 w-full bg-black/60 text-[8px] text-white text-center py-1">PUERTOS</div>
+                                </div>
+                                <!-- Foto 3: Lateral/Etiqueta -->
+                                <div class="aspect-square rounded-lg overflow-hidden border border-gray-700 cursor-zoom-in hover:border-yellow-500 transition group/img relative" onclick="viewComponent('https://i.imgur.com/ajinVYZ.png', 'Lateral Robusto')">
+                                    <img src="https://i.imgur.com/ajinVYZ.png" class="w-full h-full object-cover opacity-70 group-hover/img:opacity-100 transition">
+                                    <div class="absolute bottom-0 w-full bg-black/60 text-[8px] text-white text-center py-1">LATERAL</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- CTA -->
+                        <div class="mt-auto border-t border-gray-700 pt-4">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-xs text-red-400 font-bold uppercase animate-pulse">⚠ Quedan pocas hoy</span>
+                                <span class="text-white font-bold text-xl">$950 USD</span>
+                            </div>
+                            <button onclick="openOrderForm('Estación MUST 2kW (Video Real)')" class="w-full bg-yellow-500 hover:bg-yellow-400 text-black font-bold py-3 px-6 rounded-xl shadow-[0_0_20px_rgba(234,179,8,0.4)] transition transform hover:scale-105 flex items-center justify-center gap-2">
+                                <span>¡La quiero apartar!</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. GRID DE VIDEOS ANTERIORES -->
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Video 1 -->
+                <div class="bg-gray-900 rounded-2xl overflow-hidden shadow-lg border border-gray-700 group hover:border-green-500 transition relative">
+                    <div class="absolute top-4 right-4 z-20 bg-red-600 text-white text-[10px] font-bold px-3 py-1 rounded shadow-lg">📺 ANUNCIO TV</div>
+                    <div class="relative w-full aspect-video bg-black cursor-pointer">
+                        <video class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition" controls playsinline poster="https://i.imgur.com/acNYH1t.jpeg">
+                            <source src="videos/anuncio_cuba.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="text-white font-bold text-lg mb-1 flex items-center"><i class="fas fa-bullhorn text-green-500 mr-2"></i> Llegaron a Cuba</h3>
+                        <p class="text-gray-500 text-xs">Resumen flash de 15 segundos sobre disponibilidad.</p>
+                    </div>
+                </div>
+                <!-- Video 2 -->
+                <div class="bg-gray-900 rounded-2xl overflow-hidden shadow-lg border border-gray-700 group hover:border-blue-500 transition">
+                    <div class="relative w-full aspect-video bg-black">
+                        <video class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition" controls playsinline poster="https://i.imgur.com/rcGgzOJ.jpeg">
+                            <source src="videos/promo2.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="text-white font-bold text-lg mb-1 flex items-center"><i class="fas fa-hammer text-blue-500 mr-2"></i> Montaje Anti-Huracanes</h3>
+                        <p class="text-gray-500 text-xs">Mira cómo nuestros técnicos anclan las estructuras.</p>
                     </div>
                 </div>
             </div>
