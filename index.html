@@ -656,6 +656,21 @@
         
         <div class="flex flex-col items-center sm:items-end gap-2 min-w-[120px]">
             <span class="text-4xl font-black text-white">$950</span>
+            <!-- TIMER URGENCIA MUST 2kW -->
+<div class="bg-red-900/10 border border-red-500/50 rounded-lg p-2 text-center mb-4 relative overflow-hidden group-hover:border-red-400 transition w-full">
+    <div class="absolute inset-0 bg-red-600/5 animate-pulse"></div>
+    <div class="relative z-10 flex flex-col items-center">
+        <div class="text-[10px] text-red-300 uppercase tracking-wider mb-0.5 font-bold flex items-center gap-1">
+            <i class="fas fa-stopwatch"></i> Oferta Flash Expira:
+        </div>
+        <div class="font-mono text-yellow-400 font-black text-xl tracking-widest leading-none mb-1" id="timer-must2">
+            11:45:22
+        </div>
+        <div class="text-[9px] text-gray-400">
+            Precio Regular: <span class="line-through decoration-red-500 decoration-2">$1,150 USD</span>
+        </div>
+    </div>
+</div>
             <button onclick="openOrderForm('Estación MUST 2kW - $950')" class="bg-cyan-500 hover:bg-cyan-400 text-black font-bold py-3 px-8 rounded-lg text-sm w-full transition shadow-lg animate-pulse hover:scale-105">
                 ¡Lo Quiero!
             </button>
@@ -769,6 +784,21 @@
                 <div class="p-6 flex-1 flex flex-col">
                     <div class="text-center mb-6">
                         <span class="text-5xl font-bold text-white">$4,500</span>
+                        <!-- TIMER URGENCIA ASTRA 5kW -->
+<div class="bg-red-900/10 border border-red-500/50 rounded-lg p-2 text-center mb-4 relative overflow-hidden w-full">
+    <div class="absolute inset-0 bg-red-600/5 animate-pulse"></div>
+    <div class="relative z-10 flex flex-col items-center">
+        <div class="text-[10px] text-red-300 uppercase tracking-wider mb-0.5 font-bold flex items-center gap-1">
+            <i class="fas fa-bolt"></i> Precio Intro acaba en:
+        </div>
+        <div class="font-mono text-yellow-400 font-black text-xl tracking-widest leading-none mb-1" id="timer-astra5">
+            08:22:15
+        </div>
+        <div class="text-[9px] text-gray-400">
+            Subirá a: <span class="text-red-400 font-bold">$4,850 USD</span>
+        </div>
+    </div>
+</div>
                         <span class="text-[10px] text-gray-400 block uppercase tracking-wide mt-2">PRECIO FINAL INSTALADO</span>
                     </div>
                     <ul class="space-y-4 text-sm text-gray-300 mb-6 flex-1">
@@ -944,6 +974,20 @@
                     <div class="p-6 flex-1 flex flex-col">
                         <div class="text-center mb-6">
                             <span class="text-5xl font-bold text-white">$6,985</span>
+                            <!-- TIMER URGENCIA 6.5kW -->
+<div class="bg-red-900/10 border border-red-500/50 rounded-lg p-2 text-center mb-4 relative overflow-hidden w-full mt-2">
+    <div class="relative z-10 flex flex-col items-center">
+        <div class="text-[10px] text-red-300 uppercase tracking-wider mb-0.5 font-bold flex items-center gap-1">
+            <i class="fas fa-clock"></i> Descuento Split expira:
+        </div>
+        <div class="font-mono text-yellow-400 font-black text-xl tracking-widest leading-none mb-1" id="timer-65kw">
+            05:15:40
+        </div>
+        <div class="text-[9px] text-gray-400">
+            Ahorras: <span class="text-green-400 font-bold">$400 USD hoy</span>
+        </div>
+    </div>
+</div>
                             <div class="text-[10px] text-yellow-500 uppercase tracking-wide mt-2 bg-yellow-900/30 inline-block px-3 py-1 rounded border border-yellow-500/50">
                                 + $750 Instalación
                             </div>
@@ -3236,6 +3280,65 @@
             document.getElementById('distForm').reset();
         }, 1000);
     }
+    
     </script>
+    <script>
+    // --- MOTOR DE URGENCIA (COUNTDOWN TIMERS) ---
+    function startUrgencyTimer(idElement, hoursDuration) {
+        const display = document.getElementById(idElement);
+        if (!display) return;
+
+        // Clave única para guardar el tiempo en el navegador del usuario
+        const storageKey = 'solarTimer_' + idElement;
+        let deadline = localStorage.getItem(storageKey);
+        const now = new Date().getTime();
+
+        // Si no existe deadline o ya pasó, creamos uno nuevo (Ciclo infinito de ventas)
+        if (!deadline || now > parseInt(deadline)) {
+            // Añadimos horas aleatorias para que parezca natural (entre duration y duration + 2h)
+            const randomExtra = Math.floor(Math.random() * 7200000); 
+            const durationMs = (hoursDuration * 60 * 60 * 1000) + randomExtra;
+            deadline = now + durationMs;
+            localStorage.setItem(storageKey, deadline);
+        } else {
+            deadline = parseInt(deadline);
+        }
+
+        function updateTimer() {
+            const currentTime = new Date().getTime();
+            let distance = deadline - currentTime;
+
+            // Si llega a cero, reiniciamos el ciclo (Simulación de "Oferta diaria")
+            if (distance < 0) {
+                deadline = currentTime + (hoursDuration * 60 * 60 * 1000);
+                localStorage.setItem(storageKey, deadline);
+                distance = deadline - currentTime;
+            }
+
+            // Cálculos de tiempo
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Formato visual 00:00:00
+            display.innerHTML = 
+                (hours < 10 ? "0" + hours : hours) + ":" + 
+                (minutes < 10 ? "0" + minutes : minutes) + ":" + 
+                (seconds < 10 ? "0" + seconds : seconds);
+        }
+
+        // Actualizar cada segundo
+        setInterval(updateTimer, 1000);
+        updateTimer(); // Ejecutar inmediatamente
+    }
+
+    // INICIAR LOS RELOJES AL CARGAR
+    document.addEventListener('DOMContentLoaded', () => {
+        // ID del elemento HTML, Duración en Horas del ciclo
+        startUrgencyTimer('timer-must2', 12);  // Ciclo de 12 horas
+        startUrgencyTimer('timer-astra5', 24); // Ciclo de 24 horas
+        startUrgencyTimer('timer-65kw', 8);    // Ciclo de 8 horas (Más urgente)
+    });
+</script>
 </body>
 </html>
