@@ -631,50 +631,61 @@
                        8 Dic: 2062 (Mantenimiento alto)
                     -->
                     <!-- GRÁFICA SVG REFINADA (ESCALA CORRECTA) -->
-<svg class="absolute inset-0 w-full h-full p-4 overflow-visible z-10" viewBox="0 0 1000 300" preserveAspectRatio="none">
+<!-- GRÁFICA SVG OPTIMIZADA PARA MÓVIL (CURVAS SUAVES) -->
+<svg class="absolute inset-0 w-full h-full p-2 md:p-4 overflow-visible z-10" viewBox="0 0 1000 350" preserveAspectRatio="none">
     <defs>
         <linearGradient id="gradGraph" x1="0" x2="0" y1="0" y2="1">
             <stop offset="0%" stop-color="#ef4444" stop-opacity="1" />
             <stop offset="100%" stop-color="#3b82f6" stop-opacity="0.5" />
         </linearGradient>
+        <!-- Filtro para brillo neon -->
+        <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+            <feMerge>
+                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
     </defs>
     
-    <!-- La Línea de Datos (Ajustada para que no baje tanto) -->
-    <!-- Mapeo visual: Y=280 es 1000MW, Y=20 es 2500MW -->
+    <!-- La Línea de Datos (Rediseñada para fluidez) -->
+    <!-- Mapeo: Arriba (Pico Dic) = Y:40 | Abajo (Nov) = Y:290 -->
     <path d="
-        M 0,150 
-        C 100,100 150,200 200,120 
-        S 300,280 350,260 
-        S 450,50 550,150 
-        S 650,20 800,30 
-        L 950,35
+        M 0,160 
+        C 100,140 150,100 220,120 
+        S 350,320 420,290 
+        S 550,150 650,80 
+        S 800,40 900,50 
+        L 1000,55
         " 
         fill="none" 
         stroke="#ef4444" 
-        stroke-width="4" 
+        stroke-width="5" 
+        stroke-linecap="round"
         vector-effect="non-scaling-stroke"
-        class="filter drop-shadow-[0_0_8px_rgba(239,68,68,0.6)]"
+        filter="url(#glow)"
     />
 
-    <!-- PUNTOS CLAVE (Hitos Recalibrados) -->
+    <!-- PUNTOS CLAVE (Re-posicionados para no chocar) -->
     
     <!-- 3 Oct: 1900 -->
     <g class="group">
-        <circle cx="200" cy="120" r="6" fill="#fbbf24" />
-        <text x="200" y="100" fill="white" font-size="20" text-anchor="middle" class="opacity-0 group-hover:opacity-100 transition font-bold" style="text-shadow: 0 2px 4px black">3 Oct: 1900 MW</text>
+        <circle cx="220" cy="120" r="8" fill="#fbbf24" stroke="#000" stroke-width="2" />
+        <text x="220" y="90" fill="#fbbf24" font-size="28" font-weight="bold" text-anchor="middle" style="text-shadow: 0 2px 4px black">Oct: 1900</text>
     </g>
 
-    <!-- 3 Nov: 1081 (El Espejismo - Ahora en su lugar correcto) -->
+    <!-- 3 Nov: 1081 (El Mínimo) -->
     <g class="group">
-        <!-- Ajustado a Y=260 para que esté cerca de la línea 1000MW pero no debajo -->
-        <circle cx="350" cy="260" r="6" fill="#3b82f6" />
-        <text x="350" y="290" fill="#93c5fd" font-size="20" text-anchor="middle" font-weight="bold" style="text-shadow: 0 2px 4px black">3 Nov: 1081 MW (Mínimo)</text>
+        <!-- Bajado para dar espacio -->
+        <circle cx="420" cy="290" r="8" fill="#3b82f6" stroke="#000" stroke-width="2" />
+        <text x="420" y="335" fill="#93c5fd" font-size="28" font-weight="bold" text-anchor="middle" style="text-shadow: 0 2px 4px black">Nov: 1081 (Mín)</text>
     </g>
 
-    <!-- 5 Dic: 2078 (Récord) -->
+    <!-- 5 Dic: 2078 (El Pico) -->
     <g class="group">
-        <circle cx="800" cy="30" r="8" fill="#ef4444" class="animate-pulse" />
-        <text x="800" y="15" fill="#ef4444" font-size="24" font-weight="bold" text-anchor="middle" style="text-shadow: 0 2px 4px black">Dic 2025: >2070 MW 🚀</text>
+        <circle cx="900" cy="50" r="10" fill="#ef4444" class="animate-pulse" stroke="#fff" stroke-width="2" />
+        <!-- Movido a la izquierda (text-anchor="end") para que no se corte en celular -->
+        <text x="880" y="90" fill="#ef4444" font-size="32" font-weight="black" text-anchor="end" style="text-shadow: 0 2px 10px black; letter-spacing: 1px;">DIC: >2070 🚨</text>
     </g>
 </svg>
                     
