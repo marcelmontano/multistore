@@ -233,6 +233,79 @@
 </div>
 
 
+<!-- ============================================== -->
+<!-- SECCIÓN: ESTADO DE BLOQUES EN TIEMPO REAL (TELEGRAM) -->
+<!-- ============================================== -->
+<section class="pt-48 pb-8 bg-[#0b1120] border-b border-gray-800">
+    <div class="max-w-6xl mx-auto px-4">
+        
+        <div class="flex items-center justify-between mb-6">
+            <div>
+                <h3 class="text-white font-bold text-xl flex items-center gap-2">
+                    <i class="fab fa-telegram text-blue-400"></i> Estado de Bloques (En Vivo)
+                </h3>
+                <p class="text-gray-400 text-xs mt-1">Interpretación automática del parte de la UNE.</p>
+            </div>
+            <div class="text-right">
+                <span id="telegram-time" class="text-[10px] text-gray-500 font-mono uppercase">Esperando datos...</span>
+                <div class="flex gap-2 mt-1 justify-end">
+                    <span class="flex items-center gap-1 text-[10px] text-gray-400"><div class="w-2 h-2 rounded-full bg-green-500"></div> Con Luz</span>
+                    <span class="flex items-center gap-1 text-[10px] text-gray-400"><div class="w-2 h-2 rounded-full bg-red-600"></div> Apagado</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- GRID DE 6 BLOQUES -->
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3" id="blocks-grid">
+            <!-- Se generan dinámicamente, pero ponemos placeholders por si acaso -->
+            <!-- B1 -->
+            <div id="card-b1" class="bg-gray-800 border border-gray-700 p-3 rounded-xl text-center transition-all duration-500">
+                <div class="text-gray-400 text-xs font-bold uppercase mb-1">Bloque 1</div>
+                <div id="status-b1" class="text-green-400 font-black text-lg"><i class="fas fa-bolt"></i> ON</div>
+                <div id="time-b1" class="text-[10px] text-gray-500 mt-1">--</div>
+            </div>
+            <!-- B2 -->
+            <div id="card-b2" class="bg-gray-800 border border-gray-700 p-3 rounded-xl text-center transition-all duration-500">
+                <div class="text-gray-400 text-xs font-bold uppercase mb-1">Bloque 2</div>
+                <div id="status-b2" class="text-green-400 font-black text-lg"><i class="fas fa-bolt"></i> ON</div>
+                <div id="time-b2" class="text-[10px] text-gray-500 mt-1">--</div>
+            </div>
+            <!-- B3 -->
+            <div id="card-b3" class="bg-gray-800 border border-gray-700 p-3 rounded-xl text-center transition-all duration-500">
+                <div class="text-gray-400 text-xs font-bold uppercase mb-1">Bloque 3</div>
+                <div id="status-b3" class="text-green-400 font-black text-lg"><i class="fas fa-bolt"></i> ON</div>
+                <div id="time-b3" class="text-[10px] text-gray-500 mt-1">--</div>
+            </div>
+            <!-- B4 -->
+            <div id="card-b4" class="bg-gray-800 border border-gray-700 p-3 rounded-xl text-center transition-all duration-500">
+                <div class="text-gray-400 text-xs font-bold uppercase mb-1">Bloque 4</div>
+                <div id="status-b4" class="text-green-400 font-black text-lg"><i class="fas fa-bolt"></i> ON</div>
+                <div id="time-b4" class="text-[10px] text-gray-500 mt-1">--</div>
+            </div>
+            <!-- B5 -->
+            <div id="card-b5" class="bg-gray-800 border border-gray-700 p-3 rounded-xl text-center transition-all duration-500">
+                <div class="text-gray-400 text-xs font-bold uppercase mb-1">Bloque 5</div>
+                <div id="status-b5" class="text-green-400 font-black text-lg"><i class="fas fa-bolt"></i> ON</div>
+                <div id="time-b5" class="text-[10px] text-gray-500 mt-1">--</div>
+            </div>
+            <!-- B6 -->
+            <div id="card-b6" class="bg-gray-800 border border-gray-700 p-3 rounded-xl text-center transition-all duration-500">
+                <div class="text-gray-400 text-xs font-bold uppercase mb-1">Bloque 6</div>
+                <div id="status-b6" class="text-green-400 font-black text-lg"><i class="fas fa-bolt"></i> ON</div>
+                <div id="time-b6" class="text-[10px] text-gray-500 mt-1">--</div>
+            </div>
+        </div>
+
+        <!-- Cita del mensaje original (Para dar credibilidad) -->
+        <div class="mt-4 bg-blue-900/10 border border-blue-500/20 p-3 rounded-lg flex gap-3 items-start">
+            <i class="fas fa-quote-left text-blue-500 text-xs mt-1"></i>
+            <p id="raw-telegram-msg" class="text-[10px] text-gray-400 font-mono line-clamp-2">
+                Cargando mensaje original...
+            </p>
+        </div>
+
+    </div>
+</section>
 
     <!-- HERO SECTION REESTRUCTURADO (Valor Inmediato + Urgencia Real) -->
 <section class="relative pt-64 pb-20 lg:pt-64 lg:pb-32 overflow-hidden">
@@ -327,6 +400,8 @@
 
     </div>
 </section>
+
+
 
 <!-- DASHBOARD DE CRISIS EN TIEMPO REAL (CONTROL ROOM) -->
 <section class="py-16 bg-[#050b14] border-y border-red-900/30 relative overflow-hidden" id="dashboard-sen">
@@ -5188,32 +5263,34 @@ document.addEventListener('DOMContentLoaded', initUltimateUrgency);
 </script>
 <script>
     // ==========================================
-    // CONFIGURACIÓN FINAL ROBUSTA
+    // CÓDIGO MAESTRO: SHEET + TELEGRAM + BLOQUES
     // ==========================================
     
+    // 1. TUS ENLACES
     const GOOGLE_CSV_LINK = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSzif4P4juLuHJiXEnowN0cDOI3MEsSJLrLvQFYpL2YCyjBDgW9HZFI2lwu8ZLToVpELVc8NOF-Lsfd/pub?output=csv'; 
     const TELEGRAM_URL = 'https://t.me/s/EmpresaElectricaDeLaHabana';
     
-    // Proxy AllOrigins con 'rand' para romper el caché y forzar datos nuevos de Telegram
+    // 2. PROXIES
+    const PROXY_SHEET = 'https://corsproxy.io/?'; 
     const getTelegramProxy = () => `https://api.allorigins.win/get?url=${encodeURIComponent(TELEGRAM_URL)}&disableCache=true&rand=${Math.random()}`;
-    // Proxy rápido para la Sheet
-    const PROXY_SHEET = 'https://corsproxy.io/?';
 
-    // Variables globales
-    window.sheetData = {};
-    window.telegramData = "Cargando noticias...";
+    // 3. VARIABLES GLOBALES
+    window.sheetData = {}; 
+
+    // --- INICIO DEL SISTEMA ---
+    document.addEventListener('DOMContentLoaded', () => {
+        initSystem();
+    });
 
     async function initSystem() {
-        // 1. Cargar Sheet (Datos fijos)
-        await loadSheet();
-        // 2. Cargar Telegram (Noticias)
-        await loadTelegram();
-        // 3. Pintar todo junto
-        updateTicker();
-        startNotifications();
+        // Carga paralela para mayor velocidad
+        await Promise.all([loadSheet(), loadTelegramAndParse()]);
+        startNotifications(); // Inicia los toasts flotantes
     }
 
-    // --- CARGA DE SHEET ---
+    // ==========================================
+    // MÓDULO 1: GOOGLE SHEETS (Datos Fijos)
+    // ==========================================
     async function loadSheet() {
         try {
             const response = await fetch(PROXY_SHEET + encodeURIComponent(GOOGLE_CSV_LINK));
@@ -5226,8 +5303,54 @@ document.addEventListener('DOMContentLoaded', initUltimateUrgency);
         } catch (e) { console.error("Error Sheet", e); }
     }
 
-    // --- CARGA DE TELEGRAM (EXTRACCIÓN PURA) ---
-    async function loadTelegram() {
+    function renderStaticData(db) {
+        // Limpieza de números
+        const deficit = parseInt(cleanNum(db['deficit_hoy']));
+        const demanda = parseInt(cleanNum(db['demanda_mw']));
+        const genMW = parseInt(cleanNum(db['generacion_mw']));
+        
+        // Cálculos
+        const percent = Math.round((deficit / demanda) * 100);
+        const genPercent = Math.round((genMW / demanda) * 100);
+        const defPercent = 100 - genPercent;
+
+        // 1. Barra Roja Superior
+        setText('nav-deficit', deficit.toLocaleString() + " MW");
+        setText('nav-percent', percent);
+        setText('exit-deficit', deficit.toLocaleString() + " MW"); // Modal Salida
+
+        // 2. Dashboard Principal
+        setText('dash-fecha', db['fecha_hoy']);
+        setText('dash-deficit', deficit.toLocaleString());
+
+        // 3. Barra de Cobertura (Verde/Roja)
+        setText('bar-gen-txt', genPercent);
+        setText('bar-def-txt', defPercent);
+        const barGen = document.getElementById('bar-gen-width');
+        const barDef = document.getElementById('bar-def-width');
+        if(barGen) { barGen.style.width = genPercent + "%"; barGen.innerText = genPercent + "%"; }
+        if(barDef) { barDef.style.width = defPercent + "%"; }
+
+        // 4. Cita del Dashboard
+        const quoteEl = document.getElementById('dash-quote');
+        if(quoteEl) quoteEl.innerHTML = `"Se estima afectación de <strong>${deficit} MW</strong>. ${db['ia_texto']}" <br><span class="text-gray-600 not-italic font-bold">— Fuente: Nota Informativa UNE ${db['fecha_hoy']}.</span>`;
+
+        // 5. Traductor de Impacto
+        setText('impact-deficit', deficit.toLocaleString());
+
+        // 6. Cajitas Históricas
+        setText('hist-1-date', db['dia_antier']);
+        setText('hist-1-val', db['afectacion_antier'] + " MW");
+        setText('hist-2-date', db['dia_ayer']);
+        setText('hist-2-val', db['afectacion_ayer'] + " MW");
+        setText('hist-3-date', db['fecha_hoy']);
+        setText('hist-3-val', deficit + " MW");
+    }
+
+    // ==========================================
+    // MÓDULO 2: TELEGRAM (Inteligencia Visual)
+    // ==========================================
+    async function loadTelegramAndParse() {
         try {
             const response = await fetch(getTelegramProxy());
             const data = await response.json();
@@ -5238,120 +5361,107 @@ document.addEventListener('DOMContentLoaded', initUltimateUrgency);
                 const messages = doc.querySelectorAll('.tgme_widget_message_text');
                 
                 if (messages.length > 0) {
-                    // Tomamos el último mensaje
-                    let htmlContent = messages[messages.length - 1].innerHTML;
+                    // Buscar el mensaje más relevante (prioridad: Actualización de bloques)
+                    let targetMsg = "";
+                    let msgTime = "";
+
+                    for (let i = messages.length - 1; i >= 0; i--) {
+                        const txt = messages[i].innerText;
+                        if (txt.includes("Actualización de afectaciones") || txt.includes("Bloque") || txt.includes("déficit")) {
+                            targetMsg = messages[i].innerHTML; // Usamos innerHTML para mantener formato si necesario
+                            // Buscar hora
+                            const timeEl = messages[i].parentElement.querySelector('.tgme_widget_message_time');
+                            if(timeEl) msgTime = timeEl.innerText;
+                            break;
+                        }
+                    }
                     
-                    // Reemplazamos <br> por un separador visual
-                    htmlContent = htmlContent.replace(/<br\s*\/?>/gi, " &nbsp;|&nbsp; ");
-                    
-                    // Creamos un elemento temporal para sacar solo texto limpio
+                    // Si no encuentra mensaje de bloques, usa el último general
+                    if (!targetMsg) targetMsg = messages[messages.length - 1].innerHTML;
+
+                    // Limpieza para texto plano
                     let tempDiv = document.createElement("div");
-                    tempDiv.innerHTML = htmlContent;
-                    let cleanText = tempDiv.textContent || tempDiv.innerText || "";
-                    
-                    // Limpieza final de espacios
-                    window.telegramData = cleanText.replace(/\s+/g, ' ').trim();
-                    
-                    // Actualizamos Radar también
-                    interpretLiveNews(window.telegramData);
+                    tempDiv.innerHTML = targetMsg;
+                    let cleanText = tempDiv.innerText;
+
+                    // A) Actualizar Texto Crudo en el HTML
+                    const rawTextEl = document.getElementById('raw-telegram-msg');
+                    if(rawTextEl) rawTextEl.innerText = cleanText.substring(0, 250) + "...";
+                    if(msgTime) {
+                        const timeEl = document.getElementById('telegram-time');
+                        if(timeEl) timeEl.innerText = "Reporte: " + msgTime;
+                    }
+
+                    // B) Actualizar Cinta (Ticker)
+                    updateTicker(cleanText.replace(/(\r\n|\n|\r)/gm, " | "));
+
+                    // C) Actualizar GRID DE BLOQUES (Rojo/Verde)
+                    updateBlockGrid(cleanText);
                 }
             }
         } catch (e) { console.error("Error Telegram", e); }
     }
 
-    // --- ACTUALIZAR CINTA (UNIÓN DE DATOS) ---
-    function updateTicker() {
-        const tickerEl = document.getElementById('ticker-content');
-        const db = window.sheetData;
+    function updateBlockGrid(msg) {
+        // 1. Resetear todos a VERDE (ON)
+        for (let i = 1; i <= 6; i++) {
+            setBlockStatus(i, false, "--");
+        }
+
+        // 2. Buscar patrones "Bloque X ... HH:MM Hrs"
+        // Regex flexible para capturar el numero y la hora
+        const regex = /Bloque\s*(\d)[\s\S]*?(\d{1,2}:\d{2})\s*Hrs/gi;
         
-        if (tickerEl && db['deficit_hoy']) {
-            // Aquí unimos TODO: Telegram + Sheet
+        let match;
+        while ((match = regex.exec(msg)) !== null) {
+            const blockNum = match[1];
+            const duration = match[2];
+            // Poner en ROJO (OFF)
+            setBlockStatus(blockNum, true, duration + "h");
+        }
+    }
+
+    function setBlockStatus(num, isOff, time) {
+        const card = document.getElementById(`card-b${num}`);
+        const statusDiv = document.getElementById(`status-b${num}`);
+        const timeDiv = document.getElementById(`time-b${num}`);
+
+        if(!card) return; // Seguridad por si no existe el elemento
+
+        if (isOff) {
+            // ROJO
+            card.className = "bg-red-900/20 border border-red-500/50 p-3 rounded-xl text-center shadow-[0_0_15px_rgba(220,38,38,0.3)] transform scale-105 transition-all duration-500";
+            statusDiv.innerHTML = `<i class="fas fa-power-off"></i> OFF`;
+            statusDiv.className = "text-red-500 font-black text-lg animate-pulse";
+            timeDiv.innerText = "Llevan: " + time;
+            timeDiv.className = "text-xs text-white font-bold bg-red-600/20 rounded px-1 mt-1 inline-block";
+        } else {
+            // VERDE
+            card.className = "bg-gray-800 border border-gray-700 p-3 rounded-xl text-center opacity-70";
+            statusDiv.innerHTML = `<i class="fas fa-bolt"></i> ON`;
+            statusDiv.className = "text-green-500 font-bold text-lg";
+            timeDiv.innerText = "Con Servicio";
+            timeDiv.className = "text-[10px] text-gray-500 mt-1";
+        }
+    }
+
+    function updateTicker(msg) {
+        const tickerEl = document.getElementById('ticker-content');
+        if (tickerEl) {
+            const db = window.sheetData;
             tickerEl.innerHTML = `
-                <!-- 1. NOTICIA TELEGRAM -->
-                <span class="inline-flex items-center gap-2 font-bold text-white">
-                    <i class="fab fa-telegram text-blue-400"></i> UNE INFORMA:
-                </span>
-                <span class="text-blue-100 font-mono text-sm mx-4">${window.telegramData}</span>
-                
+                <span class="inline-flex items-center gap-2 font-bold text-white"><i class="fab fa-telegram text-blue-400"></i> UNE INFORMA:</span>
+                <span class="text-blue-100 font-mono text-sm mx-4">${msg}</span>
                 <span class="text-yellow-500 mx-6 text-xl">///</span>
-                
-                <!-- 2. DATOS SHEET -->
                 <span class="text-gray-400 font-bold uppercase">AYER:</span>
-                <span class="text-red-500 font-bold ml-2">${cleanNum(db['afectacion_ayer'])} MW</span>
-                
-                <span class="text-gray-600 mx-6">|</span>
-                
-                <span class="text-gray-400 font-bold uppercase">COMBUSTIBLE:</span>
-                <span class="text-orange-500 font-bold ml-2">⚠️ ${cleanNum(db['combustible_mw'])} MW OFF</span>
-                
-                <span class="text-gray-600 mx-6">|</span>
-                
-                <span class="text-gray-400 font-bold uppercase">PLANTAS:</span>
-                <span class="text-blue-300 font-bold ml-2">${db['ticker_texto']}</span>
+                <span class="text-red-500 font-bold ml-2">${cleanNum(db['afectacion_ayer'] || '0')} MW</span>
             `;
         }
     }
 
-    // --- RENDERIZADO DE DATOS FIJOS (DASHBOARD) ---
-    function renderStaticData(db) {
-        const deficit = parseInt(cleanNum(db['deficit_hoy']));
-        const demanda = parseInt(cleanNum(db['demanda_mw']));
-        const percent = Math.round((deficit / demanda) * 100);
-        
-        setText('nav-deficit', deficit.toLocaleString() + " MW");
-        setText('nav-percent', percent);
-        setText('exit-deficit', deficit.toLocaleString() + " MW");
-        setText('dash-fecha', db['fecha_hoy']);
-        setText('dash-deficit', deficit.toLocaleString());
-        
-        const genMW = parseInt(cleanNum(db['generacion_mw']));
-        const genPercent = Math.round((genMW / demanda) * 100);
-        const defPercent = 100 - genPercent;
-        
-        setText('bar-gen-txt', genPercent);
-        setText('bar-def-txt', defPercent);
-        const barGen = document.getElementById('bar-gen-width');
-        const barDef = document.getElementById('bar-def-width');
-        if(barGen) { barGen.style.width = genPercent + "%"; barGen.innerText = genPercent + "%"; }
-        if(barDef) { barDef.style.width = defPercent + "%"; }
-
-        const quoteEl = document.getElementById('dash-quote');
-        if(quoteEl) quoteEl.innerHTML = `"Se estima afectación de <strong>${deficit} MW</strong>. ${db['ia_texto']}" <br><span class="text-gray-600 not-italic font-bold">— Fuente: Nota Informativa UNE ${db['fecha_hoy']}.</span>`;
-        
-        setText('impact-deficit', deficit.toLocaleString());
-        setText('hist-1-date', db['dia_antier']);
-        setText('hist-1-val', db['afectacion_antier'] + " MW");
-        setText('hist-2-date', db['dia_ayer']);
-        setText('hist-2-val', db['afectacion_ayer'] + " MW");
-        setText('hist-3-date', db['fecha_hoy']);
-        setText('hist-3-val', deficit + " MW");
-    }
-
-    // --- INTERPRETACIÓN DE NOTICIAS (RADAR) ---
-    function interpretLiveNews(msg) {
-        const lowerMsg = msg.toLowerCase();
-        const statusText = document.getElementById('status-text');
-        const statusIcon = document.getElementById('status-icon');
-        const radarRing = document.getElementById('radar-ring');
-        const content = document.getElementById('news-content');
-        const timeLabel = document.getElementById('news-time');
-
-        if(content) content.innerText = msg.length > 250 ? msg.substring(0, 250) + "..." : msg;
-        if(timeLabel) timeLabel.innerText = "EN VIVO";
-
-        let sentiment = 'neutral';
-        if (lowerMsg.includes('avería') || lowerMsg.includes('déficit') || lowerMsg.includes('salida')) sentiment = 'bad';
-        if (lowerMsg.includes('restablecido') || lowerMsg.includes('sincroniza')) sentiment = 'good';
-
-        if (sentiment === 'bad' && statusText) {
-            statusText.innerText = "INCIDENCIA";
-            statusText.className = "text-red-500 font-bold text-lg mt-1 text-center animate-pulse";
-            statusIcon.className = "fas fa-exclamation-triangle text-3xl text-red-500";
-            radarRing.className = "absolute inset-0 border-4 border-t-red-600 rounded-full animate-spin";
-        }
-    }
-
-    // --- UTILIDADES ---
+    // ==========================================
+    // UTILIDADES GENERALES
+    // ==========================================
     function parseCSV(text) {
         const rows = text.split('\n');
         const db = {};
@@ -5365,16 +5475,29 @@ document.addEventListener('DOMContentLoaded', initUltimateUrgency);
         });
         return db;
     }
+    
     function cleanNum(str) { return str ? str.replace(/\D/g,'') : '0'; }
-    function setText(id, text) { const el = document.getElementById(id); if(el) el.innerText = text; }
-
-    // --- NOTIFICACIONES ---
-    function startNotifications() {
-        // (Tu código de notificaciones anterior si lo deseas, o déjalo vacío)
+    
+    function setText(id, text) { 
+        const el = document.getElementById(id); 
+        if(el) el.innerText = text; 
     }
 
-    // INICIO
-    document.addEventListener('DOMContentLoaded', initSystem);
+    // Sistema de notificaciones (Ventas falsas para social proof)
+    function startNotifications() {
+        const salesData = [ { n: "Roberto (Playa)", p: "Kit Must 2kW" }, { n: "Yusmary (Vedado)", p: "Astra 5kW" }, { n: "MIPYME (Matanzas)", p: "3 Kits Pro 6.5kW" } ];
+        const container = document.getElementById('toast-container');
+        
+        setInterval(() => {
+            if(!container) return;
+            const item = salesData[Math.floor(Math.random() * salesData.length)];
+            const div = document.createElement('div');
+            div.className = "toast-notification p-3 rounded-xl flex items-center gap-3 text-white min-w-[280px] animate-slide-in border-l-4 border-green-500 bg-[#0f172a]/95 backdrop-blur-md shadow-xl mb-3";
+            div.innerHTML = `<div class="text-green-400 text-lg"><i class="fas fa-check-circle"></i></div><div class="flex-1"><p class="text-xs text-gray-300"><strong class="text-white">${item.n}</strong> reservó <strong class="text-yellow-400">${item.p}</strong>.</p></div>`;
+            container.appendChild(div);
+            setTimeout(() => div.remove(), 5000);
+        }, 15000);
+    }
 </script>
 </body>
 </html>
