@@ -197,7 +197,7 @@
         <!-- IZQUIERDA: EL PROBLEMA (Dato Oficial UNE) -->
         <div class="flex items-center gap-2 animate-pulse">
     <span class="bg-white text-red-800 px-1.5 py-0.5 rounded uppercase font-black tracking-tighter">🔴 ALERTA SEN</span>
-    <span>Déficit Hoy: <strong>1,790 MW</strong> (54% Afectación)</span>
+    <span>Déficit Hoy: <strong id="nav-deficit">Cargando...</strong> (<span id="nav-percent">--</span>% Afectación)</span>
 </div>
 
         <!-- CENTRO: LA ESCASEZ (Visible solo en PC para ahorrar espacio en móvil) -->
@@ -327,7 +327,8 @@
                 </h2>
             </div>
             <div class="text-right mt-4 md:mt-0">
-    <p class="text-gray-500 text-[10px] font-mono">Última sincro: 10 Dic 2025</p>
+    <p class="text-gray-500 text-[10px] font-mono">Última sincro: <span id="dash-fecha">...</span></p>
+
     <p class="text-gray-400 text-xs">Estado del Sistema: <strong class="text-red-500">CRÍTICO (ALERTA NEGRA)</strong></p>
 </div>
         </div>
@@ -702,66 +703,9 @@
             </div>
 
             <!-- El Texto en Movimiento -->
-            <div class="whitespace-nowrap animate-ticker flex items-center gap-8 pl-36 text-xs font-mono text-gray-300">
-                
-                <!-- Dato 0: Récord Ayer -->
-    <span class="flex items-center gap-2">
-        <span class="text-gray-500">AYER (REAL):</span>
-        <span class="text-red-500 font-bold">2,185 MW AFECTACIÓN</span>
-    </span>
-
-    <span class="text-gray-700">|</span>
-
-    <!-- Dato 1: Felton -->
-    <span class="flex items-center gap-2">
-        <span class="text-gray-500">CTE FELTON 2:</span>
-        <span class="text-red-500 font-bold">❌ AVERÍA</span>
-    </span>
-
-    <span class="text-gray-700">|</span>
-
-    <!-- Dato 2: Mariel -->
-    <span class="flex items-center gap-2">
-        <span class="text-gray-500">CTE MARIEL 5:</span>
-        <span class="text-red-500 font-bold">❌ AVERÍA</span>
-    </span>
-
-    <span class="text-gray-700">|</span>
-
-    <!-- Dato 3: Renté -->
-    <span class="flex items-center gap-2">
-        <span class="text-gray-500">CTE RENTÉ 6:</span>
-        <span class="text-red-500 font-bold">❌ AVERÍA</span>
-    </span>
-
-    <span class="text-gray-700">|</span>
-
-    <!-- Dato 4: 10 de Octubre -->
-    <span class="flex items-center gap-2">
-        <span class="text-gray-500">10 OCTUBRE 6:</span>
-        <span class="text-red-500 font-bold">❌ AVERÍA</span>
-    </span>
-
-    <span class="text-gray-700">|</span>
-
-    <!-- Dato 5: Combustible -->
-    <span class="flex items-center gap-2">
-        <span class="text-gray-500">CRISIS COMBUSTIBLE:</span>
-        <span class="text-orange-500 font-bold">⚠️ 1,005 MW FUERA</span>
-    </span>
-
-    <span class="text-gray-700">|</span>
-    
-    <!-- Dato 6: Buena Noticia -->
-    <span class="flex items-center gap-2">
-        <span class="text-gray-500">PRONÓSTICO:</span>
-        <span class="text-green-400 font-bold">✅ ENTRA NUEVITAS 6 (+90 MW)</span>
-    </span>
-
-    <span class="text-gray-700">|</span>
-    <span class="text-blue-400 italic">... Fuente: Parte Oficial UNE 10/12 ...</span>
-                
-            </div>
+            <div id="ticker-content" class="whitespace-nowrap animate-ticker flex items-center gap-8 pl-36 text-xs font-mono text-gray-300">
+    Cargando datos del SEN...
+</div>
             
             <!-- Gradiente de desvanecimiento a la derecha -->
             <div class="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-[#0f172a] to-transparent z-10"></div>
@@ -802,7 +746,7 @@
             </div>
             <div class="text-right mt-4 md:mt-0">
                 <div class="text-xs text-gray-500 uppercase tracking-widest">Déficit Pronosticado</div>
-                <div class="text-5xl font-black text-white leading-none">1,790 <span class="text-lg text-red-500">MW</span></div>
+                <div class="text-5xl font-black text-white leading-none"><span id="dash-deficit">...</span> <span class="text-lg text-red-500">MW</span></div>
                 <div class="text-xs text-red-400 font-bold mt-1">CRÍTICO: Supera la generación</div>
             </div>
         </div>
@@ -820,27 +764,26 @@
                         <i class="fas fa-chart-pie text-red-500"></i> Cobertura Real (10 Dic)
                     </h3>
                     
-                    <!-- Barra de Progreso Realista (Calculado: 1540 Gen / 3300 Demanda) -->
-                    <div class="mb-2 flex justify-between text-xs font-bold uppercase text-gray-400">
-                        <span>Generación (47%)</span>
-                        <span class="text-red-500">Déficit (53%)</span>
-                    </div>
-                    <div class="w-full h-6 bg-red-900/40 rounded-full overflow-hidden flex border border-gray-700">
-                        <div class="h-full bg-green-500 flex items-center justify-center text-[10px] text-black font-bold" style="width: 47%">47%</div>
-                        <div class="h-full bg-red-600 flex items-center justify-center text-[10px] text-white font-bold animate-pulse" style="width: 53%">SIN LUZ</div>
-                    </div>
-                    
-                    <p class="text-xs text-gray-400 mt-4 italic border-l-2 border-red-500 pl-3">
-                        "Para el horario pico se estima una disponibilidad de 1540 MW y una demanda máxima de 3300 MW, para una afectación de <strong>1790 MW</strong>." 
-                        <br><span class="text-gray-600 not-italic font-bold">— Fuente: Nota Informativa UNE 10/12.</span>
-                    </p>
+                    <!-- Barra de Progreso Dinámica -->
+<div class="mb-2 flex justify-between text-xs font-bold uppercase text-gray-400">
+    <span>Generación (<span id="bar-gen-txt">--</span>%)</span>
+    <span class="text-red-500">Déficit (<span id="bar-def-txt">--</span>%)</span>
+</div>
+<div class="w-full h-6 bg-red-900/40 rounded-full overflow-hidden flex border border-gray-700">
+    <div id="bar-gen-width" class="h-full bg-green-500 flex items-center justify-center text-[10px] text-black font-bold" style="width: 50%">--%</div>
+    <div id="bar-def-width" class="h-full bg-red-600 flex items-center justify-center text-[10px] text-white font-bold animate-pulse" style="width: 50%">SIN LUZ</div>
+</div>
+
+<p class="text-xs text-gray-400 mt-4 italic border-l-2 border-red-500 pl-3">
+    <span id="dash-quote">Cargando análisis...</span>
+</p>
                 </div>
 
                 <!-- TRADUCTOR DE IMPACTO (Corregido) -->
                 <div class="mt-6 bg-black/40 rounded-xl p-4 border border-gray-700">
                     <div class="flex items-center gap-2 mb-3">
                         <i class="fas fa-language text-yellow-500"></i>
-                        <h4 class="text-white text-xs font-bold uppercase">¿Qué significan 1,790 MW de déficit?</h4>
+                        <h4 class="text-white text-xs font-bold uppercase">¿Qué significan <span id="impact-deficit">...</span> MW de déficit?</h4>
                     </div>
                     
                     <div class="flex items-start gap-4">
@@ -868,21 +811,22 @@
 
                 <!-- Histórico Simple (Corregido) -->
                 <div class="grid grid-cols-3 gap-4 text-center">
-                    <div class="bg-gray-800 p-3 rounded-lg border border-gray-700">
-                        <div class="text-[10px] text-gray-500">Lunes 8</div>
-                        <!-- Dato corregido: 2062 MW -->
-                        <div class="text-red-400 font-bold text-sm">2062 MW</div>
-                    </div>
-                    <div class="bg-gray-800 p-3 rounded-lg border border-gray-700">
-                        <div class="text-[10px] text-gray-500">Martes (Ayer)</div>
-                        <!-- Dato real ayer: 2185 MW -->
-                        <div class="text-red-400 font-bold text-sm">1970 MW</div>
-                    </div>
-                    <div class="bg-gray-800 p-3 rounded-lg border border-gray-700 bg-red-900/20 border-red-500/50">
-                        <div class="text-[10px] text-red-300 font-bold">HOY MIÉRCOLES</div>
-                        <div class="text-white font-black text-lg">1790 MW</div>
-                    </div>
-                </div>
+    <!-- Cajita 1 (Antier) -->
+    <div class="bg-gray-800 p-3 rounded-lg border border-gray-700">
+        <div class="text-[10px] text-gray-500" id="hist-1-date">Día 1</div>
+        <div class="text-red-400 font-bold text-sm" id="hist-1-val">...</div>
+    </div>
+    <!-- Cajita 2 (Ayer) -->
+    <div class="bg-gray-800 p-3 rounded-lg border border-gray-700">
+        <div class="text-[10px] text-gray-500" id="hist-2-date">Ayer</div>
+        <div class="text-red-400 font-bold text-sm" id="hist-2-val">...</div>
+    </div>
+    <!-- Cajita 3 (Hoy) -->
+    <div class="bg-gray-800 p-3 rounded-lg border border-gray-700 bg-red-900/20 border-red-500/50">
+        <div class="text-[10px] text-red-300 font-bold">HOY <span id="hist-3-date">...</span></div>
+        <div class="text-white font-black text-lg" id="hist-3-val">...</div>
+    </div>
+</div>
 
             </div>
 
@@ -3817,7 +3761,7 @@
             <div class="md:w-3/5 p-8 bg-[#0f172a]">
                 <h4 class="text-2xl font-bold text-white mb-2">¡Espera! 🛑</h4>
                 <p class="text-gray-300 text-sm mb-4 leading-relaxed">
-                    El déficit hoy es de <strong>2,062 MW</strong>. ¿Sabes exactamente qué equipos de tu casa corren riesgo de quemarse por las fluctuaciones?
+                    El déficit hoy es de <strong id="exit-deficit">Cargando...</strong>. ¿Sabes exactamente qué equipos de tu casa corren riesgo de quemarse por las fluctuaciones?
                 </p>
                 
                 <ul class="space-y-2 mb-6">
@@ -5229,6 +5173,165 @@ function initUltimateUrgency() {
 
 // Iniciar al cargar la página
 document.addEventListener('DOMContentLoaded', initUltimateUrgency);
+</script>
+<script>
+    // ==========================================
+    // CONFIGURACIÓN DE ALTA VELOCIDAD
+    // ==========================================
+    
+    // 1. TU ENLACE DE SHEETS
+    const GOOGLE_CSV_LINK = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSzif4P4juLuHJiXEnowN0cDOI3MEsSJLrLvQFYpL2YCyjBDgW9HZFI2lwu8ZLToVpELVc8NOF-Lsfd/pub?output=csv'; 
+
+    // 2. CONFIGURACIÓN DE CACHÉ (MEMORIA)
+    const CACHE_KEY = 'solar_sen_data_v2'; // Nombre de la memoria
+    const CACHE_TIME = 1000 * 60 * 30;     // 30 Minutos (Los datos se guardan 30 min en el celular del cliente)
+
+    async function updateSENData() {
+        try {
+            // A) INTENTO 1: LEER DE LA MEMORIA (Carga Instantánea)
+            const cached = localStorage.getItem(CACHE_KEY);
+            if (cached) {
+                const cacheData = JSON.parse(cached);
+                const now = new Date().getTime();
+                // Si los datos tienen menos de 30 min, úsalos y NO conectes a internet
+                if (now - cacheData.timestamp < CACHE_TIME) {
+                    console.log("⚡ Cargando desde memoria (Instantáneo)");
+                    renderData(cacheData.data);
+                    return; // Terminamos aquí, velocidad luz.
+                }
+            }
+
+            // B) INTENTO 2: INTERNET (Si no hay memoria o es vieja)
+            console.log("🌐 Descargando datos frescos...");
+            
+            // Usamos un proxy más rápido (corsproxy.io)
+            const proxyUrl = 'https://corsproxy.io/?' + encodeURIComponent(GOOGLE_CSV_LINK);
+            
+            // Ponemos un timeout de 5 segundos. Si tarda más, cancelamos para no trabar la web.
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 8000); // 8 seg max
+
+            const response = await fetch(proxyUrl, { signal: controller.signal });
+            clearTimeout(timeoutId);
+
+            if (!response.ok) throw new Error("Error de red");
+            
+            const dataText = await response.text();
+            
+            // Procesar CSV
+            const db = parseCSV(dataText);
+
+            // Validar que llegaron datos reales
+            if (!db['deficit_hoy']) throw new Error("Datos vacíos");
+
+            // C) GUARDAR EN MEMORIA (Para la próxima vez)
+            localStorage.setItem(CACHE_KEY, JSON.stringify({
+                timestamp: new Date().getTime(),
+                data: db
+            }));
+
+            // D) MOSTRAR DATOS
+            renderData(db);
+
+        } catch (error) {
+            console.error("⚠️ Usando datos de respaldo:", error);
+            // Si todo falla (internet lento o error), no dejes la web vacía.
+            // Aquí se mantienen los datos que ya están escritos en el HTML por defecto.
+            document.getElementById('nav-deficit').innerText = "Consultar";
+        }
+    }
+
+    // --- FUNCIÓN PARA PINTAR LOS DATOS EN PANTALLA ---
+    function renderData(db) {
+        // 1. Barra Superior
+        const deficit = parseInt(cleanNum(db['deficit_hoy']));
+        const demanda = parseInt(cleanNum(db['demanda_mw']));
+        const percent = Math.round((deficit / demanda) * 100);
+        
+        setText('nav-deficit', deficit.toLocaleString() + " MW");
+        setText('nav-percent', percent);
+        // Modal Salida
+        setText('exit-deficit', deficit.toLocaleString() + " MW");
+
+        // 2. Dashboard
+        setText('dash-fecha', db['fecha_hoy']);
+        setText('dash-deficit', deficit.toLocaleString());
+
+        // 3. Barra Cobertura
+        const genMW = parseInt(cleanNum(db['generacion_mw']));
+        const genPercent = Math.round((genMW / demanda) * 100);
+        const defPercent = 100 - genPercent;
+
+        setText('bar-gen-txt', genPercent);
+        setText('bar-def-txt', defPercent);
+        
+        const barGen = document.getElementById('bar-gen-width');
+        const barDef = document.getElementById('bar-def-width');
+        if(barGen) { barGen.style.width = genPercent + "%"; barGen.innerText = genPercent + "%"; }
+        if(barDef) { barDef.style.width = defPercent + "%"; }
+
+        // Cita
+        const quoteEl = document.getElementById('dash-quote');
+        if(quoteEl) quoteEl.innerHTML = `"Se estima una afectación de <strong>${deficit} MW</strong>. ${db['ia_texto']}" <br><span class="text-gray-600 not-italic font-bold">— Fuente: Nota Informativa UNE ${db['fecha_hoy']}.</span>`;
+
+        // 4. Traductor & Histórico
+        setText('impact-deficit', deficit.toLocaleString());
+        
+        setText('hist-1-date', db['dia_antier']);
+        setText('hist-1-val', db['afectacion_antier'] + " MW");
+        
+        setText('hist-2-date', db['dia_ayer']);
+        setText('hist-2-val', db['afectacion_ayer'] + " MW");
+        
+        setText('hist-3-date', db['fecha_hoy']);
+        setText('hist-3-val', deficit + " MW");
+
+        // 5. Ticker
+        const tickerEl = document.getElementById('ticker-content');
+        if(tickerEl) {
+            tickerEl.innerHTML = `
+                <span class="flex items-center gap-2"><span class="text-gray-500">AYER (${db['dia_ayer']}):</span><span class="text-red-500 font-bold">${db['afectacion_ayer']} MW</span></span>
+                <span class="text-gray-700">|</span>
+                <span class="flex items-center gap-2"><span class="text-gray-500">CRISIS COMBUSTIBLE:</span><span class="text-orange-500 font-bold">⚠️ ${db['combustible_mw']} MW FUERA</span></span>
+                <span class="text-gray-700">|</span>
+                <span class="text-white font-bold">${db['ticker_texto']}</span>
+                <span class="text-gray-700">|</span>
+                <span class="text-blue-400 italic">... Actualizado: ${db['fecha_hoy']} ...</span>
+            `;
+        }
+    }
+
+    // --- UTILIDADES ---
+    function parseCSV(text) {
+        const rows = text.split('\n');
+        const db = {};
+        rows.forEach(row => {
+            const parts = row.split(','); // Método simple para velocidad
+            if(parts.length >= 2) {
+                // Truco: Si hay comas en el texto, unimos desde el índice 1 en adelante
+                const key = parts[0].trim();
+                let val = parts.slice(1).join(',').trim();
+                // Quitar comillas si existen
+                if (val.startsWith('"') && val.endsWith('"')) {
+                    val = val.substring(1, val.length - 1);
+                }
+                if(key) db[key] = val;
+            }
+        });
+        return db;
+    }
+
+    function cleanNum(str) {
+        return str ? str.replace(/\D/g,'') : '0';
+    }
+
+    function setText(id, text) {
+        const el = document.getElementById(id);
+        if(el) el.innerText = text;
+    }
+
+    // Iniciar
+    document.addEventListener('DOMContentLoaded', updateSENData);
 </script>
 </body>
 </html>
