@@ -165,7 +165,7 @@
     </a>
 
     <!-- Navbar -->
-     <nav class="fixed w-full z-40 glass-panel border-b-0 border-t-0 top-[52px] md:top-10">
+     <nav class="fixed w-full z-40 glass-panel border-b-0 border-t-0 top-[72px]">
 
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -190,32 +190,52 @@
         </div>
     </nav>
 
-    <!-- BARRA DE ALERTA PERSISTENTE (Datos Reales + Stock) -->
-<div class="fixed w-full z-[60] top-0 bg-gradient-to-r from-red-800 via-red-600 to-red-800 text-white shadow-xl border-b border-red-900/50">
-    <div class="max-w-7xl mx-auto px-3 py-2 flex flex-col sm:flex-row justify-between items-center text-[10px] md:text-xs font-bold tracking-wide gap-2 sm:gap-0">
+    <!-- 1. BARRA ROJA (Nivel 0 - Tope) -->
+<div class="fixed w-full z-[60] top-0 h-10 bg-gradient-to-r from-red-800 via-red-600 to-red-800 text-white shadow-xl border-b border-red-900/50 flex items-center">
+    <div class="max-w-7xl mx-auto px-3 w-full flex justify-between items-center text-[10px] md:text-xs font-bold tracking-wide">
+        <!-- (Tu contenido de Alerta SEN y Déficit aquí...) -->
+        <!-- Asegúrate de NO BORRAR el contenido de adentro, solo cambia el <div class="..."> del principio -->
+         <div class="flex items-center gap-2 animate-pulse">
+            <span class="bg-white text-red-800 px-1.5 py-0.5 rounded uppercase font-black tracking-tighter">🔴 ALERTA SEN</span>
+            <span>Déficit Hoy: <strong id="nav-deficit">Cargando...</strong> (<span id="nav-percent">--</span>% Afectación)</span>
+        </div>
 
-        <!-- IZQUIERDA: EL PROBLEMA (Dato Oficial UNE) -->
-        <div class="flex items-center gap-2 animate-pulse">
-    <span class="bg-white text-red-800 px-1.5 py-0.5 rounded uppercase font-black tracking-tighter">🔴 ALERTA SEN</span>
-    <span>Déficit Hoy: <strong id="nav-deficit">Cargando...</strong> (<span id="nav-percent">--</span>% Afectación)</span>
-</div>
-
-        <!-- CENTRO: LA ESCASEZ (Visible solo en PC para ahorrar espacio en móvil) -->
         <div class="hidden md:flex items-center gap-2 text-yellow-300">
             <i class="fas fa-box-open"></i>
             <span>STOCK LOTE DICIEMBRE: <span class="text-white underline decoration-yellow-400 decoration-2">Solo 6 Kits</span></span>
         </div>
 
-        <!-- DERECHA: LA SOLUCIÓN (CTA) -->
-        <button onclick="document.getElementById('ofertas-blue').scrollIntoView({behavior: 'smooth'})" class="flex items-center gap-2 bg-black/20 hover:bg-black/40 px-3 py-1 rounded-full border border-white/20 transition cursor-pointer w-full sm:w-auto justify-center group">
-            <span class="group-hover:text-yellow-400 transition">Asegurar mi Kit</span>
-            <i class="fas fa-arrow-right group-hover:translate-x-1 transition"></i>
+        <button onclick="document.getElementById('ofertas-blue').scrollIntoView({behavior: 'smooth'})" class="flex items-center gap-2 bg-black/20 hover:bg-black/40 px-3 py-1 rounded-full border border-white/20 transition cursor-pointer">
+            <span>Asegurar mi Kit</span>
+            <i class="fas fa-arrow-right"></i>
         </button>
     </div>
 </div>
 
+<!-- 2. CINTA DE NOTICIAS (Nivel 1 - Debajo de la Roja) -->
+<!-- 'top-10' significa 40px, justo lo que mide la barra roja -->
+<div class="fixed w-full z-[59] top-10 h-8 bg-[#020617] border-b border-gray-800 flex items-center shadow-lg">
+    
+    <!-- Etiqueta LIVE -->
+    <div class="absolute left-0 top-0 bottom-0 bg-[#0f172a] z-20 px-2 flex items-center border-r border-gray-700 shadow-[5px_0_10px_rgba(0,0,0,0.5)]">
+        <span class="text-[9px] text-blue-400 font-bold uppercase tracking-widest flex items-center gap-1 animate-pulse">
+            <i class="fas fa-satellite-dish"></i> LIVE
+        </span>
+    </div>
+
+    <!-- Texto Movimiento -->
+    <div id="ticker-content" class="whitespace-nowrap animate-ticker flex items-center gap-8 pl-20 text-[10px] font-mono text-gray-300">
+        Cargando noticias...
+    </div>
+    
+    <!-- Sombra derecha -->
+    <div class="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-[#020617] to-transparent z-10"></div>
+</div>
+
+
     <!-- HERO SECTION REESTRUCTURADO (Valor Inmediato + Urgencia Real) -->
-<section class="relative pt-44 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+<section class="relative pt-64 pb-20 lg:pt-64 lg:pb-32 overflow-hidden">
+
     <!-- Fondo Radial Oscuro -->
     <div class="absolute inset-0 z-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#1e293b] via-[#020617] to-black"></div>
     
@@ -702,10 +722,7 @@
                 </span>
             </div>
 
-            <!-- El Texto en Movimiento -->
-            <div id="ticker-content" class="whitespace-nowrap animate-ticker flex items-center gap-8 pl-36 text-xs font-mono text-gray-300">
-    Cargando datos del SEN...
-</div>
+            
             
             <!-- Gradiente de desvanecimiento a la derecha -->
             <div class="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-[#0f172a] to-transparent z-10"></div>
@@ -5176,162 +5193,239 @@ document.addEventListener('DOMContentLoaded', initUltimateUrgency);
 </script>
 <script>
     // ==========================================
-    // CONFIGURACIÓN DE ALTA VELOCIDAD
+    // CONFIGURACIÓN MAESTRA (HÍBRIDA)
     // ==========================================
     
-    // 1. TU ENLACE DE SHEETS
     const GOOGLE_CSV_LINK = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSzif4P4juLuHJiXEnowN0cDOI3MEsSJLrLvQFYpL2YCyjBDgW9HZFI2lwu8ZLToVpELVc8NOF-Lsfd/pub?output=csv'; 
+    const TELEGRAM_URL = 'https://t.me/s/EmpresaElectricaDeLaHabana';
+    const CACHE_KEY = 'solar_data_v6_toasts'; 
+    const CACHE_TIME = 1000 * 60 * 5; // 5 Minutos
+    const PROXY_BASE = 'https://corsproxy.io/?';
 
-    // 2. CONFIGURACIÓN DE CACHÉ (MEMORIA)
-    const CACHE_KEY = 'solar_sen_data_v2'; // Nombre de la memoria
-    const CACHE_TIME = 1000 * 60 * 30;     // 30 Minutos (Los datos se guardan 30 min en el celular del cliente)
+    // Variable global para guardar la noticia
+    let globalTelegramMsg = "";
 
-    async function updateSENData() {
+    async function updateAllData() {
         try {
-            // A) INTENTO 1: LEER DE LA MEMORIA (Carga Instantánea)
+            // A) CACHÉ
             const cached = localStorage.getItem(CACHE_KEY);
             if (cached) {
                 const cacheData = JSON.parse(cached);
                 const now = new Date().getTime();
-                // Si los datos tienen menos de 30 min, úsalos y NO conectes a internet
                 if (now - cacheData.timestamp < CACHE_TIME) {
-                    console.log("⚡ Cargando desde memoria (Instantáneo)");
-                    renderData(cacheData.data);
-                    return; // Terminamos aquí, velocidad luz.
+                    globalTelegramMsg = cacheData.telegram; // Guardamos para las notificaciones
+                    renderData(cacheData.sheet);
+                    return;
                 }
             }
 
-            // B) INTENTO 2: INTERNET (Si no hay memoria o es vieja)
-            console.log("🌐 Descargando datos frescos...");
-            
-            // Usamos un proxy más rápido (corsproxy.io)
-            const proxyUrl = 'https://corsproxy.io/?' + encodeURIComponent(GOOGLE_CSV_LINK);
-            
-            // Ponemos un timeout de 5 segundos. Si tarda más, cancelamos para no trabar la web.
-            const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 8000); // 8 seg max
+            // B) DESCARGAR
+            console.log("🌐 Actualizando...");
+            const [sheetRes, telegramRes] = await Promise.all([
+                fetch(PROXY_BASE + encodeURIComponent(GOOGLE_CSV_LINK)),
+                fetch(PROXY_BASE + encodeURIComponent(TELEGRAM_URL))
+            ]);
 
-            const response = await fetch(proxyUrl, { signal: controller.signal });
-            clearTimeout(timeoutId);
+            const sheetText = await sheetRes.text();
+            const sheetDB = parseCSV(sheetText);
 
-            if (!response.ok) throw new Error("Error de red");
-            
-            const dataText = await response.text();
-            
-            // Procesar CSV
-            const db = parseCSV(dataText);
+            const telegramHTML = await telegramRes.text();
+            const telegramMsg = parseTelegram(telegramHTML);
+            globalTelegramMsg = telegramMsg; // Guardamos globalmente
 
-            // Validar que llegaron datos reales
-            if (!db['deficit_hoy']) throw new Error("Datos vacíos");
-
-            // C) GUARDAR EN MEMORIA (Para la próxima vez)
-            localStorage.setItem(CACHE_KEY, JSON.stringify({
-                timestamp: new Date().getTime(),
-                data: db
-            }));
-
-            // D) MOSTRAR DATOS
-            renderData(db);
+            // C) GUARDAR Y PINTAR
+            if (sheetDB['deficit_hoy']) {
+                localStorage.setItem(CACHE_KEY, JSON.stringify({
+                    timestamp: new Date().getTime(),
+                    sheet: sheetDB,
+                    telegram: telegramMsg
+                }));
+                renderData(sheetDB);
+            }
 
         } catch (error) {
-            console.error("⚠️ Usando datos de respaldo:", error);
-            // Si todo falla (internet lento o error), no dejes la web vacía.
-            // Aquí se mantienen los datos que ya están escritos en el HTML por defecto.
-            document.getElementById('nav-deficit').innerText = "Consultar";
+            console.error("⚠️ Error:", error);
         }
     }
 
-    // --- FUNCIÓN PARA PINTAR LOS DATOS EN PANTALLA ---
+    // --- LECTOR TELEGRAM (LIMPIO) ---
+    function parseTelegram(html) {
+        try {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, "text/html");
+            const messages = doc.querySelectorAll('.tgme_widget_message_text');
+            if (messages.length > 0) {
+                // Tomamos el último mensaje
+                let msg = messages[messages.length - 1].innerText;
+                // Limpieza de espacios
+                return msg.replace(/\s+/g, ' ').trim();
+            }
+            return "";
+        } catch (e) { return ""; }
+    }
+
+    // --- PINTAR DATOS (SOLO NÚMEROS EN LA CINTA) ---
     function renderData(db) {
-        // 1. Barra Superior
         const deficit = parseInt(cleanNum(db['deficit_hoy']));
         const demanda = parseInt(cleanNum(db['demanda_mw']));
         const percent = Math.round((deficit / demanda) * 100);
         
         setText('nav-deficit', deficit.toLocaleString() + " MW");
         setText('nav-percent', percent);
-        // Modal Salida
         setText('exit-deficit', deficit.toLocaleString() + " MW");
-
-        // 2. Dashboard
         setText('dash-fecha', db['fecha_hoy']);
         setText('dash-deficit', deficit.toLocaleString());
 
-        // 3. Barra Cobertura
+        // Barra
         const genMW = parseInt(cleanNum(db['generacion_mw']));
         const genPercent = Math.round((genMW / demanda) * 100);
         const defPercent = 100 - genPercent;
-
         setText('bar-gen-txt', genPercent);
         setText('bar-def-txt', defPercent);
-        
         const barGen = document.getElementById('bar-gen-width');
         const barDef = document.getElementById('bar-def-width');
         if(barGen) { barGen.style.width = genPercent + "%"; barGen.innerText = genPercent + "%"; }
         if(barDef) { barDef.style.width = defPercent + "%"; }
 
-        // Cita
+        // Textos
         const quoteEl = document.getElementById('dash-quote');
-        if(quoteEl) quoteEl.innerHTML = `"Se estima una afectación de <strong>${deficit} MW</strong>. ${db['ia_texto']}" <br><span class="text-gray-600 not-italic font-bold">— Fuente: Nota Informativa UNE ${db['fecha_hoy']}.</span>`;
-
-        // 4. Traductor & Histórico
-        setText('impact-deficit', deficit.toLocaleString());
+        if(quoteEl) quoteEl.innerHTML = `"Se estima afectación de <strong>${deficit} MW</strong>. ${db['ia_texto']}" <br><span class="text-gray-600 not-italic font-bold">— Fuente: Nota Informativa UNE ${db['fecha_hoy']}.</span>`;
         
+        setText('impact-deficit', deficit.toLocaleString());
         setText('hist-1-date', db['dia_antier']);
         setText('hist-1-val', db['afectacion_antier'] + " MW");
-        
         setText('hist-2-date', db['dia_ayer']);
         setText('hist-2-val', db['afectacion_ayer'] + " MW");
-        
         setText('hist-3-date', db['fecha_hoy']);
         setText('hist-3-val', deficit + " MW");
 
-        // 5. Ticker
+        // CINTA LIMPIA (Solo Datos Sheet)
         const tickerEl = document.getElementById('ticker-content');
         if(tickerEl) {
             tickerEl.innerHTML = `
-                <span class="flex items-center gap-2"><span class="text-gray-500">AYER (${db['dia_ayer']}):</span><span class="text-red-500 font-bold">${db['afectacion_ayer']} MW</span></span>
-                <span class="text-gray-700">|</span>
-                <span class="flex items-center gap-2"><span class="text-gray-500">CRISIS COMBUSTIBLE:</span><span class="text-orange-500 font-bold">⚠️ ${db['combustible_mw']} MW FUERA</span></span>
-                <span class="text-gray-700">|</span>
-                <span class="text-white font-bold">${db['ticker_texto']}</span>
-                <span class="text-gray-700">|</span>
-                <span class="text-blue-400 italic">... Actualizado: ${db['fecha_hoy']} ...</span>
+                <span class="flex items-center gap-2"><span class="text-gray-400 font-bold">AYER:</span><span class="text-red-500 font-bold">${cleanNum(db['afectacion_ayer'])} MW</span></span>
+                <span class="text-gray-600 mx-6">|</span>
+                <span class="flex items-center gap-2"><span class="text-gray-400 font-bold">COMBUSTIBLE:</span><span class="text-orange-500 font-bold">⚠️ ${cleanNum(db['combustible_mw'])} MW OFF</span></span>
+                <span class="text-gray-600 mx-6">|</span>
+                <span class="text-blue-300 font-bold">${db['ticker_texto']}</span>
             `;
         }
+    }
+
+    // ==========================================
+    // SISTEMA DE NOTIFICACIONES (SOCIAL PROOF + NOTICIAS)
+    // ==========================================
+    
+    // Base de datos de ventas falsas
+    const salesData = [
+        { n: "Roberto (Playa)", p: "Kit Must 2kW" },
+        { n: "Yusmary (Vedado)", p: "Astra 5kW" },
+        { n: "MIPYME (Matanzas)", p: "3 Kits Pro 6.5kW" },
+        { n: "Alejandro (Boyeros)", p: "Must 1kW" },
+        { n: "Carlos (Miramar)", p: "Astra 3kW" }
+    ];
+
+    function startNotifications() {
+        // Mostrar primera notificación a los 5 segundos
+        setTimeout(showNextNotification, 5000);
+    }
+
+    let notifCounter = 0;
+
+    function showNextNotification() {
+        const container = document.getElementById('toast-container');
+        if(!container) return;
+
+        // LÓGICA: Cada 3 notificaciones de venta, mostramos 1 de Telegram (si existe)
+        // O si es la primera vez y hay noticia, la mostramos.
+        const isNewsTurn = (notifCounter % 3 === 0) && globalTelegramMsg.length > 10;
+        
+        let htmlContent = "";
+
+        if (isNewsTurn) {
+            // --- MOSTRAR NOTICIA TELEGRAM (Diseño Azul/Noticia) ---
+            // Recortamos si es muy larga para el toast
+            const shortMsg = globalTelegramMsg.length > 120 ? globalTelegramMsg.substring(0, 120) + "..." : globalTelegramMsg;
+            
+            htmlContent = `
+                <div class="toast-notification p-4 rounded-xl flex items-start gap-4 text-white min-w-[300px] max-w-[350px] animate-slide-in border-l-4 border-blue-500 bg-[#0f172a]/95 backdrop-blur-md shadow-2xl">
+                    <div class="bg-blue-900/30 p-2.5 rounded-full shrink-0 mt-1">
+                        <i class="fab fa-telegram-plane text-blue-400 text-lg"></i>
+                    </div>
+                    <div class="flex-1">
+                        <div class="flex justify-between items-center mb-1">
+                            <h4 class="text-[10px] font-bold text-blue-300 uppercase tracking-wider">Actualización UNE</h4>
+                            <span class="bg-red-600 text-white text-[8px] px-1.5 rounded animate-pulse">LIVE</span>
+                        </div>
+                        <p class="text-xs leading-snug text-gray-200 font-medium">${shortMsg}</p>
+                        <div class="mt-2 text-right">
+                            <a href="${TELEGRAM_URL}" target="_blank" class="text-[9px] text-blue-400 hover:text-white underline">Ver completo &rarr;</a>
+                        </div>
+                    </div>
+                    <button onclick="this.parentElement.remove()" class="text-gray-500 hover:text-white -mt-1">&times;</button>
+                </div>
+            `;
+        } else {
+            // --- MOSTRAR VENTA (Diseño Verde/Social) ---
+            const item = salesData[Math.floor(Math.random() * salesData.length)];
+            
+            htmlContent = `
+                <div class="toast-notification p-3 rounded-xl flex items-center gap-3 text-white min-w-[280px] animate-slide-in border-l-4 border-green-500 bg-[#0f172a]/95 backdrop-blur-md shadow-xl">
+                    <div class="bg-green-900/30 p-2 rounded-full shrink-0">
+                        <i class="fas fa-check text-green-400"></i>
+                    </div>
+                    <div class="flex-1">
+                        <p class="text-xs text-gray-300">
+                            <strong class="text-white">${item.n}</strong> acaba de reservar un <strong class="text-yellow-400">${item.p}</strong>.
+                        </p>
+                        <p class="text-[9px] text-gray-500 mt-0.5">Hace unos instantes...</p>
+                    </div>
+                    <button onclick="this.parentElement.remove()" class="text-gray-500 hover:text-white">&times;</button>
+                </div>
+            `;
+        }
+
+        // Inyectar HTML
+        const wrapper = document.createElement('div');
+        wrapper.innerHTML = htmlContent;
+        container.appendChild(wrapper.firstElementChild);
+
+        // Auto-eliminar después de 7 segundos
+        setTimeout(() => { 
+            if(container.firstElementChild) {
+                const el = container.firstElementChild;
+                el.classList.replace('animate-slide-in', 'animate-fade-out'); 
+                setTimeout(() => { el.remove(); }, 500); 
+            }
+        }, 7000);
+
+        notifCounter++;
+        // Próxima notificación en intervalo aleatorio (10 a 20 seg)
+        setTimeout(showNextNotification, Math.random() * (20000 - 10000) + 10000);
     }
 
     // --- UTILIDADES ---
     function parseCSV(text) {
         const rows = text.split('\n');
         const db = {};
-        rows.forEach(row => {
-            const parts = row.split(','); // Método simple para velocidad
+        rows.forEach(rowString => {
+            const parts = rowString.split(','); 
             if(parts.length >= 2) {
-                // Truco: Si hay comas en el texto, unimos desde el índice 1 en adelante
                 const key = parts[0].trim();
-                let val = parts.slice(1).join(',').trim();
-                // Quitar comillas si existen
-                if (val.startsWith('"') && val.endsWith('"')) {
-                    val = val.substring(1, val.length - 1);
-                }
+                const val = parts.slice(1).join(',').replace(/^"|"$/g, '').trim(); 
                 if(key) db[key] = val;
             }
         });
         return db;
     }
+    function cleanNum(str) { return str ? str.replace(/\D/g,'') : '0'; }
+    function setText(id, text) { const el = document.getElementById(id); if(el) el.innerText = text; }
 
-    function cleanNum(str) {
-        return str ? str.replace(/\D/g,'') : '0';
-    }
-
-    function setText(id, text) {
-        const el = document.getElementById(id);
-        if(el) el.innerText = text;
-    }
-
-    // Iniciar
-    document.addEventListener('DOMContentLoaded', updateSENData);
+    // INICIAR TODO
+    document.addEventListener('DOMContentLoaded', () => {
+        updateAllData();
+        startNotifications();
+    });
 </script>
 </body>
 </html>
