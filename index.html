@@ -286,7 +286,7 @@
                     ⚠️ SE AGOTAN RÁPIDO
                 </div>
 
-                <img src="https://i.imgur.com/acNYH1t.jpeg" alt="Equipos Solares MUST" class="w-full h-auto object-contain rounded-2xl opacity-90 group-hover:opacity-100 transition">
+                <img src="https://i.imgur.com/acNYH1t.jpeg" alt="Equipos Solares MUST" loading="lazy" class="w-full h-auto object-contain rounded-2xl opacity-90 group-hover:opacity-100 transition">
                 
                 <!-- Datos Rápidos (Pie de foto) -->
                 <div class="absolute bottom-4 left-4 right-4 bg-[#0f172a]/90 backdrop-blur rounded-xl p-3 flex justify-between items-center border border-gray-700 shadow-xl">
@@ -909,7 +909,40 @@
     
     <!-- TU IMAGEN DE MAPA (Con Filtros "Modo Noche" aplicados por código) -->
     <!-- ASEGÚRATE DE PONER LA RUTA CORRECTA DE TU IMAGEN AQUÍ -->
-    <img src="imagenes/mapa_habana.jpg" 
+     <!-- ESTADÍSTICAS FLOTANTES (MAPA REAL) -->
+<!-- Pegar esto DENTRO del div relativo que contiene la imagen del mapa, encima de los PINs -->
+
+<div class="absolute top-4 left-4 z-30 bg-black/80 backdrop-blur-md border-l-4 border-green-500 rounded-r-lg p-4 shadow-2xl max-w-[200px]">
+    
+    <div class="flex items-center gap-2 mb-2 border-b border-gray-700 pb-2">
+        <span class="relative flex h-2 w-2">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+        </span>
+        <span class="text-[10px] text-gray-300 font-bold uppercase tracking-widest">Actividad (72h)</span>
+    </div>
+
+    <div class="space-y-3">
+        <!-- Dato 1: Instalaciones -->
+        <div>
+            <div class="text-3xl font-black text-white leading-none">37</div>
+            <div class="text-[10px] text-green-400 font-bold uppercase">Instalaciones Completadas</div>
+        </div>
+        
+        <!-- Dato 2: Reservas -->
+        <div>
+            <div class="text-2xl font-bold text-gray-300 leading-none">12</div>
+            <div class="text-[10px] text-yellow-500 font-bold uppercase flex items-center gap-1">
+                Reservas en Cola <i class="fas fa-clock"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-3 text-[9px] text-gray-500 italic">
+        *Actualizado: Hace 5 min.
+    </div>
+</div>
+    <img src="imagenes/mapa_habana.jpg" loading="lazy"
          class="w-full h-full object-cover transition duration-700 transform group-hover:scale-105 brightness-[0.4] contrast-125 grayscale-[0.3]" 
          alt="Mapa Operaciones Habana">
 
@@ -960,14 +993,12 @@
         </div>
     </div>
 
-    <!-- Contador Flotante -->
-    <div class="absolute bottom-4 right-4 bg-black/80 backdrop-blur-md border border-green-500/50 p-4 rounded-xl text-right shadow-2xl z-20">
-        <div class="text-3xl font-black text-white leading-none">37</div>
-        <div class="text-[10px] text-gray-400 uppercase tracking-widest font-bold mt-1">Kits Instalados<br>Este Mes</div>
-    </div>
+    
 </div>
     </div>
 </section>
+
+
 
     <!-- TECNOLOGÍA DAH FULL-SCREEN -->
     <section class="py-16 bg-[#0f172a] border-b border-gray-800">
@@ -994,7 +1025,7 @@
                         <div class="absolute top-4 right-4 bg-yellow-500 text-black font-bold text-xs px-2 py-1 rounded z-10">DAH Full-Screen</div>
                         
                         <!-- TU NUEVA IMAGEN AQUÍ -->
-                        <img src="https://i.imgur.com/uWr7FlP.png" class="rounded-lg opacity-90 group-hover:opacity-100 transition duration-500 w-full h-auto object-cover" alt="Panel Solar DAH Tecnología Full-Screen">
+                        <img src="https://i.imgur.com/uWr7FlP.png" loading="lazy" class="rounded-lg opacity-90 group-hover:opacity-100 transition duration-500 w-full h-auto object-cover" alt="Panel Solar DAH Tecnología Full-Screen">
                         
                         <div class="absolute bottom-0 left-0 w-full bg-black/60 p-4 backdrop-blur-sm">
                             <p class="text-xs text-white text-center">💧 El agua fluye libremente. Sin bordes, sin suciedad.</p>
@@ -1150,7 +1181,7 @@
                         <!-- Imagen Nueva (Familia Completa) -->
 <div class="relative z-10 w-full cursor-zoom-in group/img mb-6" onclick="viewComponent('https://i.imgur.com/acNYH1t.jpeg', 'Familia MUST Completa')">
     <!-- IMAGEN ACTUALIZADA AQUI ABAJO -->
-    <img src="https://i.imgur.com/acNYH1t.jpeg" class="w-full h-auto object-contain drop-shadow-2xl transform group-hover/img:scale-105 transition duration-500 max-h-[350px] rounded-lg" alt="Estaciones MUST 1kW, 2kW y 3kW">
+    <img src="https://i.imgur.com/acNYH1t.jpeg" loading="lazy" class="w-full h-auto object-contain drop-shadow-2xl transform group-hover/img:scale-105 transition duration-500 max-h-[350px] rounded-lg" alt="Estaciones MUST 1kW, 2kW y 3kW">
 </div>
                         
                         <!-- Iconos de lo que levanta -->
@@ -1230,9 +1261,18 @@
         <div class="text-[10px] text-red-300 uppercase tracking-wider mb-0.5 font-bold flex items-center gap-1">
             <i class="fas fa-stopwatch"></i> Oferta Flash Expira:
         </div>
-        <div class="font-mono text-yellow-400 font-black text-xl tracking-widest leading-none mb-1" id="timer-must2">
-            11:45:22
-        </div>
+        <!-- BARRA DE STOCK REAL (MUST 2kW) -->
+<div class="mb-4">
+    <div class="flex justify-between items-end mb-1">
+        <span class="text-[10px] text-red-300 font-bold uppercase"><i class="fas fa-fire mr-1"></i> Se agota rápido</span>
+        <span class="text-xs text-white font-bold">Quedan: <span class="text-yellow-400 text-lg">4</span></span>
+    </div>
+    <div class="w-full bg-gray-800 rounded-full h-2.5 border border-gray-600">
+        <!-- Barra al 85% llena -->
+        <div class="bg-gradient-to-r from-yellow-500 to-red-600 h-full rounded-full animate-pulse" style="width: 85%"></div>
+    </div>
+    <p class="text-[9px] text-gray-500 mt-1 text-right">85% del lote vendido</p>
+</div>
         <div class="text-[9px] text-gray-400">
             Precio Regular: <span class="line-through decoration-red-500 decoration-2">$1,150 USD</span>
         </div>
@@ -1479,10 +1519,7 @@
                 <!-- 2. KIT 5kW PRO (STOCK CRÍTICO) -->
 <div class="bg-[#0f172a] rounded-2xl border-2 border-red-600/50 hover:border-red-500 transition duration-300 flex flex-col overflow-hidden group shadow-lg hover:shadow-red-900/20 relative">
     
-    <!-- ETIQUETA DE ESCASEZ REAL -->
-    <div class="absolute top-0 right-0 bg-red-600 text-white text-[10px] font-black px-3 py-1 rounded-bl-lg z-20 animate-pulse">
-        ⚠️ SOLO 3 UNIDADES
-    </div>
+    
 
     <div class="bg-gray-800/50 p-4 text-center border-b border-gray-700">
         <h3 class="text-xl font-bold text-white">5kW PRO <span class="text-yellow-500 text-sm">Industrial</span></h3>
@@ -1491,16 +1528,52 @@
     <div class="p-6 flex-1 flex flex-col">
         <div class="text-center mb-6">
             <span class="text-4xl font-bold text-white">$4,685</span>
+            <!-- MÓDULO DE URGENCIA 2.0 (Pegar esto debajo del precio en las tarjetas de 5kW y 6.5kW) -->
+<div class="mt-4 mb-6 bg-red-950/30 border border-red-500/40 rounded-xl overflow-hidden relative group">
+    
+    <!-- Barra de progreso animada (Simula que se acaba el tiempo) -->
+    <div class="absolute top-0 left-0 h-1 bg-red-600 animate-pulse w-full"></div>
+    
+    <div class="p-3 text-center relative z-10">
+        <!-- Titular de Dolor -->
+        <div class="flex justify-center items-center gap-2 mb-2">
+            <span class="animate-pulse w-2 h-2 bg-red-500 rounded-full"></span>
+            <p class="text-[10px] text-red-200 font-bold uppercase tracking-widest">
+                Cierre de Lote Inminente
+            </p>
+        </div>
+
+        <!-- El Contador -->
+        <div class="flex justify-center items-baseline gap-1 mb-2 font-mono">
+            <div class="bg-[#0f172a] rounded px-2 py-1 text-white font-bold text-xl border border-gray-700 urgency-hours">47</div>
+            <span class="text-xs text-gray-500">:</span>
+            <div class="bg-[#0f172a] rounded px-2 py-1 text-white font-bold text-xl border border-gray-700 urgency-min">59</div>
+            <span class="text-xs text-gray-500">:</span>
+            <div class="bg-[#0f172a] rounded px-2 py-1 text-red-500 font-bold text-xl border border-red-900/50 urgency-sec">00</div>
+        </div>
+
+        <!-- La Amenaza (El "Castigo" por no comprar) -->
+        <div class="bg-black/40 rounded-lg p-2 border border-white/5">
+            <p class="text-[10px] text-gray-400 leading-tight">
+                <i class="fas fa-ship text-gray-500 mr-1"></i> Próximo contenedor: <span class="text-white font-bold">Febrero 2026</span>.
+            </p>
+            <p class="text-[10px] text-red-400 font-bold mt-1 animate-pulse">
+                ⚠️ Si pierdes este, esperas 2 meses.
+            </p>
+        </div>
+
+        <!-- Stock en Tiempo Real (Falso pero creíble) -->
+        <div class="mt-2 text-xs font-bold text-white flex justify-center items-center gap-1">
+            Stock Habana: <span class="text-yellow-400 text-lg dynamic-stock">1</span> unidad
+        </div>
+    </div>
+</div>
             <div class="text-[10px] text-gray-400 uppercase tracking-wide mt-1 bg-gray-800 inline-block px-2 py-1 rounded">
                 + $500 Instalación
             </div>
         </div>
         
-        <!-- TIMER URGENCIA 5kW -->
-        <div class="bg-red-900/20 border border-red-500/30 rounded p-2 text-center mb-4">
-            <div class="text-[9px] text-red-300 uppercase font-bold"><i class="fas fa-history mr-1"></i> Stock Actualizado: Hoy</div>
-            <div class="font-mono text-yellow-400 font-bold text-lg">3 DISPONIBLES</div>
-        </div>
+        
 
         <ul class="space-y-4 text-sm text-gray-400 mb-8 flex-1">
             <li class="flex items-center gap-3"><i class="fas fa-microchip text-yellow-500 w-5"></i> Inv. 5kW SRNE (120V)</li>
@@ -1567,19 +1640,46 @@
             </div>
         </div>
         
-        <!-- TIMER URGENCIA 6.5kW -->
-        <div class="bg-red-900/20 border border-red-500 rounded p-2 text-center mb-4 relative overflow-hidden">
-             <div class="absolute inset-0 bg-red-600/10 animate-pulse"></div>
-            <div class="relative z-10">
-                <div class="text-[9px] text-red-200 uppercase font-bold mb-1">Stock Físico Real:</div>
-                <div class="font-mono text-white font-bold text-lg flex justify-center items-center gap-2">
-                    <span class="text-gray-500 line-through text-sm">5</span> 
-                    <i class="fas fa-arrow-right text-xs"></i> 
-                    <span class="text-red-500 text-2xl">3</span> 
-                </div>
-                <div class="text-[9px] text-red-300 font-bold mt-1">¡Riesgo de Agotarse Hoy!</div>
-            </div>
+        <!-- MÓDULO DE URGENCIA 2.0 (Pegar esto debajo del precio en las tarjetas de 5kW y 6.5kW) -->
+<div class="mt-4 mb-6 bg-red-950/30 border border-red-500/40 rounded-xl overflow-hidden relative group">
+    
+    <!-- Barra de progreso animada (Simula que se acaba el tiempo) -->
+    <div class="absolute top-0 left-0 h-1 bg-red-600 animate-pulse w-full"></div>
+    
+    <div class="p-3 text-center relative z-10">
+        <!-- Titular de Dolor -->
+        <div class="flex justify-center items-center gap-2 mb-2">
+            <span class="animate-pulse w-2 h-2 bg-red-500 rounded-full"></span>
+            <p class="text-[10px] text-red-200 font-bold uppercase tracking-widest">
+                Cierre de Lote Inminente
+            </p>
         </div>
+
+        <!-- El Contador -->
+        <div class="flex justify-center items-baseline gap-1 mb-2 font-mono">
+            <div class="bg-[#0f172a] rounded px-2 py-1 text-white font-bold text-xl border border-gray-700 urgency-hours">47</div>
+            <span class="text-xs text-gray-500">:</span>
+            <div class="bg-[#0f172a] rounded px-2 py-1 text-white font-bold text-xl border border-gray-700 urgency-min">59</div>
+            <span class="text-xs text-gray-500">:</span>
+            <div class="bg-[#0f172a] rounded px-2 py-1 text-red-500 font-bold text-xl border border-red-900/50 urgency-sec">00</div>
+        </div>
+
+        <!-- La Amenaza (El "Castigo" por no comprar) -->
+        <div class="bg-black/40 rounded-lg p-2 border border-white/5">
+            <p class="text-[10px] text-gray-400 leading-tight">
+                <i class="fas fa-ship text-gray-500 mr-1"></i> Próximo contenedor: <span class="text-white font-bold">Febrero 2026</span>.
+            </p>
+            <p class="text-[10px] text-red-400 font-bold mt-1 animate-pulse">
+                ⚠️ Si pierdes este, esperas 2 meses.
+            </p>
+        </div>
+
+        <!-- Stock en Tiempo Real (Falso pero creíble) -->
+        <div class="mt-2 text-xs font-bold text-white flex justify-center items-center gap-1">
+            Stock Habana: <span class="text-yellow-400 text-lg dynamic-stock">1</span> unidad
+        </div>
+    </div>
+</div>
 
         <ul class="space-y-4 text-sm text-gray-300 mb-8 flex-1">
             <li class="flex items-center gap-3"><i class="fas fa-microchip text-yellow-500 w-5"></i> Inv. 6.5kW SRNE (110/220V)</li>
@@ -1681,13 +1781,218 @@
                 <div class="inline-flex items-center gap-4 bg-yellow-900/10 border border-yellow-600/30 p-4 rounded-lg">
                     <span class="flex items-center text-gray-400 text-xs">
                         <i class="fas fa-info-circle text-yellow-500 mr-2 text-sm"></i> 
-                        <strong>Nota Pro:</strong> Estos equipos incluyen Visita Técnica de diagnóstico gratuita. El costo de instalación se paga por separado a la brigada.
+                        <strong>Nota Pro:</strong> Estos equipos incluyen Visita Técnica de diagnóstico gratuita.
                     </span>
                 </div>
             </div>
 
         </div>
     </section>
+
+    <!-- SECCIÓN 5: CLARIDAD DEL PRODUCTO (ESPECIFICACIONES VS REALIDAD) -->
+<section class="py-20 bg-[#0f172a] border-b border-gray-800" id="specs-clarity">
+    <div class="max-w-6xl mx-auto px-4">
+        
+        <div class="text-center mb-10">
+            <h2 class="text-3xl font-bold text-white mb-4">¿Qué me resuelve cada equipo? 💡</h2>
+            <p class="text-gray-400">Deja de adivinar. Mira exactamente qué puedes conectar.</p>
+        </div>
+
+        <!-- 1. PESTAÑAS DE NAVEGACIÓN -->
+        <div class="flex flex-wrap justify-center gap-2 mb-8">
+            <button onclick="switchTab('tab-must')" class="tab-btn active px-6 py-2 rounded-full text-xs font-bold uppercase tracking-wider border transition bg-yellow-500 text-black border-yellow-500" data-target="tab-must">
+                Básico (MUST)
+            </button>
+            <button onclick="switchTab('tab-astra')" class="tab-btn px-6 py-2 rounded-full text-xs font-bold uppercase tracking-wider border transition text-gray-400 border-gray-700 hover:border-blue-500" data-target="tab-astra">
+                Hogar (Astra 5kW)
+            </button>
+            <button onclick="switchTab('tab-pro')" class="tab-btn px-6 py-2 rounded-full text-xs font-bold uppercase tracking-wider border transition text-gray-400 border-gray-700 hover:border-red-500" data-target="tab-pro">
+                Total (PRO 6.5kW)
+            </button>
+        </div>
+
+        <!-- 2. CONTENIDO DE LAS PESTAÑAS -->
+        <div class="relative min-h-[500px]">
+            
+            <!-- TAB 1: MUST 2kW (El de entrada) -->
+            <div id="tab-must" class="tab-content transition-all duration-500">
+                <div class="bg-gray-900 border border-yellow-500/30 rounded-2xl overflow-hidden flex flex-col md:flex-row shadow-2xl">
+                    <!-- Columna Técnica -->
+                    <div class="md:w-1/2 p-8 border-b md:border-b-0 md:border-r border-gray-800">
+                        <div class="flex items-center gap-3 mb-6">
+                            <i class="fas fa-suitcase text-yellow-500 text-3xl"></i>
+                            <h3 class="text-2xl font-bold text-white">Estación MUST 2kW</h3>
+                        </div>
+                        <table class="w-full text-sm text-gray-300">
+                            <tr class="border-b border-gray-800"><td class="py-3 text-gray-500">Potencia Real</td><td class="py-3 font-bold text-white text-right">2,000 W</td></tr>
+                            <tr class="border-b border-gray-800"><td class="py-3 text-gray-500">Voltaje</td><td class="py-3 font-bold text-yellow-400 text-right">110V (Solo)</td></tr>
+                            <tr class="border-b border-gray-800"><td class="py-3 text-gray-500">Batería</td><td class="py-3 font-bold text-white text-right">2.5 kWh (Litio)</td></tr>
+                            <tr class="border-b border-gray-800"><td class="py-3 text-gray-500">Tipo</td><td class="py-3 font-bold text-right">Portátil / Plug & Play</td></tr>
+                            <tr><td class="py-3 text-gray-500">Instalación</td><td class="py-3 font-bold text-green-400 text-right">No requiere</td></tr>
+                        </table>
+                        <div class="mt-6 bg-red-900/20 p-3 rounded border border-red-500/30 text-center">
+                            <p class="text-xs text-red-300 font-bold"><i class="fas fa-times-circle mr-1"></i> NO LEVANTA AIRE ACONDICIONADO</p>
+                        </div>
+                    </div>
+                    <!-- Columna Realidad (Qué conecta) -->
+                    <div class="md:w-1/2 p-8 bg-black/20">
+                        <h4 class="text-white font-bold mb-4 border-b border-gray-700 pb-2">Lo que puedes mantener encendido:</h4>
+                        <ul class="space-y-4">
+                            <li class="flex items-center justify-between text-gray-300 text-sm">
+                                <span class="flex items-center gap-2"><i class="fas fa-snowflake text-green-400 w-6"></i> Refrigerador</span>
+                                <span class="font-bold text-white">24 Horas</span>
+                            </li>
+                            <li class="flex items-center justify-between text-gray-300 text-sm">
+                                <span class="flex items-center gap-2"><i class="fas fa-tv text-blue-400 w-6"></i> TV + Cajita</span>
+                                <span class="font-bold text-white">8 - 10 Horas</span>
+                            </li>
+                            <li class="flex items-center justify-between text-gray-300 text-sm">
+                                <span class="flex items-center gap-2"><i class="fas fa-fan text-gray-400 w-6"></i> 2 Ventiladores</span>
+                                <span class="font-bold text-white">Toda la noche</span>
+                            </li>
+                            <li class="flex items-center justify-between text-gray-300 text-sm">
+                                <span class="flex items-center gap-2"><i class="fas fa-lightbulb text-yellow-400 w-6"></i> Luces + Celulares</span>
+                                <span class="font-bold text-white">Ilimitado</span>
+                            </li>
+                        </ul>
+                        <button onclick="openOrderForm('Estación MUST 2kW - $950')" class="w-full mt-8 bg-yellow-500 hover:bg-yellow-400 text-black font-bold py-3 rounded-xl transition">
+                            Elegir este por $950
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 2: ASTRA 5kW (El Estándar) -->
+            <div id="tab-astra" class="tab-content hidden opacity-0 transition-all duration-500">
+                <div class="bg-[#1e293b] border border-blue-500/30 rounded-2xl overflow-hidden flex flex-col md:flex-row shadow-2xl">
+                    <div class="md:w-1/2 p-8 border-b md:border-b-0 md:border-r border-gray-700">
+                        <div class="flex items-center gap-3 mb-6">
+                            <i class="fas fa-home text-blue-400 text-3xl"></i>
+                            <h3 class="text-2xl font-bold text-white">Kit Astra 5kW</h3>
+                        </div>
+                        <table class="w-full text-sm text-gray-300">
+                            <tr class="border-b border-gray-700"><td class="py-3 text-gray-500">Potencia Real</td><td class="py-3 font-bold text-white text-right">5,000 W</td></tr>
+                            <tr class="border-b border-gray-700"><td class="py-3 text-gray-500">Voltaje</td><td class="py-3 font-bold text-yellow-400 text-right">110V (Ojo: No 220V)</td></tr>
+                            <tr class="border-b border-gray-700"><td class="py-3 text-gray-500">Batería</td><td class="py-3 font-bold text-white text-right">5.12 kWh</td></tr>
+                            <tr class="border-b border-gray-700"><td class="py-3 text-gray-500">Paneles</td><td class="py-3 font-bold text-right">4x 610W (2440Wp)</td></tr>
+                            <tr><td class="py-3 text-gray-500">Garantía</td><td class="py-3 font-bold text-blue-400 text-right">6 Meses</td></tr>
+                        </table>
+                        <div class="mt-6 bg-blue-900/20 p-3 rounded border border-blue-500/30 text-center">
+                            <p class="text-xs text-blue-300 font-bold"><i class="fas fa-check-circle mr-1"></i> IDEAL CASA ESTÁNDAR (110V)</p>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 p-8 bg-black/20">
+                        <h4 class="text-white font-bold mb-4 border-b border-gray-700 pb-2">Escenario de uso típico:</h4>
+                        <ul class="space-y-4">
+                            <li class="flex items-center justify-between text-gray-300 text-sm">
+                                <span class="flex items-center gap-2"><i class="fas fa-wind text-blue-300 w-6"></i> Aire Acond. (110V)</span>
+                                <span class="font-bold text-white">6 - 8 Horas (Noche)</span>
+                            </li>
+                            <li class="flex items-center justify-between text-gray-300 text-sm">
+                                <span class="flex items-center gap-2"><i class="fas fa-snowflake text-green-400 w-6"></i> Refri + Freezer</span>
+                                <span class="font-bold text-white">24 Horas</span>
+                            </li>
+                            <li class="flex items-center justify-between text-gray-300 text-sm">
+                                <span class="flex items-center gap-2"><i class="fas fa-blender text-gray-400 w-6"></i> Electrodomésticos</span>
+                                <span class="font-bold text-white">Uso Normal día</span>
+                            </li>
+                            <li class="flex items-center justify-between text-gray-300 text-sm">
+                                <span class="flex items-center gap-2"><i class="fas fa-tv text-blue-400 w-6"></i> Entretenimiento</span>
+                                <span class="font-bold text-white">Sin límite</span>
+                            </li>
+                        </ul>
+                        <button onclick="openOrderForm('Kit Astra 5kW - $4500')" class="w-full mt-8 bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 rounded-xl transition">
+                            Elegir este por $4,500
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 3: PRO 6.5kW (La Bestia) -->
+            <div id="tab-pro" class="tab-content hidden opacity-0 transition-all duration-500">
+                <div class="bg-gradient-to-br from-gray-900 to-gray-800 border-2 border-red-600/50 rounded-2xl overflow-hidden flex flex-col md:flex-row shadow-[0_0_30px_rgba(220,38,38,0.15)]">
+                    <div class="md:w-1/2 p-8 border-b md:border-b-0 md:border-r border-gray-700">
+                        <div class="flex items-center gap-3 mb-6">
+                            <i class="fas fa-industry text-red-500 text-3xl"></i>
+                            <h3 class="text-2xl font-bold text-white">Kit PRO 6.5kW</h3>
+                        </div>
+                        <table class="w-full text-sm text-gray-300">
+                            <tr class="border-b border-gray-700"><td class="py-3 text-gray-500">Potencia Real</td><td class="py-3 font-bold text-white text-right">6,500 W</td></tr>
+                            <tr class="border-b border-gray-700"><td class="py-3 text-gray-500">Voltaje</td><td class="py-3 font-bold text-green-400 text-right">110V / 220V (Split)</td></tr>
+                            <tr class="border-b border-gray-700"><td class="py-3 text-gray-500">Batería</td><td class="py-3 font-bold text-white text-right">14.3 kWh (Enorme)</td></tr>
+                            <tr class="border-b border-gray-700"><td class="py-3 text-gray-500">Paneles</td><td class="py-3 font-bold text-right">12x 620W (7440Wp)</td></tr>
+                            <tr><td class="py-3 text-gray-500">Garantía</td><td class="py-3 font-bold text-red-400 text-right">1 Año Total</td></tr>
+                        </table>
+                        <div class="mt-6 bg-green-900/20 p-3 rounded border border-green-500/30 text-center">
+                            <p class="text-xs text-green-400 font-bold"><i class="fas fa-check-double mr-1"></i> SOPORTA TODO (AIRES 220V)</p>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 p-8 bg-black/30 relative">
+                        <!-- Badge de Poder -->
+                        <div class="absolute top-4 right-4 bg-red-600 text-white text-[10px] font-bold px-2 py-1 rounded">MÁXIMA POTENCIA</div>
+                        
+                        <h4 class="text-white font-bold mb-4 border-b border-gray-700 pb-2">Vida Normal (Cero Apagón):</h4>
+                        <ul class="space-y-4">
+                            <li class="flex items-center justify-between text-gray-300 text-sm">
+                                <span class="flex items-center gap-2"><i class="fas fa-wind text-blue-300 w-6"></i> 2 Aires Acond. (Splits)</span>
+                                <span class="font-bold text-white">Toda la noche (Simultáneos)</span>
+                            </li>
+                            <li class="flex items-center justify-between text-gray-300 text-sm">
+                                <span class="flex items-center gap-2"><i class="fas fa-water text-blue-500 w-6"></i> Bomba de Agua + Motor</span>
+                                <span class="font-bold text-white">Uso Diario</span>
+                            </li>
+                            <li class="flex items-center justify-between text-gray-300 text-sm">
+                                <span class="flex items-center gap-2"><i class="fas fa-utensils text-yellow-500 w-6"></i> Cocina Eléctrica</span>
+                                <span class="font-bold text-white">Desayuno/Comida</span>
+                            </li>
+                            <li class="flex items-center justify-between text-gray-300 text-sm">
+                                <span class="flex items-center gap-2"><i class="fas fa-house-user text-purple-400 w-6"></i> Casa Completa</span>
+                                <span class="font-bold text-white">24/7</span>
+                            </li>
+                        </ul>
+                        <button onclick="openOrderForm('Kit 6.5kW PRO - $6985')" class="w-full mt-8 bg-red-600 hover:bg-red-500 text-white font-bold py-3 rounded-xl transition shadow-lg">
+                            Quiero Independencia Total
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- SCRIPT PARA LAS PESTAÑAS -->
+<script>
+    function switchTab(tabId) {
+        // 1. Quitar activo de todos los botones
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.classList.remove('bg-yellow-500', 'text-black', 'border-yellow-500');
+            btn.classList.add('text-gray-400', 'border-gray-700');
+        });
+
+        // 2. Activar el botón clickeado
+        const activeBtn = document.querySelector(`button[data-target="${tabId}"]`);
+        activeBtn.classList.remove('text-gray-400', 'border-gray-700');
+        activeBtn.classList.add('bg-yellow-500', 'text-black', 'border-yellow-500');
+
+        // 3. Ocultar todos los contenidos con fade out
+        document.querySelectorAll('.tab-content').forEach(content => {
+            content.classList.add('hidden', 'opacity-0');
+            content.classList.remove('block', 'opacity-100');
+        });
+
+        // 4. Mostrar el contenido seleccionado con fade in
+        const selectedTab = document.getElementById(tabId);
+        selectedTab.classList.remove('hidden');
+        // Pequeño delay para permitir que el display:block se aplique antes de la opacidad
+        setTimeout(() => {
+            selectedTab.classList.remove('opacity-0');
+            selectedTab.classList.add('opacity-100');
+        }, 50);
+    }
+</script>
+
+
 <!-- SECCIÓN: LOTE ESTRATÉGICO FEBRERO (ESCASEZ + TRIFÁSICA) -->
 <section class="py-20 bg-gradient-to-b from-[#0f172a] to-[#1e1b4b] border-t border-purple-500/30 relative overflow-hidden">
     
@@ -1754,6 +2059,7 @@
                     </p>
                 </div>
             </div>
+
 
             <!-- COLUMNA 2: LA ESCASEZ VISUAL (LOS 128 CUPOS) -->
             <div>
@@ -1832,6 +2138,7 @@
 </script>
 
 
+
     <!-- VIDEOS: EVIDENCIA VISUAL Y "MURO DE LA VERDAD" -->
     <section class="py-16 bg-[#0f172a] border-b border-gray-800 relative">
         <div class="max-w-7xl mx-auto px-4">
@@ -1858,6 +2165,8 @@
                     <!-- COLUMNA VIDEO -->
                     <div class="lg:w-3/5 relative bg-black h-[350px] lg:h-auto border-r border-gray-800">
                         <video class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition duration-500" controls playsinline poster="https://i.imgur.com/Q7QXkYX.jpeg">
+                            preload="none"
+                            preload="none"
                             <source src="videos/must_real.mp4" type="video/mp4">
                             Tu navegador no soporta videos.
                         </video>
@@ -1885,17 +2194,17 @@
                             <div class="grid grid-cols-3 gap-2 mb-6">
                                 <!-- Foto 1: Frente -->
                                 <div class="aspect-square rounded-lg overflow-hidden border border-gray-700 cursor-zoom-in hover:border-yellow-500 transition group/img relative" onclick="viewComponent('https://i.imgur.com/Q7QXkYX.jpeg', 'Panel Frontal MUST')">
-                                    <img src="https://i.imgur.com/Q7QXkYX.jpeg" class="w-full h-full object-cover opacity-70 group-hover/img:opacity-100 transition">
+                                    <img src="https://i.imgur.com/Q7QXkYX.jpeg" loading="lazy" class="w-full h-full object-cover opacity-70 group-hover/img:opacity-100 transition">
                                     <div class="absolute bottom-0 w-full bg-black/60 text-[8px] text-white text-center py-1">FRENTE</div>
                                 </div>
                                 <!-- Foto 2: Puertos (Poster) -->
                                 <div class="aspect-square rounded-lg overflow-hidden border border-gray-700 cursor-zoom-in hover:border-yellow-500 transition group/img relative" onclick="viewComponent('https://i.imgur.com/F1GeE2p.jpeg', 'Puertos Traseros MUST')">
-                                    <img src="https://i.imgur.com/F1GeE2p.jpeg" class="w-full h-full object-cover opacity-70 group-hover/img:opacity-100 transition">
+                                    <img src="https://i.imgur.com/F1GeE2p.jpeg" loading="lazy" class="w-full h-full object-cover opacity-70 group-hover/img:opacity-100 transition">
                                     <div class="absolute bottom-0 w-full bg-black/60 text-[8px] text-white text-center py-1">PUERTOS</div>
                                 </div>
                                 <!-- Foto 3: Lateral/Etiqueta -->
                                 <div class="aspect-square rounded-lg overflow-hidden border border-gray-700 cursor-zoom-in hover:border-yellow-500 transition group/img relative" onclick="viewComponent('https://i.imgur.com/ajinVYZ.png', 'Lateral Robusto')">
-                                    <img src="https://i.imgur.com/ajinVYZ.png" class="w-full h-full object-cover opacity-70 group-hover/img:opacity-100 transition">
+                                    <img src="https://i.imgur.com/ajinVYZ.png" loading="lazy" class="w-full h-full object-cover opacity-70 group-hover/img:opacity-100 transition">
                                     <div class="absolute bottom-0 w-full bg-black/60 text-[8px] text-white text-center py-1">LATERAL</div>
                                 </div>
                             </div>
@@ -1935,6 +2244,7 @@
                 <div class="bg-gray-900 rounded-2xl overflow-hidden shadow-lg border border-gray-700 group hover:border-blue-500 transition">
                     <div class="relative w-full aspect-video bg-black">
                         <video class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition" controls playsinline poster="https://i.imgur.com/rcGgzOJ.jpeg">
+                            preload="none"
                             <source src="videos/promo2.mp4" type="video/mp4">
                         </video>
                     </div>
@@ -2277,7 +2587,7 @@
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 h-96 md:h-[500px]">
             <!-- Foto 1: Grande -->
             <div class="col-span-2 row-span-2 relative rounded-2xl overflow-hidden border border-gray-700 group cursor-zoom-in" onclick="viewComponent('https://i.imgur.com/cBsF4BB.jpeg', 'Instalación SRNE Impecable')">
-                <img src="https://i.imgur.com/cBsF4BB.jpeg" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" alt="Inversor Instalado">
+                <img src="https://i.imgur.com/cBsF4BB.jpeg" loading="lazy" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" alt="Inversor Instalado">
                 <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/90 to-transparent p-6">
                     <p class="text-white font-bold text-lg">Acabado Profesional</p>
                     <p class="text-gray-300 text-xs">Cables ocultos y protecciones a la vista.</p>
@@ -2286,18 +2596,18 @@
             
             <!-- Foto 2 -->
             <div class="col-span-1 row-span-1 relative rounded-2xl overflow-hidden border border-gray-700 group cursor-zoom-in" onclick="viewComponent('https://i.imgur.com/rcGgzOJ.jpeg', 'Paneles en Techo')">
-                <img src="https://i.imgur.com/rcGgzOJ.jpeg" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" alt="Paneles Techo">
+                <img src="https://i.imgur.com/rcGgzOJ.jpeg" loading="lazy" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" alt="Paneles Techo">
             </div>
 
             <!-- Foto 3 -->
             <div class="col-span-1 row-span-1 relative rounded-2xl overflow-hidden border border-gray-700 group cursor-zoom-in" onclick="viewComponent('https://i.imgur.com/w5XyDff.jpeg', 'Estructura de Aluminio')">
-                <img src="https://i.imgur.com/w5XyDff.jpeg" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" alt="Estructura">
+                <img src="https://i.imgur.com/w5XyDff.jpeg" loading="lazy" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" alt="Estructura">
                 <div class="absolute top-2 right-2 bg-yellow-500 text-black text-[10px] font-bold px-2 py-1 rounded">Aluminio Anodizado</div>
             </div>
 
             <!-- Foto 4: Panorámica abajo -->
             <div class="col-span-2 row-span-1 relative rounded-2xl overflow-hidden border border-gray-700 group cursor-zoom-in" onclick="viewComponent('https://i.imgur.com/XKz9G2J.jpeg', 'Perfil Paneles')">
-                <img src="https://i.imgur.com/XKz9G2J.jpeg" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" alt="Perfil">
+                <img src="https://i.imgur.com/XKz9G2J.jpeg" loading="lazy" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" alt="Perfil">
                 <div class="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition">
                     <span class="text-white border border-white px-4 py-2 rounded-full uppercase text-xs font-bold hover:bg-white hover:text-black transition">Ver Detalle</span>
                 </div>
@@ -2396,6 +2706,7 @@
                             </div>
                             <div class="aspect-video w-full bg-black relative">
                                 <video class="w-full h-full object-cover" controls playsinline poster="https://i.imgur.com/fqrc8zB.jpeg">
+                                    preload="none"
                                     <source src="videos/video3.mp4" type="video/mp4">
                                     Tu navegador no soporta videos.
                                 </video>
@@ -4231,7 +4542,54 @@ function shareMonitorStats() {
     
     // Abrir WhatsApp
     window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+
 }
+// --- SISTEMA DE URGENCIA 2.0 (Persistente 48h) ---
+
+function initUltimateUrgency() {
+    // 1. Configuración: Ciclo de 48 horas en milisegundos
+    const cycleDuration = 48 * 60 * 60 * 1000; 
+    const storageKey = 'solar_urgency_deadline';
+
+    // 2. Obtener o Establecer Deadline
+    let deadline = localStorage.getItem(storageKey);
+    const now = new Date().getTime();
+
+    if (!deadline || now > parseInt(deadline)) {
+        // Si no hay fecha o ya pasó, creamos una nueva fecha límite (Ahora + 48h)
+        // Agregamos un random de minutos para que no sea "48:00:00" exacto siempre
+        const randomOffset = Math.floor(Math.random() * 3600000); 
+        deadline = now + cycleDuration - randomOffset;
+        localStorage.setItem(storageKey, deadline);
+    }
+
+    // 3. Función de Actualización (Se ejecuta cada segundo)
+    setInterval(() => {
+        const currentTime = new Date().getTime();
+        let distance = deadline - currentTime;
+
+        // Si se acaba, reiniciamos (Loop infinito)
+        if (distance < 0) {
+            deadline = currentTime + cycleDuration;
+            localStorage.setItem(storageKey, deadline);
+            distance = deadline - currentTime;
+        }
+
+        // Cálculos matemáticos
+        const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const s = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Actualizar TODOS los contadores en la página a la vez
+        document.querySelectorAll('.urgency-hours').forEach(el => el.innerText = h < 10 ? "0" + h : h);
+        document.querySelectorAll('.urgency-min').forEach(el => el.innerText = m < 10 ? "0" + m : m);
+        document.querySelectorAll('.urgency-sec').forEach(el => el.innerText = s < 10 ? "0" + s : s);
+
+    }, 1000);
+}
+
+// Iniciar al cargar la página
+document.addEventListener('DOMContentLoaded', initUltimateUrgency);
 </script>
 </body>
 </html>
