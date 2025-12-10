@@ -327,7 +327,7 @@
                 </h2>
             </div>
             <div class="text-right mt-4 md:mt-0">
-    <p class="text-gray-500 text-[10px] font-mono">Última sincro: 09 Dic 2025</p>
+    <p class="text-gray-500 text-[10px] font-mono">Última sincro: 10 Dic 2025</p>
     <p class="text-gray-400 text-xs">Estado del Sistema: <strong class="text-red-500">CRÍTICO (ALERTA NEGRA)</strong></p>
 </div>
         </div>
@@ -1250,12 +1250,13 @@
                     <h4 class="text-white font-bold text-sm mb-3">El Pronóstico es Claro:</h4>
                     <div class="space-y-3">
                         <div class="flex justify-between items-center text-xs border-b border-gray-800 pb-2">
-                            <span class="text-gray-400">Déficit Hoy (Dic):</span>
-                            <span class="text-white font-bold">~2,060 MW</span>
+                            <span class="text-gray-400">Déficit Hoy (Dic 10):</span>
+                            <!-- ACTUALIZADO A 1,790 -->
+                            <span class="text-white font-bold">~1,790 MW</span>
                         </div>
                         <div class="flex justify-between items-center text-xs border-b border-gray-800 pb-2">
-                            <span class="text-gray-400">Proyección Enero:</span>
-                            <span class="text-orange-400 font-bold">~2,350 MW</span>
+                            <span class="text-gray-400">Récord Ayer:</span>
+                            <span class="text-orange-400 font-bold">2,185 MW</span>
                         </div>
                         <div class="flex justify-between items-center text-xs">
                             <span class="text-gray-400">Proyección Febrero:</span>
@@ -1288,11 +1289,6 @@
                                 <stop offset="0%" stop-color="#fbbf24" /> <!-- Amarillo -->
                                 <stop offset="100%" stop-color="#ef4444" /> <!-- Rojo -->
                             </linearGradient>
-                            <!-- Degradado Futuro -->
-                            <linearGradient id="futureGradient" x1="0" x2="1" y1="0" y2="0">
-                                <stop offset="0%" stop-color="#ef4444" />
-                                <stop offset="100%" stop-color="#7f1d1d" /> <!-- Rojo Oscuro -->
-                            </linearGradient>
                             <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
                                 <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
                                 <feMerge>
@@ -1302,13 +1298,12 @@
                             </filter>
                         </defs>
 
-                        <!-- GRID DE FONDO (Escala Ajustada) -->
-                        <!-- 3000 MW top, 0 MW bottom -->
+                        <!-- GRID DE FONDO -->
                         <line x1="0" y1="50" x2="1000" y2="50" stroke="#374151" stroke-width="1" stroke-dasharray="4"/>
-                        <text x="10" y="45" fill="#ef4444" font-size="12" font-family="monospace" font-weight="bold">2500 MW (Colapso)</text>
+                        <text x="10" y="45" fill="#ef4444" font-size="12" font-family="monospace" font-weight="bold">2500 MW</text>
 
                         <line x1="0" y1="150" x2="1000" y2="150" stroke="#4b5563" stroke-width="1" stroke-dasharray="4"/>
-                        <text x="10" y="145" fill="#f87171" font-size="12" font-family="monospace">2000 MW (Crítico)</text>
+                        <text x="10" y="145" fill="#f87171" font-size="12" font-family="monospace">2000 MW</text>
 
                         <line x1="0" y1="250" x2="1000" y2="250" stroke="#374151" stroke-width="1" stroke-dasharray="4"/>
                         <text x="10" y="245" fill="#6b7280" font-size="12" font-family="monospace">1500 MW</text>
@@ -1316,33 +1311,36 @@
                         <line x1="0" y1="350" x2="1000" y2="350" stroke="#374151" stroke-width="1" stroke-dasharray="4"/>
                         <text x="10" y="345" fill="#6b7280" font-size="12" font-family="monospace">1000 MW</text>
 
-                        <!-- ZONA DE PELIGRO (Fondo Rojo sutil arriba) -->
+                        <!-- ZONA DE PELIGRO -->
                         <rect x="0" y="0" width="1000" height="150" fill="red" opacity="0.05" />
 
                         <!-- ============================================= -->
-                        <!-- PARTE 1: DATOS REALES (Sólido) - Sept a Dic 8 -->
+                        <!-- PARTE 1: DATOS REALES (Sólido) -->
                         <!-- ============================================= -->
-                        <path d="M 0,190 C 50,180 100,160 150,170 S 250,330 350,330 S 500,250 600,140" 
+                        <!-- Ajustado el punto final (600, 190) para que esté debajo de la línea 2000 (Y=150) -->
+                        <path d="M 0,190 C 50,180 100,160 150,170 S 250,330 350,330 S 500,250 600,190" 
                               fill="none" stroke="url(#realGradient)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)"/>
 
                         <!-- PUNTO DE QUIEBRE (HOY) -->
                         <line x1="600" y1="0" x2="600" y2="400" stroke="#fbbf24" stroke-width="1" stroke-dasharray="5,5" opacity="0.5"/>
                         <text x="610" y="380" fill="#fbbf24" font-size="14" font-weight="bold" font-family="sans-serif">HOY</text>
 
-                        <circle cx="600" cy="140" r="6" fill="#ef4444" stroke="white" stroke-width="2">
+                        <!-- Círculo bajado a Y=190 (Representa 1790 MW) -->
+                        <circle cx="600" cy="190" r="6" fill="#ef4444" stroke="white" stroke-width="2">
                             <animate attributeName="r" values="6;8;6" dur="2s" repeatCount="indefinite" />
                         </circle>
-                        <!-- Etiqueta Flotante HOY -->
-                        <g transform="translate(520, 110)">
+                        
+                        <!-- Etiqueta Flotante HOY (Movida más abajo para coincidir con el punto) -->
+                        <g transform="translate(520, 160)">
                             <rect x="0" y="0" width="160" height="24" rx="4" fill="#1f2937" stroke="#ef4444" stroke-width="1"/>
-                            <text x="80" y="17" fill="white" font-size="12" text-anchor="middle" font-weight="bold">Real: 2,062 MW 🚨</text>
+                            <text x="80" y="17" fill="white" font-size="12" text-anchor="middle" font-weight="bold">Real: 1,790 MW 🚨</text>
                         </g>
 
                         <!-- ============================================= -->
                         <!-- PARTE 2: PROYECCIÓN FUTURA (Punteado) -->
                         <!-- ============================================= -->
-                        <!-- Curva que sube de 2062 (Y=140) a 2600 (Y=30) -->
-                        <path d="M 600,140 C 700,100 800,80 950,30" 
+                        <!-- Curva ajustada: Inicia en 1790 (Y=190) y sube a 2600 (Y=30) -->
+                        <path d="M 600,190 C 700,150 800,100 950,30" 
                               fill="none" stroke="#ef4444" stroke-width="4" stroke-dasharray="8,8" stroke-linecap="round" opacity="0.8"/>
 
                         <!-- PUNTO FINAL (FUTURO) -->
