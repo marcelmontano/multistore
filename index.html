@@ -233,6 +233,7 @@
 </div>
 
 
+
     <!-- HERO SECTION REESTRUCTURADO (Valor Inmediato + Urgencia Real) -->
 <section class="relative pt-64 pb-20 lg:pt-64 lg:pb-32 overflow-hidden">
 
@@ -250,7 +251,7 @@
                   <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
                   <span class="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
                 </span>
-                Stock Crítico: Solo 6 Kits Disponibles Hoy
+                Stock Crítico: Solo 4 Kits Disponibles Hoy
             </div>
             
             <!-- HEADLINE ESPECÍFICO (BENEFICIO TANGIBLE) -->
@@ -490,6 +491,7 @@
     </div>
 </section>
 
+
 <!-- SCRIPT DEL COMPARADOR -->
 <script>
     document.getElementById('compProvincia').addEventListener('change', function() {
@@ -712,35 +714,28 @@
 
     <div class="max-w-6xl mx-auto px-4 relative z-10">
         
-        <!-- CINTA DE ESTADO DE PLANTAS (TICKER) -->
-        <div class="mb-8 overflow-hidden relative w-full bg-black/40 border-y border-gray-700/50 backdrop-blur-sm h-10 flex items-center rounded-xl">
-            
-            <!-- Etiqueta Estática Izquierda -->
-            <div class="absolute left-0 top-0 bottom-0 bg-[#0f172a] z-20 px-3 flex items-center border-r border-gray-700 shadow-[5px_0_10px_rgba(0,0,0,0.5)]">
-                <span class="text-[10px] text-blue-400 font-bold uppercase tracking-widest flex items-center gap-2">
-                    <i class="fas fa-microchip"></i> Estado Plantas
-                </span>
-            </div>
-
-            
-            
-            <!-- Gradiente de desvanecimiento a la derecha -->
-            <div class="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-[#0f172a] to-transparent z-10"></div>
-        </div>
+       
 
         <!-- ESTILOS CSS PARA LA ANIMACIÓN -->
         <style>
-            @keyframes ticker {
-                0% { transform: translateX(0); }
-                100% { transform: translateX(-100%); }
-            }
-            .animate-ticker {
-                animation: ticker 40s linear infinite;
-            }
-            /* Pausar al pasar el mouse para leer */
-            .animate-ticker:hover {
-                animation-play-state: paused;
-            }
+            /* --- NUEVO CSS PARA CINTA INFINITA --- */
+.animate-ticker {
+    display: inline-block;
+    white-space: nowrap;
+    padding-left: 100%; /* Empieza fuera de la pantalla */
+    box-sizing: content-box;
+    /* 180 segundos = 3 minutos. Muy lento para que se lea todo */
+    animation: ticker 100s linear infinite; 
+}
+
+.animate-ticker:hover {
+    animation-play-state: paused;
+}
+
+@keyframes ticker {
+    0% { transform: translate3d(0, 0, 0); }
+    100% { transform: translate3d(-100%, 0, 0); }
+}
         </style>
         
         <!-- BOTÓN COMPARTIR DATO -->
@@ -5193,79 +5188,112 @@ document.addEventListener('DOMContentLoaded', initUltimateUrgency);
 </script>
 <script>
     // ==========================================
-    // CONFIGURACIÓN MAESTRA (HÍBRIDA)
+    // CONFIGURACIÓN FINAL ROBUSTA
     // ==========================================
     
     const GOOGLE_CSV_LINK = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSzif4P4juLuHJiXEnowN0cDOI3MEsSJLrLvQFYpL2YCyjBDgW9HZFI2lwu8ZLToVpELVc8NOF-Lsfd/pub?output=csv'; 
     const TELEGRAM_URL = 'https://t.me/s/EmpresaElectricaDeLaHabana';
-    const CACHE_KEY = 'solar_data_v6_toasts'; 
-    const CACHE_TIME = 1000 * 60 * 5; // 5 Minutos
-    const PROXY_BASE = 'https://corsproxy.io/?';
+    
+    // Proxy AllOrigins con 'rand' para romper el caché y forzar datos nuevos de Telegram
+    const getTelegramProxy = () => `https://api.allorigins.win/get?url=${encodeURIComponent(TELEGRAM_URL)}&disableCache=true&rand=${Math.random()}`;
+    // Proxy rápido para la Sheet
+    const PROXY_SHEET = 'https://corsproxy.io/?';
 
-    // Variable global para guardar la noticia
-    let globalTelegramMsg = "";
+    // Variables globales
+    window.sheetData = {};
+    window.telegramData = "Cargando noticias...";
 
-    async function updateAllData() {
+    async function initSystem() {
+        // 1. Cargar Sheet (Datos fijos)
+        await loadSheet();
+        // 2. Cargar Telegram (Noticias)
+        await loadTelegram();
+        // 3. Pintar todo junto
+        updateTicker();
+        startNotifications();
+    }
+
+    // --- CARGA DE SHEET ---
+    async function loadSheet() {
         try {
-            // A) CACHÉ
-            const cached = localStorage.getItem(CACHE_KEY);
-            if (cached) {
-                const cacheData = JSON.parse(cached);
-                const now = new Date().getTime();
-                if (now - cacheData.timestamp < CACHE_TIME) {
-                    globalTelegramMsg = cacheData.telegram; // Guardamos para las notificaciones
-                    renderData(cacheData.sheet);
-                    return;
+            const response = await fetch(PROXY_SHEET + encodeURIComponent(GOOGLE_CSV_LINK));
+            const text = await response.text();
+            window.sheetData = parseCSV(text);
+            
+            if(window.sheetData['deficit_hoy']) {
+                renderStaticData(window.sheetData);
+            }
+        } catch (e) { console.error("Error Sheet", e); }
+    }
+
+    // --- CARGA DE TELEGRAM (EXTRACCIÓN PURA) ---
+    async function loadTelegram() {
+        try {
+            const response = await fetch(getTelegramProxy());
+            const data = await response.json();
+            
+            if (data.contents) {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(data.contents, "text/html");
+                const messages = doc.querySelectorAll('.tgme_widget_message_text');
+                
+                if (messages.length > 0) {
+                    // Tomamos el último mensaje
+                    let htmlContent = messages[messages.length - 1].innerHTML;
+                    
+                    // Reemplazamos <br> por un separador visual
+                    htmlContent = htmlContent.replace(/<br\s*\/?>/gi, " &nbsp;|&nbsp; ");
+                    
+                    // Creamos un elemento temporal para sacar solo texto limpio
+                    let tempDiv = document.createElement("div");
+                    tempDiv.innerHTML = htmlContent;
+                    let cleanText = tempDiv.textContent || tempDiv.innerText || "";
+                    
+                    // Limpieza final de espacios
+                    window.telegramData = cleanText.replace(/\s+/g, ' ').trim();
+                    
+                    // Actualizamos Radar también
+                    interpretLiveNews(window.telegramData);
                 }
             }
+        } catch (e) { console.error("Error Telegram", e); }
+    }
 
-            // B) DESCARGAR
-            console.log("🌐 Actualizando...");
-            const [sheetRes, telegramRes] = await Promise.all([
-                fetch(PROXY_BASE + encodeURIComponent(GOOGLE_CSV_LINK)),
-                fetch(PROXY_BASE + encodeURIComponent(TELEGRAM_URL))
-            ]);
-
-            const sheetText = await sheetRes.text();
-            const sheetDB = parseCSV(sheetText);
-
-            const telegramHTML = await telegramRes.text();
-            const telegramMsg = parseTelegram(telegramHTML);
-            globalTelegramMsg = telegramMsg; // Guardamos globalmente
-
-            // C) GUARDAR Y PINTAR
-            if (sheetDB['deficit_hoy']) {
-                localStorage.setItem(CACHE_KEY, JSON.stringify({
-                    timestamp: new Date().getTime(),
-                    sheet: sheetDB,
-                    telegram: telegramMsg
-                }));
-                renderData(sheetDB);
-            }
-
-        } catch (error) {
-            console.error("⚠️ Error:", error);
+    // --- ACTUALIZAR CINTA (UNIÓN DE DATOS) ---
+    function updateTicker() {
+        const tickerEl = document.getElementById('ticker-content');
+        const db = window.sheetData;
+        
+        if (tickerEl && db['deficit_hoy']) {
+            // Aquí unimos TODO: Telegram + Sheet
+            tickerEl.innerHTML = `
+                <!-- 1. NOTICIA TELEGRAM -->
+                <span class="inline-flex items-center gap-2 font-bold text-white">
+                    <i class="fab fa-telegram text-blue-400"></i> UNE INFORMA:
+                </span>
+                <span class="text-blue-100 font-mono text-sm mx-4">${window.telegramData}</span>
+                
+                <span class="text-yellow-500 mx-6 text-xl">///</span>
+                
+                <!-- 2. DATOS SHEET -->
+                <span class="text-gray-400 font-bold uppercase">AYER:</span>
+                <span class="text-red-500 font-bold ml-2">${cleanNum(db['afectacion_ayer'])} MW</span>
+                
+                <span class="text-gray-600 mx-6">|</span>
+                
+                <span class="text-gray-400 font-bold uppercase">COMBUSTIBLE:</span>
+                <span class="text-orange-500 font-bold ml-2">⚠️ ${cleanNum(db['combustible_mw'])} MW OFF</span>
+                
+                <span class="text-gray-600 mx-6">|</span>
+                
+                <span class="text-gray-400 font-bold uppercase">PLANTAS:</span>
+                <span class="text-blue-300 font-bold ml-2">${db['ticker_texto']}</span>
+            `;
         }
     }
 
-    // --- LECTOR TELEGRAM (LIMPIO) ---
-    function parseTelegram(html) {
-        try {
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(html, "text/html");
-            const messages = doc.querySelectorAll('.tgme_widget_message_text');
-            if (messages.length > 0) {
-                // Tomamos el último mensaje
-                let msg = messages[messages.length - 1].innerText;
-                // Limpieza de espacios
-                return msg.replace(/\s+/g, ' ').trim();
-            }
-            return "";
-        } catch (e) { return ""; }
-    }
-
-    // --- PINTAR DATOS (SOLO NÚMEROS EN LA CINTA) ---
-    function renderData(db) {
+    // --- RENDERIZADO DE DATOS FIJOS (DASHBOARD) ---
+    function renderStaticData(db) {
         const deficit = parseInt(cleanNum(db['deficit_hoy']));
         const demanda = parseInt(cleanNum(db['demanda_mw']));
         const percent = Math.round((deficit / demanda) * 100);
@@ -5275,11 +5303,11 @@ document.addEventListener('DOMContentLoaded', initUltimateUrgency);
         setText('exit-deficit', deficit.toLocaleString() + " MW");
         setText('dash-fecha', db['fecha_hoy']);
         setText('dash-deficit', deficit.toLocaleString());
-
-        // Barra
+        
         const genMW = parseInt(cleanNum(db['generacion_mw']));
         const genPercent = Math.round((genMW / demanda) * 100);
         const defPercent = 100 - genPercent;
+        
         setText('bar-gen-txt', genPercent);
         setText('bar-def-txt', defPercent);
         const barGen = document.getElementById('bar-gen-width');
@@ -5287,7 +5315,6 @@ document.addEventListener('DOMContentLoaded', initUltimateUrgency);
         if(barGen) { barGen.style.width = genPercent + "%"; barGen.innerText = genPercent + "%"; }
         if(barDef) { barDef.style.width = defPercent + "%"; }
 
-        // Textos
         const quoteEl = document.getElementById('dash-quote');
         if(quoteEl) quoteEl.innerHTML = `"Se estima afectación de <strong>${deficit} MW</strong>. ${db['ia_texto']}" <br><span class="text-gray-600 not-italic font-bold">— Fuente: Nota Informativa UNE ${db['fecha_hoy']}.</span>`;
         
@@ -5298,110 +5325,30 @@ document.addEventListener('DOMContentLoaded', initUltimateUrgency);
         setText('hist-2-val', db['afectacion_ayer'] + " MW");
         setText('hist-3-date', db['fecha_hoy']);
         setText('hist-3-val', deficit + " MW");
-
-        // CINTA LIMPIA (Solo Datos Sheet)
-        const tickerEl = document.getElementById('ticker-content');
-        if(tickerEl) {
-            tickerEl.innerHTML = `
-                <span class="flex items-center gap-2"><span class="text-gray-400 font-bold">AYER:</span><span class="text-red-500 font-bold">${cleanNum(db['afectacion_ayer'])} MW</span></span>
-                <span class="text-gray-600 mx-6">|</span>
-                <span class="flex items-center gap-2"><span class="text-gray-400 font-bold">COMBUSTIBLE:</span><span class="text-orange-500 font-bold">⚠️ ${cleanNum(db['combustible_mw'])} MW OFF</span></span>
-                <span class="text-gray-600 mx-6">|</span>
-                <span class="text-blue-300 font-bold">${db['ticker_texto']}</span>
-            `;
-        }
     }
 
-    // ==========================================
-    // SISTEMA DE NOTIFICACIONES (SOCIAL PROOF + NOTICIAS)
-    // ==========================================
-    
-    // Base de datos de ventas falsas
-    const salesData = [
-        { n: "Roberto (Playa)", p: "Kit Must 2kW" },
-        { n: "Yusmary (Vedado)", p: "Astra 5kW" },
-        { n: "MIPYME (Matanzas)", p: "3 Kits Pro 6.5kW" },
-        { n: "Alejandro (Boyeros)", p: "Must 1kW" },
-        { n: "Carlos (Miramar)", p: "Astra 3kW" }
-    ];
+    // --- INTERPRETACIÓN DE NOTICIAS (RADAR) ---
+    function interpretLiveNews(msg) {
+        const lowerMsg = msg.toLowerCase();
+        const statusText = document.getElementById('status-text');
+        const statusIcon = document.getElementById('status-icon');
+        const radarRing = document.getElementById('radar-ring');
+        const content = document.getElementById('news-content');
+        const timeLabel = document.getElementById('news-time');
 
-    function startNotifications() {
-        // Mostrar primera notificación a los 5 segundos
-        setTimeout(showNextNotification, 5000);
-    }
+        if(content) content.innerText = msg.length > 250 ? msg.substring(0, 250) + "..." : msg;
+        if(timeLabel) timeLabel.innerText = "EN VIVO";
 
-    let notifCounter = 0;
+        let sentiment = 'neutral';
+        if (lowerMsg.includes('avería') || lowerMsg.includes('déficit') || lowerMsg.includes('salida')) sentiment = 'bad';
+        if (lowerMsg.includes('restablecido') || lowerMsg.includes('sincroniza')) sentiment = 'good';
 
-    function showNextNotification() {
-        const container = document.getElementById('toast-container');
-        if(!container) return;
-
-        // LÓGICA: Cada 3 notificaciones de venta, mostramos 1 de Telegram (si existe)
-        // O si es la primera vez y hay noticia, la mostramos.
-        const isNewsTurn = (notifCounter % 3 === 0) && globalTelegramMsg.length > 10;
-        
-        let htmlContent = "";
-
-        if (isNewsTurn) {
-            // --- MOSTRAR NOTICIA TELEGRAM (Diseño Azul/Noticia) ---
-            // Recortamos si es muy larga para el toast
-            const shortMsg = globalTelegramMsg.length > 120 ? globalTelegramMsg.substring(0, 120) + "..." : globalTelegramMsg;
-            
-            htmlContent = `
-                <div class="toast-notification p-4 rounded-xl flex items-start gap-4 text-white min-w-[300px] max-w-[350px] animate-slide-in border-l-4 border-blue-500 bg-[#0f172a]/95 backdrop-blur-md shadow-2xl">
-                    <div class="bg-blue-900/30 p-2.5 rounded-full shrink-0 mt-1">
-                        <i class="fab fa-telegram-plane text-blue-400 text-lg"></i>
-                    </div>
-                    <div class="flex-1">
-                        <div class="flex justify-between items-center mb-1">
-                            <h4 class="text-[10px] font-bold text-blue-300 uppercase tracking-wider">Actualización UNE</h4>
-                            <span class="bg-red-600 text-white text-[8px] px-1.5 rounded animate-pulse">LIVE</span>
-                        </div>
-                        <p class="text-xs leading-snug text-gray-200 font-medium">${shortMsg}</p>
-                        <div class="mt-2 text-right">
-                            <a href="${TELEGRAM_URL}" target="_blank" class="text-[9px] text-blue-400 hover:text-white underline">Ver completo &rarr;</a>
-                        </div>
-                    </div>
-                    <button onclick="this.parentElement.remove()" class="text-gray-500 hover:text-white -mt-1">&times;</button>
-                </div>
-            `;
-        } else {
-            // --- MOSTRAR VENTA (Diseño Verde/Social) ---
-            const item = salesData[Math.floor(Math.random() * salesData.length)];
-            
-            htmlContent = `
-                <div class="toast-notification p-3 rounded-xl flex items-center gap-3 text-white min-w-[280px] animate-slide-in border-l-4 border-green-500 bg-[#0f172a]/95 backdrop-blur-md shadow-xl">
-                    <div class="bg-green-900/30 p-2 rounded-full shrink-0">
-                        <i class="fas fa-check text-green-400"></i>
-                    </div>
-                    <div class="flex-1">
-                        <p class="text-xs text-gray-300">
-                            <strong class="text-white">${item.n}</strong> acaba de reservar un <strong class="text-yellow-400">${item.p}</strong>.
-                        </p>
-                        <p class="text-[9px] text-gray-500 mt-0.5">Hace unos instantes...</p>
-                    </div>
-                    <button onclick="this.parentElement.remove()" class="text-gray-500 hover:text-white">&times;</button>
-                </div>
-            `;
+        if (sentiment === 'bad' && statusText) {
+            statusText.innerText = "INCIDENCIA";
+            statusText.className = "text-red-500 font-bold text-lg mt-1 text-center animate-pulse";
+            statusIcon.className = "fas fa-exclamation-triangle text-3xl text-red-500";
+            radarRing.className = "absolute inset-0 border-4 border-t-red-600 rounded-full animate-spin";
         }
-
-        // Inyectar HTML
-        const wrapper = document.createElement('div');
-        wrapper.innerHTML = htmlContent;
-        container.appendChild(wrapper.firstElementChild);
-
-        // Auto-eliminar después de 7 segundos
-        setTimeout(() => { 
-            if(container.firstElementChild) {
-                const el = container.firstElementChild;
-                el.classList.replace('animate-slide-in', 'animate-fade-out'); 
-                setTimeout(() => { el.remove(); }, 500); 
-            }
-        }, 7000);
-
-        notifCounter++;
-        // Próxima notificación en intervalo aleatorio (10 a 20 seg)
-        setTimeout(showNextNotification, Math.random() * (20000 - 10000) + 10000);
     }
 
     // --- UTILIDADES ---
@@ -5421,11 +5368,13 @@ document.addEventListener('DOMContentLoaded', initUltimateUrgency);
     function cleanNum(str) { return str ? str.replace(/\D/g,'') : '0'; }
     function setText(id, text) { const el = document.getElementById(id); if(el) el.innerText = text; }
 
-    // INICIAR TODO
-    document.addEventListener('DOMContentLoaded', () => {
-        updateAllData();
-        startNotifications();
-    });
+    // --- NOTIFICACIONES ---
+    function startNotifications() {
+        // (Tu código de notificaciones anterior si lo deseas, o déjalo vacío)
+    }
+
+    // INICIO
+    document.addEventListener('DOMContentLoaded', initSystem);
 </script>
 </body>
 </html>
