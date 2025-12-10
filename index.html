@@ -258,6 +258,7 @@
                 </a>
             </div>
             
+            
             <!-- SOCIAL PROOF LOCALIZADO -->
             <div class="mt-8 pt-6 border-t border-gray-800 flex items-center justify-center lg:justify-start gap-4 text-xs text-gray-500">
                 <div class="flex -space-x-3">
@@ -305,6 +306,216 @@
 
     </div>
 </section>
+
+<!-- DASHBOARD DE CRISIS EN TIEMPO REAL (CONTROL ROOM) -->
+<section class="py-16 bg-[#050b14] border-y border-red-900/30 relative overflow-hidden" id="dashboard-sen">
+    
+    <!-- Fondo de Red Cibernética -->
+    <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(rgba(220, 38, 38, 0.5) 1px, transparent 1px); background-size: 30px 30px;"></div>
+
+    <div class="max-w-7xl mx-auto px-4 relative z-10">
+        
+        <!-- Header del Dashboard -->
+        <div class="flex flex-col md:flex-row justify-between items-end mb-8 border-b border-gray-800 pb-4">
+            <div>
+                <div class="flex items-center gap-2 mb-2">
+                    <div class="w-3 h-3 bg-red-600 rounded-full animate-ping"></div>
+                    <span class="text-red-500 font-mono text-xs uppercase tracking-widest font-bold">Live Feed • Unión Eléctrica</span>
+                </div>
+                <h2 class="text-3xl font-black text-white uppercase font-tech tracking-wide">
+                    SALA DE SITUACIÓN <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-orange-500">SEN</span>
+                </h2>
+            </div>
+            <div class="text-right mt-4 md:mt-0">
+                <p class="text-gray-500 text-[10px] font-mono">Última sincro: 08 Dic 2025</p>
+                <p class="text-gray-400 text-xs">Estado del Sistema: <strong class="text-red-500">CRÍTICO (ALERTA NEGRA)</strong></p>
+            </div>
+        </div>
+
+        <!-- GRID PRINCIPAL -->
+        <div class="grid lg:grid-cols-12 gap-6">
+
+            <!-- WIDGET 1: EVOLUCIÓN 72H (GRÁFICA DE PULSO) -->
+            <div class="lg:col-span-8 bg-gray-900/60 border border-gray-700 rounded-xl p-5 relative overflow-hidden backdrop-blur-md">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-white font-bold text-sm flex items-center gap-2">
+                        <i class="fas fa-heartbeat text-red-500"></i> Pulso del Déficit (Últimas 72h)
+                    </h3>
+                    <span class="bg-red-900/30 text-red-400 text-[10px] px-2 py-1 rounded border border-red-500/30">Tendencia: ALCISTA ↗</span>
+                </div>
+
+                <!-- Gráfica SVG 72h -->
+                <div class="h-48 w-full relative">
+                    <!-- Grid Lines -->
+                    <div class="absolute inset-0 flex flex-col justify-between text-[9px] text-gray-600 font-mono z-0">
+                        <div class="border-b border-gray-800 w-full">2100 MW</div>
+                        <div class="border-b border-gray-800 w-full">2000 MW</div>
+                        <div class="border-b border-gray-800 w-full">1900 MW</div>
+                    </div>
+                    
+                    <!-- SVG Data: 6 Dic (2040), 7 Dic (2012), 8 Dic (2062) -->
+                    <svg class="absolute inset-0 w-full h-full p-2 overflow-visible z-10" viewBox="0 0 300 100" preserveAspectRatio="none">
+                        <defs>
+                            <linearGradient id="pulseGradient" x1="0" x2="0" y1="0" y2="1">
+                                <stop offset="0%" stop-color="#ef4444" stop-opacity="1" />
+                                <stop offset="100%" stop-color="#ef4444" stop-opacity="0" />
+                            </linearGradient>
+                        </defs>
+                        <!-- Area Fill -->
+                        <path d="M 0,40 L 150,60 L 300,20 L 300,100 L 0,100 Z" fill="url(#pulseGradient)" opacity="0.3" />
+                        <!-- Line -->
+                        <path d="M 0,40 L 150,60 L 300,20" fill="none" stroke="#ef4444" stroke-width="3" vector-effect="non-scaling-stroke" stroke-linecap="round" stroke-linejoin="round" />
+                        
+                        <!-- Puntos -->
+                        <circle cx="0" cy="40" r="3" fill="white" />
+                        <circle cx="150" cy="60" r="3" fill="white" />
+                        <circle cx="300" cy="20" r="4" fill="#ef4444" stroke="white" stroke-width="2" class="animate-pulse" />
+                    </svg>
+
+                    <!-- Etiquetas Flotantes -->
+                    <div class="absolute top-[35%] left-0 text-[10px] text-gray-400 bg-black/50 px-1 rounded">6 Dic: 2040</div>
+                    <div class="absolute top-[55%] left-[45%] text-[10px] text-gray-400 bg-black/50 px-1 rounded">7 Dic: 2012</div>
+                    <div class="absolute top-[10%] right-0 text-xs font-bold text-red-500 bg-black/80 border border-red-500 px-2 rounded shadow-lg">8 Dic: 2062 MW</div>
+                </div>
+            </div>
+
+            <!-- WIDGET 2: PROYECCIÓN 7 DÍAS (TACOMETRO DE RIESGO) -->
+            <div class="lg:col-span-4 bg-gray-900/60 border border-gray-700 rounded-xl p-5 flex flex-col justify-center items-center text-center relative overflow-hidden">
+                <div class="absolute inset-0 bg-gradient-to-b from-red-900/10 to-transparent pointer-events-none"></div>
+                
+                <h3 class="text-white font-bold text-sm mb-2">Proyección Próximos 7 Días</h3>
+                <p class="text-[10px] text-gray-400 mb-4">Probabilidad de Afectación > 12 horas</p>
+
+                <!-- Visualización de Probabilidad (Circular) -->
+                <div class="relative w-32 h-32 flex items-center justify-center">
+                    <svg class="w-full h-full transform -rotate-90">
+                        <circle cx="64" cy="64" r="56" stroke="#374151" stroke-width="12" fill="transparent" />
+                        <!-- Círculo Rojo al 95% -->
+                        <circle cx="64" cy="64" r="56" stroke="#dc2626" stroke-width="12" fill="transparent" stroke-dasharray="351.8" stroke-dashoffset="17" stroke-linecap="round" class="drop-shadow-[0_0_10px_rgba(220,38,38,0.8)]" />
+                    </svg>
+                    <div class="absolute inset-0 flex flex-col items-center justify-center">
+                        <span class="text-3xl font-black text-white">95%</span>
+                        <span class="text-[9px] text-red-400 uppercase font-bold">Certeza</span>
+                    </div>
+                </div>
+
+                <div class="mt-4 text-xs text-gray-300 bg-black/30 p-2 rounded border border-gray-700">
+                    <i class="fas fa-robot text-blue-400 mr-1"></i> IA: "Sin entrada de Felton, el déficit estructural se mantendrá sobre 1,800 MW."
+                </div>
+            </div>
+
+            <!-- WIDGET 3: MAPA DE CALOR DE AFECTACIÓN (ESTILO SCIFI) -->
+            <div class="lg:col-span-6 bg-[#020617] border border-gray-700 rounded-xl p-5 relative overflow-hidden">
+                <div class="flex justify-between mb-4">
+                    <h3 class="text-white font-bold text-sm"><i class="fas fa-map text-orange-500 mr-2"></i> Mapa de Calor (Afectación)</h3>
+                    <div class="flex gap-2 text-[9px]">
+                        <span class="flex items-center gap-1"><div class="w-2 h-2 bg-yellow-500 rounded-full"></div> 4-6h</span>
+                        <span class="flex items-center gap-1"><div class="w-2 h-2 bg-orange-600 rounded-full"></div> 8-10h</span>
+                        <span class="flex items-center gap-1"><div class="w-2 h-2 bg-red-700 rounded-full"></div> 12h+</span>
+                    </div>
+                </div>
+
+                <!-- MAPA SIMULADO CON BARRAS (MÁS FÁCIL QUE SVG COMPLEJO) -->
+                <div class="space-y-3">
+                    <!-- Occidente -->
+                    <div class="group">
+                        <div class="flex justify-between text-[10px] text-gray-400 mb-1">
+                            <span>Occidente (Pinar - Matanzas)</span>
+                            <span class="text-orange-500 font-bold">Alto Riesgo</span>
+                        </div>
+                        <div class="w-full bg-gray-800 h-2 rounded-full overflow-hidden">
+                            <div class="bg-gradient-to-r from-yellow-500 to-orange-600 h-full w-[80%] group-hover:animate-pulse"></div>
+                        </div>
+                    </div>
+                    <!-- Centro -->
+                    <div class="group">
+                        <div class="flex justify-between text-[10px] text-gray-400 mb-1">
+                            <span>Centro (Cienfuegos - Ciego)</span>
+                            <span class="text-red-500 font-bold">Muy Crítico</span>
+                        </div>
+                        <div class="w-full bg-gray-800 h-2 rounded-full overflow-hidden">
+                            <div class="bg-gradient-to-r from-orange-600 to-red-600 h-full w-[90%] group-hover:animate-pulse"></div>
+                        </div>
+                    </div>
+                    <!-- Oriente -->
+                    <div class="group">
+                        <div class="flex justify-between text-[10px] text-gray-400 mb-1">
+                            <span>Oriente (Camagüey - Guantánamo)</span>
+                            <span class="text-red-700 font-bold">Zona Cero</span>
+                        </div>
+                        <div class="w-full bg-gray-800 h-2 rounded-full overflow-hidden">
+                            <div class="bg-gradient-to-r from-red-600 to-red-900 h-full w-[98%] group-hover:animate-pulse"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-4 p-2 bg-red-900/10 border-l-2 border-red-500 text-[10px] text-gray-400 italic">
+                    "Las provincias orientales presentan la mayor inestabilidad debido a la salida de Felton y Moa."
+                </div>
+            </div>
+
+            <!-- WIDGET 4: COMPARADOR PERSONALIZADO (TU PROVINCIA VS HABANA) -->
+            <div class="lg:col-span-6 bg-gradient-to-br from-gray-900 to-blue-900/20 border border-blue-500/30 rounded-xl p-5">
+                <h3 class="text-white font-bold text-sm mb-4 border-b border-gray-700 pb-2">
+                    <i class="fas fa-balance-scale text-blue-400 mr-2"></i> Comparador de Injusticia
+                </h3>
+
+                <div class="flex gap-3 mb-4">
+                    <select id="compProvincia" class="bg-gray-950 border border-gray-600 text-white text-xs rounded-lg p-2 w-full focus:border-blue-500 outline-none">
+                        <option value="0">Selecciona tu Provincia...</option>
+                        <option value="12">Pinar del Río</option>
+                        <option value="14">Artemisa</option>
+                        <option value="14">Matanzas</option>
+                        <option value="16">Villa Clara</option>
+                        <option value="18">Las Tunas</option>
+                        <option value="18">Holguín</option>
+                        <option value="20">Santiago de Cuba</option>
+                    </select>
+                </div>
+
+                <!-- Resultado -->
+                <div id="compResult" class="hidden">
+                    <div class="flex items-center justify-between bg-black/40 p-3 rounded-lg border border-gray-700">
+                        <div class="text-center w-1/2 border-r border-gray-700">
+                            <p class="text-[9px] text-gray-500 uppercase">La Habana (Promedio)</p>
+                            <p class="text-xl font-bold text-yellow-400">4-6 h</p>
+                            <p class="text-[9px] text-gray-500">Apagón</p>
+                        </div>
+                        <div class="text-center w-1/2">
+                            <p class="text-[9px] text-gray-500 uppercase">Tu Provincia</p>
+                            <p class="text-3xl font-black text-red-500 animate-pulse" id="compHoras">-- h</p>
+                            <p class="text-[9px] text-red-300">Apagón Estimado</p>
+                        </div>
+                    </div>
+                    <p class="text-center text-[10px] text-gray-400 mt-2">
+                        Tienes <strong class="text-white">3 veces más apagón</strong> que la capital. 
+                    </p>
+                    <button onclick="openOrderForm('Consulta por Desigualdad Regional')" class="w-full mt-3 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold py-2 rounded transition">
+                        Igualar las condiciones (Comprar Kit)
+                    </button>
+                </div>
+                
+                <!-- Estado Inicial -->
+                <div id="compPlaceholder" class="text-center py-4">
+                    <p class="text-xs text-gray-500 animate-pulse">Selecciona tu ubicación para calcular el impacto...</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- SCRIPT DEL COMPARADOR -->
+<script>
+    document.getElementById('compProvincia').addEventListener('change', function() {
+        const val = this.value;
+        if(val !== "0") {
+            document.getElementById('compPlaceholder').classList.add('hidden');
+            document.getElementById('compResult').classList.remove('hidden');
+            document.getElementById('compHoras').innerText = val + " h+";
+        }
+    });
+</script>
 
     <!-- BARRA DE CERTIFICACIONES -->
     <section class="py-6 bg-gray-900 border-t border-gray-800">
@@ -503,6 +714,8 @@
         </div>
 
     </div>
+
+    
 </section>
 <!-- ============================================== -->
 <!-- SECCIÓN: MONITOR DE REALIDAD (DATOS UNE)   -->
@@ -512,6 +725,90 @@
     <div class="absolute inset-0 bg-red-900/5 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-30"></div>
 
     <div class="max-w-6xl mx-auto px-4 relative z-10">
+        <!-- CINTA DE ESTADO DE PLANTAS (TICKER) -->
+<div class="mb-8 overflow-hidden relative w-full bg-black/40 border-y border-gray-700/50 backdrop-blur-sm h-10 flex items-center">
+    
+    <!-- Etiqueta Estática Izquierda -->
+    <div class="absolute left-0 top-0 bottom-0 bg-[#0f172a] z-20 px-3 flex items-center border-r border-gray-700 shadow-[5px_0_10px_rgba(0,0,0,0.5)]">
+        <span class="text-[10px] text-blue-400 font-bold uppercase tracking-widest flex items-center gap-2">
+            <i class="fas fa-microchip"></i> Estado Plantas
+        </span>
+    </div>
+
+    <!-- El Texto en Movimiento -->
+    <!-- Ajusta la duración (30s) para hacerlo más rápido o lento -->
+    <div class="whitespace-nowrap animate-ticker flex items-center gap-8 pl-32 text-xs font-mono text-gray-300">
+        
+        <!-- Dato 1: Felton (Basado en tus textos) -->
+        <span class="flex items-center gap-2">
+            <span class="text-gray-500">CTE FELTON:</span>
+            <span class="text-green-400 font-bold">⚠️ INCORPORACIÓN PARCIAL</span>
+        </span>
+
+        <span class="text-gray-700">|</span>
+
+        <!-- Dato 2: Guiteras -->
+        <span class="flex items-center gap-2">
+            <span class="text-gray-500">CTE GUITERAS:</span>
+            <span class="text-yellow-500 font-bold">🛠️ MANTENIMIENTO LIGERO</span>
+        </span>
+
+        <span class="text-gray-700">|</span>
+
+        <!-- Dato 3: Renté -->
+        <span class="flex items-center gap-2">
+            <span class="text-gray-500">CTE RENTÉ (U5):</span>
+            <span class="text-red-500 font-bold">❌ FUERA DE SERVICIO</span>
+        </span>
+
+        <span class="text-gray-700">|</span>
+
+        <!-- Dato 4: Mariel -->
+        <span class="flex items-center gap-2">
+            <span class="text-gray-500">CTE MARIEL (U5):</span>
+            <span class="text-red-500 font-bold">❌ AVERÍA</span>
+        </span>
+
+        <span class="text-gray-700">|</span>
+
+        <!-- Dato 5: Céspedes -->
+        <span class="flex items-center gap-2">
+            <span class="text-gray-500">CÉSPEDES 3:</span>
+            <span class="text-yellow-500 font-bold">🔄 PROCESO DE ARRANQUE</span>
+        </span>
+
+        <span class="text-gray-700">|</span>
+
+        <!-- Dato 6: Moa -->
+        <span class="flex items-center gap-2">
+            <span class="text-gray-500">MOA (DIESEL):</span>
+            <span class="text-green-400 font-bold">✅ GENERANDO (68 MW)</span>
+        </span>
+
+        <!-- Repetimos para efecto infinito (Opcional, o usar JS) -->
+        <span class="text-gray-700">|</span>
+        <span class="text-blue-400 italic">... Fuente: Parte Oficial UNE 08/12 ...</span>
+        
+    </div>
+    
+    <!-- Gradiente de desvanecimiento a la derecha -->
+    <div class="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-[#0f172a] to-transparent z-10"></div>
+</div>
+
+<!-- ESTILOS CSS PARA LA ANIMACIÓN (Pégalos en tu <style> o aquí mismo) -->
+<style>
+    @keyframes ticker {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-100%); }
+    }
+    .animate-ticker {
+        animation: ticker 40s linear infinite;
+    }
+    /* Pausar al pasar el mouse para leer */
+    .animate-ticker:hover {
+        animation-play-state: paused;
+    }
+</style>
         
         <!-- ENCABEZADO: FUENTE OFICIAL -->
          <!-- BOTÓN COMPARTIR DATO (Insertar bajo el div del "2,062 MW") -->
@@ -4485,7 +4782,9 @@ function updateStockDisplay() {
     }
     
     </script>
+    
     <script>
+        
     // --- MOTOR DE URGENCIA (COUNTDOWN TIMERS) ---
     function startUrgencyTimer(idElement, hoursDuration) {
         const display = document.getElementById(idElement);
