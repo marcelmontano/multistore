@@ -909,12 +909,11 @@
     
     <!-- TU IMAGEN DE MAPA (Con Filtros "Modo Noche" aplicados por código) -->
     <!-- ASEGÚRATE DE PONER LA RUTA CORRECTA DE TU IMAGEN AQUÍ -->
-     <!-- ESTADÍSTICAS FLOTANTES (MAPA REAL) -->
-<!-- Pegar esto DENTRO del div relativo que contiene la imagen del mapa, encima de los PINs -->
-
-<div class="relative md:absolute md:top-4 md:left-4 z-30 bg-black/80 backdrop-blur-md border-l-4 border-green-500 rounded-r-lg p-3 md:p-4 shadow-2xl w-full md:max-w-[200px] mb-[-20px] md:mb-0 transform md:transform-none">
+     <!-- ESTADÍSTICAS FLOTANTES (RESPONSIVE OPTIMIZADO) -->
+<div class="absolute top-0 left-0 w-full md:w-auto md:top-4 md:left-4 z-30 bg-black/80 backdrop-blur-md border-b-2 md:border-b-0 md:border-l-4 border-green-500 md:rounded-r-lg p-2 md:p-4 shadow-xl">
     
-    <div class="flex items-center gap-2 mb-2 border-b border-gray-700 pb-2">
+    <!-- Título (Solo visible en PC o muy discreto en móvil) -->
+    <div class="hidden md:flex items-center gap-2 mb-2 border-b border-gray-700 pb-2">
         <span class="relative flex h-2 w-2">
           <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
           <span class="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
@@ -922,21 +921,33 @@
         <span class="text-[10px] text-gray-300 font-bold uppercase tracking-widest">Actividad (72h)</span>
     </div>
 
-    <div class="space-y-3">
+    <!-- Contenedor de Datos: Fila en Móvil / Columna en PC -->
+    <div class="flex flex-row md:flex-col justify-around items-center md:items-start gap-4 md:gap-3">
+        
         <!-- Dato 1: Instalaciones -->
-        <div>
-            <div class="text-3xl font-black text-white leading-none">37</div>
-            <div class="text-[10px] text-green-400 font-bold uppercase">Instalaciones Completadas</div>
+        <div class="flex flex-col md:block items-center md:items-start">
+            <div class="flex items-baseline gap-1">
+                <span class="text-xl md:text-3xl font-black text-white leading-none">37</span>
+                <span class="md:hidden text-[10px] text-green-400 font-bold uppercase">Instalados</span>
+            </div>
+            <div class="hidden md:block text-[10px] text-green-400 font-bold uppercase">Instalaciones Completadas</div>
         </div>
         
+        <!-- Separador Vertical (Solo Móvil) -->
+        <div class="h-6 w-px bg-gray-700 md:hidden"></div>
+
         <!-- Dato 2: Reservas -->
-        <div>
-            <div class="text-2xl font-bold text-gray-300 leading-none">12</div>
-            <div class="text-[10px] text-yellow-500 font-bold uppercase flex items-center gap-1">
+        <div class="flex flex-col md:block items-center md:items-start">
+            <div class="flex items-baseline gap-1">
+                <span class="text-xl md:text-2xl font-bold text-gray-300 leading-none">12</span>
+                <span class="md:hidden text-[10px] text-yellow-500 font-bold uppercase">En Cola</span>
+            </div>
+            <div class="hidden md:block text-[10px] text-yellow-500 font-bold uppercase">
                 Reservas en Cola <i class="fas fa-clock"></i>
             </div>
         </div>
     </div>
+
 
     <div class="mt-3 text-[9px] text-gray-500 italic">
         *Actualizado: Hace 5 min.
