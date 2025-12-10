@@ -197,7 +197,7 @@
         <!-- IZQUIERDA: EL PROBLEMA (Dato Oficial UNE) -->
         <div class="flex items-center gap-2 animate-pulse">
     <span class="bg-white text-red-800 px-1.5 py-0.5 rounded uppercase font-black tracking-tighter">🔴 ALERTA SEN</span>
-    <span>Déficit Hoy: <strong>1,970 MW</strong> (61% Afectación)</span>
+    <span>Déficit Hoy: <strong>1,790 MW</strong> (54% Afectación)</span>
 </div>
 
         <!-- CENTRO: LA ESCASEZ (Visible solo en PC para ahorrar espacio en móvil) -->
@@ -335,16 +335,15 @@
         <!-- GRID PRINCIPAL -->
         <div class="grid lg:grid-cols-12 gap-6">
 
-            <!-- WIDGET 1: EVOLUCIÓN 72H (GRÁFICA DE PULSO ACTUALIZADA) -->
+            <!-- WIDGET 1: GRÁFICA DE PULSO -->
             <div class="lg:col-span-8 bg-gray-900/60 border border-gray-700 rounded-xl p-5 relative overflow-hidden backdrop-blur-md">
                 <div class="flex justify-between items-center mb-4">
                     <h3 class="text-white font-bold text-sm flex items-center gap-2">
-                        <i class="fas fa-heartbeat text-red-500"></i> Pulso del Déficit (Últimas 72h)
+                        <i class="fas fa-heartbeat text-red-500"></i> Pulso del Déficit (72h)
                     </h3>
-                    <span class="bg-red-900/30 text-red-400 text-[10px] px-2 py-1 rounded border border-red-500/30">Tendencia: PICO EXTREMO ⚠</span>
+                    <span class="bg-red-900/30 text-red-400 text-[10px] px-2 py-1 rounded border border-red-500/30">Estado: MUY ALTO ⚠</span>
                 </div>
 
-                <!-- Gráfica SVG 72h -->
                 <div class="h-48 w-full relative">
                     <!-- Grid Lines -->
                     <div class="absolute inset-0 flex flex-col justify-between text-[9px] text-gray-600 font-mono z-0">
@@ -353,11 +352,7 @@
                         <div class="border-b border-gray-800 w-full">1800 MW</div>
                     </div>
                     
-                    <!-- SVG Data: 
-                         7 Dic: 2062 (Alto)
-                         8 Dic: 2185 (Récord Ayer - Pico)
-                         9 Dic: 1970 (Hoy - Pronóstico) 
-                    -->
+                    <!-- SVG Data: 8 (2185), 9 (2185), 10 (1790) -->
                     <svg class="absolute inset-0 w-full h-full p-2 overflow-visible z-10" viewBox="0 0 300 100" preserveAspectRatio="none">
                         <defs>
                             <linearGradient id="pulseGradient" x1="0" x2="0" y1="0" y2="1">
@@ -365,144 +360,109 @@
                                 <stop offset="100%" stop-color="#ef4444" stop-opacity="0" />
                             </linearGradient>
                         </defs>
-                        <!-- Area Fill -->
-                        <path d="M 0,40 L 150,10 L 300,50 L 300,100 L 0,100 Z" fill="url(#pulseGradient)" opacity="0.3" />
-                        <!-- Line -->
-                        <path d="M 0,40 L 150,10 L 300,50" fill="none" stroke="#ef4444" stroke-width="3" vector-effect="non-scaling-stroke" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M 0,10 L 150,10 L 300,60 L 300,100 L 0,100 Z" fill="url(#pulseGradient)" opacity="0.3" />
+                        <path d="M 0,10 L 150,10 L 300,60" fill="none" stroke="#ef4444" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
                         
-                        <!-- Puntos -->
-                        <circle cx="0" cy="40" r="3" fill="white" />
-                        <circle cx="150" cy="10" r="4" fill="#ef4444" stroke="white" stroke-width="2" /> <!-- Ayer -->
-                        <circle cx="300" cy="50" r="4" fill="#ef4444" stroke="white" stroke-width="2" class="animate-pulse" /> <!-- Hoy -->
+                        <circle cx="0" cy="10" r="3" fill="white" />
+                        <circle cx="150" cy="10" r="3" fill="white" />
+                        <circle cx="300" cy="60" r="4" fill="#ef4444" stroke="white" stroke-width="2" class="animate-pulse" />
                     </svg>
 
-                    <!-- Etiquetas Flotantes -->
-                    <div class="absolute top-[35%] left-0 text-[10px] text-gray-400 bg-black/50 px-1 rounded">7 Dic: 2062</div>
-                    <div class="absolute top-[0%] left-[45%] text-[10px] text-red-300 font-bold bg-black/50 px-1 rounded border border-red-900">8 Dic: 2185 (Récord)</div>
-                    <div class="absolute top-[40%] right-0 text-xs font-bold text-white bg-red-600 border border-white px-2 rounded shadow-lg">Hoy: 1970 MW</div>
+                    <!-- Etiquetas -->
+                    <div class="absolute top-[0%] left-0 text-[10px] text-gray-400 bg-black/50 px-1 rounded">8 Dic: 2185</div>
+                    <div class="absolute top-[0%] left-[45%] text-[10px] text-gray-400 bg-black/50 px-1 rounded">9 Dic: 2185</div>
+                    <div class="absolute top-[50%] right-0 text-xs font-bold text-white bg-red-600 border border-white px-2 rounded shadow-lg">Hoy: 1790 MW</div>
                 </div>
             </div>
 
-            <!-- WIDGET 2: PROYECCIÓN (IA ACTUALIZADA) -->
+            <!-- WIDGET 2: IA PROYECCIÓN -->
             <div class="lg:col-span-4 bg-gray-900/60 border border-gray-700 rounded-xl p-5 flex flex-col justify-center items-center text-center relative overflow-hidden">
                 <div class="absolute inset-0 bg-gradient-to-b from-red-900/10 to-transparent pointer-events-none"></div>
-                
                 <h3 class="text-white font-bold text-sm mb-2">Proyección Próximos 7 Días</h3>
-                <p class="text-[10px] text-gray-400 mb-4">Probabilidad de Afectación > 12 horas</p>
-
-                <!-- Visualización de Probabilidad (Circular) -->
                 <div class="relative w-32 h-32 flex items-center justify-center">
                     <svg class="w-full h-full transform -rotate-90">
                         <circle cx="64" cy="64" r="56" stroke="#374151" stroke-width="12" fill="transparent" />
-                        <!-- Círculo Rojo al 98% -->
-                        <circle cx="64" cy="64" r="56" stroke="#dc2626" stroke-width="12" fill="transparent" stroke-dasharray="351.8" stroke-dashoffset="10" stroke-linecap="round" class="drop-shadow-[0_0_10px_rgba(220,38,38,0.8)]" />
+                        <circle cx="64" cy="64" r="56" stroke="#dc2626" stroke-width="12" fill="transparent" stroke-dasharray="351.8" stroke-dashoffset="35" stroke-linecap="round" />
                     </svg>
                     <div class="absolute inset-0 flex flex-col items-center justify-center">
-                        <span class="text-3xl font-black text-white">99%</span>
-                        <span class="text-[9px] text-red-400 uppercase font-bold">Certeza</span>
+                        <span class="text-3xl font-black text-white">90%</span>
+                        <span class="text-[9px] text-red-400 uppercase font-bold">Probabilidad</span>
                     </div>
                 </div>
-
                 <div class="mt-4 text-xs text-gray-300 bg-black/30 p-2 rounded border border-gray-700">
                     <i class="fas fa-robot text-blue-400 mr-1"></i> 
-                    <strong>IA:</strong> "Salida simultánea de Felton 2, Renté 6 y crisis de combustible (978 MW fuera) mantiene déficit crítico."
+                    <strong>IA:</strong> "Mejora leve por entrada de Nuevitas 6, pero crisis de combustible (1005 MW) mantiene apagones de +8 horas."
                 </div>
             </div>
 
-            <!-- WIDGET 3: MAPA DE CALOR (DATOS COMBUSTIBLE) -->
+            <!-- WIDGET 3: MAPA DE CALOR -->
             <div class="lg:col-span-6 bg-[#020617] border border-gray-700 rounded-xl p-5 relative overflow-hidden">
                 <div class="flex justify-between mb-4">
-                    <h3 class="text-white font-bold text-sm"><i class="fas fa-map text-orange-500 mr-2"></i> Mapa de Calor (Afectación)</h3>
+                    <h3 class="text-white font-bold text-sm"><i class="fas fa-map text-orange-500 mr-2"></i> Mapa de Afectación</h3>
                     <div class="flex gap-2 text-[9px]">
-                        <span class="flex items-center gap-1"><div class="w-2 h-2 bg-yellow-500 rounded-full"></div> 4-6h</span>
-                        <span class="flex items-center gap-1"><div class="w-2 h-2 bg-orange-600 rounded-full"></div> 8-10h</span>
-                        <span class="flex items-center gap-1"><div class="w-2 h-2 bg-red-700 rounded-full"></div> 12h+</span>
+                        <span class="flex items-center gap-1"><div class="w-2 h-2 bg-red-700 rounded-full"></div> Crítico</span>
                     </div>
                 </div>
-
-                <!-- MAPA SIMULADO CON BARRAS -->
                 <div class="space-y-3">
-                    <!-- Occidente -->
                     <div class="group">
                         <div class="flex justify-between text-[10px] text-gray-400 mb-1">
-                            <span>Occidente (Mariel 5 Averiada)</span>
-                            <span class="text-orange-500 font-bold">Muy Alto</span>
+                            <span>Occidente (Mariel 5 y Sta Cruz 2-3 OFF)</span>
+                            <span class="text-red-500 font-bold">Muy Alto</span>
                         </div>
-                        <div class="w-full bg-gray-800 h-2 rounded-full overflow-hidden">
-                            <div class="bg-gradient-to-r from-yellow-500 to-orange-600 h-full w-[85%] group-hover:animate-pulse"></div>
-                        </div>
+                        <div class="w-full bg-gray-800 h-2 rounded-full overflow-hidden"><div class="bg-gradient-to-r from-orange-600 to-red-600 h-full w-[90%]"></div></div>
                     </div>
-                    <!-- Centro -->
                     <div class="group">
                         <div class="flex justify-between text-[10px] text-gray-400 mb-1">
-                            <span>Centro (Cienfuegos 3 Averiada)</span>
-                            <span class="text-red-500 font-bold">Crítico</span>
+                            <span>Centro (Cienfuegos 4 Mantenimiento)</span>
+                            <span class="text-orange-500 font-bold">Alto</span>
                         </div>
-                        <div class="w-full bg-gray-800 h-2 rounded-full overflow-hidden">
-                            <div class="bg-gradient-to-r from-orange-600 to-red-600 h-full w-[92%] group-hover:animate-pulse"></div>
-                        </div>
+                        <div class="w-full bg-gray-800 h-2 rounded-full overflow-hidden"><div class="bg-gradient-to-r from-yellow-500 to-orange-600 h-full w-[80%]"></div></div>
                     </div>
-                    <!-- Oriente -->
                     <div class="group">
                         <div class="flex justify-between text-[10px] text-gray-400 mb-1">
                             <span>Oriente (Felton 2 y Renté 6 OFF)</span>
                             <span class="text-red-700 font-bold">Zona Cero</span>
                         </div>
-                        <div class="w-full bg-gray-800 h-2 rounded-full overflow-hidden">
-                            <div class="bg-gradient-to-r from-red-600 to-red-900 h-full w-[100%] group-hover:animate-pulse"></div>
-                        </div>
+                        <div class="w-full bg-gray-800 h-2 rounded-full overflow-hidden"><div class="bg-gradient-to-r from-red-600 to-red-900 h-full w-[98%]"></div></div>
                     </div>
                 </div>
-                
                 <div class="mt-4 p-2 bg-red-900/10 border-l-2 border-red-500 text-[10px] text-gray-400 italic">
-                    "978 MW afectados solo por falta de combustible. La situación es generalizada en todo el país."
+                    "Se incrementa la afectación por falta de combustible a 1,005 MW distribuidos en todo el país."
                 </div>
             </div>
 
-            <!-- WIDGET 4: COMPARADOR PERSONALIZADO -->
+            <!-- WIDGET 4: COMPARADOR (Mismo código, no cambia lógica) -->
             <div class="lg:col-span-6 bg-gradient-to-br from-gray-900 to-blue-900/20 border border-blue-500/30 rounded-xl p-5">
                 <h3 class="text-white font-bold text-sm mb-4 border-b border-gray-700 pb-2">
                     <i class="fas fa-balance-scale text-blue-400 mr-2"></i> Comparador con la Habana
                 </h3>
-
                 <div class="flex gap-3 mb-4">
                     <select id="compProvincia" class="bg-gray-950 border border-gray-600 text-white text-xs rounded-lg p-2 w-full focus:border-blue-500 outline-none">
                         <option value="0">Selecciona tu Provincia...</option>
-                        <option value="12">Pinar del Río</option>
-                        <option value="14">Artemisa / Mayabeque</option>
-                        <option value="14">Matanzas</option>
-                        <option value="16">Villa Clara / Cienfuegos</option>
-                        <option value="18">Las Tunas / Holguín</option>
-                        <option value="20">Santiago / Guantánamo</option>
+                        <option value="10">Pinar del Río</option>
+                        <option value="12">Artemisa / Mayabeque</option>
+                        <option value="12">Matanzas</option>
+                        <option value="14">Villa Clara / Cienfuegos</option>
+                        <option value="16">Las Tunas / Holguín</option>
+                        <option value="18">Santiago / Guantánamo</option>
                     </select>
                 </div>
-
-                <!-- Resultado -->
                 <div id="compResult" class="hidden">
                     <div class="flex items-center justify-between bg-black/40 p-3 rounded-lg border border-gray-700">
                         <div class="text-center w-1/2 border-r border-gray-700">
-                            <p class="text-[9px] text-gray-500 uppercase">La Habana (Promedio)</p>
-                            <p class="text-xl font-bold text-yellow-400">4-6 h</p>
-                            <p class="text-[9px] text-gray-500">Apagón</p>
+                            <p class="text-[9px] text-gray-500 uppercase">La Habana</p>
+                            <p class="text-xl font-bold text-yellow-400">5 h</p>
                         </div>
                         <div class="text-center w-1/2">
                             <p class="text-[9px] text-gray-500 uppercase">Tu Provincia</p>
                             <p class="text-3xl font-black text-red-500 animate-pulse" id="compHoras">-- h</p>
-                            <p class="text-[9px] text-red-300">Apagón Estimado</p>
                         </div>
                     </div>
-                    <p class="text-center text-[10px] text-gray-400 mt-2">
-                        Tienes <strong class="text-white">3 veces más apagón</strong> que la capital. 
-                    </p>
-                    <button onclick="openOrderForm('Consulta por Desigualdad Regional')" class="w-full mt-3 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold py-2 rounded transition">
+                    <button onclick="openOrderForm('Consulta Regional')" class="w-full mt-3 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold py-2 rounded transition">
                         Igualar las condiciones (Comprar Kit)
                     </button>
                 </div>
-                
-                <!-- Estado Inicial -->
-                <div id="compPlaceholder" class="text-center py-4">
-                    <p class="text-xs text-gray-500 animate-pulse">Selecciona tu ubicación para calcular el impacto...</p>
-                </div>
+                <div id="compPlaceholder" class="text-center py-4"><p class="text-xs text-gray-500">Selecciona tu ubicación...</p></div>
             </div>
 
         </div>
@@ -745,53 +705,61 @@
             <div class="whitespace-nowrap animate-ticker flex items-center gap-8 pl-36 text-xs font-mono text-gray-300">
                 
                 <!-- Dato 0: Récord Ayer -->
-                <span class="flex items-center gap-2">
-                    <span class="text-gray-500">RÉCORD AYER:</span>
-                    <span class="text-red-500 font-bold">2,185 MW AFECTACIÓN</span>
-                </span>
+    <span class="flex items-center gap-2">
+        <span class="text-gray-500">AYER (REAL):</span>
+        <span class="text-red-500 font-bold">2,185 MW AFECTACIÓN</span>
+    </span>
 
-                <span class="text-gray-700">|</span>
+    <span class="text-gray-700">|</span>
 
-                <!-- Dato 1: Felton -->
-                <span class="flex items-center gap-2">
-                    <span class="text-gray-500">CTE FELTON 2:</span>
-                    <span class="text-red-500 font-bold">❌ AVERÍA</span>
-                </span>
+    <!-- Dato 1: Felton -->
+    <span class="flex items-center gap-2">
+        <span class="text-gray-500">CTE FELTON 2:</span>
+        <span class="text-red-500 font-bold">❌ AVERÍA</span>
+    </span>
 
-                <span class="text-gray-700">|</span>
+    <span class="text-gray-700">|</span>
 
-                <!-- Dato 2: Mariel -->
-                <span class="flex items-center gap-2">
-                    <span class="text-gray-500">CTE MARIEL 5:</span>
-                    <span class="text-red-500 font-bold">❌ AVERÍA</span>
-                </span>
+    <!-- Dato 2: Mariel -->
+    <span class="flex items-center gap-2">
+        <span class="text-gray-500">CTE MARIEL 5:</span>
+        <span class="text-red-500 font-bold">❌ AVERÍA</span>
+    </span>
 
-                <span class="text-gray-700">|</span>
+    <span class="text-gray-700">|</span>
 
-                <!-- Dato 3: Renté -->
-                <span class="flex items-center gap-2">
-                    <span class="text-gray-500">CTE RENTÉ 6:</span>
-                    <span class="text-red-500 font-bold">❌ AVERÍA</span>
-                </span>
+    <!-- Dato 3: Renté -->
+    <span class="flex items-center gap-2">
+        <span class="text-gray-500">CTE RENTÉ 6:</span>
+        <span class="text-red-500 font-bold">❌ AVERÍA</span>
+    </span>
 
-                <span class="text-gray-700">|</span>
+    <span class="text-gray-700">|</span>
 
-                <!-- Dato 4: 10 de Octubre -->
-                <span class="flex items-center gap-2">
-                    <span class="text-gray-500">10 OCTUBRE 6:</span>
-                    <span class="text-red-500 font-bold">❌ AVERÍA</span>
-                </span>
+    <!-- Dato 4: 10 de Octubre -->
+    <span class="flex items-center gap-2">
+        <span class="text-gray-500">10 OCTUBRE 6:</span>
+        <span class="text-red-500 font-bold">❌ AVERÍA</span>
+    </span>
 
-                <span class="text-gray-700">|</span>
+    <span class="text-gray-700">|</span>
 
-                <!-- Dato 5: Combustible -->
-                <span class="flex items-center gap-2">
-                    <span class="text-gray-500">GEN. DISTRIBUIDA:</span>
-                    <span class="text-orange-500 font-bold">⚠️ 978 MW OFF (COMBUSTIBLE)</span>
-                </span>
+    <!-- Dato 5: Combustible -->
+    <span class="flex items-center gap-2">
+        <span class="text-gray-500">CRISIS COMBUSTIBLE:</span>
+        <span class="text-orange-500 font-bold">⚠️ 1,005 MW FUERA</span>
+    </span>
 
-                <span class="text-gray-700">|</span>
-                <span class="text-blue-400 italic">... Fuente: Parte Oficial UNE 09/12 ...</span>
+    <span class="text-gray-700">|</span>
+    
+    <!-- Dato 6: Buena Noticia -->
+    <span class="flex items-center gap-2">
+        <span class="text-gray-500">PRONÓSTICO:</span>
+        <span class="text-green-400 font-bold">✅ ENTRA NUEVITAS 6 (+90 MW)</span>
+    </span>
+
+    <span class="text-gray-700">|</span>
+    <span class="text-blue-400 italic">... Fuente: Parte Oficial UNE 10/12 ...</span>
                 
             </div>
             
@@ -827,14 +795,14 @@
             <div>
                 <span class="inline-flex items-center gap-2 px-3 py-1 rounded bg-red-900/30 border border-red-500/30 text-red-400 text-[10px] font-bold uppercase tracking-widest mb-3">
                     <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
-                    Datos Oficiales UNE
+                    Datos Oficiales UNE (10 Dic)
                 </span>
                 <h2 class="text-3xl md:text-4xl font-bold text-white">Situación del SEN <span class="text-red-500">HOY</span></h2>
                 <p class="text-gray-400 text-sm mt-2">No opiniones. Solo números del parte oficial.</p>
             </div>
             <div class="text-right mt-4 md:mt-0">
                 <div class="text-xs text-gray-500 uppercase tracking-widest">Déficit Pronosticado</div>
-                <div class="text-5xl font-black text-white leading-none">1,970 <span class="text-lg text-red-500">MW</span></div>
+                <div class="text-5xl font-black text-white leading-none">1,790 <span class="text-lg text-red-500">MW</span></div>
                 <div class="text-xs text-red-400 font-bold mt-1">CRÍTICO: Supera la generación</div>
             </div>
         </div>
@@ -849,71 +817,72 @@
                     <div class="absolute top-0 right-0 p-4 opacity-10"><i class="fas fa-bolt text-6xl text-red-500"></i></div>
                     
                     <h3 class="text-white font-bold text-lg mb-4 flex items-center gap-2">
-                        <i class="fas fa-chart-pie text-red-500"></i> Cobertura Real
+                        <i class="fas fa-chart-pie text-red-500"></i> Cobertura Real (10 Dic)
                     </h3>
                     
-                    <!-- Barra de Progreso Realista -->
+                    <!-- Barra de Progreso Realista (Calculado: 1540 Gen / 3300 Demanda) -->
                     <div class="mb-2 flex justify-between text-xs font-bold uppercase text-gray-400">
-                        <span>Generación (38%)</span>
-                        <span class="text-red-500">Déficit (62%)</span>
+                        <span>Generación (47%)</span>
+                        <span class="text-red-500">Déficit (53%)</span>
                     </div>
                     <div class="w-full h-6 bg-red-900/40 rounded-full overflow-hidden flex border border-gray-700">
-                        <div class="h-full bg-green-500 flex items-center justify-center text-[10px] text-black font-bold" style="width: 38%">38%</div>
-                        <div class="h-full bg-red-600 flex items-center justify-center text-[10px] text-white font-bold animate-pulse" style="width: 62%">SIN LUZ</div>
+                        <div class="h-full bg-green-500 flex items-center justify-center text-[10px] text-black font-bold" style="width: 47%">47%</div>
+                        <div class="h-full bg-red-600 flex items-center justify-center text-[10px] text-white font-bold animate-pulse" style="width: 53%">SIN LUZ</div>
                     </div>
                     
                     <p class="text-xs text-gray-400 mt-4 italic border-l-2 border-red-500 pl-3">
-                        "Para el horario pico se estima una disponibilidad de 1300 MW y una demanda máxima de 3200 MW, para una afectación de <strong>1970 MW</strong>." 
-                        <br><span class="text-gray-600 not-italic font-bold">— Fuente: Nota Informativa UNE 09/12.</span>
+                        "Para el horario pico se estima una disponibilidad de 1540 MW y una demanda máxima de 3300 MW, para una afectación de <strong>1790 MW</strong>." 
+                        <br><span class="text-gray-600 not-italic font-bold">— Fuente: Nota Informativa UNE 10/12.</span>
                     </p>
                 </div>
-                <!-- TRADUCTOR DE IMPACTO (Analogía Visual) -->
-<div class="mt-6 bg-black/40 rounded-xl p-4 border border-gray-700">
-    <div class="flex items-center gap-2 mb-3">
-        <i class="fas fa-language text-yellow-500"></i>
-        <h4 class="text-white text-xs font-bold uppercase">¿Qué significan 1,970 MW de déficit?</h4>
-    </div>
-    
-    <div class="flex items-start gap-4">
-        <!-- Icono Visual -->
-        <div class="shrink-0 flex flex-col items-center">
-            <i class="fas fa-map-marked-alt text-4xl text-gray-600"></i>
-        </div>
-        
-        <!-- Explicación -->
-        <div class="text-xs text-gray-300 leading-relaxed">
-            <p class="mb-2">Es energía suficiente para iluminar <strong>La Habana completa 4 VECES</strong>.</p>
-            <p>
-                Visualízalo así: Para cubrir este hueco hoy, la UNE tiene que apagar el equivalente a:
-                <span class="block mt-1 text-red-400 font-bold">
-                    <i class="fas fa-power-off mr-1"></i> Pinar + Artemisa + Matanzas + Villa Clara + Cienfuegos (JUNTOS).
-                </span>
-            </p>
-        </div>
-    </div>
-    
-    <!-- Conclusión Rápida -->
-    <div class="mt-3 text-[10px] text-gray-500 text-right italic">
-        *Estimación basada en consumo promedio provincial.
-    </div>
-</div>
 
+                <!-- TRADUCTOR DE IMPACTO (Corregido) -->
+                <div class="mt-6 bg-black/40 rounded-xl p-4 border border-gray-700">
+                    <div class="flex items-center gap-2 mb-3">
+                        <i class="fas fa-language text-yellow-500"></i>
+                        <h4 class="text-white text-xs font-bold uppercase">¿Qué significan 1,790 MW de déficit?</h4>
+                    </div>
+                    
+                    <div class="flex items-start gap-4">
+                        <!-- Icono Visual -->
+                        <div class="shrink-0 flex flex-col items-center">
+                            <i class="fas fa-map-marked-alt text-4xl text-gray-600"></i>
+                        </div>
+                        
+                        <!-- Explicación Realista -->
+                        <div class="text-xs text-gray-300 leading-relaxed">
+                            <p class="mb-2">Es energía suficiente para apagar <strong>más de la mitad de Cuba</strong> al mismo tiempo.</p>
+                            <p>
+                                Visualízalo así: Para cubrir este hueco hoy, se apaga el equivalente a:
+                                <span class="block mt-1 text-red-400 font-bold">
+                                    <i class="fas fa-power-off mr-1"></i> Desde Pinar del Río hasta Ciego de Ávila.
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-3 text-[10px] text-gray-500 text-right italic">
+                        *Cálculo basado en demanda promedio provincial.
+                    </div>
+                </div>
+
+                <!-- Histórico Simple (Corregido) -->
                 <div class="grid grid-cols-3 gap-4 text-center">
-    <div class="bg-gray-800 p-3 rounded-lg border border-gray-700">
-        <div class="text-[10px] text-gray-500">Ayer</div>
-        <!-- Dato real de ayer según tu nota: 2185 MW -->
-        <div class="text-red-400 font-bold text-sm">2185 MW</div>
-    </div>
-    <div class="bg-gray-800 p-3 rounded-lg border border-gray-700">
-        <div class="text-[10px] text-gray-500">Dom</div>
-        <div class="text-red-400 font-bold text-sm">2062 MW</div>
-    </div>
-    <div class="bg-gray-800 p-3 rounded-lg border border-gray-700 bg-red-900/20 border-red-500/50">
-        <div class="text-[10px] text-red-300 font-bold">HOY</div>
-        <!-- Pronóstico de hoy -->
-        <div class="text-white font-black text-lg">1970 MW</div>
-    </div>
-</div>
+                    <div class="bg-gray-800 p-3 rounded-lg border border-gray-700">
+                        <div class="text-[10px] text-gray-500">Lunes 8</div>
+                        <!-- Dato corregido: 2062 MW -->
+                        <div class="text-red-400 font-bold text-sm">2062 MW</div>
+                    </div>
+                    <div class="bg-gray-800 p-3 rounded-lg border border-gray-700">
+                        <div class="text-[10px] text-gray-500">Martes (Ayer)</div>
+                        <!-- Dato real ayer: 2185 MW -->
+                        <div class="text-red-400 font-bold text-sm">1970 MW</div>
+                    </div>
+                    <div class="bg-gray-800 p-3 rounded-lg border border-gray-700 bg-red-900/20 border-red-500/50">
+                        <div class="text-[10px] text-red-300 font-bold">HOY MIÉRCOLES</div>
+                        <div class="text-white font-black text-lg">1790 MW</div>
+                    </div>
+                </div>
 
             </div>
 
@@ -987,6 +956,273 @@
                 <i class="fas fa-history"></i> Ver comportamiento de la última semana
             </button>
         </div>
+
+        <!-- ============================================== -->
+<!-- SECCIÓN: AGENDA AUTOMÁTICA INTELIGENTE -->
+<!-- ============================================== -->
+<section class="py-16 bg-[#0b1120] border-t border-gray-800 relative" id="agenda-apagones">
+    <div class="max-w-5xl mx-auto px-4">
+        
+        <!-- ENCABEZADO DINÁMICO -->
+        <div class="text-center mb-10">
+            <span id="dateBadge" class="bg-red-900/30 text-red-400 font-bold px-4 py-1 rounded-full text-xs uppercase mb-3 inline-block animate-pulse border border-red-600/50">
+                <i class="fas fa-calendar-day mr-2"></i> Cargando fecha...
+            </span>
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
+                Tu Agenda Personal de Afectaciones
+            </h2>
+            <p class="text-gray-400 text-sm max-w-xl mx-auto">
+                El sistema ha detectado que hoy es <span id="dayNameSpan" class="text-yellow-500 font-bold">...</span>. 
+                Selecciona tu Bloque para ver tu pronóstico real.
+            </p>
+        </div>
+
+        <!-- CONTROL DE SELECCIÓN -->
+        <div class="max-w-md mx-auto mb-10">
+            <div class="relative group">
+                <div class="absolute -inset-1 bg-gradient-to-r from-yellow-600 to-red-600 rounded-xl blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
+                <div class="relative bg-gray-900 border border-gray-600 rounded-xl p-2 flex items-center shadow-2xl">
+                    <div class="bg-gray-800 p-3 rounded-lg mr-3 text-yellow-500">
+                        <i class="fas fa-cube text-xl"></i>
+                    </div>
+                    <div class="flex-1">
+                        <label class="block text-[10px] text-gray-400 uppercase font-bold tracking-wider mb-1">Selecciona tu Bloque UNE</label>
+                        <select id="blockSelector" onchange="generateSmartAgenda()" class="w-full bg-transparent text-white font-bold text-lg outline-none cursor-pointer">
+                            <option value="" selected disabled>-- Toca aquí --</option>
+                            <option value="1">Bloque #1</option>
+                            <option value="2">Bloque #2</option>
+                            <option value="3">Bloque #3</option>
+                            <option value="4">Bloque #4</option>
+                            <option value="5">Bloque #5</option>
+                            <option value="6">Bloque #6</option>
+                        </select>
+                    </div>
+                    <i class="fas fa-chevron-down text-gray-500 mr-2"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- RESULTADOS (AGENDA) -->
+        <div id="agendaResult" class="hidden space-y-6 animate-slide-in">
+            
+            <!-- TARJETA 1: HOY (URGENCIA) -->
+            <div class="bg-gradient-to-br from-gray-900 to-[#1e293b] border-l-4 border-red-500 rounded-r-xl p-6 shadow-xl relative overflow-hidden">
+                <!-- Etiqueta Flotante -->
+                <div class="absolute top-0 right-0 bg-red-600 text-white text-[10px] font-bold px-4 py-1 rounded-bl shadow-lg" id="cardTodayLabel">
+                    HOY
+                </div>
+                
+                <h3 class="text-xl font-bold text-white mb-4 flex items-center">
+                    <i class="fas fa-bolt text-yellow-500 mr-2"></i> Situación para Hoy
+                </h3>
+                
+                <div class="grid md:grid-cols-2 gap-6 items-center">
+                    <div>
+                        <div class="mb-4">
+                            <p class="text-gray-400 text-xs uppercase mb-1">Horario de Apagón:</p>
+                            <div class="text-3xl font-black text-white leading-tight" id="todayHours">--:--</div>
+                        </div>
+                        
+                        <!-- ALERTA DE NEGOCIO -->
+                        <div id="businessWarning" class="hidden bg-orange-900/20 border border-orange-500/50 p-3 rounded-lg flex items-start gap-3">
+                            <i class="fas fa-store-slash text-orange-500 mt-1"></i>
+                            <div>
+                                <p class="text-orange-400 font-bold text-xs uppercase">Pérdida Económica</p>
+                                <p class="text-gray-400 text-xs leading-tight mt-1">
+                                    Este horario afecta tu jornada laboral. Tu negocio estará cerrado o improductivo.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <!-- ALERTA DE SUEÑO -->
+                        <div id="sleepWarning" class="hidden bg-purple-900/20 border border-purple-500/50 p-3 rounded-lg flex items-start gap-3">
+                            <i class="fas fa-bed text-purple-400 mt-1"></i>
+                            <div>
+                                <p class="text-purple-300 font-bold text-xs uppercase">Descanso Afectado</p>
+                                <p class="text-gray-400 text-xs leading-tight mt-1">
+                                    Afecta la madrugada. Calor y mosquitos garantizados sin respaldo.
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- LA SOLUCIÓN -->
+                    <div class="bg-black/30 border border-gray-700 rounded-lg p-5">
+                        <p class="text-[10px] text-green-400 uppercase font-bold mb-2">Solución Recomendada</p>
+                        <p class="text-white font-bold text-lg mb-1" id="todaySolution">Kit --</p>
+                        <p class="text-xs text-gray-400 mb-4" id="todaySolutionDesc">--</p>
+                        <button onclick="document.getElementById('ofertas-blue').scrollIntoView({behavior: 'smooth'})" class="w-full bg-green-600 hover:bg-green-500 text-white text-xs font-bold py-3 rounded-lg transition transform hover:scale-105 flex items-center justify-center gap-2">
+                            <span>Ver Precio y Reservar</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TARJETA 2: MAÑANA -->
+            <div class="bg-gray-800/50 border border-gray-700 rounded-xl p-5 flex justify-between items-center">
+                <div>
+                    <p class="text-[10px] text-gray-500 uppercase font-bold mb-1" id="labelTomorrow">MAÑANA</p>
+                    <p class="text-white font-bold text-xl" id="tomorrowHours">--:--</p>
+                </div>
+                <div class="text-right">
+                    <span class="text-xs text-yellow-500 font-bold">Prepárate &rarr;</span>
+                </div>
+            </div>
+
+            <!-- BOTÓN FINAL -->
+            <div class="text-center pt-4">
+                <p class="text-xs text-gray-500 mb-2">No dejes que la UNE decida tu horario.</p>
+                <a href="#kits" class="text-sm text-white underline decoration-yellow-500 decoration-2 hover:text-yellow-400">Ver todos los Kits disponibles</a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- CEREBRO DE LA AGENDA (LÓGICA AUTOMÁTICA) -->
+<script>
+    // 1. BASE DE DATOS COMPLETA (Extraída de la Imagen 8-14 Dic)
+    // Claves: 0=Domingo, 1=Lunes, ... 6=Sábado (Estándar Javascript)
+    const fullWeekData = {
+        1: { // LUNES
+            1: { t: '4:00 PM - 9:00 PM', laboral: false },
+            2: { t: '4:00 PM - 9:00 PM', laboral: false },
+            3: { t: '11:00 AM - 2:00 PM y 9:00 PM - 12:00 AM', laboral: true },
+            4: { t: '2:00 PM - 7:00 PM y 12:00 AM - 3:00 AM', laboral: true }, // Madrugada prox dia
+            5: { t: '3:00 PM - 8:00 PM y 3:00 AM - 7:00 AM', laboral: true },
+            6: { t: '3:00 PM - 8:00 PM', laboral: true }
+        },
+        2: { // MARTES
+            1: { t: '2:00 PM - 7:00 PM y 3:00 AM - 7:00 AM', laboral: true },
+            2: { t: '3:00 PM - 8:00 PM', laboral: true },
+            3: { t: '3:00 PM - 8:00 PM y 12:00 AM - 3:00 AM', laboral: true },
+            4: { t: '4:00 PM - 9:00 PM', laboral: false },
+            5: { t: '4:00 PM - 9:00 PM', laboral: false },
+            6: { t: '11:00 AM - 2:00 PM y 9:00 PM - 12:00 AM', laboral: true }
+        },
+        3: { // MIÉRCOLES
+            1: { t: '4:00 PM - 9:00 PM', laboral: false }, // Solape B6-B1
+            2: { t: '11:00 AM - 2:00 PM y 9:00 PM - 12:00 AM', laboral: true },
+            3: { t: '2:00 PM - 7:00 PM y 3:00 AM - 7:00 AM', laboral: true },
+            4: { t: '3:00 PM - 8:00 PM y 12:00 AM - 3:00 AM', laboral: true },
+            5: { t: '3:00 PM - 8:00 PM', laboral: true },
+            6: { t: '4:00 PM - 9:00 PM', laboral: false }
+        },
+        4: { // JUEVES
+            1: { t: '3:00 PM - 8:00 PM', laboral: true },
+            2: { t: '3:00 PM - 8:00 PM y 12:00 AM - 3:00 AM', laboral: true },
+            3: { t: '4:00 PM - 9:00 PM y 3:00 AM - 7:00 AM', laboral: false },
+            4: { t: '4:00 PM - 9:00 PM', laboral: false },
+            5: { t: '11:00 AM - 2:00 PM y 9:00 PM - 12:00 AM', laboral: true },
+            6: { t: '2:00 PM - 7:00 PM', laboral: true }
+        },
+        5: { // VIERNES
+            1: { t: '11:00 AM - 2:00 PM y 9:00 PM - 12:00 AM', laboral: true },
+            2: { t: '2:00 PM - 7:00 PM y 12:00 AM - 3:00 AM', laboral: true },
+            3: { t: '3:00 PM - 8:00 PM y 3:00 AM - 7:00 AM', laboral: true },
+            4: { t: '3:00 PM - 8:00 PM', laboral: true },
+            5: { t: '4:00 PM - 9:00 PM', laboral: false },
+            6: { t: '4:00 PM - 9:00 PM', laboral: false }
+        },
+        6: { // SÁBADO
+            1: { t: '3:00 PM - 8:00 PM', laboral: false }, // Fin de semana no cuenta como laboral estricto para alerta
+            2: { t: '4:00 PM - 9:00 PM y 12:00 AM - 3:00 AM', laboral: false },
+            3: { t: '4:00 PM - 9:00 PM', laboral: false },
+            4: { t: '11:00 AM - 2:00 PM y 9:00 PM - 12:00 AM', laboral: false },
+            5: { t: '2:00 PM - 7:00 PM y 12:00 AM - 3:00 AM', laboral: false }, // Madrugada Domingo
+            6: { t: '3:00 PM - 8:00 PM y 3:00 AM - 7:00 AM', laboral: false }
+        },
+        0: { // DOMINGO
+            1: { t: '4:00 PM - 9:00 PM', laboral: false },
+            2: { t: '4:00 PM - 9:00 PM', laboral: false },
+            3: { t: '11:00 AM - 2:00 PM y 9:00 PM - 12:00 AM', laboral: false },
+            4: { t: '2:00 PM - 7:00 PM y 12:00 AM - 3:00 AM', laboral: false },
+            5: { t: '3:00 PM - 8:00 PM y 3:00 AM - 7:00 AM', laboral: false },
+            6: { t: '3:00 PM - 8:00 PM', laboral: false }
+        }
+    };
+
+    const dayNames = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
+    
+    // Variables globales de tiempo
+    let todayIndex = new Date().getDay(); // 0-6
+    let tomorrowIndex = (todayIndex + 1) % 7;
+
+    // 2. INICIALIZAR FECHA AUTOMÁTICA
+    document.addEventListener('DOMContentLoaded', () => {
+        const now = new Date();
+        const dayName = dayNames[todayIndex];
+        const dayNumber = now.getDate();
+        
+        // Actualizar Textos
+        document.getElementById('dateBadge').innerHTML = `<i class="fas fa-calendar-day mr-2"></i> Hoy: ${dayName} ${dayNumber}`;
+        document.getElementById('dayNameSpan').innerText = dayName;
+        document.getElementById('cardTodayLabel').innerText = `HOY ${dayName.toUpperCase()}`;
+        document.getElementById('labelTomorrow').innerText = `MAÑANA ${dayNames[tomorrowIndex].toUpperCase()}`;
+    });
+
+    // 3. GENERAR AGENDA INTELIGENTE
+    function generateSmartAgenda() {
+        const block = document.getElementById('blockSelector').value;
+        if(!block) return;
+
+        const dataHoy = fullWeekData[todayIndex][block];
+        const dataManana = fullWeekData[tomorrowIndex][block];
+
+        // 3.1. Llenar Datos HOY
+        document.getElementById('todayHours').innerText = dataHoy.t;
+        
+        // Lógica de Alertas
+        const bizAlert = document.getElementById('businessWarning');
+        const sleepAlert = document.getElementById('sleepWarning');
+        
+        // Reset
+        bizAlert.classList.add('hidden');
+        sleepAlert.classList.add('hidden');
+
+        // Alerta Negocio: Si es día laboral (L-V) y el horario es laboral
+        if(todayIndex >= 1 && todayIndex <= 5 && dataHoy.laboral) {
+            bizAlert.classList.remove('hidden');
+        }
+
+        // Alerta Sueño: Si incluye madrugada
+        if(dataHoy.t.includes('AM')) {
+            sleepAlert.classList.remove('hidden');
+        }
+
+        // Recomendación Inteligente
+        recommendKit(dataHoy.t);
+
+        // 3.2. Llenar Datos MAÑANA
+        document.getElementById('tomorrowHours').innerText = dataManana.t;
+
+        // Mostrar Panel
+        document.getElementById('agendaResult').classList.remove('hidden');
+    }
+
+    // 4. LÓGICA DE RECOMENDACIÓN
+    function recommendKit(timeStr) {
+        const solTitle = document.getElementById('todaySolution');
+        const solDesc = document.getElementById('todaySolutionDesc');
+
+        if(timeStr.includes('AM')) {
+            // Madrugada = Necesita mucho almacenamiento o aire
+            solTitle.innerText = "Kit PRO 6.5kW (Split Phase)";
+            solDesc.innerText = "Ideal para soportar aires acondicionados durante la madrugada.";
+        } else if (timeStr.includes('11:00 AM') || timeStr.includes('2:00 PM')) {
+            // Día = Paneles trabajan directo
+            solTitle.innerText = "Kit Astra 5kW (Híbrido)";
+            solDesc.innerText = "Durante el día los paneles alimentan la casa y cargan baterías.";
+        } else {
+            // Noche (Pico) = Batería
+            solTitle.innerText = "Estación Must 2kW";
+            solDesc.innerText = "Perfecto para TV, ventiladores y luces durante el horario pico.";
+        }
+    }
+</script>
+
     <!-- SECCIÓN UNIFICADA: ANÁLISIS HISTÓRICO Y PROYECCIÓN FUTURA 2026 -->
 <section class="py-16 bg-[#020617] border-t border-gray-800 relative overflow-hidden">
     
@@ -4015,24 +4251,24 @@
                     </thead>
                     <tbody class="divide-y divide-gray-700">
     <tr class="bg-gray-800/50">
-        <td class="px-4 py-3 font-mono text-white">Hoy (09 Dic)</td>
-        <td class="px-4 py-3 text-center font-bold text-red-500">1,970</td>
+        <td class="px-4 py-3 font-mono text-white">Hoy (10 Dic)</td>
+        <td class="px-4 py-3 text-center font-bold text-red-500">1,790</td>
         <td class="px-4 py-3 text-center">PRONÓSTICO</td>
+    </tr>
+    <tr>
+        <td class="px-4 py-3 font-mono">09 Dic</td>
+        <td class="px-4 py-3 text-center font-bold text-red-400">2,185</td>
+        <td class="px-4 py-3 text-center">RÉCORD</td>
     </tr>
     <tr>
         <td class="px-4 py-3 font-mono">08 Dic</td>
         <td class="px-4 py-3 text-center font-bold text-red-400">2,185</td>
-        <td class="px-4 py-3 text-center">RÉCORD (Ayer)</td>
+        <td class="px-4 py-3 text-center">RÉCORD</td>
     </tr>
     <tr>
         <td class="px-4 py-3 font-mono">07 Dic</td>
         <td class="px-4 py-3 text-center font-bold text-red-400">2,062</td>
         <td class="px-4 py-3 text-center">CRÍTICO</td>
-    </tr>
-    <tr>
-        <td class="px-4 py-3 font-mono">06 Dic</td>
-        <td class="px-4 py-3 text-center font-bold text-red-400">2,012</td>
-        <td class="px-4 py-3 text-center">MUY ALTO</td>
     </tr>
 </tbody>
                 </table>
