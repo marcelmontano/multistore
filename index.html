@@ -323,6 +323,8 @@
     </div>
 </section>
 
+
+
     <!-- HERO SECTION REESTRUCTURADO (Valor Inmediato + Urgencia Real) -->
 <section class="relative pt-10 pb-20 lg:pt-16 lg:pb-32 overflow-hidden">
 
@@ -343,31 +345,62 @@
                 </span>
                 Stock Crítico: Solo 4 Kits Disponibles Hoy
             </div>
-            
-            <!-- HEADLINE ESPECÍFICO (BENEFICIO TANGIBLE) -->
-            <h1 class="text-3xl md:text-5xl lg:text-6xl font-black text-white mb-6 leading-tight font-tech">
-                GARANTIZA 12 HORAS DE <br>
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500">AIRE ACONDICIONADO</span>
-            </h1>
-            
-            <!-- SUB-HEADLINE (LOGÍSTICA) -->
-            <p class="text-lg text-gray-300 mb-8 leading-relaxed max-w-lg mx-auto lg:mx-0">
-                Protege tu refrigerador y el sueño de tu familia durante los apagones.
-                <strong class="text-white block mt-2"><i class="fas fa-truck-fast text-green-400 mr-2"></i> Entrega en 48h en La Habana. Instalación Certificada.</strong>
-            </p>
 
-            <!-- BOTONES DE ACCIÓN (JERARQUÍA CLARA) -->
-            <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center">
-                <!-- Botón Primario: Grande y Urgente -->
-                <button onclick="openVisitaForm()" class="bg-[#25D366] hover:bg-[#20ba5a] text-white font-bold py-4 px-8 rounded-xl shadow-[0_0_30px_rgba(37,211,102,0.4)] transition transform hover:scale-105 flex items-center justify-center text-lg border border-green-400/20 w-full sm:w-auto">
-                    <i class="fab fa-whatsapp mr-2 text-2xl"></i> Reservar Ahora (48h)
-                </button>
-                
-                <!-- Botón Secundario: Discreto -->
-                <a href="#ofertas-blue" class="text-gray-400 hover:text-white font-bold py-2 px-4 text-sm transition flex items-center gap-2 group border-b border-transparent hover:border-gray-500">
-                    Ver Catálogo Completo <i class="fas fa-arrow-down group-hover:translate-y-1 transition"></i>
-                </a>
+            
+            
+            <!-- HEADLINE ESPECÍFICO (ENFOQUE NEGOCIO/VIP) -->
+<h1 class="text-3xl md:text-5xl lg:text-6xl font-black text-white mb-6 leading-tight font-tech">
+    GARANTIZA LA <br>
+    <span class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500">CONTINUIDAD DE TU NEGOCIO</span>
+</h1>
+            <!-- WIDGET: RELOJ DE LA VERDAD (Pegar en Hero Section) -->
+<div id="truth-clock-container" class="hidden mb-8 animate-slide-in">
+    <div class="inline-flex items-center gap-4 bg-black/40 backdrop-blur-md border border-red-500/30 p-4 rounded-2xl shadow-[0_0_30px_rgba(220,38,38,0.2)] max-w-2xl mx-auto">
+        
+        <!-- Círculo / Velocímetro -->
+        <div class="relative w-24 h-24 shrink-0">
+            <!-- Fondo del círculo -->
+            <svg class="w-full h-full transform -rotate-90">
+                <circle cx="48" cy="48" r="40" stroke="rgba(255,255,255,0.1)" stroke-width="8" fill="transparent" />
+                <!-- Progreso (Se llena con JS) -->
+                <circle id="truth-circle" cx="48" cy="48" r="40" stroke="#ef4444" stroke-width="8" fill="transparent" 
+                    stroke-dasharray="251.2" stroke-dashoffset="251.2" stroke-linecap="round" class="transition-all duration-1000 ease-out" />
+            </svg>
+            <!-- Texto Central -->
+            <div class="absolute inset-0 flex flex-col items-center justify-center">
+                <span id="truth-mw" class="text-2xl font-black text-white leading-none">--</span>
+                <span class="text-[10px] text-gray-400 font-bold">MW OFF</span>
             </div>
+        </div>
+
+        <!-- Copywriting Persuasivo -->
+        <div class="text-left">
+            <div class="flex items-center gap-2 mb-1">
+                <span class="w-2 h-2 rounded-full bg-red-600 animate-ping"></span>
+                <span class="text-red-400 font-bold text-xs uppercase tracking-widest">En Tiempo Real</span>
+            </div>
+            <p class="text-gray-300 text-sm leading-tight">
+                Déficit Actual: <strong class="text-white" id="truth-mw-text">... MW</strong>. 
+                <br>Eso significa que <span id="truth-people" class="text-yellow-400 font-bold underline decoration-red-500">miles de personas</span> no tienen luz ahora.
+            </p>
+            <p class="text-white font-black text-lg mt-1 italic">¿Tú sí?</p>
+        </div>
+    </div>
+</div>
+            <!-- SUB-HEADLINE (ENFOQUE RENTABILIDAD) -->
+<p class="text-lg text-gray-300 mb-8 leading-relaxed max-w-lg mx-auto lg:mx-0">
+    La inestabilidad eléctrica no tiene por qué detener tu facturación ni tu confort.
+    <strong class="text-white block mt-2">
+        <i class="fas fa-shield-alt text-yellow-500 mr-2"></i> Soluciones Industriales y Residenciales de Alta Gama.
+    </strong>
+</p>
+
+            <!-- BOTONES -->
+<div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center">
+    <button onclick="openVisitaForm()" class="bg-[#25D366] hover:bg-[#20ba5a] text-white font-bold py-4 px-8 rounded-xl shadow-[0_0_30px_rgba(37,211,102,0.4)] transition transform hover:scale-105 flex items-center justify-center text-lg border border-green-400/20 w-full sm:w-auto">
+        <i class="fab fa-whatsapp mr-2 text-2xl"></i> Cotizar Proyecto (Llave en Mano)
+    </button>
+</div>
             
             
             <!-- SOCIAL PROOF LOCALIZADO -->
@@ -679,82 +712,81 @@
 
         <div class="grid md:grid-cols-2 gap-8 items-center">
 
-            <!-- OPCIÓN A: PLANTA ELÉCTRICA (EL HUECO NEGRO) -->
-            <div class="bg-red-900/10 border border-red-500/30 rounded-2xl p-8 relative overflow-hidden group hover:border-red-500/60 transition">
-                <div class="absolute top-0 right-0 bg-red-600 text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg">
-                    PASIVO (Gasto)
-                </div>
-                
-                <div class="flex items-center gap-4 mb-6">
-                    <div class="w-16 h-16 rounded-full bg-red-900/50 flex items-center justify-center border border-red-500 text-3xl">
-                        ⛽
-                    </div>
-                    <div>
-                        <h3 class="text-xl font-bold text-white">Planta Eléctrica</h3>
-                        <p class="text-red-400 text-xs">Gasto Perpetuo</p>
-                    </div>
-                </div>
+            <!-- OPCIÓN A: PLANTA ELÉCTRICA (EL GASTO OCULTO) -->
+<div class="bg-red-900/10 border border-red-500/30 rounded-2xl p-8 relative overflow-hidden group hover:border-red-500/60 transition">
+    <div class="absolute top-0 right-0 bg-red-600 text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg">
+        PASIVO (Depreciación)
+    </div>
+    
+    <div class="flex items-center gap-4 mb-6">
+        <div class="w-16 h-16 rounded-full bg-red-900/50 flex items-center justify-center border border-red-500 text-3xl">
+            ⛽
+        </div>
+        <div>
+            <h3 class="text-xl font-bold text-white">Generador Diesel</h3>
+            <p class="text-red-400 text-xs">Dependencia & Logística</p>
+        </div>
+    </div>
 
-                <ul class="space-y-4 text-sm text-gray-300 mb-8">
-                    <li class="flex justify-between border-b border-gray-700 pb-2">
-                        <span>Combustible (5L/noche):</span>
-                        <span class="text-white font-mono">$300 / mes</span>
-                    </li>
-                    <li class="flex justify-between border-b border-gray-700 pb-2">
-                        <span>Aceite y Filtros:</span>
-                        <span class="text-white font-mono">$50 / mes</span>
-                    </li>
-                    <li class="flex justify-between border-b border-gray-700 pb-2">
-                        <span>Reparaciones (Promedio):</span>
-                        <span class="text-white font-mono">$1,200 / 3 años</span>
-                    </li>
-                </ul>
+    <ul class="space-y-4 text-sm text-gray-300 mb-8">
+        <li class="flex justify-between border-b border-gray-700 pb-2">
+            <span>Gestión de Combustible:</span>
+            <span class="text-white font-mono text-right">Colas / Mercado Negro</span>
+        </li>
+        <li class="flex justify-between border-b border-gray-700 pb-2">
+            <span>Mantenimiento Mecánico:</span>
+            <span class="text-white font-mono text-right">Aceite, Filtros, Roturas</span>
+        </li>
+        <li class="flex justify-between border-b border-gray-700 pb-2">
+            <span>Confort / Ambiente:</span>
+            <span class="text-white font-mono text-right">Ruido y Humo (Molestia)</span>
+        </li>
+    </ul>
 
-                <div class="bg-gray-900 p-4 rounded-xl text-center border border-red-500/20">
-                    <p class="text-xs text-gray-500 uppercase tracking-widest mb-1">Costo Total en 3 Años</p>
-                    <p class="text-3xl font-black text-red-500 line-through decoration-gray-500">$13,800 USD</p>
-                    <p class="text-[10px] text-red-400 mt-1">*Dinero quemado que nunca recuperas.</p>
-                </div>
-            </div>
+    <div class="bg-gray-900 p-4 rounded-xl text-center border border-red-500/20">
+        <p class="text-xs text-gray-500 uppercase tracking-widest mb-1">Costo Operativo Mensual</p>
+        <p class="text-3xl font-black text-red-500">Variable / Alto</p>
+        <p class="text-[10px] text-red-400 mt-1">*Sin contar el tiempo perdido buscado diesel.</p>
+    </div>
+</div>
 
-            <!-- OPCIÓN B: KIT SOLAR (LA INVERSIÓN) -->
-            <div class="bg-green-900/10 border-2 border-green-500 rounded-2xl p-8 relative overflow-hidden transform md:scale-105 shadow-[0_0_50px_rgba(34,197,94,0.15)]">
-                <div class="absolute top-0 right-0 bg-green-500 text-black text-[10px] font-bold px-3 py-1 rounded-bl-lg animate-pulse">
-                    ACTIVO (Ahorro)
-                </div>
+            <!-- OPCIÓN B: KIT SOLAR (ACTIVO EMPRESARIAL) -->
+<div class="bg-green-900/10 border-2 border-green-500 rounded-2xl p-8 relative overflow-hidden transform md:scale-105 shadow-[0_0_50px_rgba(34,197,94,0.15)]">
+    <div class="absolute top-0 right-0 bg-green-500 text-black text-[10px] font-bold px-3 py-1 rounded-bl-lg animate-pulse">
+        DEDUCIBLE / ACTIVO
+    </div>
 
-                <div class="flex items-center gap-4 mb-6">
-                    <div class="w-16 h-16 rounded-full bg-green-900/50 flex items-center justify-center border border-green-500 text-3xl">
-                        ☀️
-                    </div>
-                    <div>
-                        <h3 class="text-xl font-bold text-white">Kit Solar 5kW</h3>
-                        <p class="text-green-400 text-xs">Propiedad Privada</p>
-                    </div>
-                </div>
+    <div class="flex items-center gap-4 mb-6">
+        <div class="w-16 h-16 rounded-full bg-green-900/50 flex items-center justify-center border border-green-500 text-3xl">
+            ☀️
+        </div>
+        <div>
+            <h3 class="text-xl font-bold text-white">Energía Autónoma</h3>
+            <p class="text-green-400 text-xs">Propiedad & Estabilidad</p>
+        </div>
+    </div>
 
-                <ul class="space-y-4 text-sm text-gray-300 mb-8">
-                    <li class="flex justify-between border-b border-gray-700 pb-2">
-                        <span>Combustible:</span>
-                        <span class="text-green-400 font-mono font-bold">$0 / mes</span>
-                    </li>
-                    <li class="flex justify-between border-b border-gray-700 pb-2">
-                        <span>Mantenimiento:</span>
-                        <span class="text-green-400 font-mono font-bold">$0 (Autolimpieza)</span>
-                    </li>
-                    <li class="flex justify-between border-b border-gray-700 pb-2">
-                        <span>Valor de Reventa:</span>
-                        <span class="text-green-400 font-mono font-bold">Alto (Activo)</span>
-                    </li>
-                </ul>
+    <ul class="space-y-4 text-sm text-gray-300 mb-8">
+        <li class="flex justify-between border-b border-gray-700 pb-2">
+            <span>Costo Operativo:</span>
+            <span class="text-green-400 font-mono font-bold">$0 / mes</span>
+        </li>
+        <li class="flex justify-between border-b border-gray-700 pb-2">
+            <span>Ruido / Molestias:</span>
+            <span class="text-green-400 font-mono font-bold">0 dB (Silencio Total)</span>
+        </li>
+        <li class="flex justify-between border-b border-gray-700 pb-2">
+            <span>Valor de la Propiedad:</span>
+            <span class="text-green-400 font-mono font-bold">Aumenta +15%</span>
+        </li>
+    </ul>
 
-                <div class="bg-gray-900 p-4 rounded-xl text-center border border-green-500/50 relative">
-                    <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-green-600 text-white text-[9px] px-2 py-0.5 rounded font-bold">PAGO ÚNICO</div>
-                    <p class="text-xs text-gray-500 uppercase tracking-widest mb-1">Inversión Total</p>
-                    <p class="text-4xl font-black text-white">$4,685 USD</p>
-                    <p class="text-[10px] text-green-400 mt-1 font-bold">¡Se paga solo en 13 meses!</p>
-                </div>
-            </div>
+    <div class="bg-gray-900 p-4 rounded-xl text-center border border-green-500/50 relative">
+        <p class="text-xs text-gray-500 uppercase tracking-widest mb-1">Retorno de Inversión (ROI)</p>
+        <p class="text-3xl font-black text-white">12 - 14 Meses</p>
+        <p class="text-[10px] text-green-400 mt-1 font-bold">Después genera utilidades gratis por 20 años.</p>
+    </div>
+</div>
 
         </div>
 
@@ -5459,18 +5491,15 @@ document.addEventListener('DOMContentLoaded', initUltimateUrgency);
     const SHEET_URL = `https://docs.google.com/spreadsheets/d/e/${SHEET_ID}/pub?output=csv`;
     const TELEGRAM_URL = 'https://t.me/s/EmpresaElectricaDeLaHabana';
 
-    // Configuración de Alertas
     const MUNICIPIOS = ['Boyeros', 'Playa', 'Plaza', 'Centro Habana', 'Habana Vieja', 'Regla', 'Habana del Este', 'Guanabacoa', 'San Miguel', 'Diez de Octubre', 'Cerro', 'Marianao', 'La Lisa', 'Arroyo Naranjo', 'Cotorro'];
     const PALABRAS_CLAVE = ['avería', 'disparo', 'interrupción', 'afectados', 'daños'];
-
-    // Variables Globales
-    window.telegramNewsList = []; // Para el Ticker
+    window.telegramNewsList = []; 
 
     // ==========================================
     // 2. INICIALIZACIÓN
     // ==========================================
     document.addEventListener('DOMContentLoaded', () => {
-        console.log("🚀 Iniciando Sistema V-MASTER...");
+        console.log("🚀 Iniciando Sistema V-MASTER + RELOJ...");
         initGrid();
         loadSheet_Fast(); 
         loadTelegram_Robust(); 
@@ -5478,15 +5507,13 @@ document.addEventListener('DOMContentLoaded', initUltimateUrgency);
     });
 
     // ==========================================
-    // MÓDULO TELEGRAM (CEREBRO CENTRAL)
+    // MÓDULO TELEGRAM
     // ==========================================
     async function loadTelegram_Robust() {
         const rawBox = document.getElementById('raw-telegram-msg');
         const timeBox = document.getElementById('telegram-time');
-        
         if(rawBox) rawBox.innerText = "🔄 Sincronizando noticias...";
 
-        // Lista de Proxies en Cascada
         const proxies = [
             'https://api.allorigins.win/raw?url=', 
             'https://corsproxy.io/?',
@@ -5495,7 +5522,6 @@ document.addEventListener('DOMContentLoaded', initUltimateUrgency);
 
         let htmlContent = null;
 
-        // Intentar conectar
         for (const proxy of proxies) {
             try {
                 const response = await fetch(proxy + encodeURIComponent(TELEGRAM_URL));
@@ -5503,7 +5529,7 @@ document.addEventListener('DOMContentLoaded', initUltimateUrgency);
                     const text = await response.text();
                     if (text.includes('tgme_widget_message_text')) {
                         htmlContent = text;
-                        break; // ¡Éxito! Salimos del bucle
+                        break; 
                     }
                 }
             } catch (err) { console.warn("Proxy fail:", err); }
@@ -5534,8 +5560,9 @@ document.addEventListener('DOMContentLoaded', initUltimateUrgency);
         let lastMsgTime = "";
         let textFound = false;
         let alertTriggered = false;
-        
-        window.telegramNewsList = []; // Reiniciar lista para el ticker
+        let realTimeMW = 0; // Variable para el Reloj
+
+        window.telegramNewsList = []; 
 
         // BARRIDO DE MENSAJES (De Nuevo a Viejo)
         for (let i = messages.length - 1; i >= 0; i--) {
@@ -5543,25 +5570,36 @@ document.addEventListener('DOMContentLoaded', initUltimateUrgency);
             const txt = el.innerText;
             const cleanTxt = txt.toLowerCase();
 
-            // 1. Hora del mensaje (siempre intentamos coger la más nueva)
+            // 1. Hora
             const timeNode = el.parentElement.querySelector('.tgme_widget_message_time');
             if(timeNode && !lastMsgTime) lastMsgTime = timeNode.innerText;
 
-            // 2. Guardar noticias para el TICKER (Cinta de arriba)
+            // 2. Ticker
             if (window.telegramNewsList.length < 5 && txt.length > 25) {
-                // Limpiamos saltos de línea para que se vea bonito
                 const niceText = txt.replace(/\n/g, ' | ').substring(0, 150);
                 window.telegramNewsList.push(niceText);
             }
 
-            // 3. Guardar mensaje para la BARRA INFERIOR (Debajo de tarjetas)
-            // Buscamos el primero (más nuevo) que tenga contenido relevante
+            // 3. Barra Inferior
             if (!textFound && (txt.includes('Bloque') || txt.includes('déficit') || txt.includes('afectaciones') || txt.includes('Nota'))) {
                 lastMsgText = txt;
                 textFound = true;
             }
 
-            // 4. ALERTA LOCAL (Banner Amarillo)
+            // --------------------------------------------------------
+            // 🕒 4. LÓGICA DEL RELOJ DE LA VERDAD (NUEVO)
+            // Busca: "se afectan 112 MW" o "afectación de 112 MW"
+            // --------------------------------------------------------
+            if (realTimeMW === 0) { // Solo buscamos el dato más reciente
+                const mwRegex = /(?:afectan|afectación de|déficit de)\s*(\d+)\s*MW/i;
+                const matchMW = mwRegex.exec(txt);
+                if (matchMW) {
+                    realTimeMW = parseInt(matchMW[1]);
+                }
+            }
+            // --------------------------------------------------------
+
+            // 5. Alerta Local
             if (!alertTriggered) {
                 const isBreakdown = PALABRAS_CLAVE.some(word => cleanTxt.includes(word));
                 if (isBreakdown) {
@@ -5575,9 +5613,7 @@ document.addEventListener('DOMContentLoaded', initUltimateUrgency);
                 }
             }
 
-            // 5. LÓGICA DE BLOQUES (ON/OFF)
-            
-            // APAGADO
+            // 6. Lógica de Bloques
             const reportRegex = /Bloque\s*(?:no\.?)?\s*(\d).*?(\d{1,2}[:.]\d{2})\s*Hrs/gi;
             let match;
             while ((match = reportRegex.exec(txt)) !== null) {
@@ -5586,7 +5622,6 @@ document.addEventListener('DOMContentLoaded', initUltimateUrgency);
                 if(blockData[b].status === 'unknown') blockData[b] = { status: 'OFF', time: t };
             }
 
-            // ENCENDIDO
             if (cleanTxt.includes('cerrado') || cleanTxt.includes('restablecimiento')) {
                 for(let b=1; b<=6; b++) {
                     if (cleanTxt.match(new RegExp(`bloque\\s*(?:no\\.?)?\\s*${b}\\b`))) {
@@ -5595,7 +5630,6 @@ document.addEventListener('DOMContentLoaded', initUltimateUrgency);
                 }
             }
 
-            // INICIO APAGÓN
             if (cleanTxt.includes('inicia') && (cleanTxt.includes('afectación') || cleanTxt.includes('déficit'))) {
                 for(let b=1; b<=6; b++) {
                     if (cleanTxt.match(new RegExp(`bloque\\s*(?:no\\.?)?\\s*${b}\\b`))) {
@@ -5605,28 +5639,82 @@ document.addEventListener('DOMContentLoaded', initUltimateUrgency);
             }
         }
 
-        // Asumir Luz si no hay reporte específico
         for(let i=1; i<=6; i++) {
             if(blockData[i].status === 'unknown') blockData[i] = { status: 'ON', time: null };
         }
 
-        // --- ACTUALIZACIONES DE UI ---
+        // --- ACTUALIZACIONES UI ---
         updateBlocksUI(blockData);
-        updateTickerUI(); // Actualizar la cinta de arriba
-        updateBottomBar(lastMsgText, lastMsgTime); // Actualizar barra inferior
+        updateTickerUI(); 
+        updateBottomBar(lastMsgText, lastMsgTime);
+        
+        // ACTIVAR RELOJ SI HAY DATO
+        if(realTimeMW > 0) {
+            updateTruthClock(realTimeMW);
+        }
     }
 
+    // ==========================================
+    // 🕒 FUNCIÓN VISUAL DEL RELOJ
+    // ==========================================
+    // ==========================================
+    // 🕒 RELOJ DE RIESGO EMPRESARIAL (NUEVO)
+    // ==========================================
+    function updateTruthClock(mw) {
+        const container = document.getElementById('truth-clock-container');
+        const circle = document.getElementById('truth-circle');
+        const numText = document.getElementById('truth-mw');
+        const copyText = document.getElementById('truth-mw-text');
+        const peopleText = document.getElementById('truth-people'); // Ahora será texto de impacto económico
+
+        if(!container) return;
+
+        // Mostrar Widget
+        container.classList.remove('hidden');
+
+        // Actualizar números
+        numText.innerText = mw;
+        copyText.innerText = mw + " MW";
+
+        // Lógica de Negocio: Déficit -> Horas Estimadas -> Impacto
+        let horasEstimadas = 0;
+        let impactoMsg = "";
+        
+        if (mw < 500) { horasEstimadas = "2-4"; impactoMsg = "Interrupciones molestas."; }
+        else if (mw < 1000) { horasEstimadas = "4-6"; impactoMsg = "Riesgo de cadena de frío."; }
+        else { horasEstimadas = "+8"; impactoMsg = "Pérdida de jornada laboral completa."; }
+
+        // Nuevo Copywriting para Empresarios
+        peopleText.innerHTML = `aprox. <span class="text-red-500 font-bold">${horasEstimadas} horas</span> de parón productivo`;
+
+        // Círculo Visual
+        const maxOffset = 251.2;
+        let percentage = Math.min((mw / 2500), 1); // Ajustado escala a 2500MW
+        let offset = maxOffset - (percentage * maxOffset);
+        circle.style.strokeDashoffset = offset;
+
+        // Colores
+        if (mw > 800) {
+            circle.setAttribute('stroke', '#dc2626'); // Rojo
+            numText.classList.add('text-red-500', 'animate-pulse');
+        } else {
+            circle.setAttribute('stroke', '#eab308'); // Amarillo
+            numText.classList.remove('text-red-500');
+        }
+    }
+
+    // ==========================================
+    // UTILS UI & SHEETS (RESTO IGUAL)
+    // ==========================================
     function updateBottomBar(text, time) {
         const rawBox = document.getElementById('raw-telegram-msg');
         const timeBox = document.getElementById('telegram-time');
         
         if(rawBox) {
-            // Si no encontró texto con palabras clave, usamos la primera noticia de la lista
             let displayText = text;
             if (text === "Sin reportes de texto recientes." && window.telegramNewsList.length > 0) {
                 displayText = window.telegramNewsList[0];
             }
-
             let clean = displayText.replace(/\n/g, ' ').substring(0, 160);
             if(displayText.length > 160) clean += "...";
             
@@ -5637,74 +5725,65 @@ document.addEventListener('DOMContentLoaded', initUltimateUrgency);
         if(timeBox) timeBox.innerText = "ÚLTIMO: " + time;
     }
 
-    // ==========================================
-    // MÓDULO CINTA TICKER (ACTUALIZADO)
-    // ==========================================
     function updateTickerUI() {
         const el = document.getElementById('ticker-content');
         if (!el) return;
-
         const db = window.sheetData || {};
         const defHoy = cleanNum(db['deficit_hoy']) || '...';
         
-        let html = `
-            <span class="text-gray-400 font-bold uppercase text-xs">DÉFICIT HOY:</span>
-            <span class="text-red-500 font-bold ml-2 text-lg animate-pulse">${defHoy} MW</span>
-            <span class="text-yellow-500 mx-6 text-lg">///</span>
-        `;
+        let html = `<span class="text-gray-400 font-bold uppercase text-xs">DÉFICIT HOY:</span><span class="text-red-500 font-bold ml-2 text-lg animate-pulse">${defHoy} MW</span><span class="text-yellow-500 mx-6 text-lg">///</span>`;
 
-        // Inyectar noticias de Telegram
         if (window.telegramNewsList && window.telegramNewsList.length > 0) {
             window.telegramNewsList.forEach(news => {
-                html += `
-                    <span class="inline-flex items-center gap-2 font-bold text-blue-400 text-xs uppercase">
-                        <i class="fab fa-telegram"></i> UNE:
-                    </span>
-                    <span class="text-white font-mono text-[10px] mx-3 tracking-wide">
-                        ${news}
-                    </span>
-                    <span class="text-gray-600 mx-6 text-lg">///</span>
-                `;
+                html += `<span class="inline-flex items-center gap-2 font-bold text-blue-400 text-xs uppercase"><i class="fab fa-telegram"></i> UNE:</span><span class="text-white font-mono text-[10px] mx-3 tracking-wide">${news}</span><span class="text-gray-600 mx-6 text-lg">///</span>`;
             });
         } else {
-            // Fallback si no hay noticias
             const txtSheet = db['ticker_texto'] || 'Sin reportes';
             html += `<span class="text-white font-mono text-sm mx-3">${txtSheet}</span>`;
         }
-
         el.innerHTML = html;
     }
 
     // ==========================================
-    // ALERTA LOCAL (BANNER)
+    // 🚨 ALERTA VIP / NEGOCIOS (NUEVO DISEÑO)
     // ==========================================
     function triggerLocalAlert(municipio, fullText) {
         if(document.getElementById('geo-alert-banner')) return;
+        
         const banner = document.createElement('div');
         banner.id = 'geo-alert-banner';
-        banner.className = 'fixed top-0 left-0 w-full z-[100] bg-yellow-400 text-black shadow-2xl transform translate-y-[-100%] transition-transform duration-500 ease-out border-b-4 border-yellow-600';
+        // Diseño más sobrio y premium (Dorado oscuro/Negro)
+        banner.className = 'fixed top-0 left-0 w-full z-[100] bg-[#1a1810] text-yellow-500 shadow-2xl transform translate-y-[-100%] transition-transform duration-500 ease-out border-b border-yellow-600';
+        
         banner.innerHTML = `
-            <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col md:flex-row items-center justify-between gap-3">
-                <div class="flex items-center gap-3">
-                    <div class="bg-black text-yellow-400 p-2 rounded-full animate-bounce"><i class="fas fa-exclamation-triangle text-xl"></i></div>
+            <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-4">
+                    <div class="bg-yellow-500/20 p-3 rounded-full border border-yellow-500/50">
+                        <i class="fas fa-crown text-2xl text-yellow-400"></i>
+                    </div>
                     <div class="text-left">
-                        <p class="font-black text-sm uppercase tracking-widest leading-none">⚠️ ¡ATENCIÓN ${municipio.toUpperCase()}!</p>
-                        <p class="text-xs font-bold mt-1 leading-tight">UNE Reporta: "${fullText.substring(0, 65)}..."</p>
+                        <p class="font-serif text-xs text-gray-400 uppercase tracking-[0.2em] mb-1">Oportunidad en ${municipio.toUpperCase()}</p>
+                        <p class="text-sm font-medium text-white leading-tight">
+                            La red presenta inestabilidad crítica hoy. <br>
+                            <span class="text-yellow-400">Hemos abierto 2 cupos de instalación prioritaria</span> en su zona para asegurar su negocio.
+                        </p>
                     </div>
                 </div>
-                <div class="flex items-center gap-2">
-                    <button onclick="document.getElementById('ofertas-blue').scrollIntoView({behavior:'smooth'}); removeAlert()" class="bg-black text-white hover:bg-gray-800 px-5 py-2 rounded-full font-bold text-xs uppercase tracking-wide shadow-lg transition transform hover:scale-105 whitespace-nowrap">Tenemos Mensajeros en ${municipio} <i class="fas fa-truck-fast ml-2 text-yellow-400"></i></button>
-                    <button onclick="removeAlert()" class="text-black/50 hover:text-black text-xl px-2">&times;</button>
+                
+                <div class="flex items-center gap-3">
+                    <button onclick="document.getElementById('ofertas-blue').scrollIntoView({behavior:'smooth'}); removeAlert()" 
+                        class="bg-gradient-to-r from-yellow-600 to-yellow-500 text-black px-6 py-2 rounded-lg font-bold text-xs uppercase tracking-widest shadow-lg hover:brightness-110 transition whitespace-nowrap">
+                        Blindar mi Negocio
+                    </button>
+                    <button onclick="removeAlert()" class="text-gray-500 hover:text-white px-2"><i class="fas fa-times"></i></button>
                 </div>
-            </div>`;
+            </div>
+        `;
         document.body.prepend(banner);
         setTimeout(() => banner.classList.remove('translate-y-[-100%]'), 100);
     }
     window.removeAlert = function() { const b = document.getElementById('geo-alert-banner'); if(b) { b.classList.add('translate-y-[-100%]'); setTimeout(() => b.remove(), 500); } }
 
-    // ==========================================
-    // UTILS & SHEETS (INTACTOS)
-    // ==========================================
     function initGrid() {
         const grid = document.getElementById('blocks-grid');
         if(!grid) return;
@@ -5759,7 +5838,7 @@ document.addEventListener('DOMContentLoaded', initUltimateUrgency);
                 window.sheetData = db;
                 if (db['deficit_hoy']) {
                     renderSheetData(db);
-                    updateTickerUI(); // Actualizar Ticker al cargar Sheet
+                    updateTickerUI();
                 }
             }
         } catch (err) {
