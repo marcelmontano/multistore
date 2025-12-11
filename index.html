@@ -466,10 +466,16 @@
                         <circle cx="300" cy="60" r="4" fill="#ef4444" stroke="white" stroke-width="2" class="animate-pulse" />
                     </svg>
 
-                    <!-- Etiquetas -->
-                    <div class="absolute top-[0%] left-0 text-[10px] text-gray-400 bg-black/50 px-1 rounded">8 Dic: 2185</div>
-                    <div class="absolute top-[0%] left-[45%] text-[10px] text-gray-400 bg-black/50 px-1 rounded">9 Dic: 2185</div>
-                    <div class="absolute top-[50%] right-0 text-xs font-bold text-white bg-red-600 border border-white px-2 rounded shadow-lg">Hoy: 1790 MW</div>
+                    <!-- Etiquetas de la Gráfica -->
+<div class="absolute top-[0%] left-0 text-[10px] text-gray-400 bg-black/50 px-1 rounded">
+    <span id="graph-label-1">Día 1</span>
+</div>
+<div class="absolute top-[0%] left-[45%] text-[10px] text-gray-400 bg-black/50 px-1 rounded">
+    <span id="graph-label-2">Día 2</span>
+</div>
+<div class="absolute top-[50%] right-0 text-xs font-bold text-white bg-red-600 border border-white px-2 rounded shadow-lg">
+    <span id="graph-label-3">Hoy: ... MW</span>
+</div>
                 </div>
             </div>
 
@@ -488,9 +494,9 @@
                     </div>
                 </div>
                 <div class="mt-4 text-xs text-gray-300 bg-black/30 p-2 rounded border border-gray-700">
-                    <i class="fas fa-robot text-blue-400 mr-1"></i> 
-                    <strong>IA:</strong> "Mejora leve por entrada de Nuevitas 6, pero crisis de combustible (1005 MW) mantiene apagones de +8 horas."
-                </div>
+    <i class="fas fa-robot text-blue-400 mr-1"></i> 
+    <strong>IA:</strong> "<span id="ia-text-box">Cargando análisis...</span>"
+</div>
             </div>
 
             <!-- WIDGET 3: MAPA DE CALOR -->
@@ -826,9 +832,9 @@
         <div class="flex flex-col md:flex-row justify-between items-end mb-8 border-b border-gray-800 pb-6">
             <div>
                 <span class="inline-flex items-center gap-2 px-3 py-1 rounded bg-red-900/30 border border-red-500/30 text-red-400 text-[10px] font-bold uppercase tracking-widest mb-3">
-                    <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
-                    Datos Oficiales UNE (10 Dic)
-                </span>
+    <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+    Datos Oficiales UNE (<span id="header-date">Cargando...</span>)
+</span>
                 <h2 class="text-3xl md:text-4xl font-bold text-white">Situación del SEN <span class="text-red-500">HOY</span></h2>
                 <p class="text-gray-400 text-sm mt-2">No opiniones. Solo números del parte oficial.</p>
             </div>
@@ -849,8 +855,8 @@
                     <div class="absolute top-0 right-0 p-4 opacity-10"><i class="fas fa-bolt text-6xl text-red-500"></i></div>
                     
                     <h3 class="text-white font-bold text-lg mb-4 flex items-center gap-2">
-                        <i class="fas fa-chart-pie text-red-500"></i> Cobertura Real (10 Dic)
-                    </h3>
+    <i class="fas fa-chart-pie text-red-500"></i> Cobertura Real (<span id="coverage-date">...</span>)
+</h3>
                     
                     <!-- Barra de Progreso Dinámica -->
 <div class="mb-2 flex justify-between text-xs font-bold uppercase text-gray-400">
@@ -1279,23 +1285,25 @@
 
                 <!-- CAJA DE DATOS -->
                 <div class="bg-gray-900/80 border-l-4 border-red-600 p-5 rounded-r-xl mb-6 shadow-2xl backdrop-blur-sm">
-                    <h4 class="text-white font-bold text-sm mb-3">El Pronóstico es Claro:</h4>
-                    <div class="space-y-3">
-                        <div class="flex justify-between items-center text-xs border-b border-gray-800 pb-2">
-                            <span class="text-gray-400">Déficit Hoy (Dic 10):</span>
-                            <!-- ACTUALIZADO A 1,790 -->
-                            <span class="text-white font-bold">~1,790 MW</span>
-                        </div>
-                        <div class="flex justify-between items-center text-xs border-b border-gray-800 pb-2">
-                            <span class="text-gray-400">Récord Ayer:</span>
-                            <span class="text-orange-400 font-bold">2,185 MW</span>
-                        </div>
-                        <div class="flex justify-between items-center text-xs">
-                            <span class="text-gray-400">Proyección Febrero:</span>
-                            <span class="text-red-500 font-black text-sm">~2,600 MW (Colapso)</span>
-                        </div>
-                    </div>
-                </div>
+    <h4 class="text-white font-bold text-sm mb-3">El Pronóstico es Claro:</h4>
+    <div class="space-y-3">
+        <!-- Fila 1: Déficit Hoy -->
+        <div class="flex justify-between items-center text-xs border-b border-gray-800 pb-2">
+            <span class="text-gray-400">Déficit Hoy (<span id="analysis-date">...</span>):</span>
+            <span class="text-white font-bold" id="analysis-deficit">Cargando...</span>
+        </div>
+        <!-- Fila 2: Récord Ayer -->
+        <div class="flex justify-between items-center text-xs border-b border-gray-800 pb-2">
+            <span class="text-gray-400">Récord Ayer:</span>
+            <span class="text-orange-400 font-bold" id="analysis-ayer">Cargando...</span>
+        </div>
+        <!-- Fila 3: Proyección (Esta se queda estática o usa IA si prefieres) -->
+        <div class="flex justify-between items-center text-xs">
+            <span class="text-gray-400">Proyección Febrero:</span>
+            <span class="text-red-500 font-black text-sm">~2,600 MW (Colapso)</span>
+        </div>
+    </div>
+</div>
 
                 <div class="p-3 bg-blue-900/20 rounded-lg border border-blue-500/30 mb-6">
                     <p class="text-[10px] text-blue-200 italic">
@@ -1362,11 +1370,12 @@
                             <animate attributeName="r" values="6;8;6" dur="2s" repeatCount="indefinite" />
                         </circle>
                         
-                        <!-- Etiqueta Flotante HOY (Movida más abajo para coincidir con el punto) -->
-                        <g transform="translate(520, 160)">
-                            <rect x="0" y="0" width="160" height="24" rx="4" fill="#1f2937" stroke="#ef4444" stroke-width="1"/>
-                            <text x="80" y="17" fill="white" font-size="12" text-anchor="middle" font-weight="bold">Real: 1,790 MW 🚨</text>
-                        </g>
+                        <!-- Etiqueta Flotante HOY en el SVG -->
+<g transform="translate(520, 160)">
+    <rect x="0" y="0" width="160" height="24" rx="4" fill="#1f2937" stroke="#ef4444" stroke-width="1"/>
+    <!-- Le agregamos ID aquí -->
+    <text id="analysis-graph-label" x="80" y="17" fill="white" font-size="12" text-anchor="middle" font-weight="bold">Real: ... MW 🚨</text>
+</g>
 
                         <!-- ============================================= -->
                         <!-- PARTE 2: PROYECCIÓN FUTURA (Punteado) -->
@@ -5734,30 +5743,104 @@ document.addEventListener('DOMContentLoaded', initUltimateUrgency);
         return db;
     }
     function renderSheetData(db) {
-        const deficit = parseInt(db['deficit_hoy']?.replace(/\D/g,'')) || 0;
-        const demanda = parseInt(db['demanda_mw']?.replace(/\D/g,'')) || 1;
-        const genMW = parseInt(db['generacion_mw']?.replace(/\D/g,'')) || 0;
-        const percent = Math.round((deficit / demanda) * 100);
-        const genPercent = Math.round((genMW / demanda) * 100);
-        const defPercent = 100 - genPercent;
+    // 1. Limpieza de datos numéricos generales
+    const deficit = parseInt(db['deficit_hoy']?.replace(/\D/g, '')) || 0;
+    const demanda = parseInt(db['demanda_mw']?.replace(/\D/g, '')) || 3000;
+    const genMW = parseInt(db['generacion_mw']?.replace(/\D/g, '')) || 0;
+    const fecha = db['fecha_hoy'] || "Hoy";
 
-        safeSetText('nav-deficit', deficit.toLocaleString() + " MW");
-        safeSetText('nav-percent', percent);
-        safeSetText('dash-deficit', deficit.toLocaleString());
-        safeSetText('exit-deficit', deficit.toLocaleString() + " MW");
-        safeSetText('dash-fecha', db['fecha_hoy'] || "Hoy");
-        safeSetText('bar-gen-txt', genPercent);
-        safeSetText('bar-def-txt', defPercent);
-        safeWidth('bar-gen-width', genPercent);
-        safeWidth('bar-def-width', defPercent);
-        safeSetText('impact-deficit', deficit.toLocaleString());
-        safeSetText('hist-3-val', deficit + " MW");
-        safeSetText('hist-3-date', db['fecha_hoy'] || "Hoy");
-        
-        const quoteEl = document.getElementById('dash-quote');
-        if (quoteEl) {
-            quoteEl.innerHTML = `"Se estima afectación de <strong>${deficit} MW</strong>. ${db['ia_texto'] || 'Situación crítica.'}" <br><span class="text-gray-600 not-italic font-bold text-[9px] mt-1 block">— Fuente: UNE ${db['fecha_hoy'] || 'hoy'}.</span>`;
-        }
+    // 2. Extracción de datos históricos (Ayer y Antier)
+    // Lo definimos aquí arriba una sola vez para usarlo en todas las secciones
+    const valAyer = db['afectacion_ayer'] || "0";
+    const diaAyer = db['dia_ayer'] || "Ayer";
+    const valAntier = db['afectacion_antier'] || "0";
+    const diaAntier = db['dia_antier'] || "Antier";
+
+    // 3. Cálculos de Porcentaje
+    let genPercent = Math.round((genMW / demanda) * 100);
+    if (genPercent > 100) genPercent = 100;
+    const defPercent = 100 - genPercent;
+
+    // ---------------------------------------------
+    // A. ACTUALIZACIÓN DE TEXTOS PRINCIPALES
+    // ---------------------------------------------
+    safeSetText('nav-deficit', deficit.toLocaleString() + " MW");
+    safeSetText('nav-percent', Math.round((deficit / demanda) * 100));
+    safeSetText('dash-deficit', deficit.toLocaleString());
+    safeSetText('exit-deficit', deficit.toLocaleString() + " MW");
+    safeSetText('dash-fecha', fecha);
+
+    // ---------------------------------------------
+    // B. ACTUALIZACIÓN DE FECHAS Y ENCABEZADOS
+    // ---------------------------------------------
+    safeSetText('header-date', fecha);
+    safeSetText('coverage-date', fecha);
+    safeSetText('hist-3-date', fecha);
+
+    // ---------------------------------------------
+    // C. ACTUALIZACIÓN BARRA DE COBERTURA
+    // ---------------------------------------------
+    safeSetText('bar-gen-txt', genPercent);
+    safeSetText('bar-def-txt', defPercent);
+    safeWidth('bar-gen-width', genPercent);
+    safeWidth('bar-def-width', defPercent);
+
+    // ---------------------------------------------
+    // D. ACTUALIZACIÓN GRÁFICA "PULSO DEL DÉFICIT"
+    // ---------------------------------------------
+    safeSetText('graph-label-1', `${diaAntier}: ${valAntier}`);
+    safeSetText('graph-label-2', `${diaAyer}: ${valAyer}`);
+    safeSetText('graph-label-3', `Hoy: ${deficit} MW`);
+
+    // Histórico de cajitas cuadradas
+    safeSetText('hist-1-date', diaAntier);
+    safeSetText('hist-1-val', valAntier + " MW");
+    safeSetText('hist-2-date', diaAyer);
+    safeSetText('hist-2-val', valAyer + " MW");
+    safeSetText('hist-3-val', deficit + " MW");
+
+    // ---------------------------------------------
+    // E. INTELIGENCIA ARTIFICIAL
+    // ---------------------------------------------
+    safeSetText('ia-text-box', db['ia_texto'] || "Analizando datos...");
+    const quoteEl = document.getElementById('dash-quote');
+    if (quoteEl && db['ia_texto']) {
+        quoteEl.innerHTML = `"${db['ia_texto']}"`;
+    }
+
+    // ---------------------------------------------
+    // F. TRADUCTOR DE IMPACTO
+    // ---------------------------------------------
+    safeSetText('impact-deficit', deficit.toLocaleString());
+
+    // ---------------------------------------------
+    // G. SECCIÓN DE ANÁLISIS / GRÁFICA FUTURA (La que fallaba)
+    // ---------------------------------------------
+    
+    // 1. Fecha en la caja de texto
+    safeSetText('analysis-date', fecha);
+
+    // 2. Déficit Hoy
+    safeSetText('analysis-deficit', "~" + deficit.toLocaleString() + " MW");
+
+    // 3. Récord Ayer (Usamos la variable valAyer que definimos arriba)
+    safeSetText('analysis-ayer', parseInt(valAyer).toLocaleString() + " MW");
+
+    // 4. Etiqueta flotante dentro de la Gráfica SVG
+    const graphLabel = document.getElementById('analysis-graph-label');
+    if (graphLabel) {
+        graphLabel.textContent = `Real: ${deficit.toLocaleString()} MW 🚨`;
+    }
+}
+
+    // Funciones auxiliares de seguridad (para que no de error si falta un ID)
+    function safeSetText(id, txt) { 
+        const el = document.getElementById(id); 
+        if (el) el.innerText = txt; 
+    }
+    function safeWidth(id, pct) { 
+        const el = document.getElementById(id); 
+        if (el) el.style.width = pct + "%"; 
     }
     function cleanHtmlToText(html) {
         const temp = document.createElement("div");
