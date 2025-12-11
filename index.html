@@ -66,6 +66,23 @@
     color: #e2e8f0; 
     font-family: 'Montserrat', sans-serif;
 }
+
+/* Animación de Alerta Roja */
+@keyframes redPulse {
+    0% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.4); border-color: rgba(220, 38, 38, 0.6); }
+    70% { box-shadow: 0 0 0 15px rgba(220, 38, 38, 0); border-color: rgba(220, 38, 38, 1); }
+    100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0); border-color: rgba(220, 38, 38, 0.6); }
+}
+
+.emergency-active {
+    background: linear-gradient(135deg, #450a0a 0%, #7f1d1d 100%) !important;
+    animation: redPulse 2s infinite;
+}
+
+.status-normal {
+    background: linear-gradient(135deg, #064e3b 0%, #065f46 100%) !important;
+    border-color: #34d399 !important;
+}
 /* Eliminar el div de vanta si quedó por ahí */
 #vanta-bg { display: none !important; }
         .glass-panel { background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.05); box-shadow: 0 0 40px rgba(0,0,0,0.5); }
@@ -256,45 +273,44 @@
         </div>
 
         <!-- GRID DE 6 BLOQUES -->
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3" id="blocks-grid">
-            <!-- Se generan dinámicamente, pero ponemos placeholders por si acaso -->
-            <!-- B1 -->
-            <div id="card-b1" class="bg-gray-800 border border-gray-700 p-3 rounded-xl text-center transition-all duration-500">
-                <div class="text-gray-400 text-xs font-bold uppercase mb-1">Bloque 1</div>
-                <div id="status-b1" class="text-green-400 font-black text-lg"><i class="fas fa-bolt"></i> ON</div>
-                <div id="time-b1" class="text-[10px] text-gray-500 mt-1">--</div>
+        <!-- GRID DE 6 BLOQUES (SEMÁFORO DEL DOLOR) -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="blocks-grid">
+    <!-- Generaremos las 6 tarjetas con un loop para no repetir código, 
+         pero aquí está la estructura base para que entiendas el cambio -->
+    
+    <!-- La estructura se repetirá del 1 al 6 mediante JS o manual -->
+    <div id="card-b1" class="bg-gray-800 border border-gray-700 p-4 rounded-xl relative overflow-hidden transition-all duration-300">
+        <div class="flex justify-between items-start">
+            <div>
+                <span class="text-xs font-bold text-gray-500 uppercase tracking-widest">Bloque 1</span>
+                <div id="status-b1" class="text-xl font-black text-white mt-1">
+                    <i class="fas fa-spinner fa-spin"></i> Cargando...
+                </div>
             </div>
-            <!-- B2 -->
-            <div id="card-b2" class="bg-gray-800 border border-gray-700 p-3 rounded-xl text-center transition-all duration-500">
-                <div class="text-gray-400 text-xs font-bold uppercase mb-1">Bloque 2</div>
-                <div id="status-b2" class="text-green-400 font-black text-lg"><i class="fas fa-bolt"></i> ON</div>
-                <div id="time-b2" class="text-[10px] text-gray-500 mt-1">--</div>
-            </div>
-            <!-- B3 -->
-            <div id="card-b3" class="bg-gray-800 border border-gray-700 p-3 rounded-xl text-center transition-all duration-500">
-                <div class="text-gray-400 text-xs font-bold uppercase mb-1">Bloque 3</div>
-                <div id="status-b3" class="text-green-400 font-black text-lg"><i class="fas fa-bolt"></i> ON</div>
-                <div id="time-b3" class="text-[10px] text-gray-500 mt-1">--</div>
-            </div>
-            <!-- B4 -->
-            <div id="card-b4" class="bg-gray-800 border border-gray-700 p-3 rounded-xl text-center transition-all duration-500">
-                <div class="text-gray-400 text-xs font-bold uppercase mb-1">Bloque 4</div>
-                <div id="status-b4" class="text-green-400 font-black text-lg"><i class="fas fa-bolt"></i> ON</div>
-                <div id="time-b4" class="text-[10px] text-gray-500 mt-1">--</div>
-            </div>
-            <!-- B5 -->
-            <div id="card-b5" class="bg-gray-800 border border-gray-700 p-3 rounded-xl text-center transition-all duration-500">
-                <div class="text-gray-400 text-xs font-bold uppercase mb-1">Bloque 5</div>
-                <div id="status-b5" class="text-green-400 font-black text-lg"><i class="fas fa-bolt"></i> ON</div>
-                <div id="time-b5" class="text-[10px] text-gray-500 mt-1">--</div>
-            </div>
-            <!-- B6 -->
-            <div id="card-b6" class="bg-gray-800 border border-gray-700 p-3 rounded-xl text-center transition-all duration-500">
-                <div class="text-gray-400 text-xs font-bold uppercase mb-1">Bloque 6</div>
-                <div id="status-b6" class="text-green-400 font-black text-lg"><i class="fas fa-bolt"></i> ON</div>
-                <div id="time-b6" class="text-[10px] text-gray-500 mt-1">--</div>
+            <div id="icon-b1" class="text-3xl text-gray-700">
+                <i class="fas fa-question-circle"></i>
             </div>
         </div>
+        
+        <!-- Contador de Tiempo (Se muestra si está apagado) -->
+        <div id="time-container-b1" class="mt-3 hidden">
+            <div class="bg-black/40 rounded p-2 flex items-center gap-2">
+                <i class="fas fa-stopwatch text-red-500 animate-pulse"></i>
+                <span id="time-b1" class="text-sm font-mono text-white font-bold">--:--</span>
+            </div>
+        </div>
+
+        <!-- CTA DE VENTA (Solo aparece en emergencia) -->
+        <div id="cta-b1" class="mt-4 hidden animate-slide-in">
+            <button onclick="document.getElementById('ofertas-blue').scrollIntoView({behavior: 'smooth'})" class="w-full bg-white text-red-600 font-bold py-2 rounded shadow-lg hover:bg-gray-100 transition text-xs uppercase tracking-wide flex items-center justify-center gap-2">
+                <i class="fas fa-bolt"></i> ¿Vives aquí? Enciende tu casa
+            </button>
+        </div>
+    </div>
+    
+    <!-- Repetir estructura para b2, b3, b4, b5, b6 (El JS lo manejará) -->
+    <!-- Para facilitar, usa este script pequeño para generar el HTML vacío al cargar -->
+</div>
 
         <!-- Cita del mensaje original (Para dar credibilidad) -->
         <div class="mt-4 bg-blue-900/10 border border-blue-500/20 p-3 rounded-lg flex gap-3 items-start">
@@ -5436,303 +5452,328 @@ document.addEventListener('DOMContentLoaded', initUltimateUrgency);
 <!-- SCRIPT V7: TODO EN UNO (TICKER + BLOQUES + ALERTAS) -->
 <!-- ======================================================= -->
 <script>
-    // --- 1. CONFIGURACIÓN ---
+    // ==========================================
+    // 1. CONFIGURACIÓN GLOBAL
+    // ==========================================
     const SHEET_ID = '2PACX-1vSzif4P4juLuHJiXEnowN0cDOI3MEsSJLrLvQFYpL2YCyjBDgW9HZFI2lwu8ZLToVpELVc8NOF-Lsfd';
     const SHEET_URL = `https://docs.google.com/spreadsheets/d/e/${SHEET_ID}/pub?output=csv`;
     const TELEGRAM_URL = 'https://t.me/s/EmpresaElectricaDeLaHabana';
 
-    // Municipios para Alerta de Venta Local
-    const MUNICIPALES = ['Playa', 'Plaza', 'Centro Habana', 'Habana Vieja', 'Regla', 'Habana del Este', 'Guanabacoa', 'San Miguel', 'Diez de Octubre', 'Cerro', 'Marianao', 'Lisa', 'Boyeros', 'Arroyo Naranjo', 'Cotorro'];
+    // Configuración de Alertas
+    const MUNICIPIOS = ['Boyeros', 'Playa', 'Plaza', 'Centro Habana', 'Habana Vieja', 'Regla', 'Habana del Este', 'Guanabacoa', 'San Miguel', 'Diez de Octubre', 'Cerro', 'Marianao', 'La Lisa', 'Arroyo Naranjo', 'Cotorro'];
+    const PALABRAS_CLAVE = ['avería', 'disparo', 'interrupción', 'afectados', 'daños'];
 
-    // --- 2. INICIALIZACIÓN ---
+    // Variables Globales
+    window.telegramNewsList = []; // Para el Ticker
+
+    // ==========================================
+    // 2. INICIALIZACIÓN
+    // ==========================================
     document.addEventListener('DOMContentLoaded', () => {
-        console.log("🚀 Iniciando Sistema V7 (Full)...");
-        
-        // Ejecución paralela
+        console.log("🚀 Iniciando Sistema V-MASTER...");
+        initGrid();
         loadSheet_Fast(); 
-        loadTelegram_Smart();
+        loadTelegram_Robust(); 
+        if(typeof initUltimateUrgency === 'function') initUltimateUrgency();
     });
 
     // ==========================================
-    // MÓDULO A: GOOGLE SHEETS (DÉFICIT)
+    // MÓDULO TELEGRAM (CEREBRO CENTRAL)
     // ==========================================
-    async function loadSheet_Fast() {
-        const freshUrl = SHEET_URL + '&t=' + Date.now();
-        const proxyA = 'https://corsproxy.io/?';
-        
-        try {
-            const response = await fetch(proxyA + encodeURIComponent(freshUrl));
-            if (!response.ok) throw new Error("Error HTTP Sheet");
-            const csvText = await response.text();
-            
-            if (csvText && csvText.includes(',')) {
-                const db = parseCSV(csvText);
-                if (db['deficit_hoy']) {
-                    window.sheetData = db;
-                    renderSheetData(db);
-                    // Inicializar Ticker con datos del Sheet mientras llega Telegram
-                    updateTickerUI([]); 
-                }
-            } else { throw new Error("Formato inválido"); }
-
-        } catch (err) {
-            // Fallback (Proxy B)
-            try {
-                const proxyB = 'https://api.allorigins.win/raw?url=';
-                const resB = await fetch(proxyB + encodeURIComponent(freshUrl));
-                const txtB = await resB.text();
-                const dbB = parseCSV(txtB);
-                if (dbB['deficit_hoy']) {
-                    window.sheetData = dbB;
-                    renderSheetData(dbB);
-                    updateTickerUI([]);
-                }
-            } catch (err2) {
-                document.getElementById('nav-deficit').innerText = "Offline";
-            }
-        }
-    }
-
-    // ==========================================
-    // MÓDULO B: TELEGRAM (INTELIGENCIA + NOTICIAS)
-    // ==========================================
-    async function loadTelegram_Smart() {
-        const proxyJSON = 'https://api.allorigins.win/get?url=';
+    async function loadTelegram_Robust() {
         const rawBox = document.getElementById('raw-telegram-msg');
+        const timeBox = document.getElementById('telegram-time');
         
-        try {
-            if(rawBox) rawBox.innerText = "🔄 Conectando con la UNE...";
+        if(rawBox) rawBox.innerText = "🔄 Sincronizando noticias...";
 
-            const response = await fetch(proxyJSON + encodeURIComponent(TELEGRAM_URL));
-            const data = await response.json(); 
-            const html = data.contents; 
+        // Lista de Proxies en Cascada
+        const proxies = [
+            'https://api.allorigins.win/raw?url=', 
+            'https://corsproxy.io/?',
+            'https://api.codetabs.com/v1/proxy?quest='
+        ];
 
-            if (html) {
-                analyzeTelegramHTML(html);
-            } else { throw new Error("HTML vacío"); }
+        let htmlContent = null;
 
-        } catch (e) {
-            console.warn("⚠️ Telegram Error:", e);
-            telegramFallback("Sin conexión con UNE.");
+        // Intentar conectar
+        for (const proxy of proxies) {
+            try {
+                const response = await fetch(proxy + encodeURIComponent(TELEGRAM_URL));
+                if (response.ok) {
+                    const text = await response.text();
+                    if (text.includes('tgme_widget_message_text')) {
+                        htmlContent = text;
+                        break; // ¡Éxito! Salimos del bucle
+                    }
+                }
+            } catch (err) { console.warn("Proxy fail:", err); }
+        }
+
+        if (htmlContent) {
+            processTelegramHTML(htmlContent);
+        } else {
+            if(rawBox) {
+                rawBox.innerText = "⚠️ No se pudo conectar a Telegram.";
+                rawBox.parentElement.classList.add('border-red-500/50', 'bg-red-900/10');
+            }
+            if(timeBox) timeBox.innerText = "OFFLINE";
         }
     }
 
-    function analyzeTelegramHTML(html) {
+    function processTelegramHTML(html) {
         const parser = new DOMParser();
         const doc = parser.parseFromString(html, "text/html");
         const messages = doc.querySelectorAll('.tgme_widget_message_text');
 
-        if (messages.length === 0) {
-            telegramFallback("No se pudieron leer mensajes.");
-            return;
-        }
+        if (!messages || messages.length === 0) return;
 
-        let blockReport = null;
-        let reportTime = "";
-        let foundFault = false;
-        const recentNews = []; // Array para guardar noticias para la barra
+        let blockData = {}; 
+        for(let i=1; i<=6; i++) blockData[i] = { status: 'unknown', time: null };
+        
+        let lastMsgText = "Sin reportes de texto recientes.";
+        let lastMsgTime = "";
+        let textFound = false;
+        let alertTriggered = false;
+        
+        window.telegramNewsList = []; // Reiniciar lista para el ticker
 
-        // RECORREMOS LOS MENSAJES DE MÁS NUEVO A MÁS VIEJO
-        // (Limitamos a los últimos 30 para eficiencia)
-        const limit = Math.max(0, messages.length - 30);
+        // BARRIDO DE MENSAJES (De Nuevo a Viejo)
+        for (let i = messages.length - 1; i >= 0; i--) {
+            const el = messages[i];
+            const txt = el.innerText;
+            const cleanTxt = txt.toLowerCase();
 
-        for (let i = messages.length - 1; i >= limit; i--) {
-            const txt = messages[i].innerText;
-            const htmlContent = messages[i].innerHTML;
+            // 1. Hora del mensaje (siempre intentamos coger la más nueva)
+            const timeNode = el.parentElement.querySelector('.tgme_widget_message_time');
+            if(timeNode && !lastMsgTime) lastMsgTime = timeNode.innerText;
 
-            // 1. RECOLECCIÓN DE NOTICIAS (Para el Ticker)
-            // Filtramos: que sea largo, que no sea el reporte técnico de bloques
-            if (txt.length > 40 && !txt.includes('00.00Hrs') && !txt.includes('00:00')) {
-                recentNews.push(cleanHtmlToText(htmlContent));
+            // 2. Guardar noticias para el TICKER (Cinta de arriba)
+            if (window.telegramNewsList.length < 5 && txt.length > 25) {
+                // Limpiamos saltos de línea para que se vea bonito
+                const niceText = txt.replace(/\n/g, ' | ').substring(0, 150);
+                window.telegramNewsList.push(niceText);
             }
 
-            // 2. DETECCIÓN DE AVERÍAS LOCALES (Alerta Amarilla)
-            if (!foundFault && (txt.includes('avería') || txt.includes('disparo') || txt.includes('afectados'))) {
-                MUNICIPALES.forEach(muni => {
-                    if (txt.includes(muni)) {
-                        triggerLocalAlert(muni, txt);
-                        foundFault = true; // Solo mostramos la más reciente
+            // 3. Guardar mensaje para la BARRA INFERIOR (Debajo de tarjetas)
+            // Buscamos el primero (más nuevo) que tenga contenido relevante
+            if (!textFound && (txt.includes('Bloque') || txt.includes('déficit') || txt.includes('afectaciones') || txt.includes('Nota'))) {
+                lastMsgText = txt;
+                textFound = true;
+            }
+
+            // 4. ALERTA LOCAL (Banner Amarillo)
+            if (!alertTriggered) {
+                const isBreakdown = PALABRAS_CLAVE.some(word => cleanTxt.includes(word));
+                if (isBreakdown) {
+                    for (const muni of MUNICIPIOS) {
+                        if (cleanTxt.includes(muni.toLowerCase())) {
+                            triggerLocalAlert(muni, txt);
+                            alertTriggered = true;
+                            break; 
+                        }
                     }
-                });
+                }
             }
 
-            // 3. DETECCIÓN DE BLOQUES (Para el Grid)
-            // Solo si no tenemos uno ya (queremos el más reciente)
-            if (!blockReport) {
-                // Regex flexible para encontrar el reporte
-                const isBlockReport = /Bloque\s*\d.*?\d{1,2}[:.]\d{2}/i.test(txt);
-                if (isBlockReport) {
-                    blockReport = txt;
-                    const timeNode = messages[i].parentElement.querySelector('.tgme_widget_message_time');
-                    if(timeNode) reportTime = timeNode.innerText;
+            // 5. LÓGICA DE BLOQUES (ON/OFF)
+            
+            // APAGADO
+            const reportRegex = /Bloque\s*(?:no\.?)?\s*(\d).*?(\d{1,2}[:.]\d{2})\s*Hrs/gi;
+            let match;
+            while ((match = reportRegex.exec(txt)) !== null) {
+                const b = match[1];
+                let t = match[2].replace('.', ':');
+                if(blockData[b].status === 'unknown') blockData[b] = { status: 'OFF', time: t };
+            }
+
+            // ENCENDIDO
+            if (cleanTxt.includes('cerrado') || cleanTxt.includes('restablecimiento')) {
+                for(let b=1; b<=6; b++) {
+                    if (cleanTxt.match(new RegExp(`bloque\\s*(?:no\\.?)?\\s*${b}\\b`))) {
+                        if(blockData[b].status === 'unknown') blockData[b] = { status: 'ON', time: null };
+                    }
+                }
+            }
+
+            // INICIO APAGÓN
+            if (cleanTxt.includes('inicia') && (cleanTxt.includes('afectación') || cleanTxt.includes('déficit'))) {
+                for(let b=1; b<=6; b++) {
+                    if (cleanTxt.match(new RegExp(`bloque\\s*(?:no\\.?)?\\s*${b}\\b`))) {
+                        if(blockData[b].status === 'unknown') blockData[b] = { status: 'OFF', time: 'Acaba de irse' };
+                    }
                 }
             }
         }
 
-        // --- ACTUALIZAR INTERFAZ ---
+        // Asumir Luz si no hay reporte específico
+        for(let i=1; i<=6; i++) {
+            if(blockData[i].status === 'unknown') blockData[i] = { status: 'ON', time: null };
+        }
 
-        // A. Actualizar Ticker (Barra Superior)
-        updateTickerUI(recentNews);
+        // --- ACTUALIZACIONES DE UI ---
+        updateBlocksUI(blockData);
+        updateTickerUI(); // Actualizar la cinta de arriba
+        updateBottomBar(lastMsgText, lastMsgTime); // Actualizar barra inferior
+    }
 
-        // B. Actualizar Grid de Bloques
+    function updateBottomBar(text, time) {
         const rawBox = document.getElementById('raw-telegram-msg');
         const timeBox = document.getElementById('telegram-time');
-
-        if (blockReport) {
-            updateBlockGrid(blockReport);
-            if(rawBox) {
-                rawBox.innerText = blockReport;
-                // Estilo visual de éxito
-                rawBox.parentElement.classList.remove('border-blue-500/20');
-                rawBox.parentElement.classList.add('border-green-500/50', 'bg-green-900/10');
+        
+        if(rawBox) {
+            // Si no encontró texto con palabras clave, usamos la primera noticia de la lista
+            let displayText = text;
+            if (text === "Sin reportes de texto recientes." && window.telegramNewsList.length > 0) {
+                displayText = window.telegramNewsList[0];
             }
-            if(timeBox) timeBox.innerText = "ACTUALIZADO: " + reportTime;
-        } else {
-            telegramFallback("No se encontró reporte de bloques reciente.");
+
+            let clean = displayText.replace(/\n/g, ' ').substring(0, 160);
+            if(displayText.length > 160) clean += "...";
+            
+            rawBox.innerText = clean;
+            rawBox.parentElement.classList.remove('border-blue-500/20');
+            rawBox.parentElement.classList.add('border-green-500/50', 'bg-green-900/10');
         }
+        if(timeBox) timeBox.innerText = "ÚLTIMO: " + time;
     }
 
     // ==========================================
-    // MÓDULO C: RENDERIZADO DEL TICKER
+    // MÓDULO CINTA TICKER (ACTUALIZADO)
     // ==========================================
-    function updateTickerUI(newsArray) {
+    function updateTickerUI() {
         const el = document.getElementById('ticker-content');
         if (!el) return;
 
         const db = window.sheetData || {};
-        let html = '';
-
-        // 1. Noticias Telegram (Máximo 4)
-        const topNews = newsArray.slice(0, 4);
-        topNews.forEach(n => {
-            // Cortamos texto largo
-            let shortText = n.substring(0, 120);
-            if(n.length > 120) shortText += "...";
-            
-            html += `
-                <span class="inline-flex items-center gap-2 font-bold text-white">
-                    <i class="fab fa-telegram text-blue-400"></i> UNE INFORMA:
-                </span>
-                <span class="text-blue-100 font-mono text-sm mx-3">${shortText}</span>
-                <span class="text-yellow-500 mx-4 text-lg">///</span>
-            `;
-        });
-
-        // 2. Datos Sheet (Respaldo si no hay noticias, o complemento)
         const defHoy = cleanNum(db['deficit_hoy']) || '...';
-        const afecAyer = cleanNum(db['afectacion_ayer']) || '0';
         
-        // Siempre añadimos el resumen financiero/energético al final
-        html += `
-            <span class="text-gray-400 font-bold uppercase">DÉFICIT HOY:</span>
+        let html = `
+            <span class="text-gray-400 font-bold uppercase text-xs">DÉFICIT HOY:</span>
             <span class="text-red-500 font-bold ml-2 text-lg animate-pulse">${defHoy} MW</span>
-            <span class="text-gray-600 mx-6">|</span>
-            <span class="text-gray-400 font-bold uppercase">AYER:</span>
-            <span class="text-orange-500 font-bold ml-2">${afecAyer} MW</span>
-            <span class="text-yellow-500 mx-4 text-lg">///</span>
+            <span class="text-yellow-500 mx-6 text-lg">///</span>
         `;
+
+        // Inyectar noticias de Telegram
+        if (window.telegramNewsList && window.telegramNewsList.length > 0) {
+            window.telegramNewsList.forEach(news => {
+                html += `
+                    <span class="inline-flex items-center gap-2 font-bold text-blue-400 text-xs uppercase">
+                        <i class="fab fa-telegram"></i> UNE:
+                    </span>
+                    <span class="text-white font-mono text-[10px] mx-3 tracking-wide">
+                        ${news}
+                    </span>
+                    <span class="text-gray-600 mx-6 text-lg">///</span>
+                `;
+            });
+        } else {
+            // Fallback si no hay noticias
+            const txtSheet = db['ticker_texto'] || 'Sin reportes';
+            html += `<span class="text-white font-mono text-sm mx-3">${txtSheet}</span>`;
+        }
 
         el.innerHTML = html;
     }
 
     // ==========================================
-    // MÓDULO D: LÓGICA DE BLOQUES (GRID)
+    // ALERTA LOCAL (BANNER)
     // ==========================================
-    function updateBlockGrid(msg) {
-        for (let i = 1; i <= 6; i++) setBlockStatus(i, false, "--");
+    function triggerLocalAlert(municipio, fullText) {
+        if(document.getElementById('geo-alert-banner')) return;
+        const banner = document.createElement('div');
+        banner.id = 'geo-alert-banner';
+        banner.className = 'fixed top-0 left-0 w-full z-[100] bg-yellow-400 text-black shadow-2xl transform translate-y-[-100%] transition-transform duration-500 ease-out border-b-4 border-yellow-600';
+        banner.innerHTML = `
+            <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col md:flex-row items-center justify-between gap-3">
+                <div class="flex items-center gap-3">
+                    <div class="bg-black text-yellow-400 p-2 rounded-full animate-bounce"><i class="fas fa-exclamation-triangle text-xl"></i></div>
+                    <div class="text-left">
+                        <p class="font-black text-sm uppercase tracking-widest leading-none">⚠️ ¡ATENCIÓN ${municipio.toUpperCase()}!</p>
+                        <p class="text-xs font-bold mt-1 leading-tight">UNE Reporta: "${fullText.substring(0, 65)}..."</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2">
+                    <button onclick="document.getElementById('ofertas-blue').scrollIntoView({behavior:'smooth'}); removeAlert()" class="bg-black text-white hover:bg-gray-800 px-5 py-2 rounded-full font-bold text-xs uppercase tracking-wide shadow-lg transition transform hover:scale-105 whitespace-nowrap">Tenemos Mensajeros en ${municipio} <i class="fas fa-truck-fast ml-2 text-yellow-400"></i></button>
+                    <button onclick="removeAlert()" class="text-black/50 hover:text-black text-xl px-2">&times;</button>
+                </div>
+            </div>`;
+        document.body.prepend(banner);
+        setTimeout(() => banner.classList.remove('translate-y-[-100%]'), 100);
+    }
+    window.removeAlert = function() { const b = document.getElementById('geo-alert-banner'); if(b) { b.classList.add('translate-y-[-100%]'); setTimeout(() => b.remove(), 500); } }
 
-        // Regex V4 (Adaptada a tus ejemplos)
-        const regexGlobal = /Bloque\s*#?(\d)[\D]{0,30}?(\d{1,2}[.:]\d{1,2}|\d+\.?\d*\s*h|afectad)/gi;
+    // ==========================================
+    // UTILS & SHEETS (INTACTOS)
+    // ==========================================
+    function initGrid() {
+        const grid = document.getElementById('blocks-grid');
+        if(!grid) return;
+        let html = '';
+        for(let i=1; i<=6; i++) {
+            html += `<div id="card-b${i}" class="bg-gray-900 border border-gray-800 p-4 rounded-xl relative overflow-hidden transition-all duration-500"><div class="flex justify-between items-start"><div><span class="text-[10px] font-bold text-gray-500 uppercase tracking-widest border border-gray-700 px-2 py-0.5 rounded">Bloque ${i}</span><div id="status-b${i}" class="text-lg font-bold text-gray-400 mt-2 leading-tight">Cargando...</div></div><div id="icon-b${i}" class="text-2xl text-gray-700"><i class="fas fa-satellite-dish"></i></div></div><div id="time-container-b${i}" class="mt-3 hidden"><p class="text-[10px] text-red-200 mb-1">Tiempo sin corriente:</p><div class="bg-black/30 rounded p-2 flex items-center gap-2 border border-red-500/30"><i class="fas fa-clock text-red-400 animate-pulse"></i><span id="time-b${i}" class="text-xl font-mono text-white font-bold tracking-widest">--:--</span></div></div><div id="cta-b${i}" class="mt-4 hidden"><button onclick="document.getElementById('ofertas-blue').scrollIntoView({behavior: 'smooth'})" class="w-full bg-white text-red-700 font-bold py-2 rounded text-xs uppercase shadow-lg hover:bg-gray-200 transition flex items-center justify-center gap-2"><i class="fas fa-bolt"></i> Enciende tu casa</button></div></div>`;
+        }
+        grid.innerHTML = html;
+    }
 
-        let match;
-        while ((match = regexGlobal.exec(msg)) !== null) {
-            const blockNum = match[1];
-            let duration = match[2];
+    function updateBlocksUI(data) {
+        for(let i=1; i<=6; i++) {
+            const info = data[i];
+            const card = document.getElementById(`card-b${i}`);
+            const statusEl = document.getElementById(`status-b${i}`);
+            const iconEl = document.getElementById(`icon-b${i}`);
+            const timeCont = document.getElementById(`time-container-b${i}`);
+            const timeEl = document.getElementById(`time-b${i}`);
+            const cta = document.getElementById(`cta-b${i}`);
+            if(!card) continue;
+            card.className = "bg-gray-900 border border-gray-800 p-4 rounded-xl relative overflow-hidden transition-all duration-500";
+            timeCont.classList.add('hidden');
+            cta.classList.add('hidden');
+            if (info.status === 'OFF') {
+                card.style.background = "linear-gradient(135deg, #450a0a 0%, #7f1d1d 100%)";
+                card.style.borderColor = "#ef4444";
+                statusEl.innerHTML = "🔴 APAGADO";
+                statusEl.className = "text-xl font-black text-white mt-1 drop-shadow-md";
+                iconEl.innerHTML = '<i class="fas fa-exclamation-triangle text-white"></i>';
+                let prettyTime = info.time.replace(':', 'h ') + 'm';
+                timeEl.innerText = prettyTime;
+                timeCont.classList.remove('hidden');
+                cta.classList.remove('hidden');
+            } else {
+                card.style.background = "linear-gradient(135deg, #064e3b 0%, #065f46 100%)";
+                card.style.borderColor = "#10b981";
+                statusEl.innerHTML = "🟢 CON LUZ";
+                statusEl.className = "text-xl font-black text-white mt-1";
+                iconEl.innerHTML = '<i class="fas fa-bolt text-white"></i>';
+            }
+        }
+    }
 
-            if (duration) {
-                duration = duration.replace('afectad', 'Afectado').replace('h', 'h').trim();
-                // Normalizar hora (cambiar . por :)
-                duration = duration.replace(/(\d)\.(\d)/, '$1:$2');
-                
-                // Si no es 00:00 o 0h, está apagado
-                if (!duration.includes('00:00') && duration !== '0h' && duration !== '0.00Hrs') {
-                     // Añadir "h" si es solo número
-                    if(!duration.includes('Afectado') && !duration.includes('h') && !duration.includes('Hrs')) duration += 'h';
-                    
-                    const isEmergency = msg.toLowerCase().includes('emergencia');
-                    setBlockStatus(blockNum, true, duration, isEmergency);
+    async function loadSheet_Fast() {
+        const freshUrl = SHEET_URL + '&t=' + Date.now();
+        const proxyA = 'https://corsproxy.io/?';
+        try {
+            const response = await fetch(proxyA + encodeURIComponent(freshUrl));
+            const csvText = await response.text();
+            if (csvText && csvText.includes(',')) {
+                const db = parseCSV(csvText);
+                window.sheetData = db;
+                if (db['deficit_hoy']) {
+                    renderSheetData(db);
+                    updateTickerUI(); // Actualizar Ticker al cargar Sheet
                 }
             }
+        } catch (err) {
+            try {
+                const resB = await fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent(freshUrl));
+                const txtB = await resB.text();
+                const dbB = parseCSV(txtB);
+                window.sheetData = dbB;
+                renderSheetData(dbB);
+                updateTickerUI();
+            } catch(e) {}
         }
     }
 
-    function setBlockStatus(num, isOff, time, isEmergency = false) {
-        const card = document.getElementById(`card-b${num}`);
-        const statusDiv = document.getElementById(`status-b${num}`);
-        const timeDiv = document.getElementById(`time-b${num}`);
-        if (!card) return;
-
-        if (isOff) {
-            let borderClass = isEmergency ? "border-red-600 animate-pulse" : "border-red-500";
-            let bgClass = isEmergency ? "bg-red-900/60" : "bg-red-900/30";
-            let statusText = isEmergency ? "⚠️ EMERGENCIA" : "OFF";
-            
-            card.className = `${bgClass} border-2 ${borderClass} p-3 rounded-xl text-center shadow-[0_0_15px_rgba(220,38,38,0.4)] relative z-10 transform scale-105 transition-all`;
-            
-            if(statusDiv) {
-                statusDiv.innerHTML = `<i class="fas fa-power-off"></i> ${statusText}`;
-                statusDiv.className = "text-white font-black text-lg";
-            }
-            if(timeDiv) {
-                timeDiv.innerText = time.includes('Afectado') ? 'Sin Corriente' : `Llevan: ${time}`;
-                timeDiv.className = "text-[10px] text-white font-bold bg-red-600 px-2 py-0.5 rounded-full mt-1 inline-block";
-            }
-        } else {
-            card.className = "bg-gray-800 border border-gray-700 p-3 rounded-xl text-center opacity-70 transition";
-            if(statusDiv) {
-                statusDiv.innerHTML = `<i class="fas fa-bolt"></i> ON`;
-                statusDiv.className = "text-green-400 font-black text-lg";
-            }
-            if(timeDiv) {
-                timeDiv.innerText = "Con Servicio";
-                timeDiv.className = "text-[10px] text-gray-500 mt-1";
-            }
-        }
-    }
-
-    // ==========================================
-    // MÓDULO E: ALERTA LOCAL (BARRA AMARILLA)
-    // ==========================================
-    function triggerLocalAlert(municipio, texto) {
-        if(document.getElementById('local-alert-banner')) return;
-
-        const dashboard = document.getElementById('dashboard-sen');
-        const alertHTML = `
-            <div id="local-alert-banner" class="bg-yellow-500 text-black px-4 py-3 text-center border-b-4 border-yellow-700 animate-slide-in relative z-50">
-                <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-center gap-3">
-                    <span class="text-2xl animate-bounce">⚠️</span>
-                    <div class="text-left">
-                        <p class="font-black uppercase text-sm">¡ATENCIÓN ${municipio.toUpperCase()}!</p>
-                        <p class="text-xs font-medium leading-tight">UNE reporta avería: "${texto.substring(0, 60)}..."</p>
-                    </div>
-                    <button onclick="document.getElementById('ofertas-blue').scrollIntoView({behavior: 'smooth'})" class="bg-black text-white px-4 py-2 rounded-full text-xs font-bold hover:bg-gray-800 transition shadow-lg whitespace-nowrap">
-                        Ver Solución
-                    </button>
-                </div>
-            </div>
-        `;
-        if(dashboard) dashboard.insertAdjacentHTML('beforebegin', alertHTML);
-    }
-
-    function telegramFallback(reason) {
-        const rawBox = document.getElementById('raw-telegram-msg');
-        const timeBox = document.getElementById('telegram-time');
-        if(rawBox) rawBox.innerText = reason;
-        if(timeBox) timeBox.innerText = "SIN DATOS";
-        for (let i = 1; i <= 6; i++) setBlockStatus(i, false, "--");
-    }
-
-    // --- UTILIDADES ---
     function parseCSV(text) {
         const rows = text.split('\n').filter(r => r.trim());
         const db = {};
@@ -5742,114 +5783,53 @@ document.addEventListener('DOMContentLoaded', initUltimateUrgency);
         });
         return db;
     }
+
     function renderSheetData(db) {
-    // 1. Limpieza de datos numéricos generales
-    const deficit = parseInt(db['deficit_hoy']?.replace(/\D/g, '')) || 0;
-    const demanda = parseInt(db['demanda_mw']?.replace(/\D/g, '')) || 3000;
-    const genMW = parseInt(db['generacion_mw']?.replace(/\D/g, '')) || 0;
-    const fecha = db['fecha_hoy'] || "Hoy";
+        const deficit = parseInt(cleanNum(db['deficit_hoy'])) || 0;
+        const demanda = parseInt(cleanNum(db['demanda_mw'])) || 3000;
+        const genMW = parseInt(cleanNum(db['generacion_mw'])) || 0;
+        const fecha = db['fecha_hoy'] || "Hoy";
+        const valAyer = db['afectacion_ayer'] || "0";
 
-    // 2. Extracción de datos históricos (Ayer y Antier)
-    // Lo definimos aquí arriba una sola vez para usarlo en todas las secciones
-    const valAyer = db['afectacion_ayer'] || "0";
-    const diaAyer = db['dia_ayer'] || "Ayer";
-    const valAntier = db['afectacion_antier'] || "0";
-    const diaAntier = db['dia_antier'] || "Antier";
+        safeSetText('nav-deficit', deficit.toLocaleString() + " MW");
+        safeSetText('nav-percent', Math.round((deficit / demanda) * 100));
+        safeSetText('dash-deficit', deficit.toLocaleString());
+        safeSetText('exit-deficit', deficit.toLocaleString() + " MW");
+        safeSetText('dash-fecha', fecha);
+        
+        let genPercent = Math.round((genMW / demanda) * 100);
+        if(genPercent > 100) genPercent = 100;
+        const defPercent = 100 - genPercent;
+        safeSetText('bar-gen-txt', genPercent);
+        safeSetText('bar-def-txt', defPercent);
+        safeWidth('bar-gen-width', genPercent);
+        safeWidth('bar-def-width', defPercent);
+        safeSetText('coverage-date', fecha);
+        safeSetText('header-date', fecha);
 
-    // 3. Cálculos de Porcentaje
-    let genPercent = Math.round((genMW / demanda) * 100);
-    if (genPercent > 100) genPercent = 100;
-    const defPercent = 100 - genPercent;
+        safeSetText('graph-label-3', `Hoy: ${deficit} MW`);
+        safeSetText('graph-label-2', `${db['dia_ayer'] || 'Ayer'}: ${valAyer}`);
+        safeSetText('graph-label-1', `${db['dia_antier'] || 'Antier'}: ${db['afectacion_antier'] || 0}`);
+        safeSetText('hist-3-val', deficit + " MW");
+        safeSetText('hist-2-val', valAyer + " MW");
+        safeSetText('hist-1-val', (db['afectacion_antier'] || 0) + " MW");
 
-    // ---------------------------------------------
-    // A. ACTUALIZACIÓN DE TEXTOS PRINCIPALES
-    // ---------------------------------------------
-    safeSetText('nav-deficit', deficit.toLocaleString() + " MW");
-    safeSetText('nav-percent', Math.round((deficit / demanda) * 100));
-    safeSetText('dash-deficit', deficit.toLocaleString());
-    safeSetText('exit-deficit', deficit.toLocaleString() + " MW");
-    safeSetText('dash-fecha', fecha);
-
-    // ---------------------------------------------
-    // B. ACTUALIZACIÓN DE FECHAS Y ENCABEZADOS
-    // ---------------------------------------------
-    safeSetText('header-date', fecha);
-    safeSetText('coverage-date', fecha);
-    safeSetText('hist-3-date', fecha);
-
-    // ---------------------------------------------
-    // C. ACTUALIZACIÓN BARRA DE COBERTURA
-    // ---------------------------------------------
-    safeSetText('bar-gen-txt', genPercent);
-    safeSetText('bar-def-txt', defPercent);
-    safeWidth('bar-gen-width', genPercent);
-    safeWidth('bar-def-width', defPercent);
-
-    // ---------------------------------------------
-    // D. ACTUALIZACIÓN GRÁFICA "PULSO DEL DÉFICIT"
-    // ---------------------------------------------
-    safeSetText('graph-label-1', `${diaAntier}: ${valAntier}`);
-    safeSetText('graph-label-2', `${diaAyer}: ${valAyer}`);
-    safeSetText('graph-label-3', `Hoy: ${deficit} MW`);
-
-    // Histórico de cajitas cuadradas
-    safeSetText('hist-1-date', diaAntier);
-    safeSetText('hist-1-val', valAntier + " MW");
-    safeSetText('hist-2-date', diaAyer);
-    safeSetText('hist-2-val', valAyer + " MW");
-    safeSetText('hist-3-val', deficit + " MW");
-
-    // ---------------------------------------------
-    // E. INTELIGENCIA ARTIFICIAL
-    // ---------------------------------------------
-    safeSetText('ia-text-box', db['ia_texto'] || "Analizando datos...");
-    const quoteEl = document.getElementById('dash-quote');
-    if (quoteEl && db['ia_texto']) {
-        quoteEl.innerHTML = `"${db['ia_texto']}"`;
+        safeSetText('ia-text-box', db['ia_texto'] || "Analizando...");
+        const quote = document.getElementById('dash-quote');
+        if(quote) quote.innerHTML = `"${db['ia_texto'] || '...'}"`;
+        
+        safeSetText('impact-deficit', deficit.toLocaleString());
+        safeSetText('analysis-date', fecha);
+        safeSetText('analysis-deficit', "~" + deficit.toLocaleString() + " MW");
+        safeSetText('analysis-ayer', parseInt(valAyer).toLocaleString() + " MW");
+        const graphLabel = document.getElementById('analysis-graph-label');
+        if (graphLabel) graphLabel.textContent = `Real: ${deficit.toLocaleString()} MW 🚨`;
     }
 
-    // ---------------------------------------------
-    // F. TRADUCTOR DE IMPACTO
-    // ---------------------------------------------
-    safeSetText('impact-deficit', deficit.toLocaleString());
-
-    // ---------------------------------------------
-    // G. SECCIÓN DE ANÁLISIS / GRÁFICA FUTURA (La que fallaba)
-    // ---------------------------------------------
-    
-    // 1. Fecha en la caja de texto
-    safeSetText('analysis-date', fecha);
-
-    // 2. Déficit Hoy
-    safeSetText('analysis-deficit', "~" + deficit.toLocaleString() + " MW");
-
-    // 3. Récord Ayer (Usamos la variable valAyer que definimos arriba)
-    safeSetText('analysis-ayer', parseInt(valAyer).toLocaleString() + " MW");
-
-    // 4. Etiqueta flotante dentro de la Gráfica SVG
-    const graphLabel = document.getElementById('analysis-graph-label');
-    if (graphLabel) {
-        graphLabel.textContent = `Real: ${deficit.toLocaleString()} MW 🚨`;
-    }
-}
-
-    // Funciones auxiliares de seguridad (para que no de error si falta un ID)
-    function safeSetText(id, txt) { 
-        const el = document.getElementById(id); 
-        if (el) el.innerText = txt; 
-    }
-    function safeWidth(id, pct) { 
-        const el = document.getElementById(id); 
-        if (el) el.style.width = pct + "%"; 
-    }
-    function cleanHtmlToText(html) {
-        const temp = document.createElement("div");
-        temp.innerHTML = html.replace(/<br\s*\/?>/gi, ' · ');
-        return (temp.textContent || temp.innerText || "").replace(/\s+/g, ' ').trim();
-    }
     function cleanNum(str) { return str ? str.replace(/\D/g, '') : ''; }
     function safeSetText(id, txt) { const el = document.getElementById(id); if (el) el.innerText = txt; }
     function safeWidth(id, pct) { const el = document.getElementById(id); if (el) el.style.width = pct + "%"; }
 </script>
+
 </body>
 </html>
