@@ -5265,66 +5265,307 @@ document.addEventListener('DOMContentLoaded', initUltimateUrgency);
 <!-- ======================================================= -->
 <!-- SCRIPT FUSIONADO: SHEETS BLINDADO + TELEGRAM BLOQUES -->
 <!-- ======================================================= -->
+<!-- ======================================================= -->
+<!-- SCRIPT V7: TODO EN UNO (TICKER + BLOQUES + ALERTAS) -->
+<!-- ======================================================= -->
 <script>
     // --- 1. CONFIGURACIÓN ---
-    const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSzif4P4juLuHJiXEnowN0cDOI3MEsSJLrLvQFYpL2YCyjBDgW9HZFI2lwu8ZLToVpELVc8NOF-Lsfd/pub?output=csv';
+    const SHEET_ID = '2PACX-1vSzif4P4juLuHJiXEnowN0cDOI3MEsSJLrLvQFYpL2YCyjBDgW9HZFI2lwu8ZLToVpELVc8NOF-Lsfd';
+    const SHEET_URL = `https://docs.google.com/spreadsheets/d/e/${SHEET_ID}/pub?output=csv`;
     const TELEGRAM_URL = 'https://t.me/s/EmpresaElectricaDeLaHabana';
 
-    // Variables globales
-    window.sheetData = {}; 
+    // Municipios para Alerta de Venta Local
+    const MUNICIPALES = ['Playa', 'Plaza', 'Centro Habana', 'Habana Vieja', 'Regla', 'Habana del Este', 'Guanabacoa', 'San Miguel', 'Diez de Octubre', 'Cerro', 'Marianao', 'Lisa', 'Boyeros', 'Arroyo Naranjo', 'Cotorro'];
 
     // --- 2. INICIALIZACIÓN ---
     document.addEventListener('DOMContentLoaded', () => {
-        console.log("🚀 Iniciando Sistema SolarCuba...");
+        console.log("🚀 Iniciando Sistema V7 (Full)...");
         
-        // Ejecución paralela e independiente
-        fetchSheetData(); 
-        fetchTelegramData();
+        // Ejecución paralela
+        loadSheet_Fast(); 
+        loadTelegram_Smart();
     });
 
     // ==========================================
-    // MÓDULO A: GOOGLE SHEETS (BLINDADO - DOBLE PROXY)
+    // MÓDULO A: GOOGLE SHEETS (DÉFICIT)
     // ==========================================
-    async function fetchSheetData() {
+    async function loadSheet_Fast() {
+        const freshUrl = SHEET_URL + '&t=' + Date.now();
         const proxyA = 'https://corsproxy.io/?';
-        const proxyB = 'https://api.allorigins.win/raw?url=';
         
-        let csvText = null;
-
-        // INTENTO 1: Proxy Rápido
         try {
-            console.log("Intentando cargar Sheet (Vía A)...");
-            const response = await fetch(proxyA + encodeURIComponent(SHEET_URL));
-            if (response.ok) {
-                csvText = await response.text();
-                console.log("✅ Sheet cargado con Proxy A");
-            } else { throw new Error("Fallo Proxy A"); }
+            const response = await fetch(proxyA + encodeURIComponent(freshUrl));
+            if (!response.ok) throw new Error("Error HTTP Sheet");
+            const csvText = await response.text();
+            
+            if (csvText && csvText.includes(',')) {
+                const db = parseCSV(csvText);
+                if (db['deficit_hoy']) {
+                    window.sheetData = db;
+                    renderSheetData(db);
+                    // Inicializar Ticker con datos del Sheet mientras llega Telegram
+                    updateTickerUI([]); 
+                }
+            } else { throw new Error("Formato inválido"); }
+
         } catch (err) {
-            console.warn("⚠️ Falló Proxy A, intentando Proxy B...");
-            // INTENTO 2: Proxy Seguro
+            // Fallback (Proxy B)
             try {
-                const response = await fetch(proxyB + encodeURIComponent(SHEET_URL));
-                if (response.ok) {
-                    csvText = await response.text();
-                    console.log("✅ Sheet cargado con Proxy B");
+                const proxyB = 'https://api.allorigins.win/raw?url=';
+                const resB = await fetch(proxyB + encodeURIComponent(freshUrl));
+                const txtB = await resB.text();
+                const dbB = parseCSV(txtB);
+                if (dbB['deficit_hoy']) {
+                    window.sheetData = dbB;
+                    renderSheetData(dbB);
+                    updateTickerUI([]);
                 }
             } catch (err2) {
-                console.error("❌ ERROR CRÍTICO SHEET:", err2);
-                document.getElementById('nav-deficit').innerText = "⚠️ Error Datos";
-            }
-        }
-
-        if (csvText) {
-            const db = parseCSV(csvText);
-            if (db['deficit_hoy']) {
-                window.sheetData = db;
-                renderSheetData(db);
-                // Inicializar ticker por si Telegram falla
-                updateTickerUI([]); 
+                document.getElementById('nav-deficit').innerText = "Offline";
             }
         }
     }
 
+    // ==========================================
+    // MÓDULO B: TELEGRAM (INTELIGENCIA + NOTICIAS)
+    // ==========================================
+    async function loadTelegram_Smart() {
+        const proxyJSON = 'https://api.allorigins.win/get?url=';
+        const rawBox = document.getElementById('raw-telegram-msg');
+        
+        try {
+            if(rawBox) rawBox.innerText = "🔄 Conectando con la UNE...";
+
+            const response = await fetch(proxyJSON + encodeURIComponent(TELEGRAM_URL));
+            const data = await response.json(); 
+            const html = data.contents; 
+
+            if (html) {
+                analyzeTelegramHTML(html);
+            } else { throw new Error("HTML vacío"); }
+
+        } catch (e) {
+            console.warn("⚠️ Telegram Error:", e);
+            telegramFallback("Sin conexión con UNE.");
+        }
+    }
+
+    function analyzeTelegramHTML(html) {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, "text/html");
+        const messages = doc.querySelectorAll('.tgme_widget_message_text');
+
+        if (messages.length === 0) {
+            telegramFallback("No se pudieron leer mensajes.");
+            return;
+        }
+
+        let blockReport = null;
+        let reportTime = "";
+        let foundFault = false;
+        const recentNews = []; // Array para guardar noticias para la barra
+
+        // RECORREMOS LOS MENSAJES DE MÁS NUEVO A MÁS VIEJO
+        // (Limitamos a los últimos 30 para eficiencia)
+        const limit = Math.max(0, messages.length - 30);
+
+        for (let i = messages.length - 1; i >= limit; i--) {
+            const txt = messages[i].innerText;
+            const htmlContent = messages[i].innerHTML;
+
+            // 1. RECOLECCIÓN DE NOTICIAS (Para el Ticker)
+            // Filtramos: que sea largo, que no sea el reporte técnico de bloques
+            if (txt.length > 40 && !txt.includes('00.00Hrs') && !txt.includes('00:00')) {
+                recentNews.push(cleanHtmlToText(htmlContent));
+            }
+
+            // 2. DETECCIÓN DE AVERÍAS LOCALES (Alerta Amarilla)
+            if (!foundFault && (txt.includes('avería') || txt.includes('disparo') || txt.includes('afectados'))) {
+                MUNICIPALES.forEach(muni => {
+                    if (txt.includes(muni)) {
+                        triggerLocalAlert(muni, txt);
+                        foundFault = true; // Solo mostramos la más reciente
+                    }
+                });
+            }
+
+            // 3. DETECCIÓN DE BLOQUES (Para el Grid)
+            // Solo si no tenemos uno ya (queremos el más reciente)
+            if (!blockReport) {
+                // Regex flexible para encontrar el reporte
+                const isBlockReport = /Bloque\s*\d.*?\d{1,2}[:.]\d{2}/i.test(txt);
+                if (isBlockReport) {
+                    blockReport = txt;
+                    const timeNode = messages[i].parentElement.querySelector('.tgme_widget_message_time');
+                    if(timeNode) reportTime = timeNode.innerText;
+                }
+            }
+        }
+
+        // --- ACTUALIZAR INTERFAZ ---
+
+        // A. Actualizar Ticker (Barra Superior)
+        updateTickerUI(recentNews);
+
+        // B. Actualizar Grid de Bloques
+        const rawBox = document.getElementById('raw-telegram-msg');
+        const timeBox = document.getElementById('telegram-time');
+
+        if (blockReport) {
+            updateBlockGrid(blockReport);
+            if(rawBox) {
+                rawBox.innerText = blockReport;
+                // Estilo visual de éxito
+                rawBox.parentElement.classList.remove('border-blue-500/20');
+                rawBox.parentElement.classList.add('border-green-500/50', 'bg-green-900/10');
+            }
+            if(timeBox) timeBox.innerText = "ACTUALIZADO: " + reportTime;
+        } else {
+            telegramFallback("No se encontró reporte de bloques reciente.");
+        }
+    }
+
+    // ==========================================
+    // MÓDULO C: RENDERIZADO DEL TICKER
+    // ==========================================
+    function updateTickerUI(newsArray) {
+        const el = document.getElementById('ticker-content');
+        if (!el) return;
+
+        const db = window.sheetData || {};
+        let html = '';
+
+        // 1. Noticias Telegram (Máximo 4)
+        const topNews = newsArray.slice(0, 4);
+        topNews.forEach(n => {
+            // Cortamos texto largo
+            let shortText = n.substring(0, 120);
+            if(n.length > 120) shortText += "...";
+            
+            html += `
+                <span class="inline-flex items-center gap-2 font-bold text-white">
+                    <i class="fab fa-telegram text-blue-400"></i> UNE INFORMA:
+                </span>
+                <span class="text-blue-100 font-mono text-sm mx-3">${shortText}</span>
+                <span class="text-yellow-500 mx-4 text-lg">///</span>
+            `;
+        });
+
+        // 2. Datos Sheet (Respaldo si no hay noticias, o complemento)
+        const defHoy = cleanNum(db['deficit_hoy']) || '...';
+        const afecAyer = cleanNum(db['afectacion_ayer']) || '0';
+        
+        // Siempre añadimos el resumen financiero/energético al final
+        html += `
+            <span class="text-gray-400 font-bold uppercase">DÉFICIT HOY:</span>
+            <span class="text-red-500 font-bold ml-2 text-lg animate-pulse">${defHoy} MW</span>
+            <span class="text-gray-600 mx-6">|</span>
+            <span class="text-gray-400 font-bold uppercase">AYER:</span>
+            <span class="text-orange-500 font-bold ml-2">${afecAyer} MW</span>
+            <span class="text-yellow-500 mx-4 text-lg">///</span>
+        `;
+
+        el.innerHTML = html;
+    }
+
+    // ==========================================
+    // MÓDULO D: LÓGICA DE BLOQUES (GRID)
+    // ==========================================
+    function updateBlockGrid(msg) {
+        for (let i = 1; i <= 6; i++) setBlockStatus(i, false, "--");
+
+        // Regex V4 (Adaptada a tus ejemplos)
+        const regexGlobal = /Bloque\s*#?(\d)[\D]{0,30}?(\d{1,2}[.:]\d{1,2}|\d+\.?\d*\s*h|afectad)/gi;
+
+        let match;
+        while ((match = regexGlobal.exec(msg)) !== null) {
+            const blockNum = match[1];
+            let duration = match[2];
+
+            if (duration) {
+                duration = duration.replace('afectad', 'Afectado').replace('h', 'h').trim();
+                // Normalizar hora (cambiar . por :)
+                duration = duration.replace(/(\d)\.(\d)/, '$1:$2');
+                
+                // Si no es 00:00 o 0h, está apagado
+                if (!duration.includes('00:00') && duration !== '0h' && duration !== '0.00Hrs') {
+                     // Añadir "h" si es solo número
+                    if(!duration.includes('Afectado') && !duration.includes('h') && !duration.includes('Hrs')) duration += 'h';
+                    
+                    const isEmergency = msg.toLowerCase().includes('emergencia');
+                    setBlockStatus(blockNum, true, duration, isEmergency);
+                }
+            }
+        }
+    }
+
+    function setBlockStatus(num, isOff, time, isEmergency = false) {
+        const card = document.getElementById(`card-b${num}`);
+        const statusDiv = document.getElementById(`status-b${num}`);
+        const timeDiv = document.getElementById(`time-b${num}`);
+        if (!card) return;
+
+        if (isOff) {
+            let borderClass = isEmergency ? "border-red-600 animate-pulse" : "border-red-500";
+            let bgClass = isEmergency ? "bg-red-900/60" : "bg-red-900/30";
+            let statusText = isEmergency ? "⚠️ EMERGENCIA" : "OFF";
+            
+            card.className = `${bgClass} border-2 ${borderClass} p-3 rounded-xl text-center shadow-[0_0_15px_rgba(220,38,38,0.4)] relative z-10 transform scale-105 transition-all`;
+            
+            if(statusDiv) {
+                statusDiv.innerHTML = `<i class="fas fa-power-off"></i> ${statusText}`;
+                statusDiv.className = "text-white font-black text-lg";
+            }
+            if(timeDiv) {
+                timeDiv.innerText = time.includes('Afectado') ? 'Sin Corriente' : `Llevan: ${time}`;
+                timeDiv.className = "text-[10px] text-white font-bold bg-red-600 px-2 py-0.5 rounded-full mt-1 inline-block";
+            }
+        } else {
+            card.className = "bg-gray-800 border border-gray-700 p-3 rounded-xl text-center opacity-70 transition";
+            if(statusDiv) {
+                statusDiv.innerHTML = `<i class="fas fa-bolt"></i> ON`;
+                statusDiv.className = "text-green-400 font-black text-lg";
+            }
+            if(timeDiv) {
+                timeDiv.innerText = "Con Servicio";
+                timeDiv.className = "text-[10px] text-gray-500 mt-1";
+            }
+        }
+    }
+
+    // ==========================================
+    // MÓDULO E: ALERTA LOCAL (BARRA AMARILLA)
+    // ==========================================
+    function triggerLocalAlert(municipio, texto) {
+        if(document.getElementById('local-alert-banner')) return;
+
+        const dashboard = document.getElementById('dashboard-sen');
+        const alertHTML = `
+            <div id="local-alert-banner" class="bg-yellow-500 text-black px-4 py-3 text-center border-b-4 border-yellow-700 animate-slide-in relative z-50">
+                <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-center gap-3">
+                    <span class="text-2xl animate-bounce">⚠️</span>
+                    <div class="text-left">
+                        <p class="font-black uppercase text-sm">¡ATENCIÓN ${municipio.toUpperCase()}!</p>
+                        <p class="text-xs font-medium leading-tight">UNE reporta avería: "${texto.substring(0, 60)}..."</p>
+                    </div>
+                    <button onclick="document.getElementById('ofertas-blue').scrollIntoView({behavior: 'smooth'})" class="bg-black text-white px-4 py-2 rounded-full text-xs font-bold hover:bg-gray-800 transition shadow-lg whitespace-nowrap">
+                        Ver Solución
+                    </button>
+                </div>
+            </div>
+        `;
+        if(dashboard) dashboard.insertAdjacentHTML('beforebegin', alertHTML);
+    }
+
+    function telegramFallback(reason) {
+        const rawBox = document.getElementById('raw-telegram-msg');
+        const timeBox = document.getElementById('telegram-time');
+        if(rawBox) rawBox.innerText = reason;
+        if(timeBox) timeBox.innerText = "SIN DATOS";
+        for (let i = 1; i <= 6; i++) setBlockStatus(i, false, "--");
+    }
+
+    // --- UTILIDADES ---
     function parseCSV(text) {
         const rows = text.split('\n').filter(r => r.trim());
         const db = {};
@@ -5334,251 +5575,40 @@ document.addEventListener('DOMContentLoaded', initUltimateUrgency);
         });
         return db;
     }
-
     function renderSheetData(db) {
-        const deficit = parseInt(cleanNum(db['deficit_hoy'])) || 0;
-        const demanda = parseInt(cleanNum(db['demanda_mw'])) || 1;
-        const genMW = parseInt(cleanNum(db['generacion_mw'])) || 0;
-        
+        const deficit = parseInt(db['deficit_hoy']?.replace(/\D/g,'')) || 0;
+        const demanda = parseInt(db['demanda_mw']?.replace(/\D/g,'')) || 1;
+        const genMW = parseInt(db['generacion_mw']?.replace(/\D/g,'')) || 0;
         const percent = Math.round((deficit / demanda) * 100);
         const genPercent = Math.round((genMW / demanda) * 100);
         const defPercent = 100 - genPercent;
 
-        // Actualizar UI
         safeSetText('nav-deficit', deficit.toLocaleString() + " MW");
         safeSetText('nav-percent', percent);
         safeSetText('dash-deficit', deficit.toLocaleString());
         safeSetText('exit-deficit', deficit.toLocaleString() + " MW");
         safeSetText('dash-fecha', db['fecha_hoy'] || "Hoy");
-
         safeSetText('bar-gen-txt', genPercent);
         safeSetText('bar-def-txt', defPercent);
         safeWidth('bar-gen-width', genPercent);
         safeWidth('bar-def-width', defPercent);
-        
-        // Cobertura Real
-        safeSetText('cobertura-gen-txt', genPercent);
-        safeSetText('cobertura-def-txt', defPercent);
-        safeWidth('cobertura-gen-bar', genPercent);
-        safeWidth('cobertura-def-bar', defPercent);
-
         safeSetText('impact-deficit', deficit.toLocaleString());
-        safeSetText('hist-1-date', db['dia_antier'] || "Día 1");
-        safeSetText('hist-1-val', (db['afectacion_antier'] || "...") + " MW");
-        safeSetText('hist-2-date', db['dia_ayer'] || "Ayer");
-        safeSetText('hist-2-val', (db['afectacion_ayer'] || "...") + " MW");
-        safeSetText('hist-3-date', db['fecha_hoy'] || "Hoy");
         safeSetText('hist-3-val', deficit + " MW");
-
+        safeSetText('hist-3-date', db['fecha_hoy'] || "Hoy");
+        
         const quoteEl = document.getElementById('dash-quote');
         if (quoteEl) {
             quoteEl.innerHTML = `"Se estima afectación de <strong>${deficit} MW</strong>. ${db['ia_texto'] || 'Situación crítica.'}" <br><span class="text-gray-600 not-italic font-bold text-[9px] mt-1 block">— Fuente: UNE ${db['fecha_hoy'] || 'hoy'}.</span>`;
         }
     }
-
-    // ==========================================
-    // MÓDULO B: TELEGRAM (LÓGICA RECUPERADA)
-    // ==========================================
-    async function fetchTelegramData() {
-        const proxy = 'https://api.allorigins.win/raw?url=';
-        try {
-            console.log("Intentando cargar Telegram...");
-            const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 8000); // 8 seg timeout
-
-            const response = await fetch(proxy + encodeURIComponent(TELEGRAM_URL), {
-                signal: controller.signal
-            });
-            clearTimeout(timeoutId);
-
-            if (response.ok) {
-                const html = await response.text();
-                processTelegramHTML(html);
-                console.log("✅ Telegram cargado.");
-            }
-        } catch (e) {
-            console.warn("⚠️ Telegram no disponible o lento:", e);
-            showFallbackTelegram();
-        }
-    }
-
-    function processTelegramHTML(html) {
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(html, "text/html");
-        const messages = doc.querySelectorAll('.tgme_widget_message_text');
-        
-        if (messages.length === 0) {
-            showFallbackTelegram();
-            return;
-        }
-
-        // 1. Extraer Noticias para Ticker
-        const recentNews = [];
-        const limit = Math.min(8, messages.length);
-
-        for (let i = messages.length - 1; i >= messages.length - limit && i >= 0; i--) {
-            const txt = cleanHtmlToText(messages[i].innerHTML);
-            if (txt.length > 30 && !txt.includes('Bloque 1') && !txt.includes('Afectaciones')) {
-                recentNews.push(txt);
-            }
-        }
-        if (recentNews.length > 0) updateTickerUI(recentNews);
-
-        // 2. LÓGICA DE BLOQUES (RECUPERADA DEL SCRIPT QUE FUNCIONA)
-        let blockReport = null;
-        const searchLimit = Math.max(0, messages.length - 15); // Buscar más atrás
-        
-        for (let i = messages.length - 1; i >= searchLimit; i--) {
-            const txt = messages[i].innerText;
-            // Busca mensajes que mencionen "Bloque" al menos 2 veces y tengan formato de hora
-            const blockCount = (txt.match(/Bloque\s*\d/gi) || []).length;
-            if (blockCount >= 2 && /\d{1,2}[:.]\d{2}\s*H/i.test(txt)) {
-                blockReport = txt;
-                break;
-            }
-        }
-
-        if (blockReport) {
-            updateBlockGrid(blockReport);
-            console.log("✅ Reporte de bloques encontrado y procesado.");
-        } else {
-            console.log("ℹ️ No se encontró reporte de bloques reciente.");
-            // Reseteamos a verde si no hay reporte de apagón reciente
-            for (let i = 1; i <= 6; i++) setBlockStatus(i, false, "--");
-        }
-    }
-
-    // --- LÓGICA DE TARJETAS DE BLOQUES (CSS Y REGEX) ---
-    function updateBlockGrid(msg) {
-        // Reset inicial
-        for (let i = 1; i <= 6; i++) setBlockStatus(i, false, "--");
-
-        // Regex mejorada para capturar "Bloque X: 4.00 Horas" o variaciones
-        const patterns = [
-            /Bloque\s*(\d)[:\s]*(\d{1,2}[:.]\d{2})\s*Hrs?/gi,
-            /Bloque\s*(\d)[\s\S]{0,20}?(\d{1,2}[:.]\d{2})\s*H/gi
-        ];
-
-        patterns.forEach(regex => {
-            let match;
-            while ((match = regex.exec(msg)) !== null) {
-                const blockNum = match[1];
-                let duration = match[2].replace('.', ':');
-                
-                // Si la duración no es 00:00, está apagado
-                if (duration !== "00:00" && duration !== "0:00") {
-                    setBlockStatus(blockNum, true, duration);
-                }
-            }
-        });
-    }
-
-    function setBlockStatus(num, isOff, time) {
-        const card = document.getElementById(`card-b${num}`);
-        const statusDiv = document.getElementById(`status-b${num}`);
-        const timeDiv = document.getElementById(`time-b${num}`);
-        
-        if (!card) return; // Si no existe el elemento en el HTML, no hacer nada
-
-        if (isOff) {
-            // ESTILO APAGADO (ROJO)
-            card.className = "bg-red-900/30 border border-red-500 rounded-xl p-3 text-center shadow-[0_0_20px_rgba(220,38,38,0.4)] transform scale-105 transition-all duration-500 relative z-10";
-            if(statusDiv) {
-                statusDiv.innerHTML = `<i class="fas fa-power-off"></i> OFF`;
-                statusDiv.className = "text-red-500 font-black text-lg animate-pulse";
-            }
-            if(timeDiv) {
-                timeDiv.innerText = typeof time === 'string' && time.includes(':') ? `Llevan: ${time}h` : time;
-                timeDiv.className = "text-xs text-white font-bold bg-red-600 px-2 py-0.5 rounded-full mt-1 inline-block";
-            }
-        } else {
-            // ESTILO ENCENDIDO (VERDE/GRIS)
-            card.className = "bg-gray-800/50 border border-gray-700 p-3 rounded-xl text-center opacity-60 transition";
-            if(statusDiv) {
-                statusDiv.innerHTML = `<i class="fas fa-bolt"></i> ON`;
-                statusDiv.className = "text-green-500 font-bold text-lg";
-            }
-            if(timeDiv) {
-                timeDiv.innerText = time === "--" ? "Con Servicio" : time;
-                timeDiv.className = "text-[10px] text-gray-500 mt-1";
-            }
-        }
-    }
-
-    function showFallbackTelegram() {
-        const tickerEl = document.getElementById('ticker-content');
-        if (tickerEl) {
-             const db = window.sheetData;
-             tickerEl.innerHTML = `
-                <span class="text-gray-400 font-bold uppercase"><i class="fas fa-satellite-dish animate-pulse"></i> Cargando noticias UNE...</span>
-                <span class="text-gray-600 mx-6">|</span>
-                <span class="text-gray-400 font-bold uppercase">DÉFICIT:</span>
-                <span class="text-red-500 font-bold ml-2">${cleanNum(db['deficit_hoy'] || '0')} MW</span>
-            `;
-        }
-    }
-
-    // ==========================================
-    // MÓDULO C: INTERFAZ UNIFICADA (TICKER)
-    // ==========================================
-    function updateTickerUI(newsArray) {
-        const el = document.getElementById('ticker-content');
-        if (!el) return;
-
-        const db = window.sheetData || {};
-        let html = '';
-
-        const topNews = newsArray.slice(0, 3);
-        topNews.forEach(n => {
-            html += `
-                <span class="inline-flex items-center gap-2 font-bold text-white">
-                    <i class="fab fa-telegram text-blue-400"></i> UNE:
-                </span>
-                <span class="text-blue-100 font-mono text-sm mx-3">${n.substring(0, 100)}...</span>
-                <span class="text-yellow-500 mx-4 text-lg">///</span>
-            `;
-        });
-
-        // Datos Sheet siempre visibles
-        const defHoy = cleanNum(db['deficit_hoy']) || 'Cargando...';
-        const afecAyer = cleanNum(db['afectacion_ayer']) || '0';
-        const estado = db['ticker_texto'] || 'Actualizando...';
-
-        html += `
-            <span class="text-gray-400 font-bold uppercase">DÉFICIT HOY:</span>
-            <span class="text-red-500 font-bold ml-2 text-lg animate-pulse">${defHoy} MW</span>
-            <span class="text-gray-600 mx-6">|</span>
-            <span class="text-gray-400 font-bold uppercase">AYER:</span>
-            <span class="text-orange-500 font-bold ml-2">${afecAyer} MW</span>
-            <span class="text-gray-600 mx-6">|</span>
-            <span class="text-gray-400 font-bold uppercase">ESTADO:</span>
-            <span class="text-blue-300 font-bold ml-2">${estado}</span>
-            <span class="text-yellow-500 mx-4 text-lg">///</span>
-        `;
-        el.innerHTML = html;
-    }
-
-    // --- UTILIDADES ---
     function cleanHtmlToText(html) {
         const temp = document.createElement("div");
         temp.innerHTML = html.replace(/<br\s*\/?>/gi, ' · ');
         return (temp.textContent || temp.innerText || "").replace(/\s+/g, ' ').trim();
     }
-    
     function cleanNum(str) { return str ? str.replace(/\D/g, '') : ''; }
-    
-    function safeSetText(id, txt) {
-        const el = document.getElementById(id);
-        if (el) el.innerText = txt;
-    }
-    
-    function safeWidth(id, pct) {
-        const el = document.getElementById(id);
-        if (el) {
-            el.style.width = pct + "%";
-            if(el.innerText.includes('%')) el.innerText = pct + "%";
-        }
-    }
+    function safeSetText(id, txt) { const el = document.getElementById(id); if (el) el.innerText = txt; }
+    function safeWidth(id, pct) { const el = document.getElementById(id); if (el) el.style.width = pct + "%"; }
 </script>
 </body>
 </html>
