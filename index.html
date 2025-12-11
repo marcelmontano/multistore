@@ -1975,9 +1975,167 @@
     </div>
 
 </div>
+
+
+                </div>
+                
+        
+            </div>
+            <!-- INICIO DE FICHA TÉCNICA MUST (NUEVO) -->
+<div class="mt-8 border-t border-gray-700 pt-8 px-4 lg:px-8">
+    
+    <div class="flex flex-col md:flex-row gap-8 mb-8">
+        <!-- Columna de Descripción -->
+        <div class="md:w-2/3">
+            <div class="inline-flex items-center gap-2 mb-2">
+                <span class="bg-red-600 text-white text-[10px] font-bold px-2 py-1 rounded">SERIE HBP1800 OS</span>
+                <span class="text-gray-400 text-xs uppercase tracking-widest">LiFePO4 • Onda Pura</span>
+            </div>
+            <h3 class="text-2xl font-bold text-white mb-4">Energía Inteligente para Oficina y Hogar</h3>
+            <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                La serie HBP1800 OS es una estación de energía solar compacta y portátil. Con un rango de potencia de <strong>1200W a 3000W</strong> y una batería <strong>LiFePO₄</strong> integrada (la más segura del mercado), proporciona energía de respaldo confiable para refrigeradores, laptops, routers y más.
+            </p>
+            
+            <!-- Características Destacadas -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+                <div class="flex items-start gap-2">
+                    <i class="fas fa-check-circle text-green-500 mt-1"></i>
+                    <span class="text-sm text-gray-300"><strong>+6000 Ciclos de Vida:</strong> Inversión a largo plazo (Batería LFP).</span>
+                </div>
+                <div class="flex items-start gap-2">
+                    <i class="fas fa-check-circle text-green-500 mt-1"></i>
+                    <span class="text-sm text-gray-300"><strong>Onda Sinusoidal Pura:</strong> Segura para electrónica sensible.</span>
+                </div>
+                <div class="flex items-start gap-2">
+                    <i class="fas fa-check-circle text-green-500 mt-1"></i>
+                    <span class="text-sm text-gray-300"><strong>Carga Solar MPPT 60A:</strong> Maximiza la captura de energía.</span>
+                </div>
+                <div class="flex items-start gap-2">
+                    <i class="fas fa-check-circle text-green-500 mt-1"></i>
+                    <span class="text-sm text-gray-300"><strong>Plug & Play:</strong> Salidas USB, Tipo-C y AC listas para usar.</span>
                 </div>
             </div>
         </div>
+
+        <!-- Columna Imagen Nueva -->
+        <div class="md:w-1/3 flex justify-center items-center bg-white/5 rounded-xl border border-gray-700 p-4 relative group cursor-zoom-in" onclick="viewComponent('https://i.imgur.com/xdWFZX1.jpeg', 'Estación MUST HBP1800')">
+            <img src="https://i.imgur.com/xdWFZX1.jpeg" alt="MUST HBP1800 Serie" class="max-h-64 object-contain drop-shadow-2xl group-hover:scale-105 transition duration-500">
+            <div class="absolute bottom-2 right-2 bg-black/60 text-white text-[10px] px-2 py-1 rounded backdrop-blur-sm">Click para Zoom</div>
+        </div>
+    </div>
+
+    <!-- INICIO FICHA TÉCNICA (LIMPIA Y ÚNICA) -->
+<div class="mt-8 border-t border-gray-700 pt-8 px-4 lg:px-8">
+
+    <!-- CONTENEDOR DESPLEGABLE -->
+    <div class="bg-gray-900/50 rounded-xl border border-gray-700">
+        
+        <!-- 1. EL BOTÓN -->
+        <button id="btn-must-toggle" type="button" class="w-full flex justify-between items-center p-4 cursor-pointer hover:bg-gray-800 transition rounded-xl focus:outline-none">
+            <span class="font-bold text-white flex items-center gap-2">
+                <i class="fas fa-file-contract text-yellow-500"></i> Ver Ficha Técnica Completa (Especificaciones)
+            </span>
+            <!-- Icono Flecha -->
+            <span id="icon-must-arrow" class="text-yellow-500 transform transition-transform duration-300">
+                <i class="fas fa-chevron-down"></i>
+            </span>
+        </button>
+        
+        <!-- 2. EL CONTENIDO -->
+        <div id="content-must-specs" class="hidden border-t border-gray-700">
+            <div class="p-0 overflow-x-auto">
+                <table class="w-full text-xs md:text-sm text-left text-gray-400">
+                    <thead class="text-xs text-gray-200 uppercase bg-gray-800 border-b border-gray-700">
+                        <tr>
+                            <th class="px-4 py-3 sticky left-0 bg-gray-800">Modelo</th>
+                            <th class="px-4 py-3 text-center bg-gray-700/50 border-x border-gray-600">1kW (1012)</th>
+                            <th class="px-4 py-3 text-center bg-gray-700/50 border-r border-gray-600">2kW (2024)</th>
+                            <th class="px-4 py-3 text-center bg-gray-700/50">3kW (3024)</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-700">
+                        <!-- Batería -->
+                        <tr class="bg-gray-800/30"><td colspan="4" class="px-4 py-1 text-[10px] font-bold text-yellow-500 uppercase tracking-widest">Batería LiFePO4</td></tr>
+                        <tr>
+                            <td class="px-4 py-2 font-medium text-white sticky left-0 bg-[#0f172a]">Capacidad</td>
+                            <td class="px-4 py-2 text-center">1280 Wh</td>
+                            <td class="px-4 py-2 text-center text-green-400 font-bold">2560 Wh</td>
+                            <td class="px-4 py-2 text-center text-white">3200 Wh</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-2 font-medium text-white sticky left-0 bg-[#0f172a]">Vida Útil</td>
+                            <td colspan="3" class="px-4 py-2 text-center text-yellow-400 font-bold">+6000 Ciclos</td>
+                        </tr>
+
+                        <!-- Inversor -->
+                        <tr class="bg-gray-800/30"><td colspan="4" class="px-4 py-1 text-[10px] font-bold text-yellow-500 uppercase tracking-widest">Inversor</td></tr>
+                        <tr>
+                            <td class="px-4 py-2 font-medium text-white sticky left-0 bg-[#0f172a]">Potencia</td>
+                            <td class="px-4 py-2 text-center">1200 W</td>
+                            <td class="px-4 py-2 text-center font-bold text-white">2000 W</td>
+                            <td class="px-4 py-2 text-center">3000 W</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-2 font-medium text-white sticky left-0 bg-[#0f172a]">Onda</td>
+                            <td colspan="3" class="px-4 py-2 text-center text-green-400">Sinusoidal Pura</td>
+                        </tr>
+
+                        <!-- Solar -->
+                        <tr class="bg-gray-800/30"><td colspan="4" class="px-4 py-1 text-[10px] font-bold text-yellow-500 uppercase tracking-widest">Solar MPPT</td></tr>
+                        <tr>
+                            <td class="px-4 py-2 font-medium text-white sticky left-0 bg-[#0f172a]">Max PV Input</td>
+                            <td class="px-4 py-2 text-center">900 W</td>
+                            <td class="px-4 py-2 text-center">1800 W</td>
+                            <td class="px-4 py-2 text-center">1800 W</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-2 font-medium text-white sticky left-0 bg-[#0f172a]">Voltaje Max</td>
+                            <td class="px-4 py-2 text-center">105 V</td>
+                            <td class="px-4 py-2 text-center">160 V</td>
+                            <td class="px-4 py-2 text-center">160 V</td>
+                        </tr>
+                        
+                        <!-- Físico -->
+                         <tr class="bg-gray-800/30"><td colspan="4" class="px-4 py-1 text-[10px] font-bold text-yellow-500 uppercase tracking-widest">Dimensiones</td></tr>
+                        <tr>
+                            <td class="px-4 py-2 font-medium text-white sticky left-0 bg-[#0f172a]">Peso</td>
+                            <td class="px-4 py-2 text-center">17 kg</td>
+                            <td class="px-4 py-2 text-center">24 kg</td>
+                            <td class="px-4 py-2 text-center">33 kg</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="p-4 bg-gray-800 border-t border-gray-700 text-center">
+                    <button onclick="viewComponent('https://i.imgur.com/2hQoj9B.png', 'Diagrama Puertos')" class="text-xs text-blue-400 hover:text-white underline">
+                        <i class="fas fa-eye"></i> Ver Diagrama de Puertos
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Script simple para abrir y cerrar
+    document.getElementById('btn-must-toggle').addEventListener('click', function() {
+        var content = document.getElementById('content-must-specs');
+        var icon = document.getElementById('icon-must-arrow');
+        
+        if (content.classList.contains('hidden')) {
+            content.classList.remove('hidden');
+            icon.classList.add('rotate-180');
+        } else {
+            content.classList.add('hidden');
+            icon.classList.remove('rotate-180');
+        }
+    });
+</script>
+<!-- FIN FICHA TÉCNICA -->
+</div>
+<!-- FIN FICHA TÉCNICA MUST -->
+            
+        </div>
+        
 
         <!-- ========================================== -->
         <!-- 3. LÍNEA ASTRA (RESTO DEL CÓDIGO)          -->
