@@ -135,6 +135,40 @@
         details[open] summary ~ * { animation: slideDown 0.3s ease-in-out; }
         @keyframes slideDown { 0% { opacity: 0; transform: translateY(-10px); } 100% { opacity: 1; transform: translateY(0); } }
     </style>
+    <style>
+    /* 1. OCULTAR DISTRACCIONES (VERSIÓN ACTUALIZADA) */
+    /* Hemos quitado el ticker de aquí para que SE VEA */
+    
+    #dashboard-sen, /* Ocultamos el panel grande de gráficas (ocupa mucho espacio) */
+    #toast-container, /* Ocultamos notificaciones falsas */
+    .whatsapp-float, 
+    #simulador, 
+    #afiliados, 
+    #agenda-apagones 
+    { 
+        display: none !important; 
+    }
+
+    /* ESTILOS DEL CONTADOR DE OFERTA (Mantenemos esto) */
+    .timer-box {
+        background: rgba(220, 38, 38, 0.1);
+        border: 1px solid rgba(220, 38, 38, 0.5);
+        color: #fca5a5;
+        font-family: monospace;
+        padding: 10px;
+        border-radius: 8px;
+        text-align: center;
+        margin-top: 10px;
+        font-weight: bold;
+    }
+    
+    .stock-badge {
+        background: #ef4444; color: white; padding: 4px 12px; border-radius: 4px; 
+        font-weight: 800; font-size: 0.8rem; text-transform: uppercase;
+        animation: pulse-slow 2s infinite;
+    }
+    @keyframes pulse-slow { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
+</style>
 </head>
 <body class="antialiased selection:bg-yellow-500 selection:text-black pb-20 md:pb-0">
 
@@ -206,6 +240,114 @@
             </div>
         </div>
     </nav>
+    <<section id="liquidacion-pro" class="pt-48 md:pt-56 pb-20 bg-[#0b1120] relative border-b border-gray-800">
+
+    <!-- Fondo distintivo para separar esta sección del resto de equipos comunes -->
+    <div class="absolute inset-0 bg-gradient-to-b from-red-900/10 to-[#0b1120] pointer-events-none"></div>
+
+    <div class="max-w-6xl mx-auto px-4 relative z-10">
+        
+        <!-- ENCABEZADO DE URGENCIA -->
+        <div class="text-center mb-12">
+            <span class="bg-red-600 text-white font-black text-xs px-4 py-1 rounded uppercase tracking-widest animate-pulse">
+                ⚠️ LOTE INDUSTRIAL PRO - SOLO 3 UNIDADES
+            </span>
+            <h1 class="text-4xl md:text-6xl font-black text-white mt-4 mb-4 leading-tight">
+                LIQUIDACIÓN <span class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500">GAMA ALTA</span>
+            </h1>
+            <p class="text-gray-300 text-lg max-w-2xl mx-auto">
+                Estos son los equipos pesados (SRNE + DAH). 
+                <span class="text-white font-bold border-b border-yellow-500">Incluimos el camión y la carga GRATIS</span> si reservas ahora.
+                <br>Si esperas, la logística corre por tu cuenta (+$100 USD).
+            </p>
+        </div>
+
+        <!-- GRID DE LOS 2 MODELOS EN LIQUIDACIÓN -->
+        <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+
+            <!-- KIT 5KW PRO (Quedan 2) -->
+            <div class="bg-[#1e293b] rounded-2xl border-2 border-gray-600 p-6 relative overflow-hidden shadow-2xl hover:border-yellow-500 transition duration-300 group">
+                <div class="absolute top-4 right-4 bg-yellow-600 text-white text-xs font-bold px-3 py-1 rounded">
+                    STOCK: 2 UNIDADES
+                </div>
+                
+                <h3 class="text-2xl font-black text-white mb-2">KIT 5kW PRO (SRNE)</h3>
+                <p class="text-gray-400 text-sm mb-4 border-l-2 border-yellow-500 pl-3">
+                    El estándar industrial. Inversor SRNE pesado + Batería LFP 10kWh.
+                </p>
+
+                <div class="space-y-3 mb-6">
+                    <div class="flex items-center gap-3 text-white text-sm"><i class="fas fa-check text-green-500"></i> Inversor 5kW 110V (SRNE)</div>
+                    <div class="flex items-center gap-3 text-white text-sm"><i class="fas fa-check text-green-500"></i> Batería 10kWh (Rack Industrial)</div>
+                    <div class="flex items-center gap-3 text-white text-sm"><i class="fas fa-check text-green-500"></i> 6 Paneles 620W DAH</div>
+                </div>
+
+                <div class="flex items-end gap-2 mb-4">
+                    <div class="text-3xl font-black text-white">$4,685 USD</div>
+                </div>
+
+                <!-- CONTADOR DE TRANSPORTE 5KW -->
+                <div class="bg-black/40 rounded-lg p-3 border border-gray-600 text-center" id="box-5kw">
+                    <p class="text-[10px] text-gray-400 uppercase tracking-widest mb-1">Oferta de Logística</p>
+                    <div class="text-green-400 font-mono font-bold text-lg" id="msg-5kw">
+                        🚚 ENVÍO GRATIS: <span id="timer-5kw" class="text-white">48:00:00</span>
+                    </div>
+                </div>
+
+                <a href="https://wa.me/5358183649?text=Hola,%20quiero%20reservar%20uno%20de%20los%202%20Kits%205kW%20PRO%20con%20el%20ENVÍO%20GRATIS." 
+                   class="block w-full bg-yellow-500 hover:bg-yellow-400 text-black font-bold py-4 rounded-xl text-center mt-4 transition transform hover:scale-[1.02] shadow-lg">
+                   RESERVAR CON TRANSPORTE
+                </a>
+            </div>
+
+            <!-- KIT 6.5KW PRO (Queda 1) -->
+            <div class="bg-gradient-to-b from-[#1e293b] to-[#0f172a] rounded-2xl border-2 border-red-600 p-6 relative overflow-hidden shadow-[0_0_50px_rgba(220,38,38,0.2)]">
+                <div class="absolute top-0 left-0 w-full bg-red-600 text-white text-center text-xs font-bold py-1 uppercase tracking-widest animate-pulse">
+                    🔥 ÚLTIMA PIEZA EN ALMACÉN
+                </div>
+                
+                <div class="mt-6">
+                    <h3 class="text-2xl font-black text-white mb-2">KIT 6.5kW (SPLIT PHASE)</h3>
+                    <p class="text-red-200 text-sm mb-4 border-l-2 border-red-500 pl-3">
+                        La joya de la corona. Mueve aires 220V nativos.
+                    </p>
+                </div>
+
+                <div class="space-y-3 mb-6">
+                    <div class="flex items-center gap-3 text-white text-sm"><i class="fas fa-check text-green-500"></i> Inversor 6.5kW 110/220V</div>
+                    <div class="flex items-center gap-3 text-white text-sm"><i class="fas fa-check text-green-500"></i> Batería 14kWh (Gigante)</div>
+                    <div class="flex items-center gap-3 text-white text-sm"><i class="fas fa-check text-green-500"></i> 12 Paneles 620W DAH</div>
+                </div>
+
+                <div class="flex items-end gap-2 mb-4">
+                    <div class="text-3xl font-black text-white">$6,985 USD</div>
+                </div>
+
+                <!-- CONTADOR DE TRANSPORTE 6.5KW -->
+                <div class="bg-black/40 rounded-lg p-3 border border-red-900/50 text-center" id="box-6kw">
+                    <p class="text-[10px] text-gray-400 uppercase tracking-widest mb-1">Oferta de Logística</p>
+                    <div class="text-green-400 font-mono font-bold text-lg" id="msg-6kw">
+                        🚚 ENVÍO GRATIS: <span id="timer-6kw" class="text-white">48:00:00</span>
+                    </div>
+                </div>
+
+                <a href="https://wa.me/5358183649?text=URGENTE:%20Quiero%20la%20ÚLTIMA%20unidad%20del%20Kit%206.5kW%20antes%20de%20que%20cobre%20el%20envío." 
+                   class="block w-full bg-red-600 hover:bg-red-500 text-white font-bold py-4 rounded-xl text-center mt-4 transition transform hover:scale-[1.02] shadow-lg">
+                   RECLAMAR ÚLTIMA UNIDAD
+                </a>
+            </div>
+
+        </div>
+        
+        <div class="text-center mt-8">
+            <p class="text-xs text-gray-500">
+                * El resto de productos (Must, Astra, Paneles sueltos) siguen disponibles en la sección inferior. <br>
+                Esta oferta de transporte gratuito aplica <strong>únicamente</strong> a la liquidación de la Serie PRO.
+            </p>
+            <i class="fas fa-arrow-down text-gray-600 mt-2 animate-bounce"></i>
+        </div>
+    </div>
+</section>
 
     <!-- 1. BARRA ROJA (Nivel 0 - Tope) -->
 <div class="fixed w-full z-[60] top-0 h-10 bg-gradient-to-r from-red-800 via-red-600 to-red-800 text-white shadow-xl border-b border-red-900/50 flex items-center">
@@ -2369,289 +2511,126 @@
                 </p>
             </div>
 
-            <!-- GRID DE PRODUCTOS (3 COLUMNAS) -->
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- GRID ACTUALIZADO PARA SECCIÓN PRO (id="kits") -->
+<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-                <!-- 1. KIT 5kW ECO (AGOTADO) -->
-                <!-- Mismo diseño pero con opacidad y badge de agotado -->
-                <div class="bg-[#0f172a] rounded-2xl border border-gray-800 opacity-60 grayscale flex flex-col relative overflow-hidden">
-                    <div class="absolute inset-0 z-20 flex items-center justify-center bg-black/40">
-                        <div class="bg-red-600 text-white font-bold text-xl px-8 py-2 transform -rotate-12 border-2 border-white shadow-xl">AGOTADO</div>
-                    </div>
-                    <div class="bg-gray-800/50 p-4 text-center border-b border-gray-700">
-                        <h3 class="text-xl font-bold text-gray-400">5kW ECO</h3>
-                        <p class="text-gray-500 text-xs">Batería Pequeña</p>
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col">
-                        <div class="text-center mb-6">
-                            <span class="text-4xl font-bold text-gray-500">$--</span>
-                            <span class="text-[10px] text-gray-600 block uppercase tracking-wide mt-1">FUERA DE STOCK</span>
-                        </div>
-                        <ul class="space-y-4 text-sm text-gray-600 mb-6 flex-1">
-                            <li class="flex items-center gap-3"><i class="fas fa-microchip w-5"></i> Inv. 5kW (120V)</li>
-                            <li class="flex items-center gap-3"><i class="fas fa-battery-quarter w-5"></i> 5.12 kWh</li>
-                            <li class="flex items-center gap-3"><i class="fas fa-solar-panel w-5"></i> 6 Paneles</li>
-                        </ul>
-                        <button disabled class="w-full border border-gray-700 text-gray-600 font-bold py-3 rounded-lg text-sm cursor-not-allowed">No Disponible</button>
-                    </div>
+    <!-- 1. KIT 5kW PRO (STOCK: 2) -->
+    <div class="bg-[#1e293b] rounded-2xl border-2 border-gray-600 p-6 relative overflow-hidden shadow-2xl hover:border-yellow-500 transition duration-300 group">
+        
+        <!-- Badge de Stock Real -->
+        <div class="absolute top-4 right-4 bg-yellow-600 text-white text-[10px] font-bold px-3 py-1 rounded shadow-lg animate-pulse">
+            STOCK: 2 UNIDADES
+        </div>
+        
+        <div class="bg-gray-800/50 p-4 -mx-6 -mt-6 mb-6 text-center border-b border-gray-700">
+            <h3 class="text-xl font-bold text-white">5kW PRO <span class="text-yellow-500 text-sm">Industrial</span></h3>
+            <p class="text-gray-400 text-xs">Para altos consumos (110V)</p>
+        </div>
+
+        <div class="flex-1 flex flex-col">
+            <div class="text-center mb-4">
+                <span class="text-4xl font-bold text-white">$4,685</span>
+                <span class="text-[10px] text-gray-500 block uppercase mt-1">+ Instalación</span>
+            </div>
+
+            <!-- CONTADOR DE TRANSPORTE (Lógica 48h) -->
+            <div class="bg-black/40 rounded-lg p-3 border border-gray-600 text-center mb-6" id="card-box-5kw">
+                <p class="text-[10px] text-gray-400 uppercase tracking-widest mb-1">Oferta Logística (La Habana)</p>
+                <div class="text-green-400 font-mono font-bold text-sm" id="card-msg-5kw">
+                    🚚 ENVÍO GRATIS: <span id="card-timer-5kw" class="text-white text-base">48:00:00</span>
                 </div>
+            </div>
 
-                <!-- 2. KIT 5kW PRO (STOCK CRÍTICO) -->
-<div class="bg-[#0f172a] rounded-2xl border-2 border-red-600/50 hover:border-red-500 transition duration-300 flex flex-col overflow-hidden group shadow-lg hover:shadow-red-900/20 relative">
-    
-    
+            <ul class="space-y-3 text-sm text-gray-400 mb-6 flex-1">
+                <li class="flex items-center gap-3"><i class="fas fa-microchip text-yellow-500 w-5"></i> Inv. 5kW SRNE (120V)</li>
+                <li class="flex items-center gap-3"><i class="fas fa-battery-half text-green-500 w-5"></i> <strong>10 kWh</strong> (LFP Industrial)</li>
+                <li class="flex items-center gap-3"><i class="fas fa-solar-panel text-blue-400 w-5"></i> <strong>6x 620W</strong> (DAH Tier 1)</li>
+            </ul>
 
-    <div class="bg-gray-800/50 p-4 text-center border-b border-gray-700">
-        <h3 class="text-xl font-bold text-white">5kW PRO <span class="text-yellow-500 text-sm">Industrial</span></h3>
-        <p class="text-gray-400 text-xs">Ideal Residencial Alto Consumo</p>
-    </div>
-    <div class="p-6 flex-1 flex flex-col">
-        <div class="text-center mb-6">
-            <span class="text-4xl font-bold text-white">$4,685</span>
-            <!-- MÓDULO DE URGENCIA 2.0 (Pegar esto debajo del precio en las tarjetas de 5kW y 6.5kW) -->
-<div class="mt-4 mb-6 bg-red-950/30 border border-red-500/40 rounded-xl overflow-hidden relative group">
-    
-    <!-- Barra de progreso animada (Simula que se acaba el tiempo) -->
-    <div class="absolute top-0 left-0 h-1 bg-red-600 animate-pulse w-full"></div>
-    
-    <div class="p-3 text-center relative z-10">
-        <!-- Titular de Dolor -->
-        <div class="flex justify-center items-center gap-2 mb-2">
-            <span class="animate-pulse w-2 h-2 bg-red-500 rounded-full"></span>
-            <p class="text-[10px] text-red-200 font-bold uppercase tracking-widest">
-                Cierre de Lote Inminente
-            </p>
-        </div>
-
-        <!-- El Contador -->
-        <div class="flex justify-center items-baseline gap-1 mb-2 font-mono">
-            <div class="bg-[#0f172a] rounded px-2 py-1 text-white font-bold text-xl border border-gray-700 urgency-hours">47</div>
-            <span class="text-xs text-gray-500">:</span>
-            <div class="bg-[#0f172a] rounded px-2 py-1 text-white font-bold text-xl border border-gray-700 urgency-min">59</div>
-            <span class="text-xs text-gray-500">:</span>
-            <div class="bg-[#0f172a] rounded px-2 py-1 text-red-500 font-bold text-xl border border-red-900/50 urgency-sec">00</div>
-        </div>
-
-        <!-- La Amenaza (El "Castigo" por no comprar) -->
-        <div class="bg-black/40 rounded-lg p-2 border border-white/5">
-            <p class="text-[10px] text-gray-400 leading-tight">
-                <i class="fas fa-ship text-gray-500 mr-1"></i> Próximo contenedor: <span class="text-white font-bold">Febrero 2026</span>.
-            </p>
-            <p class="text-[10px] text-red-400 font-bold mt-1 animate-pulse">
-                ⚠️ Si pierdes este, esperas 2 meses.
-            </p>
-        </div>
-
-        <!-- Stock en Tiempo Real (Falso pero creíble) -->
-        <div class="mt-2 text-xs font-bold text-white flex justify-center items-center gap-1">
-            Stock Habana: <span class="text-yellow-400 text-lg dynamic-stock">1</span> unidad
-        </div>
-    </div>
-</div>
-            <div class="text-[10px] text-gray-400 uppercase tracking-wide mt-1 bg-gray-800 inline-block px-2 py-1 rounded">
-                + $500 Instalación
+            <div class="grid grid-cols-2 gap-3 mt-auto">
+                <button onclick="openSheet('5kw')" class="bg-gray-800 hover:bg-gray-700 text-gray-300 font-bold py-3 rounded-lg text-xs border border-gray-600">
+                    <i class="far fa-file-pdf text-red-500 mr-1"></i> Ficha
+                </button>
+                <a href="https://wa.me/5358183649?text=Hola,%20quiero%20reservar%20uno%20de%20los%202%20Kits%205kW%20PRO%20con%20el%20envío%20GRATIS." 
+                   target="_blank"
+                   class="bg-yellow-500 hover:bg-yellow-400 text-black font-bold py-3 rounded-lg text-xs transition shadow-md flex items-center justify-center">
+                    RESERVAR AHORA
+                </a>
             </div>
         </div>
-        
-        
-
-        <ul class="space-y-4 text-sm text-gray-400 mb-8 flex-1">
-            <li class="flex items-center gap-3"><i class="fas fa-microchip text-yellow-500 w-5"></i> Inv. 5kW SRNE (120V)</li>
-            <li class="flex items-center gap-3"><i class="fas fa-battery-half text-green-500 w-5"></i> <strong>10 kWh</strong> (LFP Industrial)</li>
-            <li class="flex items-center gap-3"><i class="fas fa-solar-panel text-blue-400 w-5"></i> <strong>6x 620W</strong> (DAH Tier 1)</li>
-            <li class="flex items-center gap-3 text-white font-bold"><i class="fas fa-truck text-green-400 w-5"></i> Entrega Inmediata</li>
-        </ul>
-        <div class="grid grid-cols-2 gap-3 mt-auto">
-            <button onclick="openSheet('5kw')" class="bg-gray-800 hover:bg-gray-700 text-gray-300 font-bold py-3 rounded-lg text-xs border border-gray-600">
-                <i class="far fa-file-pdf text-red-500 mr-1"></i> Ficha
-            </button>
-            <button onclick="openOrderForm('Kit 5kW PRO (Quedan 3)')" class="bg-white hover:bg-gray-200 text-black font-bold py-3 rounded-lg text-xs transition shadow-md">
-                Solicitar Ahora
-            </button>
-        </div>
     </div>
-</div>
 
-                <!-- 3. KIT 6.5kW ECO (AGOTADO) -->
-                <div class="bg-[#0f172a] rounded-2xl border border-gray-800 opacity-60 grayscale flex flex-col relative overflow-hidden">
-                    <div class="absolute inset-0 z-20 flex items-center justify-center bg-black/40">
-                        <div class="bg-red-600 text-white font-bold text-xl px-8 py-2 transform rotate-12 border-2 border-white shadow-xl">AGOTADO</div>
-                    </div>
-                    <div class="bg-gray-800/50 p-4 text-center border-b border-gray-700">
-                        <h3 class="text-xl font-bold text-gray-400">6.5kW ECO</h3>
-                        <p class="text-gray-500 text-xs">Batería Mediana</p>
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col">
-                        <div class="text-center mb-6">
-                            <span class="text-4xl font-bold text-gray-500">$--</span>
-                            <span class="text-[10px] text-gray-600 block uppercase tracking-wide mt-1">FUERA DE STOCK</span>
-                        </div>
-                        <ul class="space-y-4 text-sm text-gray-600 mb-6 flex-1">
-                            <li class="flex items-center gap-3"><i class="fas fa-microchip w-5"></i> Inv. 6.5kW Split</li>
-                            <li class="flex items-center gap-3"><i class="fas fa-battery-half w-5"></i> 10.2 kWh</li>
-                            <li class="flex items-center gap-3"><i class="fas fa-solar-panel w-5"></i> 12 Paneles</li>
-                        </ul>
-                        <button disabled class="w-full border border-gray-700 text-gray-600 font-bold py-3 rounded-lg text-sm cursor-not-allowed">No Disponible</button>
-                    </div>
+    <!-- 2. KIT 6.5kW PRO (STOCK: 1 - LA JOYA) -->
+    <div class="bg-gradient-to-b from-[#1e293b] to-[#0f172a] rounded-2xl border-2 border-red-600 p-6 relative overflow-hidden shadow-[0_0_40px_rgba(220,38,38,0.3)] transform md:-translate-y-4 z-10">
+        
+        <!-- Cinta Última Unidad -->
+        <div class="absolute top-0 left-0 w-full bg-red-600 text-white text-center text-[10px] font-bold py-1 uppercase tracking-widest animate-pulse">
+            🔥 ÚLTIMA UNIDAD DISPONIBLE
+        </div>
+
+        <div class="bg-red-900/20 p-4 -mx-6 -mt-6 mb-6 text-center border-b border-red-500/30 pt-8">
+            <h3 class="text-2xl font-bold text-white">6.5kW PRO</h3>
+            <p class="text-red-200 text-xs font-bold">Split Phase (110V/220V)</p>
+        </div>
+
+        <div class="flex-1 flex flex-col">
+            <div class="text-center mb-4">
+                <span class="text-5xl font-bold text-white">$6,985</span>
+                <span class="text-[10px] text-gray-500 block uppercase mt-1">+ Instalación</span>
+            </div>
+
+            <!-- CONTADOR DE TRANSPORTE (Lógica 48h) -->
+            <div class="bg-black/40 rounded-lg p-3 border border-red-500/50 text-center mb-6" id="card-box-6kw">
+                <p class="text-[10px] text-gray-400 uppercase tracking-widest mb-1">Oferta Logística (La Habana)</p>
+                <div class="text-green-400 font-mono font-bold text-sm" id="card-msg-6kw">
+                    🚚 ENVÍO GRATIS: <span id="card-timer-6kw" class="text-white text-base">48:00:00</span>
                 </div>
+            </div>
 
-                <!-- 4. KIT 6.5kW PRO (ULTRA DEMANDA) -->
-<div class="bg-gradient-to-b from-[#1e293b] to-[#0f172a] rounded-2xl border-2 border-yellow-500 transition duration-300 flex flex-col overflow-hidden group transform md:-translate-y-4 shadow-[0_0_40px_rgba(234,179,8,0.2)] relative z-10">
-    
-    <div class="bg-yellow-500 p-2 text-center text-black text-[11px] font-bold tracking-widest uppercase flex justify-center items-center gap-2">
-        <i class="fas fa-fire"></i> MÁS BUSCADO (SPLIT PHASE)
-    </div>
-    
-    <!-- Notificación Flotante dentro de la tarjeta -->
-    <div class="absolute top-10 right-2 bg-black/80 backdrop-blur text-white text-[9px] p-2 rounded border border-gray-600 shadow-xl max-w-[120px] text-center z-20">
-        <span class="text-green-400 font-bold block">🔥 Dato Real:</span>
-        2 Unidades en negociación ahora mismo.
-    </div>
+            <ul class="space-y-3 text-sm text-gray-300 mb-6 flex-1">
+                <li class="flex items-center gap-3"><i class="fas fa-check text-green-500"></i> Soporta Aires 220V Nativos</li>
+                <li class="flex items-center gap-3"><i class="fas fa-battery-full text-green-500"></i> <strong>14 kWh</strong> (Batería Gigante)</li>
+                <li class="flex items-center gap-3"><i class="fas fa-solar-panel text-blue-400"></i> <strong>12x 620W</strong> (DAH Solar)</li>
+            </ul>
 
-    <div class="p-4 text-center border-b border-yellow-500/30">
-        <h3 class="text-2xl font-bold text-white">6.5kW PRO</h3>
-        <p class="text-yellow-200 text-xs">220V Nativo (Aires Acondicionados)</p>
-    </div>
-    <div class="p-6 flex-1 flex flex-col">
-        <div class="text-center mb-6">
-            <span class="text-5xl font-bold text-white">$6,985</span>
-            <div class="text-[10px] text-yellow-500 uppercase tracking-wide mt-2 bg-yellow-900/30 inline-block px-3 py-1 rounded border border-yellow-500/50">
-                + $750 Instalación
+            <div class="grid grid-cols-2 gap-3 mt-auto">
+                <button onclick="openSheet('6.5kw')" class="bg-gray-800 hover:bg-gray-700 text-gray-300 font-bold py-3 rounded-lg text-xs border border-gray-600">
+                    <i class="far fa-file-pdf text-red-500 mr-1"></i> Ficha
+                </button>
+                <a href="https://wa.me/5358183649?text=URGENTE:%20Quiero%20la%20ÚLTIMA%20unidad%20del%20Kit%206.5kW%20PRO%20antes%20de%20que%20cobre%20el%20envío." 
+                   target="_blank"
+                   class="bg-red-600 hover:bg-red-500 text-white font-bold py-3 rounded-lg text-xs transition shadow-lg animate-pulse flex items-center justify-center">
+                    COMPRAR YA
+                </a>
             </div>
         </div>
-        
-        <!-- MÓDULO DE URGENCIA 2.0 (Pegar esto debajo del precio en las tarjetas de 5kW y 6.5kW) -->
-<div class="mt-4 mb-6 bg-red-950/30 border border-red-500/40 rounded-xl overflow-hidden relative group">
-    
-    <!-- Barra de progreso animada (Simula que se acaba el tiempo) -->
-    <div class="absolute top-0 left-0 h-1 bg-red-600 animate-pulse w-full"></div>
-    
-    <div class="p-3 text-center relative z-10">
-        <!-- Titular de Dolor -->
-        <div class="flex justify-center items-center gap-2 mb-2">
-            <span class="animate-pulse w-2 h-2 bg-red-500 rounded-full"></span>
-            <p class="text-[10px] text-red-200 font-bold uppercase tracking-widest">
-                Cierre de Lote Inminente
-            </p>
-        </div>
-
-        <!-- El Contador -->
-        <div class="flex justify-center items-baseline gap-1 mb-2 font-mono">
-            <div class="bg-[#0f172a] rounded px-2 py-1 text-white font-bold text-xl border border-gray-700 urgency-hours">47</div>
-            <span class="text-xs text-gray-500">:</span>
-            <div class="bg-[#0f172a] rounded px-2 py-1 text-white font-bold text-xl border border-gray-700 urgency-min">59</div>
-            <span class="text-xs text-gray-500">:</span>
-            <div class="bg-[#0f172a] rounded px-2 py-1 text-red-500 font-bold text-xl border border-red-900/50 urgency-sec">00</div>
-        </div>
-
-        <!-- La Amenaza (El "Castigo" por no comprar) -->
-        <div class="bg-black/40 rounded-lg p-2 border border-white/5">
-            <p class="text-[10px] text-gray-400 leading-tight">
-                <i class="fas fa-ship text-gray-500 mr-1"></i> Próximo contenedor: <span class="text-white font-bold">Febrero 2026</span>.
-            </p>
-            <p class="text-[10px] text-red-400 font-bold mt-1 animate-pulse">
-                ⚠️ Si pierdes este, esperas 2 meses.
-            </p>
-        </div>
-
-        <!-- Stock en Tiempo Real (Falso pero creíble) -->
-        <div class="mt-2 text-xs font-bold text-white flex justify-center items-center gap-1">
-            Stock Habana: <span class="text-yellow-400 text-lg dynamic-stock">1</span> unidad
-        </div>
-    </div>
-</div>
-
-        <ul class="space-y-4 text-sm text-gray-300 mb-8 flex-1">
-            <li class="flex items-center gap-3"><i class="fas fa-microchip text-yellow-500 w-5"></i> Inv. 6.5kW SRNE (110/220V)</li>
-            <li class="flex items-center gap-3"><i class="fas fa-battery-three-quarters text-green-400 w-5"></i> <strong>14 kWh</strong> (LFP Industrial)</li>
-            <li class="flex items-center gap-3"><i class="fas fa-solar-panel text-blue-400 w-5"></i> <strong>12x 620W</strong> (DAH Full-Screen)</li>
-            <li class="flex items-center gap-3"><i class="fas fa-shield-alt text-gray-400 w-5"></i> Garantía 1 Año</li>
-        </ul>
-        <div class="grid grid-cols-2 gap-3 mt-auto">
-            <button onclick="openSheet('6.5kw')" class="bg-gray-800 hover:bg-gray-700 text-gray-300 font-bold py-3 rounded-lg text-xs border border-gray-600">
-                <i class="far fa-file-pdf text-red-500 mr-1"></i> Ficha
-            </button>
-            <button onclick="openOrderForm('Kit 6.5kW PRO (Quedan 3)')" class="bg-yellow-500 hover:bg-yellow-400 text-black font-bold py-3 rounded-lg text-xs transition shadow-lg animate-pulse">
-                ¡Lo Quiero!
-            </button>
-        </div>
-    </div>
-</div>
-
-                <!-- 5. KIT 10kW PRO (AGOTADO) -->
-<div class="bg-[#0f172a] rounded-2xl border border-gray-800 opacity-60 grayscale flex flex-col relative overflow-hidden">
-    
-    <!-- CINTA DE AGOTADO -->
-    <div class="absolute inset-0 z-20 flex items-center justify-center bg-black/50 backdrop-blur-[2px]">
-        <div class="bg-red-600 text-white font-black text-2xl px-10 py-3 transform -rotate-12 border-4 border-white shadow-2xl tracking-widest uppercase">
-            AGOTADO
-        </div>
     </div>
 
-    <div class="bg-gray-800/50 p-4 text-center border-b border-gray-700">
-        <h3 class="text-xl font-bold text-gray-400">10kW PRO</h3>
-        <p class="text-gray-500 text-xs font-bold">Potencia Comercial</p>
-    </div>
-    <div class="p-6 flex-1 flex flex-col">
-        <div class="text-center mb-6">
-            <span class="text-4xl font-bold text-gray-500">$8,605</span>
-            <div class="text-[10px] text-gray-600 uppercase tracking-wide mt-1 bg-gray-900 inline-block px-2 py-1 rounded">
-                SIN STOCK
+    <!-- 3. OTROS KITS (10kW) - Marcado como AGOTADO para efecto psicológico -->
+    <div class="bg-[#0f172a] rounded-2xl border border-gray-800 opacity-60 grayscale flex flex-col relative overflow-hidden">
+        <div class="absolute inset-0 z-20 flex items-center justify-center bg-black/50">
+            <div class="bg-gray-700 text-white font-bold text-sm px-6 py-2 transform -rotate-12 border border-white">AGOTADO</div>
+        </div>
+        <div class="bg-gray-800/50 p-4 text-center border-b border-gray-700">
+            <h3 class="text-xl font-bold text-gray-400">10kW PRO</h3>
+            <p class="text-gray-500 text-xs">Potencia Comercial</p>
+        </div>
+        <div class="p-6 flex-1 flex flex-col">
+            <div class="text-center mb-6">
+                <span class="text-4xl font-bold text-gray-500">$8,605</span>
+                <span class="text-[10px] text-gray-600 block uppercase mt-1">SIN STOCK</span>
             </div>
-        </div>
-        <ul class="space-y-4 text-sm text-gray-600 mb-8 flex-1">
-            <li class="flex items-center gap-3"><i class="fas fa-microchip w-5"></i> Inv. 10kW SRNE</li>
-            <li class="flex items-center gap-3"><i class="fas fa-battery-three-quarters w-5"></i> 14.33 kWh</li>
-            <li class="flex items-center gap-3"><i class="fas fa-solar-panel w-5"></i> 16 Paneles</li>
-            <li class="flex items-center gap-3"><i class="fas fa-server w-5"></i> Rack Incluido</li>
-        </ul>
-        <div class="grid grid-cols-2 gap-3 mt-auto">
-            <button disabled class="bg-gray-800 text-gray-600 font-bold py-3 rounded-lg text-xs border border-gray-700 cursor-not-allowed">
-                <i class="far fa-file-pdf mr-1"></i> Ficha
-            </button>
-            <button disabled class="bg-gray-700 text-gray-500 font-bold py-3 rounded-lg text-xs cursor-not-allowed">
+            <ul class="space-y-4 text-sm text-gray-600 mb-8 flex-1">
+                <li class="flex items-center gap-3"><i class="fas fa-microchip w-5"></i> Inv. 10kW SRNE</li>
+                <li class="flex items-center gap-3"><i class="fas fa-battery-full w-5"></i> 14.33 kWh</li>
+                <li class="flex items-center gap-3"><i class="fas fa-solar-panel w-5"></i> 16 Paneles</li>
+            </ul>
+            <button disabled class="w-full border border-gray-700 text-gray-600 font-bold py-3 rounded-lg text-sm cursor-not-allowed">
                 No Disponible
             </button>
         </div>
     </div>
-</div>
 
-<!-- 6. KIT 10kW PLUS (AGOTADO) -->
-<div class="bg-[#0f172a] rounded-2xl border border-gray-800 opacity-60 grayscale flex flex-col relative overflow-hidden">
-    
-    <!-- CINTA DE AGOTADO -->
-    <div class="absolute inset-0 z-20 flex items-center justify-center bg-black/50 backdrop-blur-[2px]">
-        <div class="bg-red-600 text-white font-black text-2xl px-10 py-3 transform rotate-12 border-4 border-white shadow-2xl tracking-widest uppercase">
-            VENDIDO
-        </div>
-    </div>
-
-    <div class="bg-gray-800/50 p-4 text-center border-b border-gray-700">
-        <h3 class="text-xl font-bold text-gray-400">10kW PLUS</h3>
-        <p class="text-gray-500 text-xs font-bold">Autonomía Total</p>
-    </div>
-    <div class="p-6 flex-1 flex flex-col">
-        <div class="text-center mb-6">
-            <span class="text-4xl font-bold text-gray-500">$9,930</span>
-            <div class="text-[10px] text-gray-600 uppercase tracking-wide mt-1 bg-gray-900 inline-block px-2 py-1 rounded">
-                SIN STOCK
-            </div>
-        </div>
-        <ul class="space-y-4 text-sm text-gray-600 mb-8 flex-1">
-            <li class="flex items-center gap-3"><i class="fas fa-microchip w-5"></i> Inv. 10kW SRNE</li>
-            <li class="flex items-center gap-3"><i class="fas fa-battery-full w-5"></i> 20.48 kWh</li>
-            <li class="flex items-center gap-3"><i class="fas fa-solar-panel w-5"></i> 16 Paneles</li>
-            <li class="flex items-center gap-3"><i class="fas fa-layer-group w-5"></i> Rack Industrial</li>
-        </ul>
-        <div class="grid grid-cols-2 gap-3 mt-auto">
-            <button disabled class="bg-gray-800 text-gray-600 font-bold py-3 rounded-lg text-xs border border-gray-700 cursor-not-allowed">
-                <i class="far fa-file-pdf mr-1"></i> Ficha
-            </button>
-            <button disabled class="bg-gray-700 text-gray-500 font-bold py-3 rounded-lg text-xs cursor-not-allowed">
-                No Disponible
-            </button>
-        </div>
-    </div>
 </div>
 
             </div>
@@ -5908,6 +5887,147 @@ document.addEventListener('DOMContentLoaded', initUltimateUrgency);
     function cleanNum(str) { return str ? str.replace(/\D/g, '') : ''; }
     function safeSetText(id, txt) { const el = document.getElementById(id); if (el) el.innerText = txt; }
     function safeWidth(id, pct) { const el = document.getElementById(id); if (el) el.style.width = pct + "%"; }
+</script>
+<script>
+    function initShippingUrgency() {
+        // Clave única para guardar la fecha en el navegador del cliente
+        const storageKey = 'solar_shipping_deadline_v1'; 
+        
+        let deadline = localStorage.getItem(storageKey);
+        const now = new Date().getTime();
+        
+        // 48 Horas en milisegundos
+        const duration = 48 * 60 * 60 * 1000; 
+
+        // Si no existe o ya pasó hace mucho (reinicio lógico), creamos nueva fecha
+        if (!deadline) {
+            deadline = now + duration; 
+            localStorage.setItem(storageKey, deadline);
+        }
+
+        const timerInterval = setInterval(() => {
+            const currentTime = new Date().getTime();
+            const distance = deadline - currentTime;
+
+            // Elementos del DOM
+            const display5 = document.getElementById('timer-5kw');
+            const display6 = document.getElementById('timer-6kw');
+            const msg5 = document.getElementById('msg-5kw');
+            const msg6 = document.getElementById('msg-6kw');
+            const box5 = document.getElementById('box-5kw');
+            const box6 = document.getElementById('box-6kw');
+
+            // Si se acabó el tiempo
+            if (distance < 0) {
+                clearInterval(timerInterval);
+                const penaltyMsg = "⚠️ OFERTA EXPIRADA <br><span class='text-sm text-white'>Mensajería: +$100 USD</span>";
+                
+                // Aplicar estilo de penalización (Rojo/Dolor)
+                if(msg5) {
+                    msg5.innerHTML = penaltyMsg;
+                    msg5.classList.remove('text-green-400');
+                    msg5.classList.add('text-red-400');
+                    box5.style.border = "1px solid #ef4444";
+                    box5.style.background = "rgba(69, 10, 10, 0.8)";
+                }
+                if(msg6) {
+                    msg6.innerHTML = penaltyMsg;
+                    msg6.classList.remove('text-green-400');
+                    msg6.classList.add('text-red-400');
+                    box6.style.border = "1px solid #ef4444";
+                    box6.style.background = "rgba(69, 10, 10, 0.8)";
+                }
+            } else {
+                // Cálculo de tiempo restante
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                
+                // Formato con ceros a la izquierda (47:05:01)
+                const formattedTime = 
+                    (hours < 10 ? "0" + hours : hours) + ":" + 
+                    (minutes < 10 ? "0" + minutes : minutes) + ":" + 
+                    (seconds < 10 ? "0" + seconds : seconds);
+
+                if(display5) display5.innerText = formattedTime;
+                if(display6) display6.innerText = formattedTime;
+            }
+        }, 1000);
+    }
+
+    // Iniciar al cargar la página
+    document.addEventListener('DOMContentLoaded', initShippingUrgency);
+</script>
+<script>
+    function initCardTimers() {
+        // Usamos la misma clave de almacenamiento para que el tiempo sea consistente en toda la web
+        const storageKey = 'solar_shipping_deadline_v1'; 
+        
+        let deadline = localStorage.getItem(storageKey);
+        const now = new Date().getTime();
+        const duration = 48 * 60 * 60 * 1000; // 48 Horas
+
+        if (!deadline) {
+            deadline = now + duration; 
+            localStorage.setItem(storageKey, deadline);
+        }
+
+        const timerInterval = setInterval(() => {
+            const currentTime = new Date().getTime();
+            const distance = deadline - currentTime;
+
+            // Elementos en las TARJETAS de la sección PRO
+            const cardTimer5 = document.getElementById('card-timer-5kw');
+            const cardMsg5 = document.getElementById('card-msg-5kw');
+            const cardBox5 = document.getElementById('card-box-5kw');
+
+            const cardTimer6 = document.getElementById('card-timer-6kw');
+            const cardMsg6 = document.getElementById('card-msg-6kw');
+            const cardBox6 = document.getElementById('card-box-6kw');
+
+            if (distance < 0) {
+                clearInterval(timerInterval);
+                const penaltyHTML = "⚠️ OFERTA EXPIRADA <br><span class='text-white text-xs'>Envío: +$100 USD</span>";
+                
+                // Aplicar estilo de penalización en tarjeta 5kW
+                if(cardMsg5) {
+                    cardMsg5.innerHTML = penaltyHTML;
+                    cardMsg5.className = "text-red-400 font-bold text-sm leading-tight";
+                    if(cardBox5) {
+                        cardBox5.style.border = "1px solid #7f1d1d";
+                        cardBox5.style.background = "rgba(69, 10, 10, 0.6)";
+                    }
+                }
+                
+                // Aplicar estilo de penalización en tarjeta 6.5kW
+                if(cardMsg6) {
+                    cardMsg6.innerHTML = penaltyHTML;
+                    cardMsg6.className = "text-red-400 font-bold text-sm leading-tight";
+                    if(cardBox6) {
+                        cardBox6.style.border = "1px solid #7f1d1d";
+                        cardBox6.style.background = "rgba(69, 10, 10, 0.6)";
+                    }
+                }
+
+            } else {
+                // Formato de tiempo
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                
+                const formattedTime = 
+                    (hours < 10 ? "0" + hours : hours) + ":" + 
+                    (minutes < 10 ? "0" + minutes : minutes) + ":" + 
+                    (seconds < 10 ? "0" + seconds : seconds);
+
+                if(cardTimer5) cardTimer5.innerText = formattedTime;
+                if(cardTimer6) cardTimer6.innerText = formattedTime;
+            }
+        }, 1000);
+    }
+
+    // Iniciar script cuando cargue la web
+    document.addEventListener('DOMContentLoaded', initCardTimers);
 </script>
 
 </body>
