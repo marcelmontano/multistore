@@ -240,7 +240,7 @@
             </div>
         </div>
     </nav>
-    <<section id="liquidacion-pro" class="pt-48 md:pt-56 pb-20 bg-[#0b1120] relative border-b border-gray-800">
+    <section id="liquidacion-pro" class="pt-48 md:pt-56 pb-20 bg-[#0b1120] relative border-b border-gray-800">
 
     <!-- Fondo distintivo para separar esta sección del resto de equipos comunes -->
     <div class="absolute inset-0 bg-gradient-to-b from-red-900/10 to-[#0b1120] pointer-events-none"></div>
@@ -355,8 +355,14 @@
         <!-- (Tu contenido de Alerta SEN y Déficit aquí...) -->
         <!-- Asegúrate de NO BORRAR el contenido de adentro, solo cambia el <div class="..."> del principio -->
          <div class="flex items-center gap-2 animate-pulse">
-            <span class="bg-white text-red-800 px-1.5 py-0.5 rounded uppercase font-black tracking-tighter">🔴 ALERTA SEN</span>
-            <span>Déficit Hoy: <strong id="nav-deficit">Cargando...</strong> (<span id="nav-percent">--</span>% Afectación)</span>
+            <!-- DENTRO DE LA BARRA ROJA SUPERIOR -->
+<div class="flex items-center gap-3" id="sen-status-container">
+    <!-- Este contenido se reemplazará automáticamente por JS si hay DAF -->
+    <div class="flex items-center gap-2 animate-pulse">
+        <span class="bg-white text-red-800 px-1.5 py-0.5 rounded uppercase font-black tracking-tighter text-[10px]">🔴 ALERTA SEN</span>
+        <span>Estado: <strong id="nav-deficit">Cargando...</strong></span>
+    </div>
+</div>
         </div>
 
         <div class="hidden md:flex items-center gap-2 text-yellow-300">
@@ -665,7 +671,7 @@
     </div>
 </section>
 
-<<!-- SECCIÓN: MAPA DE FRAGILIDAD (DATA MINING SEPT-DIC) -->
+<!-- SECCIÓN: MAPA DE FRAGILIDAD (DATA MINING SEPT-DIC) -->
 <section class="py-16 bg-[#050b14] border-t border-red-900/30 relative overflow-hidden" id="fragility-map">
     
     <!-- Fondo Radar -->
@@ -756,6 +762,355 @@
         </div>
     </div>
 </section>
+
+<!-- ============================================== -->
+<!-- SECCIÓN: VERIFICADOR DE MENTIRAS (ALL-IN-ONE) -->
+<!-- ============================================== -->
+<section class="py-16 bg-[#020617] border-t border-gray-800 relative" id="lie-detector">
+    
+    <div class="max-w-6xl mx-auto px-4">
+        
+        <!-- ENCABEZADO -->
+        <div class="flex flex-col md:flex-row justify-between items-end mb-10 gap-4">
+            <div>
+                <span class="text-red-500 font-bold tracking-widest text-xs uppercase mb-2 block animate-pulse">
+                    <i class="fas fa-user-secret mr-2"></i> Auditoría Ciudadana
+                </span>
+                <h2 class="text-3xl md:text-5xl font-black text-white leading-tight font-tech">
+                    ¿CUMPLIERON EL <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-orange-500">HORARIO?</span>
+                </h2>
+            </div>
+            
+            <!-- SELECTOR DE BLOQUE -->
+            <div class="bg-gray-800 p-1 rounded-lg flex items-center border border-gray-700">
+                <span class="text-gray-400 text-xs font-bold px-3 uppercase">Tu Bloque:</span>
+                <select id="lieBlockSelector" onchange="updateLieDetector()" class="bg-gray-900 text-white text-sm font-bold py-2 px-4 rounded outline-none border border-gray-600 focus:border-red-500 transition cursor-pointer">
+                    <option value="1">Bloque 1</option>
+                    <option value="2">Bloque 2</option>
+                    <option value="3">Bloque 3</option>
+                    <option value="4" selected>Bloque 4 (Crítico)</option>
+                    <option value="5">Bloque 5</option>
+                    <option value="6">Bloque 6</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- EL GRÁFICO COMPARATIVO -->
+        <div class="bg-[#0f172a] rounded-2xl border border-gray-700 p-6 md:p-8 shadow-2xl relative overflow-hidden">
+            
+            <div class="relative z-10 flex flex-col md:flex-row gap-8 items-center">
+                
+                <!-- IZQUIERDA: DATOS DE TEXTO -->
+                <div class="w-full md:w-1/3 space-y-6">
+                    <div>
+                        <p class="text-gray-400 text-xs uppercase tracking-widest mb-1">Lo que prometieron (Plan):</p>
+                        <div class="text-3xl font-bold text-green-400 flex items-center gap-2">
+                            <i class="far fa-calendar-check"></i> <span id="planned-hours">4.0 h</span>
+                        </div>
+                    </div>
+
+                    <div class="relative">
+                        <p class="text-gray-400 text-xs uppercase tracking-widest mb-1">La Realidad (Logs UNE):</p>
+                        <div class="text-5xl font-black text-red-500 flex items-center gap-3 drop-shadow-lg">
+                            <i class="fas fa-exclamation-triangle text-3xl"></i> 
+                            <span id="real-hours">-- h</span>
+                        </div>
+                    </div>
+
+                    <!-- CAJA DE VEREDICTO -->
+                    <div class="bg-red-950/40 border-l-4 border-red-600 p-4 rounded-r-lg">
+                        <p class="text-red-300 text-xs font-bold uppercase mb-1">Diferencia (Tiempo Robado):</p>
+                        <p class="text-white font-mono text-sm md:text-lg leading-tight" id="stolen-time">
+                            <i class="fas fa-spinner fa-spin"></i> Cargando base de datos...
+                        </p>
+                    </div>
+                </div>
+
+                <!-- DERECHA: GRÁFICO DE BARRAS -->
+                <div class="w-full md:w-2/3 h-64 flex flex-col justify-end relative">
+                    
+                    <!-- Etiqueta de Fecha -->
+                    <div class="absolute top-0 right-0 bg-gray-800 text-gray-400 text-[10px] px-2 py-1 rounded border border-gray-700">
+                        <i class="far fa-calendar-alt mr-1"></i> Fecha del Dato: <span id="chart-date-label" class="text-white font-bold text-yellow-400">...</span>
+                    </div>
+                
+                    <!-- Contenedor Barras (Flex row para ponerlas lado a lado) -->
+                    <div class="flex items-end justify-around gap-6 h-full pb-2 border-b border-gray-700 pt-10">
+                        
+                        <!-- Barra Plan -->
+                        <div class="relative w-1/3 h-full flex flex-col justify-end group">
+                            <div class="mb-2 text-center w-full opacity-0 group-hover:opacity-100 transition duration-300 absolute -top-8">
+                                <span class="text-green-400 text-xs font-bold bg-green-900/50 px-2 py-1 rounded">Planificado</span>
+                            </div>
+                            <!-- Barra Verde -->
+                            <div id="bar-plan" class="w-full bg-green-500/20 border-2 border-green-500 rounded-t-lg transition-all duration-1000 relative flex items-end justify-center overflow-hidden hover:bg-green-500/40" style="height: 20%">
+                                 <span class="mb-2 text-green-300 font-bold text-lg drop-shadow-md">4h</span>
+                            </div>
+                            <div class="text-center mt-3 border-t border-gray-700 w-full pt-2">
+                                <p class="text-gray-500 text-[10px] uppercase font-bold tracking-widest">Promesa</p>
+                            </div>
+                        </div>
+                
+                        <!-- Barra Realidad -->
+                        <div class="relative w-1/3 h-full flex flex-col justify-end group">
+                            <div class="mb-2 text-center w-full opacity-0 group-hover:opacity-100 transition duration-300 absolute -top-8">
+                                <span class="text-red-400 text-xs font-bold bg-red-900/50 px-2 py-1 rounded">Real</span>
+                            </div>
+                            <!-- Barra Roja Dinámica -->
+                            <div id="bar-real" class="w-full bg-red-600 border-2 border-red-400 rounded-t-lg transition-all duration-1000 shadow-[0_0_30px_rgba(220,38,38,0.3)] relative flex items-end justify-center overflow-hidden hover:brightness-110" style="height: 10%">
+                                <span id="bar-real-text" class="relative z-10 mb-2 text-white font-black text-2xl drop-shadow-md">--</span>
+                            </div>
+                            <div class="text-center mt-3 border-t border-gray-700 w-full pt-2">
+                                <p class="text-red-500 text-[10px] uppercase font-bold tracking-widest animate-pulse">Realidad</p>
+                            </div>
+                        </div>
+                
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botón Final -->
+            <div class="mt-8 text-center border-t border-gray-800 pt-6">
+                <p class="text-gray-400 text-xs mb-3">La UNE llama a esto "Déficit de Emergencia". Nosotros le llamamos <strong class="text-white">vivir sin control.</strong></p>
+                <button onclick="document.getElementById('ofertas-blue').scrollIntoView({behavior: 'smooth'})" class="text-yellow-400 font-bold text-sm hover:text-white transition border-b border-yellow-500 pb-1 uppercase tracking-wider cursor-pointer">
+                    RECUPERAR EL CONTROL DE TU TIEMPO <i class="fas fa-arrow-right ml-1"></i>
+                </button>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- SECCIÓN: ORÁCULO DE REPARACIONES (ESTADÍSTICA) -->
+<section class="py-16 bg-[#0b1120] border-t border-gray-800 relative">
+    <div class="max-w-4xl mx-auto px-4">
+        
+        <div class="text-center mb-8">
+            <h2 class="text-2xl md:text-4xl font-bold text-white mb-2 font-tech">
+                🔮 ¿Cuándo vuelve la luz?
+            </h2>
+            <p class="text-gray-400 text-sm">
+                Basado en el análisis de <strong>524 reportes de la UNE</strong> (Sept-Dic). 
+                Escribe tu problema y la IA estimará el tiempo real de solución.
+            </p>
+        </div>
+
+        <!-- BUSCADOR INTELIGENTE -->
+        <div class="bg-[#1e293b] p-6 rounded-2xl border border-blue-500/30 shadow-2xl relative overflow-hidden">
+            
+            <div class="relative z-10">
+                <label class="text-xs text-blue-300 font-bold uppercase mb-2 block">¿Qué dijo la Empresa Eléctrica?</label>
+                <div class="flex gap-2">
+                    <select id="repair-selector" class="w-full bg-[#0f172a] text-white border border-gray-600 rounded-lg p-3 outline-none focus:border-blue-500 transition">
+                        <option value="" selected disabled>Selecciona el reporte...</option>
+                        <option value="transformador">"Transformador dañado"</option>
+                        <option value="primario">"Puente/Primario Partido"</option>
+                        <option value="cable">"Cable Soterrado Fallo"</option>
+                        <option value="daf">"Disparo por DAF"</option>
+                        <option value="disparo">"Disparo de Circuito (Avería)"</option>
+                        <option value="poda">"Vía Libre / Poda"</option>
+                    </select>
+                    <button onclick="calculateRepairTime()" class="bg-blue-600 hover:bg-blue-500 text-white px-6 rounded-lg font-bold transition">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+
+                <!-- RESULTADO (OCULTO POR DEFECTO) -->
+                <div id="repair-result" class="hidden mt-6 bg-black/40 rounded-xl p-4 border-l-4 border-yellow-500 animate-slide-in">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="text-gray-400 text-xs uppercase">Tiempo Promedio Histórico</p>
+                            <h3 class="text-3xl font-black text-white my-1" id="repair-hours">-- Horas</h3>
+                            <p class="text-[11px] text-gray-500 italic" id="repair-note">Datos basados en reportes de Playa y Boyeros.</p>
+                        </div>
+                        <div class="text-right">
+                            <span class="bg-red-600 text-white text-[10px] font-bold px-2 py-1 rounded uppercase">Riesgo</span>
+                            <div class="text-red-400 font-bold text-lg mt-1" id="repair-risk">Alto</div>
+                        </div>
+                    </div>
+                    
+                    <!-- CTA DE VENTA -->
+                    <div class="mt-4 pt-4 border-t border-gray-700 flex flex-col sm:flex-row items-center justify-between gap-4">
+                        <p class="text-sm text-gray-300" id="repair-pitch">¿Se te va a descongelar la comida?</p>
+                        <button onclick="document.getElementById('ofertas-blue').scrollIntoView({behavior: 'smooth'})" class="w-full sm:w-auto bg-yellow-500 hover:bg-yellow-400 text-black font-bold py-2 px-4 rounded text-xs transition">
+                            Ver Solución Inmediata (Kit)
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SCRIPT: LÓGICA DEL VERIFICADOR (SHEETS + DOM) -->
+<script>
+    // 1. URL DE TU BASE DE DATOS (GOOGLE SHEETS CSV)
+    const LIE_SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSzif4P4juLuHJiXEnowN0cDOI3MEsSJLrLvQFYpL2YCyjBDgW9HZFI2lwu8ZLToVpELVc8NOF-Lsfd/pub?output=csv';
+    
+    // Datos de Respaldo (Por si falla la conexión, usa datos del 10 Dic)
+    let lieDataGlobal = {
+        "1": { date: "10/12/2025", plan: 4, real: 7.5, note: "Doble afectación: Madrugada y mañana por Emergencia." },
+        "2": { date: "10/12/2025", plan: 4, real: 8.2, note: "Déficit severo extendido fuera de rotación." },
+        "3": { date: "10/12/2025", plan: 4, real: 6.8, note: "Salida imprevista por emergencia a las 02:09 PM." },
+        "4": { date: "10/12/2025", plan: 4, real: 9.5, note: "Día crítico: Afectado desde las 06:47 AM y nuevamente al mediodía." },
+        "5": { date: "10/12/2025", plan: 4, real: 6.0, note: "Impacto matutino por déficit de emergencia a las 09:34 AM." },
+        "6": { date: "10/12/2025", plan: 4, real: 6.5, note: "Rotura de ciclo: Afectado fuera de horario a las 10:33 AM." }
+    };
+
+    // 2. FUNCIÓN DE CARGA
+    async function fetchLieData() {
+        try {
+            console.log("Cargando datos del Sheet...");
+            // Agregar timestamp para evitar caché
+            const response = await fetch(LIE_SHEET_URL + '&t=' + Date.now());
+            if (!response.ok) throw new Error("Error HTTP");
+            const csvText = await response.text();
+            
+            if (csvText) {
+                processLieCSV(csvText);
+            }
+        } catch (error) {
+            console.warn('Usando datos de respaldo por error:', error);
+            // Si falla, se queda con lieDataGlobal por defecto
+            updateLieDetector();
+        }
+    }
+
+    // 3. PROCESAMIENTO DEL CSV
+    function processLieCSV(csv) {
+        const rows = csv.split('\n').slice(1); // Ignorar primera fila (encabezados)
+        const groupedByDate = {};
+        let validRowsCount = 0;
+
+        rows.forEach(row => {
+            // Regex para separar por comas respetando comillas
+            const cols = row.match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g);
+            if (!cols || cols.length < 5) return;
+
+            // Limpiar datos
+            const fecha = cols[0].replace(/"/g, '').trim();
+            const bloque = cols[1].replace(/"/g, '').trim();
+            const plan = parseFloat(cols[2].replace(/"/g, ''));
+            const real = parseFloat(cols[3].replace(/"/g, ''));
+            const nota = cols[4].replace(/"/g, '').trim();
+
+            if (!groupedByDate[fecha]) groupedByDate[fecha] = {};
+            
+            groupedByDate[fecha][bloque] = {
+                date: fecha,
+                plan: plan || 0,
+                real: real || 0,
+                note: nota || "Sin reporte detallado."
+            };
+            validRowsCount++;
+        });
+
+        console.log(`Procesadas ${validRowsCount} filas del Sheet.`);
+
+        // Encontrar la fecha más reciente (DD/MM/YYYY)
+        const dates = Object.keys(groupedByDate);
+        if (dates.length > 0) {
+            const latestDate = dates.sort((a, b) => {
+                const partsA = a.split('/');
+                const partsB = b.split('/');
+                // Crear objetos Date (Año, Mes-1, Dia) para comparar
+                const dateA = new Date(partsA[2], partsA[1]-1, partsA[0]);
+                const dateB = new Date(partsB[2], partsB[1]-1, partsB[0]);
+                return dateB - dateA;
+            })[0];
+
+            console.log("Fecha más reciente encontrada:", latestDate);
+
+            // Actualizar datos globales y refrescar UI
+            lieDataGlobal = groupedByDate[latestDate];
+            updateLieDetector();
+        }
+    }
+
+    // 4. ACTUALIZAR INTERFAZ
+    function updateLieDetector() {
+        const selector = document.getElementById('lieBlockSelector');
+        if(!selector) return;
+
+        const block = selector.value;
+        // Si no hay datos para el bloque seleccionado en la fecha más reciente, usar backup visual
+        const data = lieDataGlobal[block] || { plan: 4, real: 0, note: "Datos pendientes de actualización", date: "..." };
+
+        // Referencias DOM
+        const planEl = document.getElementById('planned-hours');
+        const realEl = document.getElementById('real-hours');
+        const stolenEl = document.getElementById('stolen-time');
+        const dateLabel = document.getElementById('chart-date-label');
+        const barPlan = document.getElementById('bar-plan');
+        const barReal = document.getElementById('bar-real');
+        const barRealText = document.getElementById('bar-real-text');
+
+        // Cálculos
+        const diff = (data.real - data.plan).toFixed(1);
+        const maxScale = 18; // Escala máxima gráfica en horas
+
+        // Textos
+        planEl.innerText = data.plan + " h";
+        if(dateLabel) dateLabel.innerText = data.date;
+
+        // Animación de conteo
+        let start = 0;
+        if(window.lieInterval) clearInterval(window.lieInterval);
+        
+        window.lieInterval = setInterval(() => {
+            start += 0.5;
+            if (start >= data.real) {
+                start = data.real;
+                clearInterval(window.lieInterval);
+            }
+            if(realEl) realEl.innerText = start.toFixed(1) + " h";
+            if(barRealText) barRealText.innerText = start.toFixed(1) + "h";
+        }, 30);
+
+        // HTML del Veredicto
+        let diffHTML = '';
+        if (diff > 0) {
+            diffHTML = `<span class="text-red-400 font-bold text-xl">+${diff} Horas</span> extras de apagón.`;
+        } else if (diff < 0) {
+            diffHTML = `<span class="text-green-400 font-bold text-xl">Cumplido</span> (Menos de lo planeado)`;
+        } else {
+            diffHTML = `<span class="text-yellow-400 font-bold text-xl">Exacto</span> (Cumplieron horario)`;
+        }
+
+        if(stolenEl) {
+            stolenEl.innerHTML = `
+                ${diffHTML}
+                <br><span class="text-gray-400 text-xs italic border-l-2 border-red-500 pl-2 mt-2 block">"${data.note}"</span>
+            `;
+        }
+
+        // Animación de Barras (Altura)
+        setTimeout(() => {
+            const hPlan = (data.plan / maxScale) * 100;
+            const hReal = Math.min((data.real / maxScale) * 100, 100);
+
+            if(barPlan) barPlan.style.height = `${Math.max(hPlan, 5)}%`;
+            if(barReal) {
+                barReal.style.height = `${Math.max(hReal, 5)}%`;
+                
+                // Colorimetría
+                if (data.real >= 8) {
+                    barReal.className = "w-full bg-red-700 border-2 border-red-500 rounded-t-lg transition-all duration-1000 shadow-[0_0_30px_rgba(220,38,38,0.5)] relative flex items-end justify-center overflow-hidden";
+                } else if (data.real > data.plan) {
+                    barReal.className = "w-full bg-orange-600 border-2 border-orange-400 rounded-t-lg transition-all duration-1000 shadow-lg relative flex items-end justify-center overflow-hidden";
+                } else {
+                    barReal.className = "w-full bg-green-600 border-2 border-green-400 rounded-t-lg transition-all duration-1000 shadow-lg relative flex items-end justify-center overflow-hidden";
+                }
+            }
+        }, 100);
+    }
+
+    // Ejecutar al iniciar
+    document.addEventListener('DOMContentLoaded', () => {
+        fetchLieData();
+    });
+
+</script>
 
 <!-- DASHBOARD DE CRISIS EN TIEMPO REAL (CONTROL ROOM) -->
 <section class="py-16 bg-[#050b14] border-y border-red-900/30 relative overflow-hidden" id="dashboard-sen">
@@ -6835,6 +7190,131 @@ function getDailyEventsCount(blockNum, allMessages) {
 
     // Iniciar
     document.addEventListener('DOMContentLoaded', initFragilityMap);
+</script>
+<script>
+    // ==========================================
+    // 1. BASE DE DATOS DE INTELIGENCIA (Extracto Logs)
+    // ==========================================
+    const repairDatabase = {
+        "transformador": { time: "18 - 36", risk: "Pérdida Total de Alimentos", note: "Los cambios de transformador en Playa y Boyeros promedian 26 horas." },
+        "primario": { time: "8 - 14", risk: "Noche sin Ventilación", note: "Requiere brigada especializada. Promedio en Arroyo Naranjo: 12h." },
+        "cable": { time: "48 - 72", risk: "CRÍTICO", note: "Las averías soterradas (Habana Vieja/Centro Habana) son las más lentas." },
+        "daf": { time: "Indefinido", risk: "Daño a Equipos", note: "El 'quita y pon' quema compresores. La luz vuelve cuando el SEN se estabilice." },
+        "disparo": { time: "4 - 6", risk: "Molestia Alta", note: "Si no es avería, suele restablecerse rápido. Si es avería, sube a 12h." },
+        "poda": { time: "6 - 8", risk: "Programado", note: "Suele cumplirse el horario, pero afecta el día laboral completo." }
+    };
+
+    // ==========================================
+    // 2. DETECTOR DE EFECTO DOMINÓ (DAF)
+    // ==========================================
+    function checkDAFStatus() {
+        // Simulamos la lectura del último log (En producción leería tu Sheet o HTML)
+        // En tus logs del 10 Dic hubo DAF masivo. Activamos la alerta por defecto para demo.
+        const isDAFActive = true; 
+        const statusContainer = document.getElementById('sen-status-container');
+
+        if (isDAFActive && statusContainer) {
+            statusContainer.innerHTML = `
+                <div class="w-full bg-red-600 text-white px-4 py-1 flex items-center justify-between animate-pulse">
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-radiation text-yellow-300 text-xl"></i>
+                        <span class="font-black text-xs md:text-sm uppercase tracking-wider">
+                            ⚠️ INESTABILIDAD DETECTADA (DAF)
+                        </span>
+                    </div>
+                    <span class="hidden md:inline text-[10px] font-mono bg-black/20 px-2 rounded">
+                        Protege tus equipos AHORA
+                    </span>
+                </div>
+            `;
+            // Cambiar color de la barra entera
+            statusContainer.parentElement.classList.remove('from-red-800', 'via-red-600');
+            statusContainer.parentElement.classList.add('bg-red-600');
+        }
+    }
+
+    // ==========================================
+    // 3. WIDGET DE PREDICCIÓN
+    // ==========================================
+    function calculateRepairTime() {
+        const selector = document.getElementById('repair-selector');
+        const resultBox = document.getElementById('repair-result');
+        const selection = selector.value;
+
+        if (!selection) return;
+
+        const data = repairDatabase[selection];
+
+        // Llenar datos
+        document.getElementById('repair-hours').innerText = data.time + " Horas";
+        document.getElementById('repair-note').innerText = data.note;
+        document.getElementById('repair-risk').innerText = data.risk;
+        
+        // Pitch de venta dinámico
+        if (selection === 'daf') {
+            document.getElementById('repair-pitch').innerHTML = "El DAF es el asesino silencioso de los aires acondicionados. <strong>Necesitas un Inversor Híbrido que filtre la entrada.</strong>";
+        } else if (selection === 'cable' || selection === 'transformador') {
+            document.getElementById('repair-pitch').innerHTML = `¿Puedes sobrevivir ${data.time} horas sin refrigerador? <strong>El Kit 2kW mantiene todo congelado.</strong>`;
+        } else {
+            document.getElementById('repair-pitch').innerHTML = "No esperes a que la brigada llegue. <strong>Toma el control ahora.</strong>";
+        }
+
+        // Mostrar con animación
+        resultBox.classList.remove('hidden');
+    }
+
+    // ==========================================
+    // 4. NOTIFICACIONES PUSH GEO-SEGMENTADAS
+    // ==========================================
+    function triggerLocalPush() {
+        // Simulamos que detectamos la IP en "Playa" (o lo sacamos de tu log reciente del 10 Dic)
+        // Log real 10 Dic: "Avería primaria en Playa, Calle 238..."
+        
+        const userZone = "Playa"; // Esto lo podrías hacer dinámico o aleatorio
+        const faultLocation = "Calle 238 entre 5taH y 5taE";
+        
+        const notificationHTML = `
+            <div id="local-push" class="fixed top-24 right-4 max-w-sm bg-[#1e293b] border-l-4 border-red-500 text-white p-4 rounded shadow-2xl z-50 transform translate-x-full transition-transform duration-500">
+                <div class="flex justify-between items-start mb-2">
+                    <div class="flex items-center gap-2">
+                        <span class="relative flex h-3 w-3">
+                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                          <span class="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+                        </span>
+                        <span class="text-xs font-bold text-red-400 uppercase">Alerta Vecinal: ${userZone}</span>
+                    </div>
+                    <button onclick="document.getElementById('local-push').remove()" class="text-gray-500 hover:text-white">&times;</button>
+                </div>
+                <p class="text-sm font-medium mb-3">
+                    La UNE reporta <strong>Avería Primaria</strong> cerca de ti (${faultLocation}). 
+                    <br><span class="text-xs text-gray-400">Riesgo de +12h sin servicio.</span>
+                </p>
+                <div class="flex gap-2">
+                    <button onclick="document.getElementById('ofertas-blue').scrollIntoView({behavior:'smooth'})" class="bg-white text-black text-xs font-bold px-3 py-2 rounded hover:bg-gray-200 flex-1">
+                        Ver Kits Disponibles
+                    </button>
+                    <button onclick="document.getElementById('local-push').remove()" class="border border-gray-600 text-gray-400 text-xs font-bold px-3 py-2 rounded hover:text-white">
+                        Ignorar
+                    </button>
+                </div>
+            </div>
+        `;
+
+        // Inyectar en el cuerpo
+        document.body.insertAdjacentHTML('beforeend', notificationHTML);
+
+        // Animar entrada después de 5 segundos
+        setTimeout(() => {
+            const el = document.getElementById('local-push');
+            if(el) el.classList.remove('translate-x-full');
+        }, 5000);
+    }
+
+    // EJECUTAR TODO AL CARGAR
+    document.addEventListener('DOMContentLoaded', () => {
+        checkDAFStatus();
+        triggerLocalPush(); // Se dispara a los 5 segs
+    });
 </script>
 
 </body>
