@@ -241,6 +241,8 @@
     </nav>
     <section id="liquidacion-pro" class="pt-48 md:pt-56 pb-20 bg-[#0b1120] relative border-b border-gray-800">
 
+        
+
     <!-- Fondo distintivo para separar esta sección del resto de equipos comunes -->
     <div class="absolute inset-0 bg-gradient-to-b from-red-900/10 to-[#0b1120] pointer-events-none"></div>
 
@@ -344,6 +346,108 @@
                 Esta oferta de transporte gratuito para la serie Pro <strong>vence</strong> en 24 horas.
             </p>
             <i class="fas fa-arrow-down text-gray-600 mt-2 animate-bounce"></i>
+        </div>
+    </div>
+</section>
+
+<!-- SECCIÓN DE VENTA FLASH: PANELES VAMAX 600W -->
+<section id="oferta-paneles-nuevos" class="py-16 bg-gradient-to-r from-slate-900 via-blue-950 to-slate-900 border-y border-yellow-500/50 relative overflow-hidden">
+    
+    <!-- Fondo decorativo -->
+    <div class="absolute top-0 right-0 w-64 h-64 bg-yellow-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-6xl mx-auto px-4 relative z-10">
+        
+        <div class="text-center mb-10">
+            <span class="inline-block py-1 px-4 rounded-full bg-yellow-500 text-black text-xs font-black uppercase tracking-widest mb-4 animate-pulse shadow-[0_0_15px_rgba(234,179,8,0.6)]">
+                🚀 ¡ACABA DE ENTRAR! STOCK NUEVO
+            </span>
+            <h2 class="text-3xl md:text-5xl font-black text-white mb-4">
+                PANELES <span class="text-yellow-400">600W</span> ALTO RENDIMIENTO
+            </h2>
+            <p class="text-gray-300 max-w-2xl mx-auto text-lg">
+                La forma más barata de generar energía hoy. Compra por unidad o por pallet.
+                <br><span class="text-sm text-green-400 font-bold">Entrega Inmediata en La Habana.</span>
+            </p>
+        </div>
+
+        <div class="bg-[#1e293b] rounded-3xl border border-gray-600 shadow-2xl overflow-hidden flex flex-col lg:flex-row">
+            
+            <!-- COLUMNA IMAGEN (EVIDENCIA) -->
+            <div class="lg:w-2/5 relative group cursor-zoom-in bg-black flex items-center justify-center p-4" onclick="viewComponent('https://i.imgur.com/Wek63aO.jpeg', 'Etiqueta Técnica VAMAX 600W')">
+                <img src="https://i.imgur.com/Wek63aO.jpeg" alt="Ficha Técnica Panel Solar 600W" class="w-full h-auto object-contain rounded-xl shadow-lg border border-gray-700 opacity-90 group-hover:opacity-100 transition duration-500">
+                
+                <div class="absolute bottom-4 left-0 w-full text-center pointer-events-none">
+                    <span class="bg-black/80 text-white text-[10px] px-3 py-1 rounded-full border border-gray-600">
+                        <i class="fas fa-search-plus"></i> Toca para ver Ficha Técnica
+                    </span>
+                </div>
+            </div>
+
+            <!-- COLUMNA PRECIOS (ESCALERA DE VALOR) -->
+            <div class="lg:w-3/5 p-6 md:p-8 flex flex-col justify-center bg-gradient-to-b from-[#1e293b] to-[#0f172a]">
+                
+                <div class="mb-6 border-b border-gray-700 pb-4">
+                    <h3 class="text-2xl font-bold text-white mb-1">Modelo: VM-SolarPanel 600</h3>
+                    <div class="flex flex-wrap gap-2 text-xs font-mono text-gray-400">
+                        <span class="bg-gray-800 px-2 py-1 rounded">Voc: 53.60V</span>
+                        <span class="bg-gray-800 px-2 py-1 rounded">Imp: 13.45A</span>
+                        <span class="bg-gray-800 px-2 py-1 rounded text-yellow-400">Max Power: 600W</span>
+                    </div>
+                </div>
+
+                <!-- GRILLA DE PRECIOS -->
+                <div class="grid md:grid-cols-3 gap-4 mb-6">
+                    
+                    <!-- OPCIÓN 1: UNIDAD SUELTA -->
+                    <div class="bg-gray-800/50 border border-gray-600 rounded-xl p-4 text-center hover:border-gray-400 transition cursor-pointer" onclick="selectPanelOption(1)">
+                        <p class="text-gray-400 text-xs uppercase font-bold mb-1">Prueba (1-3 Unid)</p>
+                        <p class="text-3xl font-black text-white">$130</p>
+                        <p class="text-[10px] text-gray-500">USD / Unidad</p>
+                        <a href="https://wa.me/5358183649?text=Hola,%20necesito%20menos%20de%204%20paneles%20de%20600W%20a%20$130." class="block mt-3 bg-gray-700 hover:bg-gray-600 text-white text-[10px] py-2 rounded font-bold">PEDIR POCOS</a>
+                    </div>
+
+                    <!-- OPCIÓN 2: INSTALADOR (RECOMENDADO) -->
+                    <div class="bg-blue-900/20 border-2 border-blue-500 rounded-xl p-4 text-center relative transform md:scale-105 shadow-xl z-10" onclick="selectPanelOption(2)">
+                        <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-blue-600 text-white text-[9px] font-bold px-2 py-0.5 rounded uppercase whitespace-nowrap">Más Vendido</div>
+                        <p class="text-blue-300 text-xs uppercase font-bold mb-1">Pack 4+ Unidades</p>
+                        <p class="text-4xl font-black text-white">$125</p>
+                        <p class="text-[10px] text-blue-200">USD / Unidad</p>
+                        <a href="https://wa.me/5358183649?text=Hola,%20quiero%20la%20oferta%20de%204%20o%20más%20paneles%20de%20600W%20a%20$125." class="block mt-3 bg-blue-600 hover:bg-blue-500 text-white text-xs py-2 rounded font-bold animate-pulse">COMPRAR PACK</a>
+                    </div>
+
+                    <!-- OPCIÓN 3: MAYORISTA -->
+                    <div class="bg-yellow-900/20 border border-yellow-500/50 rounded-xl p-4 text-center hover:border-yellow-400 transition cursor-pointer" onclick="selectPanelOption(3)">
+                        <p class="text-yellow-500 text-xs uppercase font-bold mb-1">Pallet (36 Unid)</p>
+                        <p class="text-3xl font-black text-white">$120</p>
+                        <p class="text-[10px] text-yellow-200/70">USD / Unidad</p>
+                        <a href="https://wa.me/5358183649?text=Hola,%20soy%20revendedor,%20me%20interesa%20el%20PALLET%20COMPLETO%20de%2036%20paneles%20a%20$120." class="block mt-3 bg-yellow-600 hover:bg-yellow-500 text-black text-[10px] py-2 rounded font-bold">REVENDER</a>
+                    </div>
+
+                </div>
+
+                <!-- INFO DE LOGÍSTICA Y PAGOS -->
+                <div class="bg-black/30 rounded-lg p-3 text-xs text-gray-400 space-y-2 border border-gray-700">
+                    <div class="flex items-center justify-between border-b border-gray-700 pb-2">
+                        <span class="flex items-center gap-2"><i class="fas fa-truck text-green-500"></i> Envío Habana:</span>
+                        <span class="text-white font-bold">$10 USD (Fijo)</span>
+                    </div>
+                    <div class="flex items-center justify-between border-b border-gray-700 pb-2">
+                        <span class="flex items-center gap-2"><i class="fas fa-route text-blue-500"></i> Envío Provincias:</span>
+                        <span class="text-white font-bold">0.70 USD / Km</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="flex items-center gap-2"><i class="fas fa-wallet text-purple-500"></i> Pagos:</span>
+                        <div class="flex gap-2">
+                            <span class="bg-gray-700 px-2 rounded text-white">USD</span>
+                            <span class="bg-gray-700 px-2 rounded text-white">EUR</span>
+                            <span class="bg-purple-900/50 px-2 rounded text-purple-300 border border-purple-500/30">Zelle*</span>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-[9px] text-gray-500 mt-2 text-center">*Para Zelle consultar disponibilidad al momento de la compra.</p>
+
+            </div>
         </div>
     </div>
 </section>
