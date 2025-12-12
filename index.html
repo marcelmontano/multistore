@@ -764,43 +764,44 @@
 </section>
 
 <!-- ============================================== -->
-<!-- SECCIÓN: VERIFICADOR DE MENTIRAS (ALL-IN-ONE) -->
-<!-- ============================================== -->
-<section class="py-16 bg-[#020617] border-t border-gray-800 relative" id="lie-detector">
+<!-- ======================================================= -->
+<!-- SECCIÓN: VERIFICADOR DE MENTIRAS (VERSIÓN FINAL SEGURA) -->
+<!-- ======================================================= -->
+<section id="lie-detector" class="py-16 bg-[#020617] border-t border-gray-800 relative" style="display: block !important;">
     
     <div class="max-w-6xl mx-auto px-4">
         
-        <!-- ENCABEZADO -->
+        <!-- Encabezado -->
         <div class="flex flex-col md:flex-row justify-between items-end mb-10 gap-4">
             <div>
                 <span class="text-red-500 font-bold tracking-widest text-xs uppercase mb-2 block animate-pulse">
                     <i class="fas fa-user-secret mr-2"></i> Auditoría Ciudadana
                 </span>
                 <h2 class="text-3xl md:text-5xl font-black text-white leading-tight font-tech">
-                    ¿CUMPLIERON EL <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-orange-500">HORARIO?</span>
+                    ¿CUMPLIERON EL <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-orange-500">HORARIO AYER?</span>
                 </h2>
             </div>
             
-            <!-- SELECTOR DE BLOQUE -->
+            <!-- Selector de Bloque -->
             <div class="bg-gray-800 p-1 rounded-lg flex items-center border border-gray-700">
                 <span class="text-gray-400 text-xs font-bold px-3 uppercase">Tu Bloque:</span>
-                <select id="lieBlockSelector" onchange="updateLieDetector()" class="bg-gray-900 text-white text-sm font-bold py-2 px-4 rounded outline-none border border-gray-600 focus:border-red-500 transition cursor-pointer">
+                <select id="lieBlockSelector" class="bg-gray-900 text-white text-sm font-bold py-2 px-4 rounded outline-none border border-gray-600 focus:border-red-500 transition cursor-pointer">
                     <option value="1">Bloque 1</option>
                     <option value="2">Bloque 2</option>
                     <option value="3">Bloque 3</option>
-                    <option value="4" selected>Bloque 4 (Crítico)</option>
+                    <option value="4" selected>Bloque 4</option>
                     <option value="5">Bloque 5</option>
                     <option value="6">Bloque 6</option>
                 </select>
             </div>
         </div>
 
-        <!-- EL GRÁFICO COMPARATIVO -->
+        <!-- EL GRÁFICO -->
         <div class="bg-[#0f172a] rounded-2xl border border-gray-700 p-6 md:p-8 shadow-2xl relative overflow-hidden">
             
             <div class="relative z-10 flex flex-col md:flex-row gap-8 items-center">
                 
-                <!-- IZQUIERDA: DATOS DE TEXTO -->
+                <!-- IZQUIERDA: TEXTOS -->
                 <div class="w-full md:w-1/3 space-y-6">
                     <div>
                         <p class="text-gray-400 text-xs uppercase tracking-widest mb-1">Lo que prometieron (Plan):</p>
@@ -817,69 +818,169 @@
                         </div>
                     </div>
 
-                    <!-- CAJA DE VEREDICTO -->
                     <div class="bg-red-950/40 border-l-4 border-red-600 p-4 rounded-r-lg">
                         <p class="text-red-300 text-xs font-bold uppercase mb-1">Diferencia (Tiempo Robado):</p>
-                        <p class="text-white font-mono text-sm md:text-lg leading-tight" id="stolen-time">
-                            <i class="fas fa-spinner fa-spin"></i> Cargando base de datos...
+                        <p class="text-white font-mono text-sm leading-tight" id="stolen-time">
+                            Calculando datos...
                         </p>
                     </div>
                 </div>
 
-                <!-- DERECHA: GRÁFICO DE BARRAS -->
+                <!-- DERECHA: BARRAS VISUALES -->
                 <div class="w-full md:w-2/3 h-64 flex flex-col justify-end relative">
                     
-                    <!-- Etiqueta de Fecha -->
                     <div class="absolute top-0 right-0 bg-gray-800 text-gray-400 text-[10px] px-2 py-1 rounded border border-gray-700">
-                        <i class="far fa-calendar-alt mr-1"></i> Fecha del Dato: <span id="chart-date-label" class="text-white font-bold text-yellow-400">...</span>
+                        <i class="far fa-calendar-alt mr-1"></i> Datos del: <span id="chart-date-label" class="text-white font-bold">...</span>
                     </div>
                 
-                    <!-- Contenedor Barras (Flex row para ponerlas lado a lado) -->
                     <div class="flex items-end justify-around gap-6 h-full pb-2 border-b border-gray-700 pt-10">
                         
                         <!-- Barra Plan -->
                         <div class="relative w-1/3 h-full flex flex-col justify-end group">
-                            <div class="mb-2 text-center w-full opacity-0 group-hover:opacity-100 transition duration-300 absolute -top-8">
-                                <span class="text-green-400 text-xs font-bold bg-green-900/50 px-2 py-1 rounded">Planificado</span>
-                            </div>
-                            <!-- Barra Verde -->
-                            <div id="bar-plan" class="w-full bg-green-500/20 border-2 border-green-500 rounded-t-lg transition-all duration-1000 relative flex items-end justify-center overflow-hidden hover:bg-green-500/40" style="height: 20%">
+                            <div class="w-full bg-green-500/20 border-2 border-green-500 rounded-t-lg transition-all duration-500 relative flex items-end justify-center overflow-hidden" id="bar-plan" style="height: 20%">
                                  <span class="mb-2 text-green-300 font-bold text-lg drop-shadow-md">4h</span>
                             </div>
-                            <div class="text-center mt-3 border-t border-gray-700 w-full pt-2">
-                                <p class="text-gray-500 text-[10px] uppercase font-bold tracking-widest">Promesa</p>
-                            </div>
+                            <p class="text-center text-gray-500 text-[10px] uppercase font-bold tracking-widest mt-2">Promesa</p>
                         </div>
                 
-                        <!-- Barra Realidad -->
+                        <!-- Barra Real -->
                         <div class="relative w-1/3 h-full flex flex-col justify-end group">
-                            <div class="mb-2 text-center w-full opacity-0 group-hover:opacity-100 transition duration-300 absolute -top-8">
-                                <span class="text-red-400 text-xs font-bold bg-red-900/50 px-2 py-1 rounded">Real</span>
-                            </div>
-                            <!-- Barra Roja Dinámica -->
-                            <div id="bar-real" class="w-full bg-red-600 border-2 border-red-400 rounded-t-lg transition-all duration-1000 shadow-[0_0_30px_rgba(220,38,38,0.3)] relative flex items-end justify-center overflow-hidden hover:brightness-110" style="height: 10%">
+                            <div class="w-full bg-red-600 border-2 border-red-400 rounded-t-lg transition-all duration-500 shadow-[0_0_30px_rgba(220,38,38,0.3)] relative flex items-end justify-center overflow-hidden" id="bar-real" style="height: 10%">
                                 <span id="bar-real-text" class="relative z-10 mb-2 text-white font-black text-2xl drop-shadow-md">--</span>
                             </div>
-                            <div class="text-center mt-3 border-t border-gray-700 w-full pt-2">
-                                <p class="text-red-500 text-[10px] uppercase font-bold tracking-widest animate-pulse">Realidad</p>
-                            </div>
+                            <p class="text-center text-red-500 text-[10px] uppercase font-bold tracking-widest mt-2 animate-pulse">Realidad</p>
                         </div>
                 
                     </div>
                 </div>
             </div>
 
-            <!-- Botón Final -->
+            <!-- Botón -->
             <div class="mt-8 text-center border-t border-gray-800 pt-6">
                 <p class="text-gray-400 text-xs mb-3">La UNE llama a esto "Déficit de Emergencia". Nosotros le llamamos <strong class="text-white">vivir sin control.</strong></p>
                 <button onclick="document.getElementById('ofertas-blue').scrollIntoView({behavior: 'smooth'})" class="text-yellow-400 font-bold text-sm hover:text-white transition border-b border-yellow-500 pb-1 uppercase tracking-wider cursor-pointer">
-                    RECUPERAR EL CONTROL DE TU TIEMPO <i class="fas fa-arrow-right ml-1"></i>
+                    RECUPERAR EL CONTROL <i class="fas fa-arrow-right ml-1"></i>
                 </button>
             </div>
-
         </div>
     </div>
 </section>
+
+<!-- SCRIPT INTEGRADO Y PROTEGIDO -->
+<script>
+    (function() { // Función autoejecutable para proteger variables
+        
+        const LIE_SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSzif4P4juLuHJiXEnowN0cDOI3MEsSJLrLvQFYpL2YCyjBDgW9HZFI2lwu8ZLToVpELVc8NOF-Lsfd/pub?output=csv';
+
+        // DATOS DE RESPALDO (10 Dic) - Se usan si falla internet
+        let lieData = {
+            "1": { date: "10/12/2025", plan: 4, real: 7.5, note: "Doble afectación por Emergencia." },
+            "2": { date: "10/12/2025", plan: 4, real: 8.2, note: "Déficit severo extendido." },
+            "3": { date: "10/12/2025", plan: 4, real: 6.8, note: "Salida imprevista por emergencia." },
+            "4": { date: "10/12/2025", plan: 4, real: 9.5, note: "Día crítico: Afectación doble." },
+            "5": { date: "10/12/2025", plan: 4, real: 6.0, note: "Impacto matutino." },
+            "6": { date: "10/12/2025", plan: 4, real: 6.5, note: "Afectado fuera de horario." }
+        };
+
+        function renderLieChart() {
+            const selector = document.getElementById('lieBlockSelector');
+            if(!selector) return;
+
+            const block = selector.value;
+            const data = lieData[block] || lieData["4"];
+
+            // Actualizar Textos
+            document.getElementById('planned-hours').innerText = data.plan + " h";
+            document.getElementById('real-hours').innerText = data.real + " h";
+            document.getElementById('chart-date-label').innerText = data.date;
+            document.getElementById('bar-real-text').innerText = data.real + "h";
+
+            // Diferencia
+            const diff = (data.real - data.plan).toFixed(1);
+            let msg = diff > 0 ? `<span class="text-red-400 font-bold text-xl">+${diff} Horas</span> extras.` : `<span class="text-green-400">Cumplido</span>`;
+            
+            document.getElementById('stolen-time').innerHTML = `
+                ${msg}<br>
+                <span class="text-gray-400 text-xs italic">"${data.note}"</span>
+            `;
+
+            // Actualizar Barras (CSS Height)
+            const maxScale = 16; 
+            const hPlan = Math.min((data.plan / maxScale) * 100, 100);
+            const hReal = Math.min((data.real / maxScale) * 100, 100);
+
+            document.getElementById('bar-plan').style.height = Math.max(hPlan, 10) + "%";
+            const barReal = document.getElementById('bar-real');
+            barReal.style.height = Math.max(hReal, 10) + "%";
+
+            // Color rojo si es grave
+            if(data.real >= 8) {
+                barReal.className = "w-full bg-red-700 border-2 border-red-500 rounded-t-lg transition-all duration-500 shadow-[0_0_30px_rgba(220,38,38,0.5)] relative flex items-end justify-center overflow-hidden";
+            } else {
+                barReal.className = "w-full bg-orange-600 border-2 border-orange-400 rounded-t-lg transition-all duration-500 shadow-lg relative flex items-end justify-center overflow-hidden";
+            }
+        }
+
+        // Descargar Datos Nuevos
+        function fetchLatestData() {
+            fetch(LIE_SHEET_URL)
+                .then(res => res.text())
+                .then(csv => {
+                    const rows = csv.split('\n').slice(1);
+                    let latestDate = "";
+                    let newData = {};
+
+                    // Encontrar fecha más reciente
+                    rows.forEach(r => {
+                        const c = r.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+                        if(c.length > 0 && c[0]) {
+                            const d = c[0].replace(/['"]+/g, '').trim();
+                            // Formato simple de comparación de string (DD/MM/YYYY)
+                            // En producción idealmente se parsea a Date, pero esto funciona si el sheet está ordenado
+                            latestDate = d; 
+                        }
+                    });
+
+                    // Llenar datos de esa fecha
+                    if(latestDate) {
+                        rows.forEach(r => {
+                            const c = r.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+                            if(c.length >= 5) {
+                                const d = c[0].replace(/['"]+/g, '').trim();
+                                if(d === latestDate) {
+                                    const b = c[1].replace(/['"]+/g, '').trim();
+                                    newData[b] = {
+                                        date: d,
+                                        plan: parseFloat(c[2]) || 4,
+                                        real: parseFloat(c[3]) || 0,
+                                        note: c[4].replace(/['"]+/g, '').trim()
+                                    };
+                                }
+                            }
+                        });
+                        
+                        if(Object.keys(newData).length > 0) {
+                            lieData = newData; // Actualizar datos globales
+                            renderLieChart();  // Refrescar gráfico
+                        }
+                    }
+                })
+                .catch(e => console.log("Usando datos offline"));
+        }
+
+        // Event Listeners
+        const sel = document.getElementById('lieBlockSelector');
+        if(sel) sel.addEventListener('change', renderLieChart);
+
+        // Inicialización
+        renderLieChart(); // Renderiza inmediato con backup
+        fetchLatestData(); // Intenta buscar nuevos datos
+        
+        // Exponer función al ámbito global para el onchange del HTML
+        window.updateLieDetector = renderLieChart;
+
+    })();
+</script>
 
 <!-- SECCIÓN: ORÁCULO DE REPARACIONES (ESTADÍSTICA) -->
 <section class="py-16 bg-[#0b1120] border-t border-gray-800 relative">
