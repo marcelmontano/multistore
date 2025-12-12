@@ -39,22 +39,22 @@
 }
     </style>
 </head>
-<body class="antialiased">
+<body class="antialiased flex flex-col">
 
-    <!-- BARRA DE URGENCIA SUTIL -->
-    <div class="bg-gradient-to-r from-red-900 to-red-700 text-white text-xs font-bold text-center py-2 px-4 sticky top-0 z-50">
-        ⚡ ALERTA SEN: Déficit Pronosticado Alto. <span class="text-yellow-300 underline">Asegura tu energía hoy.</span> Solo 3 cupos de instalación esta semana.
+    <!-- BARRA DE URGENCIA (Ahora fluye natural, no tapa nada) -->
+    <div class="bg-gradient-to-r from-red-900 to-red-700 text-white text-xs font-bold text-center py-3 px-4 relative z-50">
+        ⚡ ALERTA SEN: Déficit Pronosticado Alto. <span class="text-yellow-300 underline block sm:inline">Asegura tu energía hoy.</span> Solo 3 cupos esta semana.
     </div>
 
-    <!-- NAVBAR -->
-    <nav class="glass fixed w-full z-40 top-8 border-b border-white/5">
+    <!-- NAVBAR (Sticky: Se pega al techo al bajar) -->
+    <nav class="sticky top-0 z-40 w-full glass border-b border-white/5 shadow-lg">
         <div class="max-w-6xl mx-auto px-4 h-16 flex justify-between items-center">
             <div class="flex items-center gap-2">
                 <i class="fas fa-solar-panel text-brand-gold text-2xl"></i>
                 <span class="text-xl font-bold tracking-widest text-white">SOLAR<span class="text-brand-gold">CUBA</span></span>
             </div>
-            <a href="https://wa.me/5358183649" class="bg-[#25D366] hover:bg-green-600 text-white px-4 py-2 rounded-full font-bold text-sm transition flex items-center gap-2 shadow-lg shadow-green-900/20">
-                <i class="fab fa-whatsapp text-lg"></i> <span class="hidden sm:inline">Cotizar Ahora</span>
+            <a href="https://wa.me/5358183649" class="bg-[#25D366] hover:bg-green-600 text-white px-3 py-2 rounded-full font-bold text-xs sm:text-sm transition flex items-center gap-2 shadow-lg shadow-green-900/20">
+                <i class="fab fa-whatsapp text-lg"></i> <span class="hidden sm:inline">Cotizar</span>
             </a>
         </div>
     </nav>
@@ -398,44 +398,46 @@
                 </div>
             </div>
 
-            <!-- MAPA: PRESENCIA TERRITORIAL (ACTUALIZADO) -->
-            <div class="bg-gray-900 border border-gray-700 rounded-2xl p-1 relative overflow-hidden group">
+            <!-- MAPA: PRESENCIA TERRITORIAL (CORREGIDO MÓVIL) -->
+            <div class="bg-gray-900 border border-gray-700 rounded-2xl p-1 relative overflow-hidden group min-h-[450px]">
                 <div class="absolute inset-0 bg-blue-500/5 z-0"></div>
                 <!-- Imagen del mapa de fondo -->
                 <img src="imagenes/mapa_habana.jpg" alt="Mapa de Instalaciones" class="w-full h-full object-cover rounded-xl opacity-60 group-hover:opacity-80 transition duration-700 grayscale group-hover:grayscale-0">
                 
-                <!-- PINES ACTUALIZADOS (SOLO 2 PUNTOS) -->
+                <!-- PINES AJUSTADOS (Más arriba para no chocar) -->
                 
-                <!-- Punto 1: Zona Centro/Vedado -->
-                <div class="absolute top-[35%] left-[45%] flex flex-col items-center">
+                <!-- Punto 1: Nuevo Vedado (Subido al 20%) -->
+                <div class="absolute top-[20%] left-[45%] flex flex-col items-center z-10">
                     <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-gold opacity-75"></span>
                     <span class="relative inline-flex rounded-full h-3 w-3 bg-brand-gold"></span>
-                    <div class="mt-1 bg-black/70 text-white text-[9px] px-2 py-0.5 rounded backdrop-blur-sm border border-gray-600">Nuevo Vedado</div>
+                    <div class="mt-1 bg-black/80 text-white text-[10px] px-2 py-1 rounded border border-yellow-500/30 whitespace-nowrap shadow-lg">
+                        Nuevo Vedado
+                    </div>
                 </div>
 
-                <!-- Punto 2: Zona Sur/Víbora -->
-                <div class="absolute top-[55%] right-[30%] flex flex-col items-center">
+                <!-- Punto 2: Santos Suárez (Subido al 40%) -->
+                <div class="absolute top-[40%] right-[25%] flex flex-col items-center z-10">
                     <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
-                    <div class="mt-1 bg-black/70 text-white text-[9px] px-2 py-0.5 rounded backdrop-blur-sm border border-gray-600">Santos Suárez</div>
+                    <div class="mt-1 bg-black/80 text-white text-[10px] px-2 py-1 rounded border border-green-500/30 whitespace-nowrap shadow-lg">
+                        Santos Suárez
+                    </div>
                 </div>
 
-                <!-- ESTADÍSTICAS FLOTANTES -->
-                <div class="absolute bottom-4 left-4 right-4 bg-gray-900/90 backdrop-blur border border-gray-700 p-4 rounded-xl z-10">
+                <!-- ESTADÍSTICAS FLOTANTES (Pegado al fondo) -->
+                <div class="absolute bottom-4 left-4 right-4 bg-slate-900/95 backdrop-blur border border-gray-600 p-5 rounded-xl z-20 shadow-2xl">
                     <div class="flex items-center justify-between">
                         <div>
-                            <p class="text-gray-400 text-xs uppercase tracking-wider">Cobertura</p>
-                            <p class="text-white font-bold text-sm">La Habana y alrededores</p>
+                            <p class="text-gray-400 text-[10px] uppercase tracking-wider mb-1">Cobertura</p>
+                            <p class="text-white font-bold text-sm leading-tight">La Habana y<br>alrededores</p>
                         </div>
-                        <div class="text-right">
-                            <!-- NÚMERO ACTUALIZADO A 83 -->
-                            <p class="text-brand-gold text-2xl font-black">83</p>
-                            <p class="text-gray-500 text-[10px]">Equipos Instalados</p>
+                        <div class="text-right pl-4 border-l border-gray-700">
+                            <!-- NÚMERO GRANDE -->
+                            <p class="text-brand-gold text-4xl font-black leading-none">83</p>
+                            <p class="text-gray-400 text-[9px] mt-1">Equipos Instalados</p>
                         </div>
                     </div>
                 </div>
             </div>
-
-        </div>
     </div>
 </section>
 
@@ -582,7 +584,7 @@
         <div class="absolute inset-0 bg-brand-gold/10"></div>
         <div class="max-w-4xl mx-auto px-4 text-center relative z-10">
             <h2 class="text-3xl font-bold text-white mb-6">¿No estás seguro de qué equipo necesitas?</h2>
-            <p class="text-gray-300 mb-8">Habla con <strong class="text-brand-gold">técnico</strong> en La Habana, parta que te asesore y te recomendará la opción exacta.</p>
+            <p class="text-gray-300 mb-8">Habla con un <strong class="text-brand-gold">técnico</strong> en La Habana, parta que te asesore y te recomendará la opción exacta.</p>
             
             <a href="https://wa.me/5358183649?text=Hola,%20quisiera%20agendar%20una%20visita%20técnica%20gratuita%20para%20evaluar%20mi%20casa." class="inline-flex items-center gap-3 bg-white text-black font-black py-4 px-10 rounded-full text-lg hover:bg-gray-200 transition shadow-2xl">
                 <i class="fab fa-whatsapp text-green-600 text-2xl"></i> Agendar Visita Ahora
