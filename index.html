@@ -6210,19 +6210,7 @@ window.telegramNewsList.push(txt);
             }
             // --------------------------------------------------------
 
-            // 5. Alerta Local
-            if (!alertTriggered) {
-                const isBreakdown = PALABRAS_CLAVE.some(word => cleanTxt.includes(word));
-                if (isBreakdown) {
-                    for (const muni of MUNICIPIOS) {
-                        if (cleanTxt.includes(muni.toLowerCase())) {
-                            triggerLocalAlert(muni, txt);
-                            alertTriggered = true;
-                            break; 
-                        }
-                    }
-                }
-            }
+            
 
             // 6. Lógica de Bloques
             const reportRegex = /Bloque\s*(?:no\.?)?\s*(\d).*?(\d{1,2}[:.]\d{2})\s*Hrs/gi;
@@ -6393,45 +6381,7 @@ function updateTruthClock(mw) {
         el.innerHTML = html;
     }
 
-    // ==========================================
-    // 🚨 ALERTA VIP / NEGOCIOS (NUEVO DISEÑO)
-    // ==========================================
-    function triggerLocalAlert(municipio, fullText) {
-        if(document.getElementById('geo-alert-banner')) return;
-        
-        const banner = document.createElement('div');
-        banner.id = 'geo-alert-banner';
-        // Diseño más sobrio y premium (Dorado oscuro/Negro)
-        banner.className = 'fixed top-0 left-0 w-full z-[100] bg-[#1a1810] text-yellow-500 shadow-2xl transform translate-y-[-100%] transition-transform duration-500 ease-out border-b border-yellow-600';
-        
-        banner.innerHTML = `
-            <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
-                <div class="flex items-center gap-4">
-                    <div class="bg-yellow-500/20 p-3 rounded-full border border-yellow-500/50">
-                        <i class="fas fa-crown text-2xl text-yellow-400"></i>
-                    </div>
-                    <div class="text-left">
-                        <p class="font-serif text-xs text-gray-400 uppercase tracking-[0.2em] mb-1">Oportunidad en ${municipio.toUpperCase()}</p>
-                        <p class="text-sm font-medium text-white leading-tight">
-                            La red presenta inestabilidad crítica hoy. <br>
-                            <span class="text-yellow-400">Hemos abierto 2 cupos de instalación prioritaria</span> en su zona para asegurar su negocio.
-                        </p>
-                    </div>
-                </div>
-                
-                <div class="flex items-center gap-3">
-                    <button onclick="document.getElementById('ofertas-blue').scrollIntoView({behavior:'smooth'}); removeAlert()" 
-                        class="bg-gradient-to-r from-yellow-600 to-yellow-500 text-black px-6 py-2 rounded-lg font-bold text-xs uppercase tracking-widest shadow-lg hover:brightness-110 transition whitespace-nowrap">
-                        Blindar mi Negocio
-                    </button>
-                    <button onclick="removeAlert()" class="text-gray-500 hover:text-white px-2"><i class="fas fa-times"></i></button>
-                </div>
-            </div>
-        `;
-        document.body.prepend(banner);
-        setTimeout(() => banner.classList.remove('translate-y-[-100%]'), 100);
-    }
-    window.removeAlert = function() { const b = document.getElementById('geo-alert-banner'); if(b) { b.classList.add('translate-y-[-100%]'); setTimeout(() => b.remove(), 500); } }
+    
 
     function initGrid() {
     const grid = document.getElementById('blocks-grid');
