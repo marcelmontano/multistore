@@ -496,36 +496,72 @@
     <span class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500">CONTINUIDAD DE TU NEGOCIO</span>
 </h1>
             <!-- WIDGET: RELOJ DE LA VERDAD (Pegar en Hero Section) -->
+<!-- WIDGET: EL TAXÍMETRO DEL APAGÓN -->
 <div id="truth-clock-container" class="hidden mb-8 animate-slide-in">
-    <div class="inline-flex items-center gap-4 bg-black/40 backdrop-blur-md border border-red-500/30 p-4 rounded-2xl shadow-[0_0_30px_rgba(220,38,38,0.2)] max-w-2xl mx-auto">
+    <div class="inline-flex flex-col md:flex-row items-center gap-6 bg-gray-900/80 backdrop-blur-md border border-red-500/40 p-5 rounded-2xl shadow-[0_0_40px_rgba(220,38,38,0.15)] max-w-3xl mx-auto">
         
-        <!-- Círculo / Velocímetro -->
-        <div class="relative w-24 h-24 shrink-0">
-            <!-- Fondo del círculo -->
+        <!-- SECCIÓN IZQUIERDA: EL CÍRCULO CAMBIANTE -->
+        <div class="relative w-28 h-28 shrink-0 cursor-pointer group" onclick="toggleMetric()">
+            <!-- SVG Circular -->
             <svg class="w-full h-full transform -rotate-90">
-                <circle cx="48" cy="48" r="40" stroke="rgba(255,255,255,0.1)" stroke-width="8" fill="transparent" />
-                <!-- Progreso (Se llena con JS) -->
-                <circle id="truth-circle" cx="48" cy="48" r="40" stroke="#ef4444" stroke-width="8" fill="transparent" 
-                    stroke-dasharray="251.2" stroke-dashoffset="251.2" stroke-linecap="round" class="transition-all duration-1000 ease-out" />
+                <circle cx="56" cy="56" r="48" stroke="rgba(255,255,255,0.1)" stroke-width="6" fill="transparent" />
+                <circle id="truth-circle" cx="56" cy="56" r="48" stroke="#ef4444" stroke-width="6" fill="transparent" 
+                    stroke-dasharray="301.6" stroke-dashoffset="301.6" stroke-linecap="round" class="transition-all duration-1000 ease-out" />
             </svg>
-            <!-- Texto Central -->
-            <div class="absolute inset-0 flex flex-col items-center justify-center">
-                <span id="truth-mw" class="text-2xl font-black text-white leading-none">--</span>
-                <span class="text-[10px] text-gray-400 font-bold">MW OFF</span>
+            
+            <!-- Contenido Central (Cambia entre MW y $$$) -->
+            <div class="absolute inset-0 flex flex-col items-center justify-center transition-opacity duration-300" id="circle-content">
+                <!-- Por defecto inicia en MW -->
+                <i class="fas fa-bolt text-yellow-500 mb-1 text-xs"></i>
+                <span id="truth-value" class="text-2xl font-black text-white leading-none tracking-tighter">--</span>
+                <span id="truth-unit" class="text-[10px] text-gray-400 font-bold uppercase">MW OFF</span>
+            </div>
+            
+            <!-- Tooltip "Tócame" -->
+            <div class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-[9px] text-gray-500 whitespace-nowrap opacity-0 group-hover:opacity-100 transition">
+                Click para ver Dinero
             </div>
         </div>
 
-        <!-- Copywriting Persuasivo -->
-        <div class="text-left">
-            <div class="flex items-center gap-2 mb-1">
-                <span class="w-2 h-2 rounded-full bg-red-600 animate-ping"></span>
-                <span class="text-red-400 font-bold text-xs uppercase tracking-widest">En Tiempo Real</span>
+        <!-- SECCIÓN DERECHA: LA INTERPRETACIÓN -->
+        <div class="text-left flex-1">
+            <div class="flex justify-between items-start">
+                <div class="flex items-center gap-2 mb-2">
+                    <span class="relative flex h-2 w-2">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-2 w-2 bg-red-600"></span>
+                    </span>
+                    <span class="text-red-400 font-bold text-xs uppercase tracking-widest">En Tiempo Real</span>
+                </div>
+                
+                <!-- SELECTOR DE PLANTA (DISCRETO) -->
+                <select id="genSelector" onchange="updateTruthClock(window.currentMW)" class="bg-black/30 text-gray-300 text-[10px] border border-gray-700 rounded px-2 py-1 outline-none focus:border-yellow-500">
+                    <option value="1.0">Planta Pequeña (1kW)</option>
+                    <option value="2.5" selected>Planta Mediana (2.5kW)</option>
+                    <option value="5.0">Planta Grande (5kW+)</option>
+                </select>
             </div>
-            <p class="text-gray-300 text-sm leading-tight">
-                Déficit Actual: <strong class="text-white" id="truth-mw-text">... MW</strong>. 
-                <br>Eso significa que <span id="truth-people" class="text-yellow-400 font-bold underline decoration-red-500">miles de personas</span> no tienen luz ahora.
+
+            <p class="text-gray-300 text-sm leading-relaxed" id="truth-text-container">
+                Déficit Actual: <strong class="text-white" id="truth-mw-text">... MW</strong>.
+                <br>Esto equivale a <span id="truth-hours" class="text-yellow-400 font-bold">... horas</span> sin luz hoy.
             </p>
-            <p class="text-white font-black text-lg mt-1 italic">¿Tú sí?</p>
+
+            <!-- LÍNEA DE DOLOR (HIDDEN POR DEFECTO, SE ACTIVA AL CAMBIAR) -->
+            <div id="financial-pain" class="mt-2 pt-2 border-t border-gray-700 hidden">
+                <div class="flex justify-between items-center">
+                    <span class="text-xs text-gray-400">Gasto en Gasolina (Hoy):</span>
+                    <span class="text-red-500 font-black text-lg" id="pain-daily">--</span>
+                </div>
+                <div class="flex justify-between items-center mt-1">
+                    <span class="text-[10px] text-gray-500">Proyección Mensual:</span>
+                    <span class="text-gray-300 font-bold text-xs" id="pain-monthly">--</span>
+                </div>
+            </div>
+            
+            <p class="text-[10px] text-green-400 mt-2 italic" id="solar-savings">
+                <i class="fas fa-check"></i> Con Kit Solar: <strong>$0 Costo Operativo</strong>.
+            </p>
         </div>
     </div>
 </div>
@@ -1123,67 +1159,162 @@
             </div>
 
             <!-- COLUMNA DER: CALCULADORA DE DOLOR (NUEVO) -->
-            <div class="lg:col-span-5">
-                <div class="bg-gradient-to-b from-gray-800 to-gray-900 border-2 border-yellow-500 rounded-2xl p-6 shadow-2xl relative">
-                    <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-yellow-500 text-black text-[10px] font-bold px-3 py-1 rounded-full uppercase">
-                        Tu Realidad Semanal
+            <!-- COLUMNA DER: CALCULADORA DE GASTO (REDITADA PARA DOLOR FINANCIERO) -->
+<div class="lg:col-span-5">
+    <div class="bg-[#0f172a] border border-red-900/50 rounded-2xl p-0 shadow-2xl relative overflow-hidden group">
+        
+        <!-- Header Tipo "Factura Vencida" -->
+        <div class="bg-red-900/20 p-4 border-b border-red-900/30 flex justify-between items-center">
+            <h3 class="text-red-400 font-bold text-sm uppercase tracking-widest flex items-center gap-2">
+                <i class="fas fa-file-invoice-dollar text-lg"></i> Tu Gasto Oculto
+            </h3>
+            <span class="bg-red-600 text-white text-[10px] font-bold px-2 py-0.5 rounded animate-pulse">
+                PERDIENDO DINERO
+            </span>
+        </div>
+
+        <div class="p-6 space-y-5">
+            <!-- Selector de Zona (Input) -->
+            <div>
+                <label class="block text-gray-500 text-[10px] font-bold uppercase mb-2">1. Selecciona tu Realidad:</label>
+                <div class="relative">
+                    <select id="zonaSelect" class="w-full bg-gray-950 border border-gray-700 text-white rounded-lg p-3 text-sm focus:border-red-500 outline-none appearance-none font-bold">
+                        <option value="40" selected>Apagones Moderados (6h/día)</option>
+                        <option value="60">Situación Grave (12h/día)</option>
+                        <option value="80">Zona Crítica (18h/día)</option>
+                    </select>
+                    <i class="fas fa-chevron-down absolute right-4 top-4 text-gray-500 text-xs"></i>
+                </div>
+            </div>
+
+            <!-- El Dato que Duele (Visualización Financiera) -->
+            <div class="bg-black/40 rounded-xl border border-gray-800 p-4 relative">
+                <!-- Fondo sutil de "quemado" -->
+                <div class="absolute bottom-0 right-0 p-2 opacity-10">
+                    <i class="fas fa-fire text-6xl text-red-600"></i>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4 border-b border-gray-800 pb-4 mb-4">
+                    <div>
+                        <p class="text-[10px] text-gray-500 uppercase">Horas Planta/Semana</p>
+                        <p class="text-2xl font-bold text-white" id="calcHours">42 h</p>
                     </div>
-
-                    <h3 class="text-center text-white font-bold text-xl mt-2 mb-6">¿Cuántas horas perderás?</h3>
-
-                    <div class="space-y-4">
-                        <div>
-                            <label class="block text-gray-400 text-xs font-bold mb-2">Selecciona tu Zona:</label>
-                            <select id="zonaSelect" class="w-full bg-gray-950 border border-gray-600 text-white rounded-lg p-3 text-sm focus:border-yellow-500 outline-none">
-                                <option value="60">La Habana (Promedio 60% afectación)</option>
-                                <option value="75">Artemisa / Mayabeque (75% afectación)</option>
-                                <option value="80">Resto del País (80% afectación)</option>
-                            </select>
-                        </div>
-
-                        <!-- Resultado Dinámico -->
-                        <div class="bg-black/40 rounded-xl p-4 text-center border border-gray-700">
-                            <div class="text-xs text-gray-500 uppercase tracking-widest mb-1">Horas sin Luz / Semana</div>
-                            <div class="text-5xl font-black text-red-500 mb-1" id="horasCalc">101 h</div>
-                            <div class="text-sm text-white font-bold">
-                                = <span class="text-yellow-400" id="diasCalc">4.2 Días</span> a oscuras
-                            </div>
-                        </div>
-
-                        <button onclick="document.getElementById('ofertas-blue').scrollIntoView({behavior: 'smooth'})" class="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-4 rounded-xl shadow-lg transition transform hover:scale-105 flex items-center justify-center gap-2 group">
-                            <span>Recuperar mis <span id="horasBtn">101</span> Horas</span>
-                            <i class="fas fa-arrow-right group-hover:translate-x-1 transition"></i>
-                        </button>
-                        
-                        <p class="text-center text-[10px] text-gray-500">
-                            *Cálculo basado en datos oficiales de déficit vs demanda.
-                        </p>
+                    <div class="text-right">
+                        <p class="text-[10px] text-gray-500 uppercase">Litros Gasolina</p>
+                        <p class="text-2xl font-bold text-gray-300" id="calcLitros">50 L</p>
                     </div>
                 </div>
+
+                <!-- El número grande (Dinero) -->
+                <div class="text-center">
+                    <p class="text-[10px] text-red-400 uppercase tracking-widest mb-1">Estás quemando al mes:</p>
+                    <div class="text-5xl font-black text-white leading-none tracking-tight flex items-center justify-center gap-2">
+                        <span class="text-2xl text-gray-500">$</span>
+                        <span id="calcMoney" class="text-transparent bg-clip-text bg-gradient-to-b from-red-400 to-red-700">320</span>
+                        <span class="text-lg text-gray-400 font-bold">USD</span>
+                    </div>
+                    <p class="text-[10px] text-gray-500 mt-2 italic">
+                        *Basado en planta de 2.5kW y combustible a precio calle.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Comparativa Visual (Barra de Progreso Inversa) -->
+            <div>
+                <div class="flex justify-between text-[10px] text-gray-400 mb-1">
+                    <span>Costo Planta (1 Año)</span>
+                    <span class="text-red-500 font-bold" id="yearCost">-$3,840 USD</span>
+                </div>
+                <div class="w-full bg-gray-800 h-2 rounded-full overflow-hidden">
+                    <div class="bg-red-600 h-full w-[80%] animate-pulse"></div>
+                </div>
+                <div class="flex justify-between text-[10px] text-gray-400 mt-2 mb-1">
+                    <span>Costo Kit Solar (Vida Útil)</span>
+                    <span class="text-green-500 font-bold">$0 USD (Tras inversión)</span>
+                </div>
+                <div class="w-full bg-gray-800 h-2 rounded-full overflow-hidden">
+                    <div class="bg-green-500 h-full w-[5%]"></div>
+                </div>
+            </div>
+
+            <!-- CTA Solución -->
+            <button onclick="document.getElementById('ofertas-blue').scrollIntoView({behavior: 'smooth'})" class="w-full bg-white hover:bg-gray-100 text-black font-black py-4 rounded-xl shadow-[0_0_20px_rgba(255,255,255,0.2)] transition transform hover:scale-[1.02] flex items-center justify-center gap-3 uppercase text-xs tracking-wider group">
+                <i class="fas fa-hand-holding-usd text-xl text-green-600 group-hover:scale-110 transition"></i>
+                <span>Dejar de Quemar mi Dinero</span>
+            </button>
+        </div>
+    </div>
+</div>
             </div>
 
         </div>
     </div>
 </section>
 
-<!-- SCRIPT PARA LA CALCULADORA (PEQUEÑO Y RÁPIDO) -->
+<!-- SCRIPT PARA LA CALCULADORA DE GASTO (LÓGICA FINANCIERA) -->
 <script>
-    document.getElementById('zonaSelect').addEventListener('change', function() {
-        const percentage = parseInt(this.value);
-        const hoursTotal = 24 * 7; // 168 horas semana
-        const hoursLost = Math.round((hoursTotal * percentage) / 100);
-        const daysLost = (hoursLost / 24).toFixed(1);
+    function updatePainCalculator() {
+        // Obtenemos el porcentaje seleccionado (40, 60 u 80)
+        const element = document.getElementById('zonaSelect');
+        if(!element) return; // Protección por si no carga el HTML aún
+        
+        const percentage = parseInt(element.value);
+        
+        // Fórmulas de cálculo
+        const hoursPerDay = (24 * percentage) / 100;
+        const hoursWeek = Math.round(hoursPerDay * 7);
+        const hoursMonth = Math.round(hoursPerDay * 30);
+        
+        // --- FACTORES ECONÓMICOS ---
+        // Consumo de una planta promedio de 2.5kW (la más común)
+        const litersPerHour = 1.2; 
+        // Costo USD estimado (Gasolina calle + Aceite + Desgaste motor)
+        const costPerLiterUSD = 1.5; 
+        
+        const costPerHour = litersPerHour * costPerLiterUSD;
 
-        // Actualizar UI con animación simple
-        const hEl = document.getElementById('horasCalc');
-        hEl.style.opacity = 0;
-        setTimeout(() => {
-            hEl.innerText = hoursLost + " h";
-            document.getElementById('diasCalc').innerText = daysLost + " Días";
-            document.getElementById('horasBtn').innerText = hoursLost;
-            hEl.style.opacity = 1;
-        }, 200);
-    });
+        // Resultados Matemáticos
+        const litersWeek = Math.round(hoursWeek * litersPerHour);
+        const moneyMonth = Math.round(hoursMonth * costPerHour);
+        const moneyYear = moneyMonth * 12;
+
+        // Actualizar la Interfaz (UI)
+        
+        // 1. Dinero Mensual (Con animación de conteo)
+        const moneyEl = document.getElementById('calcMoney');
+        const startVal = parseInt(moneyEl.innerText.replace(/,/g, '')) || 0;
+        animateValue(moneyEl, startVal, moneyMonth, 800);
+        
+        // 2. Horas y Litros
+        document.getElementById('calcHours').innerText = hoursWeek + " h";
+        document.getElementById('calcLitros').innerText = litersWeek + " L";
+        
+        // 3. Pérdida Anual (Formato moneda)
+        document.getElementById('yearCost').innerText = "-$" + moneyYear.toLocaleString() + " USD";
+    }
+
+    // Función auxiliar para animar los números subiendo
+    function animateValue(obj, start, end, duration) {
+        let startTimestamp = null;
+        const step = (timestamp) => {
+            if (!startTimestamp) startTimestamp = timestamp;
+            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+            obj.innerHTML = Math.floor(progress * (end - start) + start);
+            if (progress < 1) {
+                window.requestAnimationFrame(step);
+            }
+        };
+        window.requestAnimationFrame(step);
+    }
+
+    // Activar los "Listeners" (Escuchas)
+    const selectEl = document.getElementById('zonaSelect');
+    if(selectEl) {
+        selectEl.addEventListener('change', updatePainCalculator);
+    }
+    
+    // Ejecutar una vez al cargar la página
+    document.addEventListener('DOMContentLoaded', updatePainCalculator);
 </script>
 
 <!-- BOTÓN PARA VER HISTÓRICO (TRIGGER) -->
@@ -5657,48 +5788,108 @@ document.addEventListener('DOMContentLoaded', initUltimateUrgency);
     // ==========================================
     // 🕒 RELOJ DE RIESGO EMPRESARIAL (NUEVO)
     // ==========================================
-    function updateTruthClock(mw) {
-        const container = document.getElementById('truth-clock-container');
-        const circle = document.getElementById('truth-circle');
-        const numText = document.getElementById('truth-mw');
-        const copyText = document.getElementById('truth-mw-text');
-        const peopleText = document.getElementById('truth-people'); // Ahora será texto de impacto económico
+    // Variable global para guardar el estado
+window.currentMW = 0; 
+window.metricMode = 'MW'; // 'MW' o 'USD'
 
-        if(!container) return;
+function toggleMetric() {
+    window.metricMode = window.metricMode === 'MW' ? 'USD' : 'MW';
+    updateTruthClock(window.currentMW);
+}
 
-        // Mostrar Widget
-        container.classList.remove('hidden');
+function updateTruthClock(mw) {
+    window.currentMW = mw; // Guardar valor actual
+    const container = document.getElementById('truth-clock-container');
+    
+    // Elementos del DOM
+    const circle = document.getElementById('truth-circle');
+    const valueEl = document.getElementById('truth-value');
+    const unitEl = document.getElementById('truth-unit');
+    const mwText = document.getElementById('truth-mw-text');
+    const hoursEl = document.getElementById('truth-hours');
+    const iconEl = document.querySelector('#circle-content i');
+    
+    // Panel financiero
+    const painPanel = document.getElementById('financial-pain');
+    const dailyEl = document.getElementById('pain-daily');
+    const monthlyEl = document.getElementById('pain-monthly');
+    const savingsEl = document.getElementById('solar-savings');
+    
+    // Obtener tamaño de planta del selector
+    const genSize = parseFloat(document.getElementById('genSelector').value);
 
-        // Actualizar números
-        numText.innerText = mw;
-        copyText.innerText = mw + " MW";
+    if(!container) return;
+    container.classList.remove('hidden');
 
-        // Lógica de Negocio: Déficit -> Horas Estimadas -> Impacto
-        let horasEstimadas = 0;
-        let impactoMsg = "";
+    // 1. CÁLCULOS (LA MATEMÁTICA DEL DOLOR)
+    // Estimación: X MW de déficit = Y Horas de apagón promedio
+    // Fórmula empírica basada en Cuba: <200=3h, 200-500=5h, 500-800=8h, >800=12h
+    let hoursEst = 0;
+    if (mw < 200) hoursEst = 3;
+    else if (mw < 500) hoursEst = 5;
+    else if (mw < 900) hoursEst = 8;
+    else hoursEst = 12;
+
+    // Consumo de gasolina (Litros/Hora según tamaño planta)
+    // 1kW ~ 0.6L/h | 2.5kW ~ 1.2L/h | 5kW ~ 2.0L/h
+    let fuelConsumption = 0;
+    if(genSize === 1.0) fuelConsumption = 0.6;
+    else if(genSize === 2.5) fuelConsumption = 1.2;
+    else fuelConsumption = 2.0;
+
+    // Costo del Litro (Estimado calle + aceite)
+    const costPerLiter = 1.50; // USD
+
+    // El Gasto
+    const dailyCost = hoursEst * fuelConsumption * costPerLiter;
+    const monthlyCost = dailyCost * 30;
+
+    // 2. ACTUALIZAR TEXTOS FIJOS
+    mwText.innerText = mw + " MW";
+    hoursEl.innerText = "~" + hoursEst + " horas";
+
+    // 3. RENDERIZAR SEGÚN MODO (MW o DINERO)
+    if (window.metricMode === 'MW') {
+        // MODO TÉCNICO
+        valueEl.innerText = mw;
+        unitEl.innerText = "MW DÉFICIT";
+        valueEl.className = "text-2xl font-black text-white leading-none";
+        unitEl.className = "text-[10px] text-gray-400 font-bold uppercase";
+        circle.setAttribute('stroke', '#ef4444'); // Rojo
+        iconEl.className = "fas fa-bolt text-yellow-500 mb-1 text-xs";
         
-        if (mw < 500) { horasEstimadas = "2-4"; impactoMsg = "Interrupciones molestas."; }
-        else if (mw < 1000) { horasEstimadas = "4-6"; impactoMsg = "Riesgo de cadena de frío."; }
-        else { horasEstimadas = "+8"; impactoMsg = "Pérdida de jornada laboral completa."; }
+        painPanel.classList.add('hidden');
+        savingsEl.classList.add('hidden');
+    } else {
+        // MODO DOLOR ($$$)
+        valueEl.innerText = "$" + Math.round(monthlyCost);
+        unitEl.innerText = "QUEMADOS/MES";
+        valueEl.className = "text-3xl font-black text-red-500 leading-none animate-pulse";
+        unitEl.className = "text-[9px] text-red-300 font-bold uppercase";
+        circle.setAttribute('stroke', '#22c55e'); // Verde (Ironía: el costo de no tener lo verde)
+        iconEl.className = "fas fa-fire text-red-500 mb-1 text-xs"; // Fuego
 
-        // Nuevo Copywriting para Empresarios
-        peopleText.innerHTML = `aprox. <span class="text-red-500 font-bold">${horasEstimadas} horas</span> de parón productivo`;
-
-        // Círculo Visual
-        const maxOffset = 251.2;
-        let percentage = Math.min((mw / 2500), 1); // Ajustado escala a 2500MW
-        let offset = maxOffset - (percentage * maxOffset);
-        circle.style.strokeDashoffset = offset;
-
-        // Colores
-        if (mw > 800) {
-            circle.setAttribute('stroke', '#dc2626'); // Rojo
-            numText.classList.add('text-red-500', 'animate-pulse');
-        } else {
-            circle.setAttribute('stroke', '#eab308'); // Amarillo
-            numText.classList.remove('text-red-500');
-        }
+        // Mostrar desglose detallado
+        painPanel.classList.remove('hidden');
+        savingsEl.classList.remove('hidden');
+        dailyEl.innerText = "-$" + dailyCost.toFixed(2) + " USD";
+        monthlyEl.innerText = "-$" + Math.round(monthlyCost).toLocaleString() + " USD";
     }
+
+    // 4. ANIMACIÓN DEL CÍRCULO
+    // 301.6 es el perímetro para r=48
+    const maxOffset = 301.6;
+    let percentage = 0;
+    
+    if(window.metricMode === 'MW') {
+         percentage = Math.min((mw / 1500), 1); // Escala basada en MW max 1500
+    } else {
+         percentage = Math.min((monthlyCost / 500), 1); // Escala basada en $500 max costo
+    }
+    
+    let offset = maxOffset - (percentage * maxOffset);
+    circle.style.strokeDashoffset = offset;
+}
 
     // ==========================================
     // UTILS UI & SHEETS (RESTO IGUAL)
