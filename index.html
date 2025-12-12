@@ -6845,7 +6845,7 @@ function getDailyEventsCount(blockNum, allMessages) {
         
         if (stolenEl) {
             if (realHours > planHours) {
-                stolenEl.innerHTML = `<span class="text-red-500 font-bold text-xl">⚠️ TE ROBARON ${diff} HORAS</span><br><span class="text-gray-400 text-xs">Incumplieron la programación ayer.</span>`;
+                stolenEl.innerHTML = `<span class="text-red-500 font-bold text-xl">⚠️ SE PASARON ${diff} HORAS</span><br><span class="text-gray-400 text-xs">Incumplieron la programación ayer.</span>`;
                 if(barReal) {
                     barReal.className = "w-full bg-red-600 border-2 border-red-400 rounded-t-lg transition-all duration-500 shadow-[0_0_30px_rgba(220,38,38,0.3)] relative flex items-end justify-center overflow-hidden";
                     const h = Math.min((realHours / 12) * 100, 100); 
