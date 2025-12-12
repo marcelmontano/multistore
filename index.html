@@ -2249,76 +2249,86 @@
         </button>
         
         <!-- 2. EL CONTENIDO -->
-        <div id="content-must-specs" class="hidden border-t border-gray-700">
-            <div class="p-0 overflow-x-auto">
-                <table class="w-full text-xs md:text-sm text-left text-gray-400">
-                    <thead class="text-xs text-gray-200 uppercase bg-gray-800 border-b border-gray-700">
-                        <tr>
-                            <th class="px-4 py-3 sticky left-0 bg-gray-800">Modelo</th>
-                            <th class="px-4 py-3 text-center bg-gray-700/50 border-x border-gray-600">1kW (1012)</th>
-                            <th class="px-4 py-3 text-center bg-gray-700/50 border-r border-gray-600">2kW (2024)</th>
-                            <th class="px-4 py-3 text-center bg-gray-700/50">3kW (3024)</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-gray-700">
-                        <!-- Batería -->
-                        <tr class="bg-gray-800/30"><td colspan="4" class="px-4 py-1 text-[10px] font-bold text-yellow-500 uppercase tracking-widest">Batería LiFePO4</td></tr>
-                        <tr>
-                            <td class="px-4 py-2 font-medium text-white sticky left-0 bg-[#0f172a]">Capacidad</td>
-                            <td class="px-4 py-2 text-center">1280 Wh</td>
-                            <td class="px-4 py-2 text-center text-green-400 font-bold">2560 Wh</td>
-                            <td class="px-4 py-2 text-center text-white">3200 Wh</td>
-                        </tr>
-                        <tr>
-                            <td class="px-4 py-2 font-medium text-white sticky left-0 bg-[#0f172a]">Vida Útil</td>
-                            <td colspan="3" class="px-4 py-2 text-center text-yellow-400 font-bold">+6000 Ciclos</td>
-                        </tr>
+       <!-- 2. EL CONTENIDO (TABLA CORREGIDA MÓVIL) -->
+<div id="content-must-specs" class="hidden border-t border-gray-700 bg-gray-900">
+    
+    <!-- AVISO DE SCROLL (Solo visible en móvil) -->
+    <div class="md:hidden bg-blue-900/30 text-blue-200 text-[10px] text-center py-2 flex items-center justify-center gap-2 animate-pulse">
+        <i class="fas fa-arrows-left-right"></i> Desliza la tabla hacia los lados para ver todo
+    </div>
 
-                        <!-- Inversor -->
-                        <tr class="bg-gray-800/30"><td colspan="4" class="px-4 py-1 text-[10px] font-bold text-yellow-500 uppercase tracking-widest">Inversor</td></tr>
-                        <tr>
-                            <td class="px-4 py-2 font-medium text-white sticky left-0 bg-[#0f172a]">Potencia</td>
-                            <td class="px-4 py-2 text-center">1200 W</td>
-                            <td class="px-4 py-2 text-center font-bold text-white">2000 W</td>
-                            <td class="px-4 py-2 text-center">3000 W</td>
-                        </tr>
-                        <tr>
-                            <td class="px-4 py-2 font-medium text-white sticky left-0 bg-[#0f172a]">Onda</td>
-                            <td colspan="3" class="px-4 py-2 text-center text-green-400">Sinusoidal Pura</td>
-                        </tr>
+    <div class="p-0 overflow-x-auto pb-2">
+        <!-- Agregado min-w-[600px] para forzar el scroll horizontal suave -->
+        <table class="w-full min-w-[600px] text-xs md:text-sm text-left text-gray-400">
+            <thead class="text-xs text-gray-200 uppercase bg-gray-800 border-b border-gray-700">
+                <tr>
+                    <!-- Sticky left fija la primera columna -->
+                    <th class="px-2 py-3 sticky left-0 bg-gray-800 z-10 border-r border-gray-700 shadow-xl">Modelo</th>
+                    <th class="px-2 py-3 text-center bg-gray-700/50 border-r border-gray-600">1kW (1012)</th>
+                    <th class="px-2 py-3 text-center bg-gray-700/50 border-r border-gray-600">2kW (2024)</th>
+                    <th class="px-2 py-3 text-center bg-gray-700/50">3kW (3024)</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-700">
+                <!-- Batería -->
+                <tr class="bg-gray-800/50"><td colspan="4" class="px-2 py-1.5 text-[10px] font-bold text-yellow-500 uppercase tracking-widest pl-4">Batería LiFePO4</td></tr>
+                <tr>
+                    <td class="px-2 py-2 font-medium text-white sticky left-0 bg-[#0f172a] z-10 border-r border-gray-800 shadow-xl">Capacidad</td>
+                    <td class="px-2 py-2 text-center whitespace-nowrap">1280 Wh</td>
+                    <td class="px-2 py-2 text-center text-green-400 font-bold whitespace-nowrap">2560 Wh</td>
+                    <td class="px-2 py-2 text-center text-white whitespace-nowrap">3200 Wh</td>
+                </tr>
+                <tr>
+                    <td class="px-2 py-2 font-medium text-white sticky left-0 bg-[#0f172a] z-10 border-r border-gray-800 shadow-xl">Vida Útil</td>
+                    <td colspan="3" class="px-2 py-2 text-center text-yellow-400 font-bold">+6000 Ciclos</td>
+                </tr>
 
-                        <!-- Solar -->
-                        <tr class="bg-gray-800/30"><td colspan="4" class="px-4 py-1 text-[10px] font-bold text-yellow-500 uppercase tracking-widest">Solar MPPT</td></tr>
-                        <tr>
-                            <td class="px-4 py-2 font-medium text-white sticky left-0 bg-[#0f172a]">Max PV Input</td>
-                            <td class="px-4 py-2 text-center">900 W</td>
-                            <td class="px-4 py-2 text-center">1800 W</td>
-                            <td class="px-4 py-2 text-center">1800 W</td>
-                        </tr>
-                        <tr>
-                            <td class="px-4 py-2 font-medium text-white sticky left-0 bg-[#0f172a]">Voltaje Max</td>
-                            <td class="px-4 py-2 text-center">105 V</td>
-                            <td class="px-4 py-2 text-center">160 V</td>
-                            <td class="px-4 py-2 text-center">160 V</td>
-                        </tr>
-                        
-                        <!-- Físico -->
-                         <tr class="bg-gray-800/30"><td colspan="4" class="px-4 py-1 text-[10px] font-bold text-yellow-500 uppercase tracking-widest">Dimensiones</td></tr>
-                        <tr>
-                            <td class="px-4 py-2 font-medium text-white sticky left-0 bg-[#0f172a]">Peso</td>
-                            <td class="px-4 py-2 text-center">17 kg</td>
-                            <td class="px-4 py-2 text-center">24 kg</td>
-                            <td class="px-4 py-2 text-center">33 kg</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div class="p-4 bg-gray-800 border-t border-gray-700 text-center">
-                    <button onclick="viewComponent('https://i.imgur.com/2hQoj9B.png', 'Diagrama Puertos')" class="text-xs text-blue-400 hover:text-white underline">
-                        <i class="fas fa-eye"></i> Ver Diagrama de Puertos
-                    </button>
-                </div>
-            </div>
+                <!-- Inversor -->
+                <tr class="bg-gray-800/50"><td colspan="4" class="px-2 py-1.5 text-[10px] font-bold text-yellow-500 uppercase tracking-widest pl-4">Inversor</td></tr>
+                <tr>
+                    <td class="px-2 py-2 font-medium text-white sticky left-0 bg-[#0f172a] z-10 border-r border-gray-800 shadow-xl">Potencia</td>
+                    <td class="px-2 py-2 text-center whitespace-nowrap">1200 W</td>
+                    <td class="px-2 py-2 text-center font-bold text-white whitespace-nowrap">2000 W</td>
+                    <td class="px-2 py-2 text-center whitespace-nowrap">3000 W</td>
+                </tr>
+                <tr>
+                    <td class="px-2 py-2 font-medium text-white sticky left-0 bg-[#0f172a] z-10 border-r border-gray-800 shadow-xl">Onda</td>
+                    <td colspan="3" class="px-2 py-2 text-center text-green-400 text-[10px] uppercase">Sinusoidal Pura</td>
+                </tr>
+
+                <!-- Solar -->
+                <tr class="bg-gray-800/50"><td colspan="4" class="px-2 py-1.5 text-[10px] font-bold text-yellow-500 uppercase tracking-widest pl-4">Solar MPPT</td></tr>
+                <tr>
+                    <td class="px-2 py-2 font-medium text-white sticky left-0 bg-[#0f172a] z-10 border-r border-gray-800 shadow-xl">Max PV Input</td>
+                    <td class="px-2 py-2 text-center whitespace-nowrap">900 W</td>
+                    <td class="px-2 py-2 text-center whitespace-nowrap">1800 W</td>
+                    <td class="px-2 py-2 text-center whitespace-nowrap">1800 W</td>
+                </tr>
+                <tr>
+                    <td class="px-2 py-2 font-medium text-white sticky left-0 bg-[#0f172a] z-10 border-r border-gray-800 shadow-xl">Voltaje Max</td>
+                    <td class="px-2 py-2 text-center whitespace-nowrap">105 V</td>
+                    <td class="px-2 py-2 text-center whitespace-nowrap">160 V</td>
+                    <td class="px-2 py-2 text-center whitespace-nowrap">160 V</td>
+                </tr>
+                
+                <!-- Físico -->
+                 <tr class="bg-gray-800/50"><td colspan="4" class="px-2 py-1.5 text-[10px] font-bold text-yellow-500 uppercase tracking-widest pl-4">Físico</td></tr>
+                <tr>
+                    <td class="px-2 py-2 font-medium text-white sticky left-0 bg-[#0f172a] z-10 border-r border-gray-800 shadow-xl">Peso</td>
+                    <td class="px-2 py-2 text-center whitespace-nowrap">17 kg</td>
+                    <td class="px-2 py-2 text-center whitespace-nowrap">24 kg</td>
+                    <td class="px-2 py-2 text-center whitespace-nowrap">33 kg</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="p-4 bg-gray-800 border-t border-gray-700 text-center mt-2">
+            <button onclick="viewComponent('https://i.imgur.com/2hQoj9B.png', 'Diagrama Puertos')" class="text-xs text-blue-400 hover:text-white underline flex items-center justify-center gap-2 mx-auto">
+                <i class="fas fa-eye"></i> Ver Diagrama de Conexiones
+            </button>
         </div>
+    </div>
+</div>
     </div>
 </div>
 
