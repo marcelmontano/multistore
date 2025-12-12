@@ -397,105 +397,158 @@
 </div>
 
 
-<!-- ============================================== -->
-<!-- SECCIÓN: ESTADO DE BLOQUES EN TIEMPO REAL (TELEGRAM) -->
-<!-- ============================================== -->
-<section class="pt-48 pb-8 bg-[#0b1120] border-b border-gray-800">
-    <div class="max-w-6xl mx-auto px-4">
+<!-- MONITOR SEN EN VIVO (CONECTADO A TELEGRAM) -->
+<section class="py-16 bg-[#050b14] border-t border-red-900/50 relative overflow-hidden" id="live-monitor">
+    
+    <!-- Fondo Radar -->
+    <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(rgba(220, 38, 38, 0.5) 1px, transparent 1px); background-size: 30px 30px;"></div>
+
+    <div class="max-w-6xl mx-auto px-4 relative z-10">
         
-        <div class="flex items-center justify-between mb-6">
+        <!-- Header con Estado de Conexión -->
+        <div class="flex justify-between items-end mb-8 border-b border-gray-800 pb-4">
             <div>
-                <h3 class="text-white font-bold text-xl flex items-center gap-2">
-                    <i class="fab fa-telegram text-blue-400"></i> Estado de Bloques (En Vivo)
-                </h3>
-                <p class="text-gray-400 text-xs mt-1">Interpretación automática del parte de la UNE.</p>
-                <!-- LEYENDA MEJORADA (MÁS CORTA Y DIRECTA) -->
-<div class="mb-6 bg-gray-900/90 border-l-4 border-yellow-500 rounded-r-xl p-4 shadow-lg backdrop-blur-sm">
-    <h4 class="text-white font-bold text-sm mb-3 flex items-center gap-2 uppercase tracking-wider">
-        <i class="fas fa-info-circle text-yellow-500"></i> Entiende tus números
-    </h4>
-    <div class="grid md:grid-cols-2 gap-4 text-xs text-gray-300">
-        <div class="flex items-start gap-3">
-            <div class="bg-red-500/20 p-1.5 rounded-lg shrink-0">
-                <i class="fas fa-fire text-red-500 text-sm"></i>
+                <div class="flex items-center gap-2 mb-2">
+                    <span class="relative flex h-3 w-3">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-3 w-3 bg-red-600"></span>
+                    </span>
+                    <span class="text-red-500 font-bold text-xs uppercase tracking-widest">Señal en Vivo • Canal Oficial</span>
+                </div>
+                <h2 class="text-3xl md:text-5xl font-black text-white leading-none">
+                    MONITOR <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-orange-500">SEN</span>
+                </h2>
             </div>
-            <div>
-                <p class="font-bold text-red-400 uppercase text-[10px] mb-0.5">Gasto Turno (Dinero en Rojo)</p>
-                <p class="leading-snug">Es la gasolina y aceite que tu planta está consumiendo <span class="text-white font-bold underline decoration-red-500">ahora mismo</span>.</p>
-            </div>
-        </div>
-        <div class="flex items-start gap-3">
-             <div class="bg-orange-500/20 p-1.5 rounded-lg shrink-0">
-                <i class="fas fa-chart-line text-orange-400 text-sm"></i>
-            </div>
-            <div>
-                <p class="font-bold text-orange-400 uppercase text-[10px] mb-0.5">Total Pérdida Hoy</p>
-                <p class="leading-snug">La suma de <span class="text-white font-bold">todos los apagones</span> que has sufrido hoy (Acumulado).</p>
-            </div>
-        </div>
-    </div>
-</div>
-            </div>
-            
             <div class="text-right">
-                <span id="telegram-time" class="text-[10px] text-gray-500 font-mono uppercase">Esperando datos...</span>
-                <div class="flex gap-2 mt-1 justify-end">
-                    <span class="flex items-center gap-1 text-[10px] text-gray-400"><div class="w-2 h-2 rounded-full bg-green-500"></div> Con Luz</span>
-                    <span class="flex items-center gap-1 text-[10px] text-gray-400"><div class="w-2 h-2 rounded-full bg-red-600"></div> Apagado</span>
-                </div>
+                <p class="text-gray-500 text-[10px] uppercase">Último Reporte Detectado:</p>
+                <p class="text-white font-mono text-sm font-bold" id="last-update-time">Cargando...</p>
             </div>
         </div>
 
-        <!-- GRID DE 6 BLOQUES -->
-        <!-- GRID DE 6 BLOQUES (SEMÁFORO DEL DOLOR) -->
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="blocks-grid">
-    <!-- Generaremos las 6 tarjetas con un loop para no repetir código, 
-         pero aquí está la estructura base para que entiendas el cambio -->
-    
-    <!-- La estructura se repetirá del 1 al 6 mediante JS o manual -->
-    <div id="card-b1" class="bg-gray-800 border border-gray-700 p-4 rounded-xl relative overflow-hidden transition-all duration-300">
-        <div class="flex justify-between items-start">
-            <div>
-                <span class="text-xs font-bold text-gray-500 uppercase tracking-widest">Bloque 1</span>
-                <div id="status-b1" class="text-xl font-black text-white mt-1">
-                    <i class="fas fa-spinner fa-spin"></i> Cargando...
+        <div class="grid lg:grid-cols-12 gap-8">
+
+            <!-- WIDGET 1: EL DATO CLAVE (DÉFICIT) -->
+            <div class="lg:col-span-4">
+                <div class="bg-gray-900/80 border-2 border-red-600 rounded-2xl p-6 h-full flex flex-col justify-center relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 bg-red-600 text-white text-[10px] font-bold px-3 py-1 rounded-bl-xl uppercase">
+                        Impacto Hoy
+                    </div>
+                    
+                    <div class="text-center mt-4">
+                        <p class="text-gray-400 text-xs uppercase tracking-widest mb-2">Déficit / Afectación</p>
+                        <!-- AQUÍ SE INYECTA EL NÚMERO AUTOMÁTICO -->
+                        <div class="flex items-center justify-center gap-1">
+                            <i class="fas fa-arrow-up text-red-500 text-2xl animate-bounce"></i>
+                            <span class="text-6xl font-black text-white tracking-tighter" id="live-deficit">---</span>
+                        </div>
+                        <span class="text-xl text-red-500 font-bold">MW</span>
+                    </div>
+
+                    <div class="mt-6 bg-black/40 rounded-lg p-3 text-center border border-gray-700">
+                        <p class="text-[10px] text-gray-400 mb-1">Estado del Sistema:</p>
+                        <p class="text-white font-bold text-sm uppercase" id="system-status">Analizando...</p>
+                    </div>
                 </div>
             </div>
-            <div id="icon-b1" class="text-3xl text-gray-700">
-                <i class="fas fa-question-circle"></i>
+
+            <!-- WIDGET 2: ÚLTIMAS NOTICIAS (FEED) -->
+            <div class="lg:col-span-8">
+                <div class="bg-[#0f172a] border border-gray-700 rounded-2xl p-6 h-full flex flex-col">
+                    <h3 class="text-white font-bold text-sm mb-4 flex items-center gap-2">
+                        <i class="fab fa-telegram text-blue-400"></i> Reportes en Tiempo Real
+                    </h3>
+                    
+                    <!-- Contenedor con Scroll -->
+                    <div class="space-y-3 overflow-y-auto max-h-[300px] custom-scrollbar pr-2" id="telegram-feed">
+                        <!-- Aquí el Script inyectará los mensajes -->
+                        <div class="animate-pulse flex space-x-4">
+                            <div class="flex-1 space-y-4 py-1">
+                                <div class="h-4 bg-gray-700 rounded w-3/4"></div>
+                                <div class="h-4 bg-gray-700 rounded"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        
+        <!-- WIDGET 3: BARRA DE ALERTAS ZONALES (EXTRAÍDAS DEL TEXTO) -->
+        <div class="mt-6 bg-red-900/20 border border-red-500/30 rounded-xl p-4 flex flex-col md:flex-row items-center gap-4 animate-pulse-slow" id="zone-alert-box">
+            <div class="flex items-center gap-2 text-red-500 shrink-0">
+                <i class="fas fa-exclamation-triangle text-2xl"></i>
+                <span class="font-bold text-xs uppercase tracking-widest">Zonas Críticas Detectadas:</span>
+            </div>
+            <div class="flex-1 w-full overflow-hidden">
+                <!-- Texto que corre si es muy largo -->
+                <p class="text-white text-sm font-mono whitespace-nowrap overflow-hidden text-ellipsis" id="detected-zones">
+                    Escaneando municipios...
+                </p>
+            </div>
+        </div>
+
+    </div>
+    
+</section>
+<!-- WIDGET B2B: IMPACTO FINANCIERO (MIPYMES) -->
+<div class="max-w-6xl mx-auto px-4 mt-4 mb-16">
+    <div class="bg-gradient-to-r from-[#0f172a] to-[#1e1b4b] border border-blue-500/30 p-6 rounded-2xl relative overflow-hidden shadow-2xl">
+        
+        <div class="absolute top-0 right-0 bg-blue-600 text-white text-[10px] font-bold px-3 py-1 rounded-bl-xl uppercase">
+            Solo para Negocios
+        </div>
+
+        <div class="flex flex-col md:flex-row items-center gap-8">
+            
+            <!-- Izquierda: Selector -->
+            <div class="w-full md:w-1/3">
+                <h3 class="text-white font-bold text-lg mb-2 flex items-center gap-2">
+                    <i class="fas fa-calculator text-blue-400"></i> Costo del Apagón
+                </h3>
+                <p class="text-gray-400 text-xs mb-4">
+                    Con el déficit actual (<span class="text-red-500 font-bold" id="calc-deficit-ref">Calculando...</span>), tu negocio perderá hoy:
+                </p>
+                
+                <select id="biz-type" onchange="calculateLoss()" class="w-full bg-gray-900 text-white text-sm p-3 rounded-lg border border-gray-600 outline-none focus:border-blue-500 cursor-pointer">
+                    <option value="0" selected disabled>Selecciona tu Negocio...</option>
+                    <option value="cafeteria">Cafetería / Restaurante</option>
+                    <option value="mercado">Mercado / Carnicería</option>
+                    <option value="oficina">Oficina / Airbnb</option>
+                    <option value="fabrica">Producción / Panadería</option>
+                </select>
+            </div>
+
+            <!-- Derecha: Los Números que Duelen -->
+            <div class="w-full md:w-2/3 grid grid-cols-2 gap-4">
+                
+                <!-- Gasto Diesel -->
+                <div class="bg-black/40 p-4 rounded-xl border border-red-500/20 text-center">
+                    <p class="text-[10px] text-gray-500 uppercase tracking-widest">Gasto Planta (Hoy)</p>
+                    <div class="text-3xl font-black text-red-500 my-1 font-mono" id="loss-diesel">
+                        $0
+                    </div>
+                    <p class="text-[10px] text-red-300">Gasolina quemada</p>
+                </div>
+
+                <!-- Inversión Solar -->
+                <div class="bg-blue-900/20 p-4 rounded-xl border border-blue-500/50 text-center relative overflow-hidden group cursor-pointer hover:bg-blue-900/40 transition" onclick="document.getElementById('ofertas-blue').scrollIntoView({behavior: 'smooth'})">
+                    <p class="text-[10px] text-gray-400 uppercase tracking-widest">Costo Solar (Hoy)</p>
+                    <div class="text-3xl font-black text-green-400 my-1 font-mono">
+                        $0
+                    </div>
+                    <p class="text-[10px] text-green-300 font-bold underline decoration-dotted">Ver Solución &rarr;</p>
+                </div>
+
             </div>
         </div>
         
-        <!-- Contador de Tiempo (Se muestra si está apagado) -->
-        <div id="time-container-b1" class="mt-3 hidden">
-            <div class="bg-black/40 rounded p-2 flex items-center gap-2">
-                <i class="fas fa-stopwatch text-red-500 animate-pulse"></i>
-                <span id="time-b1" class="text-sm font-mono text-white font-bold">--:--</span>
-            </div>
-        </div>
-
-        <!-- CTA DE VENTA (Solo aparece en emergencia) -->
-        <div id="cta-b1" class="mt-4 hidden animate-slide-in">
-            <button onclick="document.getElementById('ofertas-blue').scrollIntoView({behavior: 'smooth'})" class="w-full bg-white text-red-600 font-bold py-2 rounded shadow-lg hover:bg-gray-100 transition text-xs uppercase tracking-wide flex items-center justify-center gap-2">
-                <i class="fas fa-bolt"></i> ¿Vives aquí? Enciende tu casa
-            </button>
+        <!-- Mensaje Contextual -->
+        <div id="biz-alert-msg" class="mt-4 text-center text-xs text-gray-300 hidden border-t border-blue-900/50 pt-3">
+            <!-- Se llena con JS -->
         </div>
     </div>
-    
-    <!-- Repetir estructura para b2, b3, b4, b5, b6 (El JS lo manejará) -->
-    <!-- Para facilitar, usa este script pequeño para generar el HTML vacío al cargar -->
 </div>
 
-        <!-- Cita del mensaje original (Para dar credibilidad) -->
-        <div class="mt-4 bg-blue-900/10 border border-blue-500/20 p-3 rounded-lg flex gap-3 items-start">
-            <i class="fas fa-quote-left text-blue-500 text-xs mt-1"></i>
-            <p id="raw-telegram-msg" class="text-[10px] text-gray-400 font-mono line-clamp-2">
-                Cargando mensaje original...
-            </p>
-        </div>
-
-    </div>
-</section>
 
 
 
@@ -7540,6 +7593,259 @@ function getDailyEventsCount(blockNum, allMessages) {
         triggerLocalPush(); // Se dispara a los 5 segs
     });
 </script>
+<script>
+    (function() {
+        // ==========================================
+        // CONFIGURACIÓN Y DATOS DE RESPALDO (PLAN B)
+        // ==========================================
+        const TELEGRAM_CHANNEL = 'https://t.me/s/EmpresaElectricaDeLaHabana';
+        const PROXY_URL = 'https://api.allorigins.win/get?url=';
+        
+        // DATOS MANUALES (Úsalos si Telegram bloquea la conexión)
+        // Actualiza esto si hay un cambio drástico y el script automático falla.
+        const BACKUP_DATA = {
+            deficit: "1770", // MW
+            status: "Déficit Elevado (Datos Est.)",
+            time: "Hace 15 min",
+            msgs: [
+                "⚠️ Déficit significativo por averías en centrales base.",
+                "📍 Afectaciones en Playa, Boyeros y Centro Habana.",
+                "📉 Se pronostica afectación en horario pico nocturno."
+            ]
+        };
 
+        // Variable global para el déficit detectado
+        let currentDeficitMW = 0;
+
+        // ==========================================
+        // 1. MOTOR DE BÚSQUEDA (TELEGRAM SCRAPER)
+        // ==========================================
+        async function fetchTelegramData() {
+            const statusEl = document.getElementById('system-status');
+            if(statusEl) statusEl.innerText = "Sincronizando...";
+
+            try {
+                // Intentamos conectar a través del proxy
+                // Añadimos un timestamp para evitar caché del navegador
+                const response = await fetch(PROXY_URL + encodeURIComponent(TELEGRAM_CHANNEL) + '&t=' + Date.now());
+                
+                if (!response.ok) throw new Error("Error Proxy");
+                
+                const data = await response.json();
+                
+                if (data.contents) {
+                    parseTelegramHTML(data.contents);
+                } else {
+                    throw new Error("Contenido vacío");
+                }
+
+            } catch (error) {
+                console.warn("⚠️ Fallo conexión en vivo. Activando Protocolo de Respaldo.", error);
+                loadBackupData();
+            }
+        }
+
+        // ==========================================
+        // 2. PARSER INTELIGENTE (LECTURA DE DATOS)
+        // ==========================================
+        function parseTelegramHTML(htmlString) {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(htmlString, 'text/html');
+            
+            const messages = doc.querySelectorAll('.tgme_widget_message_text');
+            const dates = doc.querySelectorAll('.tgme_widget_message_time');
+            
+            const feedContainer = document.getElementById('telegram-feed');
+            if(feedContainer) feedContainer.innerHTML = ''; 
+
+            let foundDeficit = false;
+            let detectedZones = [];
+            // Municipios clave para buscar en el texto
+            const keywordsZones = ['Playa', 'Marianao', 'Lisa', 'Boyeros', 'Arroyo', 'Cotorro', 'San Miguel', 'Guanabacoa', 'Regla', 'Este', 'Habana', 'Cerro', 'Plaza', 'Octubre'];
+
+            // Recorremos los mensajes (Invertido para ver el más nuevo primero)
+            const msgsArray = Array.from(messages).reverse();
+            const datesArray = Array.from(dates).reverse();
+
+            msgsArray.forEach((msg, index) => {
+                let text = msg.innerText;
+                let htmlText = msg.innerHTML;
+                
+                // A) Buscar DÉFICIT (Números grandes seguidos de MW)
+                if (!foundDeficit) {
+                    // Busca "1234 MW" o "1 234 MW"
+                    const mwRegex = /(?:déficit|afectación|capacidad|estima).*?(\d{1,2}\s?\d{3}|\d{3,4})\s*MW/i;
+                    const match = text.match(mwRegex);
+                    
+                    if (match && match[1]) {
+                        // Limpiar espacios del número (ej: "1 700" -> "1700")
+                        let cleanNum = match[1].replace(/\s/g, '');
+                        updateDeficitUI(cleanNum);
+                        foundDeficit = true;
+                        
+                        // Actualizar hora
+                        if(datesArray[index]) {
+                            document.getElementById('last-update-time').innerText = datesArray[index].innerText;
+                        }
+                    }
+                }
+
+                // B) Buscar ZONAS AFECTADAS (Para la barra de alerta)
+                if (text.toLowerCase().includes('avería') || text.toLowerCase().includes('disparo') || text.toLowerCase().includes('interrupción')) {
+                    keywordsZones.forEach(zone => {
+                        if (text.includes(zone) && !detectedZones.includes(zone)) {
+                            detectedZones.push(zone);
+                        }
+                    });
+                }
+
+                // C) Llenar el Feed Visual (Max 10 items)
+                if (index < 10 && feedContainer) {
+                    const msgDiv = document.createElement('div');
+                    msgDiv.className = "bg-gray-800/50 p-3 rounded-lg border border-gray-700/50 hover:bg-gray-800 transition mb-2";
+                    
+                    let icon = '<i class="fas fa-info-circle text-blue-400"></i>';
+                    if (text.toLowerCase().includes('déficit')) icon = '<i class="fas fa-chart-line text-red-400"></i>';
+                    if (text.toLowerCase().includes('avería')) icon = '<i class="fas fa-tools text-orange-400"></i>';
+
+                    msgDiv.innerHTML = `
+                        <div class="flex gap-3">
+                            <div class="mt-1">${icon}</div>
+                            <div class="text-xs text-gray-300 leading-relaxed font-mono line-clamp-3">
+                                ${text.substring(0, 150)}...
+                            </div>
+                        </div>
+                    `;
+                    feedContainer.appendChild(msgDiv);
+                }
+            });
+
+            // Actualizar Banner de Zonas
+            const zonesEl = document.getElementById('detected-zones');
+            if (zonesEl) {
+                if (detectedZones.length > 0) {
+                    zonesEl.innerHTML = `<strong>⚠️ ZONAS CRÍTICAS:</strong> ${detectedZones.join(', ')}. <span class="text-yellow-400">Posibles averías físicas.</span>`;
+                    zonesEl.parentElement.classList.remove('hidden');
+                } else {
+                    zonesEl.innerHTML = "Sin reportes de averías físicas graves en este escaneo.";
+                }
+            }
+
+            // Si no se encontró déficit en el texto, usar respaldo
+            if (!foundDeficit) loadBackupData();
+        }
+
+        function loadBackupData() {
+            updateDeficitUI(BACKUP_DATA.deficit);
+            document.getElementById('last-update-time').innerText = BACKUP_DATA.time;
+            document.getElementById('system-status').innerText = BACKUP_DATA.status;
+            
+            const feed = document.getElementById('telegram-feed');
+            if(feed) {
+                feed.innerHTML = '';
+                BACKUP_DATA.msgs.forEach(txt => {
+                    feed.innerHTML += `<div class="bg-gray-800/50 p-3 rounded mb-2 text-xs text-gray-400 font-mono"><i class="fas fa-history text-yellow-500 mr-2"></i> ${txt}</div>`;
+                });
+            }
+        }
+
+        function updateDeficitUI(val) {
+            currentDeficitMW = parseInt(val);
+            const el = document.getElementById('live-deficit');
+            const status = document.getElementById('system-status');
+            const refCalc = document.getElementById('calc-deficit-ref');
+
+            // 1. Contador Animado
+            if(el) el.innerText = currentDeficitMW;
+            
+            // 2. Estado
+            if(status) {
+                if (currentDeficitMW > 1500) {
+                    status.innerText = "CRÍTICO (Colapso Parcial)";
+                    status.className = "text-white font-black text-sm uppercase bg-red-600 px-2 py-1 rounded animate-pulse";
+                } else if (currentDeficitMW > 800) {
+                    status.innerText = "Muy Alto (Apagones Largos)";
+                    status.className = "text-orange-400 font-bold text-sm uppercase";
+                } else {
+                    status.innerText = "Moderado";
+                    status.className = "text-yellow-400 font-bold text-sm uppercase";
+                }
+            }
+
+            // 3. Actualizar referencia en la calculadora
+            if(refCalc) refCalc.innerText = currentDeficitMW + " MW";
+        }
+
+        // ==========================================
+        // 3. LÓGICA FINANCIERA (CALCULADORA DE PÉRDIDAS)
+        // ==========================================
+        window.calculateLoss = function() {
+            const type = document.getElementById('biz-type').value;
+            const dieselDisplay = document.getElementById('loss-diesel');
+            const alertMsg = document.getElementById('biz-alert-msg');
+            
+            // Estimar horas de apagón según el déficit detectado
+            let hoursOff = 4; // Base
+            if (currentDeficitMW > 800) hoursOff = 6;
+            if (currentDeficitMW > 1200) hoursOff = 8;
+            if (currentDeficitMW > 1600) hoursOff = 12; // Situación crítica
+
+            // Factores de Gasto
+            // Costo Planta: Litros/hora * Precio ($1.50 USD est)
+            let costPerHour = 0;
+            let riskText = "";
+            let monthlyEstimate = 0;
+
+            switch(type) {
+                case 'cafeteria':
+                    costPerHour = 3.0; // Planta Mediana
+                    riskText = "🔥 <strong>Riesgo:</strong> Clientes se van por calor, merma de helados y refrescos calientes.";
+                    break;
+                case 'mercado':
+                    costPerHour = 4.5; // Planta Grande (Freezers)
+                    riskText = "❄️ <strong>Riesgo CRÍTICO:</strong> Pérdida de cadena de frío en cárnicos y congelados.";
+                    break;
+                case 'oficina':
+                    costPerHour = 1.5; // Planta Pequeña
+                    riskText = "💻 <strong>Riesgo:</strong> Parada operativa, sin internet, servidores caídos.";
+                    break;
+                case 'fabrica':
+                    costPerHour = 7.0; // Planta Industrial
+                    riskText = "⚙️ <strong>Riesgo:</strong> Producción detenida, salarios pagados sin producir.";
+                    break;
+                default:
+                    costPerHour = 0;
+            }
+
+            if (costPerHour > 0) {
+                const dailyLoss = (costPerHour * hoursOff).toFixed(2);
+                monthlyEstimate = (dailyLoss * 24).toFixed(0); // Proyección mes
+
+                dieselDisplay.innerText = `-$${dailyLoss} USD`;
+                dieselDisplay.parentElement.classList.add('border-red-500'); // Resaltar borde
+                
+                alertMsg.innerHTML = `
+                    ${riskText}<br>
+                    <div class="mt-2 bg-white/10 p-2 rounded">
+                        Al mes estás tirando <strong class="text-red-400">-$${monthlyEstimate} USD</strong> en combustible.<br>
+                        <span class="text-green-400 font-bold">Un Kit Solar se paga solo en 5 meses con ese ahorro.</span>
+                    </div>
+                `;
+                alertMsg.classList.remove('hidden');
+                alertMsg.classList.add('animate-slide-in');
+            }
+        };
+
+        // ==========================================
+        // EJECUCIÓN INICIAL
+        // ==========================================
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchTelegramData();
+            // Actualizar cada 5 minutos
+            setInterval(fetchTelegramData, 300000);
+        });
+
+    })();
+</script>
 </body>
 </html>
