@@ -41,10 +41,42 @@
 </head>
 <body class="antialiased flex flex-col">
 
-    <!-- BARRA DE URGENCIA (Ahora fluye natural, no tapa nada) -->
-    <div class="bg-gradient-to-r from-red-900 to-red-700 text-white text-xs font-bold text-center py-3 px-4 relative z-50">
-        ⚡ ALERTA SEN: Déficit Pronosticado Alto. <span class="text-yellow-300 underline block sm:inline">Asegura tu energía hoy.</span> Solo 3 cupos esta semana.
+    <!-- BARRA DE URGENCIA DINÁMICA -->
+<div class="bg-red-900 border-b border-red-600 text-white text-xs py-2 px-4 relative z-50 overflow-hidden">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left">
+        <div class="flex items-center gap-2 animate-pulse">
+            <span class="w-2 h-2 bg-red-500 rounded-full box-shadow-red"></span>
+            <span class="font-bold">⚠️ ESTADO SEN AHORA:</span>
+            <span id="sen-status" class="text-red-300 font-mono">Déficit 1250 MW</span>
+        </div>
+        <div class="flex items-center gap-4">
+            <span class="hidden md:inline text-gray-400">Pronóstico Habana: <span class="text-white font-bold">6h - 8h apagón</span></span>
+            <a href="#catalogo" class="bg-yellow-500 text-black px-3 py-1 rounded font-black uppercase tracking-wider hover:bg-white transition text-[10px]">
+                ¡Asegurar mi Kit! <span id="stock-counter" class="bg-black text-yellow-500 px-1 rounded ml-1">3</span> quedan
+            </a>
+        </div>
     </div>
+</div>
+
+<script>
+    // Script para simular datos en vivo (Psicología de mercado)
+    const deficit = Math.floor(Math.random() * (1350 - 800 + 1) + 800);
+    document.getElementById('sen-status').innerText = `Déficit ${deficit} MW (Alto Riesgo)`;
+    
+    // Contador de stock que baja falsamente si el usuario tarda mucho (FOMO)
+    let stock = 3;
+    setInterval(() => {
+        if(Math.random() > 0.7 && stock > 1) {
+            stock--;
+            const badge = document.getElementById('stock-counter');
+            badge.innerText = stock;
+            badge.classList.add('animate-ping');
+            setTimeout(() => badge.classList.remove('animate-ping'), 1000);
+        }
+    }, 45000); // Cada 45 seg hay probabilidad de que "alguien compre"
+</script>
+
+    
 
     <!-- NAVBAR (Sticky: Se pega al techo al bajar) -->
     <nav class="sticky top-0 z-40 w-full glass border-b border-white/5 shadow-lg">
@@ -95,6 +127,104 @@
         </div>
     </section>
 
+    <!-- SECCIÓN CALCULADORA DE AHORRO (VERSIÓN FINAL CORREGIDA) -->
+<section class="py-12 bg-slate-900 border-y border-white/10">
+    <div class="max-w-4xl mx-auto px-4">
+        <div class="text-center mb-8">
+            <h2 class="text-3xl font-bold text-white">¿Cuánto dinero estás <span class="text-red-500 decoration-red-500 line-through">QUEMANDO</span> en gasolina?</h2>
+            <p class="text-gray-400 text-sm">Haz la cuenta. La planta eléctrica es una renta vitalicia de pobreza.</p>
+        </div>
+
+        <div class="bg-[#020617] p-6 rounded-2xl border border-gray-700 shadow-2xl grid md:grid-cols-2 gap-8 items-center">
+            <!-- Inputs -->
+            <div class="space-y-6">
+                <div>
+                    <label class="block text-gray-400 text-xs uppercase font-bold mb-2">Horas de Apagón Diario</label>
+                    <!-- EL CAMBIO CLAVE: Llamamos a 'actualizarCalculadora' -->
+                    <input type="range" id="rangoHoras" min="1" max="12" value="6" class="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-yellow-500" oninput="actualizarCalculadora('slider')">
+                    <div class="flex justify-between text-white font-mono mt-1">
+                        <span>1h</span>
+                        <span id="textoHoras" class="text-yellow-500 font-bold text-xl">6h</span>
+                        <span>12h</span>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-gray-400 text-xs uppercase font-bold mb-2">Gasto Gasolina Mensual (USD Estimado)</label>
+                    <div class="flex items-center bg-gray-800 rounded px-3 border border-gray-600">
+                        <span class="text-gray-400 mr-2">$</span>
+                        <!-- EL CAMBIO CLAVE: Llamamos a 'actualizarCalculadora' -->
+                        <input type="number" id="inputDinero" value="150" class="bg-transparent w-full text-white py-3 focus:outline-none font-bold" oninput="actualizarCalculadora('manual')">
+                    </div>
+                    <p class="text-[10px] text-gray-500 mt-1">*Cálculo estimado: $25 USD por hora de apagón al mes.</p>
+                </div>
+            </div>
+
+            <!-- Resultados -->
+            <div class="bg-gradient-to-br from-red-900/20 to-slate-900 border border-red-500/30 rounded-xl p-6 text-center relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-1 bg-red-500"></div>
+                <p class="text-gray-400 text-sm mb-1">En 1 año perderás:</p>
+                <p id="perdidaAnual" class="text-4xl font-black text-red-500 mb-4">$1,800 USD</p>
+                
+                <div class="border-t border-gray-700 pt-4 mt-2">
+                    <p class="text-green-400 text-sm mb-1">Con SolarCuba inviertes una vez y ahorras:</p>
+                    <p id="ahorro5Anos" class="text-2xl font-bold text-white">$9,000 USD <span class="text-xs font-normal text-gray-400">(en 5 años)</span></p>
+                </div>
+                
+                <a href="#catalogo" class="mt-4 block w-full bg-green-600 hover:bg-green-500 text-white font-bold py-2 rounded transition text-sm">
+                    Ver Kits de Inversión Única
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    // Función con nombre único para evitar conflictos con código antiguo
+    function actualizarCalculadora(origen) {
+        // 1. Seleccionar elementos
+        var rango = document.getElementById('rangoHoras');
+        var inputDinero = document.getElementById('inputDinero');
+        var textoHoras = document.getElementById('textoHoras');
+        var textoPerdida = document.getElementById('perdidaAnual');
+        var textoAhorro = document.getElementById('ahorro5Anos');
+
+        // 2. Actualizar el texto visual de las horas (ej: "8h")
+        textoHoras.innerText = rango.value + "h";
+
+        // 3. LÓGICA: Si muevo el slider, calculo el dinero.
+        // Factor: 1 hora diaria = $25 USD al mes aprox.
+        if (origen === 'slider') {
+            var costoEstimado = rango.value * 25;
+            inputDinero.value = costoEstimado;
+        }
+
+        // 4. Calcular totales (basado en lo que diga la caja de dinero)
+        var mensual = parseFloat(inputDinero.value) || 0;
+        var anual = mensual * 12;
+        var cincoAnos = anual * 5;
+
+        // 5. Mostrar resultados con formato de moneda
+        textoPerdida.innerText = "$" + anual.toLocaleString('en-US') + " USD";
+        textoAhorro.innerText = "$" + cincoAnos.toLocaleString('en-US') + " USD";
+    }
+</script>
+
+<script>
+    function calculateSavings() {
+        const hours = document.getElementById('hoursInput').value;
+        const monthlyGas = document.getElementById('gasInput').value;
+        
+        document.getElementById('hoursDisplay').innerText = `${hours}h`;
+        
+        const yearly = monthlyGas * 12;
+        const fiveYears = yearly * 5;
+        
+        // Animación de números
+        document.getElementById('yearlyLoss').innerText = `$${yearly.toLocaleString()} USD`;
+        document.getElementById('fiveYearSavings').innerText = `$${fiveYears.toLocaleString()} USD`;
+    }
+</script>
+
     <!-- LA VERDAD (DOLOR vs PLACER) -->
     <section class="py-16 bg-[#0b1120] border-t border-white/5">
         <div class="max-w-6xl mx-auto px-4">
@@ -122,6 +252,48 @@
             </div>
         </div>
     </section>
+
+    <!-- NAVEGACIÓN POR PROBLEMA (UX MEJORADO) -->
+<div class="max-w-4xl mx-auto px-4 mb-16">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <button onclick="filterByNeeds('low')" class="p-4 bg-gray-800 hover:bg-gray-700 rounded-xl border border-gray-600 hover:border-brand-gold transition text-center group focus:ring-2 ring-brand-gold">
+            <i class="fas fa-lightbulb text-2xl text-yellow-200 mb-2 group-hover:scale-110 transition"></i>
+            <h4 class="text-white font-bold text-xs">Solo Luces + TV</h4>
+        </button>
+        <button onclick="filterByNeeds('fridge')" class="p-4 bg-gray-800 hover:bg-gray-700 rounded-xl border border-gray-600 hover:border-blue-500 transition text-center group focus:ring-2 ring-blue-500">
+            <i class="fas fa-snowflake text-2xl text-blue-300 mb-2 group-hover:scale-110 transition"></i>
+            <h4 class="text-white font-bold text-xs">Refrigerador</h4>
+        </button>
+        <button onclick="filterByNeeds('ac')" class="p-4 bg-gray-800 hover:bg-gray-700 rounded-xl border border-gray-600 hover:border-green-500 transition text-center group focus:ring-2 ring-green-500">
+            <i class="fas fa-wind text-2xl text-green-300 mb-2 group-hover:scale-110 transition"></i>
+            <h4 class="text-white font-bold text-xs">Aire Acond.</h4>
+        </button>
+        <button onclick="filterByNeeds('biz')" class="p-4 bg-gray-800 hover:bg-gray-700 rounded-xl border border-gray-600 hover:border-red-500 transition text-center group focus:ring-2 ring-red-500">
+            <i class="fas fa-store text-2xl text-red-300 mb-2 group-hover:scale-110 transition"></i>
+            <h4 class="text-white font-bold text-xs">Negocio Total</h4>
+        </button>
+    </div>
+</div>
+
+<script>
+    // Script simple para hacer scroll suave al producto recomendado
+    function filterByNeeds(type) {
+        // En un caso real podrías filtrar, aquí haremos scroll al producto estrella de esa categoría
+        let targetId = '';
+        if(type === 'low') targetId = 'must1'; // Asume que tienes id="must1" en la tarjeta del Must 1kW
+        if(type === 'fridge') targetId = 'must2';
+        if(type === 'ac') targetId = 'astra5'; // Kit 5kW
+        if(type === 'biz') targetId = 'pro6'; // SRNE 6.5kW
+        
+        // Nota: Deberás agregar id="must1", id="must2", etc a los divs de tus productos principales
+        const element = document.getElementById(targetId); 
+        if(element) {
+            element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            element.classList.add('ring-4', 'ring-yellow-500'); // Resaltar
+            setTimeout(() => element.classList.remove('ring-4', 'ring-yellow-500'), 2000);
+        }
+    }
+</script>
 
     <!-- SECCIÓN DE PRODUCTOS: DISEÑO HÍBRIDO (ELEGANTE + TÉCNICO) -->
 <section id="catalogo" class="py-24 bg-[#020617] relative">
@@ -253,46 +425,54 @@
 
             <div class="lg:w-2/3 grid md:grid-cols-3 gap-6">
                 
-                <!-- MUST 1kW -->
-                <div class="bg-gray-900 border border-gray-700 rounded-xl p-5 hover:border-white transition flex flex-col">
-                    <div class="mb-4 text-center border-b border-gray-800 pb-4">
-                        <h4 class="text-lg font-bold text-white">MUST 1kW</h4>
-                        <div class="text-2xl font-black text-white">$700 USD</div>
-                    </div>
-                    
-                    <!-- FOTO TRASERA -->
-                    <div class="mb-4 group relative">
-                        <p class="text-[9px] text-gray-500 uppercase font-bold mb-1">Puertos Traseros:</p>
-                        <img src="https://i.imgur.com/2hQoj9B.png" class="w-full h-12 object-cover object-top rounded border border-gray-600 opacity-70 group-hover:opacity-100 transition cursor-pointer" onclick="openModal('must1')">
-                    </div>
+                <!-- MUST 1kW (Con ID y Psicología de Precio) -->
+<div id="must1" class="bg-gray-900 border border-gray-700 rounded-xl p-5 hover:border-white transition flex flex-col scroll-mt-32">
+    <div class="mb-4 text-center border-b border-gray-800 pb-4">
+        <h4 class="text-lg font-bold text-white">MUST 1kW</h4>
+        <div class="flex flex-col items-center justify-center">
+            <div class="text-2xl font-black text-white">$700 USD</div>
+            <!-- Psicología de Precio: Anclaje -->
+            <span class="text-[10px] text-gray-500 line-through">Gasto anual planta: $1,200</span>
+        </div>
+    </div>
+    
+    <!-- FOTO TRASERA -->
+    <div class="mb-4 group relative">
+        <p class="text-[9px] text-gray-500 uppercase font-bold mb-1">Puertos Traseros:</p>
+        <img src="https://i.imgur.com/2hQoj9B.png" class="w-full h-12 object-cover object-top rounded border border-gray-600 opacity-70 group-hover:opacity-100 transition cursor-pointer" onclick="openModal('must1')">
+    </div>
 
-                    <ul class="text-xs text-gray-400 space-y-2 mb-4 flex-1">
-                        <li>✅ Batería Litio 1280Wh</li>
-                        <li>✅ Salida 110V (TV, Vent, Laptop)</li>
-                    </ul>
-                    <button onclick="openLeadModal('MUST 1kW')" class="w-full border border-gray-600 text-white py-2 rounded font-bold text-xs hover:bg-white hover:text-black transition">Consultar</button>
-                </div>
+    <ul class="text-xs text-gray-400 space-y-2 mb-4 flex-1">
+        <li>✅ Batería Litio 1280Wh</li>
+        <li>✅ Salida 110V (TV, Vent, Laptop)</li>
+    </ul>
+    <button onclick="openLeadModal('MUST 1kW')" class="w-full border border-gray-600 text-white py-2 rounded font-bold text-xs hover:bg-white hover:text-black transition">Consultar</button>
+</div>
 
-                <!-- MUST 2kW -->
-                <div class="bg-gray-900 border-2 border-blue-600 rounded-xl p-5 relative shadow-lg flex flex-col transform md:-translate-y-2">
-                    <div class="absolute top-0 right-0 bg-blue-600 text-white text-[9px] font-bold px-2 py-1 rounded-bl">RECOMENDADO</div>
-                    <div class="mb-4 text-center border-b border-blue-900/30 pb-4">
-                        <h4 class="text-xl font-bold text-white">MUST 2kW</h4>
-                        <p class="text-[10px] text-blue-400 font-bold">¡Arranca Refrigerador!</p>
-                        <div class="text-3xl font-black text-white mt-1">$950 USD</div>
-                    </div>
+                <!-- MUST 2kW (Con ID y Psicología de Precio) -->
+<div id="must2" class="bg-gray-900 border-2 border-blue-600 rounded-xl p-5 relative shadow-lg flex flex-col transform md:-translate-y-2 scroll-mt-32">
+    <div class="absolute top-0 right-0 bg-blue-600 text-white text-[9px] font-bold px-2 py-1 rounded-bl">RECOMENDADO</div>
+    <div class="mb-4 text-center border-b border-blue-900/30 pb-4">
+        <h4 class="text-xl font-bold text-white">MUST 2kW</h4>
+        <p class="text-[10px] text-blue-400 font-bold">¡Arranca Refrigerador!</p>
+        <div class="flex flex-col items-center justify-center mt-1">
+            <div class="text-3xl font-black text-white">$950 USD</div>
+            <!-- Psicología de Precio: Anclaje -->
+            <span class="text-[10px] text-gray-500 line-through font-bold">Gasto anual planta: $1,800</span>
+        </div>
+    </div>
 
-                    <div class="mb-4 group relative">
-                        <p class="text-[9px] text-gray-500 uppercase font-bold mb-1">Puertos Traseros:</p>
-                        <img src="https://i.imgur.com/2hQoj9B.png" class="w-full h-12 object-cover object-top rounded border border-gray-600 opacity-70 group-hover:opacity-100 transition cursor-pointer" onclick="openModal('must2')">
-                    </div>
+    <div class="mb-4 group relative">
+        <p class="text-[9px] text-gray-500 uppercase font-bold mb-1">Puertos Traseros:</p>
+        <img src="https://i.imgur.com/2hQoj9B.png" class="w-full h-12 object-cover object-top rounded border border-gray-600 opacity-70 group-hover:opacity-100 transition cursor-pointer" onclick="openModal('must2')">
+    </div>
 
-                    <ul class="text-xs text-gray-300 space-y-2 mb-4 flex-1">
-                        <li>✅ Batería Litio 2560Wh</li>
-                        <li>✅ Refri + Luces + TV</li>
-                    </ul>
-                    <button onclick="openLeadModal('MUST 2kW PRO')" class="w-full bg-blue-600 text-white py-2 rounded font-bold text-xs hover:bg-blue-500 transition animate-pulse">Ver Stock</button>
-                </div>
+    <ul class="text-xs text-gray-300 space-y-2 mb-4 flex-1">
+        <li>✅ Batería Litio 2560Wh</li>
+        <li>✅ Refri + Luces + TV</li>
+    </ul>
+    <button onclick="openLeadModal('MUST 2kW PRO')" class="w-full bg-blue-600 text-white py-2 rounded font-bold text-xs hover:bg-blue-500 transition animate-pulse">Ver Stock</button>
+</div>
 
                 <!-- MUST 3kW -->
                 <div class="bg-gray-900 border border-gray-700 rounded-xl p-5 hover:border-white transition flex flex-col">
@@ -317,167 +497,187 @@
         </div>
 
         <!-- ==============================================================
-             CATEGORÍA 3: KITS RESIDENCIALES (ASTRA)
-             ============================================================== -->
-        <div class="flex flex-col lg:flex-row gap-8 mb-24 border-b border-gray-800 pb-12">
-            
-            <div class="lg:w-1/3 flex flex-col">
-                <div class="relative h-64 lg:h-auto lg:flex-1 bg-gray-800 rounded-2xl overflow-hidden mb-6 border border-gray-700 flex items-center justify-center p-6 text-center">
-                    <div>
-                        <i class="fas fa-home text-5xl text-yellow-500 mb-4"></i>
-                        <h3 class="text-2xl font-bold text-white">Kits ASTRA</h3>
-                        <p class="text-xs text-gray-400 mt-2">Instalación Incluida en el precio.</p>
-                    </div>
-                </div>
-                <div class="bg-yellow-900/10 border-l-4 border-yellow-500 p-4 rounded-r-lg">
-                    <p class="text-gray-400 text-sm italic">
-                        "Garantía 6 meses. Mensajería Gratis en Habana (Costo extra en provincias). Sistema fijo automático."
-                    </p>
-                </div>
-            </div>
-
-            <div class="lg:w-2/3 grid md:grid-cols-2 gap-6">
-                
-                <!-- KIT ASTRA 3kW -->
-                <div class="bg-[#1e293b] border border-gray-600 rounded-xl p-6 flex flex-col">
-                    <h4 class="text-2xl font-bold text-white mb-1">Kit 3kW</h4>
-                    <p class="text-xs text-gray-400 mb-4">Ideal Apartamentos</p>
-                    
-                    <!-- TABLA OPCIONES -->
-                    <div class="space-y-3 mb-6 bg-black/20 p-3 rounded-lg border border-gray-700">
-                        <div class="flex justify-between items-center border-b border-gray-600 pb-2">
-                            <span class="text-sm text-gray-300">Básico (1 Batería)</span>
-                            <span class="text-lg font-bold text-white">$2,800</span>
-                        </div>
-                        <div class="flex justify-between items-center text-yellow-400">
-                            <span class="text-sm font-bold">Ampliado (3 Baterías)</span>
-                            <span class="text-lg font-black">$3,850</span>
-                        </div>
-                    </div>
-
-                    <details class="mb-4 bg-black/20 rounded border border-gray-600 group">
-                        <summary class="cursor-pointer p-3 font-bold text-gray-300 flex justify-between items-center text-xs uppercase hover:text-white">
-                            <span><i class="fas fa-list-ul mr-2"></i> Componentes</span>
-                            <i class="fas fa-chevron-down text-xs transition-transform group-open:rotate-180"></i>
-                        </summary>
-                        <ul class="p-3 pt-0 text-xs text-gray-400 space-y-1 list-disc pl-4">
-                            <li>Inversor SRNE 3kW</li>
-                            <li>Paneles: 2x 610W ASTRA</li>
-                            <li>Batería: 25.6V 100Ah (1 o 3 según precio)</li>
-                            <li>Montaje y protecciones incluidos</li>
-                        </ul>
-                    </details>
-
-                    <button onclick="openLeadModal('Kit ASTRA 3kW')" class="mt-auto w-full bg-gray-600 hover:bg-gray-500 text-white font-bold py-3 rounded transition">Agendar Instalación</button>
-                </div>
-
-                <!-- KIT ASTRA 5kW -->
-                <div class="bg-[#1e293b] border-2 border-yellow-500 rounded-xl p-6 flex flex-col relative shadow-2xl">
-                    <div class="absolute top-0 right-0 bg-yellow-500 text-black text-[10px] font-bold px-3 py-1 rounded-bl uppercase">Aire Acondicionado</div>
-                    <h4 class="text-2xl font-bold text-white mb-1">Kit 5kW</h4>
-                    <p class="text-xs text-yellow-500 font-bold mb-4">Casa Completa</p>
-                    
-                    <div class="space-y-3 mb-6 bg-black/20 p-3 rounded-lg border border-gray-600">
-                        <div class="flex justify-between items-center border-b border-gray-600 pb-2">
-                            <span class="text-sm text-gray-300">Básico (2 Baterías)</span>
-                            <span class="text-lg font-bold text-white">$4,500</span>
-                        </div>
-                        <div class="flex justify-between items-center text-yellow-400">
-                            <span class="text-sm font-bold">Ampliado (6 Baterías)</span>
-                            <span class="text-lg font-black">$7,200</span>
-                        </div>
-                    </div>
-
-                    <details class="mb-4 bg-black/20 rounded border border-gray-600 group">
-                        <summary class="cursor-pointer p-3 font-bold text-gray-300 flex justify-between items-center text-xs uppercase hover:text-white">
-                            <span><i class="fas fa-list-ul mr-2"></i> Componentes</span>
-                            <i class="fas fa-chevron-down text-xs transition-transform group-open:rotate-180"></i>
-                        </summary>
-                        <ul class="p-3 pt-0 text-xs text-gray-400 space-y-1 list-disc pl-4">
-                            <li>Inversor SRNE 5kW</li>
-                            <li>Paneles: 4x 610W (Básico) / 9x 610W (Ampliado)</li>
-                            <li>Baterías: 25.6V 100Ah (2 o 6 uds)</li>
-                            <li>Montaje y protecciones incluidos</li>
-                        </ul>
-                    </details>
-
-                    <button onclick="openLeadModal('Kit ASTRA 5kW')" class="mt-auto w-full bg-gradient-to-r from-yellow-500 to-yellow-600 text-black font-bold py-3 rounded hover:shadow-lg transition">LO QUIERO INSTALADO</button>
-                </div>
-
+     CATEGORÍA 3: KITS RESIDENCIALES (ASTRA) - ARREGLADO
+     ============================================================== -->
+<div class="flex flex-col lg:flex-row gap-8 mb-24 border-b border-gray-800 pb-12">
+    
+    <!-- COLUMNA IZQUIERDA: PRESENTACIÓN (ICONO CASA) -->
+    <div class="lg:w-1/3 flex flex-col">
+        <div class="relative h-auto flex-1 bg-gray-800 rounded-2xl overflow-hidden mb-6 border border-gray-700 flex flex-col items-center justify-center p-8 text-center min-h-[300px]">
+            <i class="fas fa-home text-6xl text-yellow-500 mb-6"></i>
+            <h3 class="text-3xl font-bold text-white mb-2">Kits ASTRA</h3>
+            <p class="text-sm text-gray-400 mb-4">Instalación Incluida en el precio.</p>
+            <div class="bg-yellow-500/10 text-yellow-500 px-3 py-1 rounded-full text-xs font-bold border border-yellow-500/30">
+                Residencial Premium
             </div>
         </div>
+        
+        <!-- Tarjeta de Garantía (Debajo del icono) -->
+        <div class="bg-yellow-900/10 border-l-4 border-yellow-500 p-5 rounded-r-lg">
+            <p class="text-gray-400 text-sm italic leading-relaxed">
+                "Garantía 6 meses. Mensajería Gratis en Habana (Costo extra en provincias). Sistema fijo automático."
+            </p>
+        </div>
+    </div>
 
-        <!-- ==============================================================
-             CATEGORÍA 4: INDUSTRIAL PRO (SRNE)
-             ============================================================== -->
-        <div class="flex flex-col lg:flex-row gap-8 mb-12">
+    <!-- COLUMNA DERECHA: PRODUCTOS (GRID) -->
+    <div class="lg:w-2/3 grid md:grid-cols-2 gap-6">
+        
+        <!-- KIT ASTRA 3kW -->
+        <div id="astra3" class="bg-[#1e293b] border border-gray-600 rounded-xl p-6 flex flex-col h-full scroll-mt-32 hover:border-white transition duration-300">
+            <div class="mb-4">
+                <h4 class="text-2xl font-bold text-white mb-1">Kit 3kW</h4>
+                <p class="text-xs text-gray-400">Ideal Apartamentos</p>
+            </div>
             
-            <div class="lg:w-1/3 flex flex-col">
-                <div class="relative h-64 lg:h-auto lg:flex-1 bg-gray-900 rounded-2xl overflow-hidden mb-6 border border-gray-700 flex items-center justify-center p-6 text-center">
-                    <div>
-                        <i class="fas fa-industry text-5xl text-red-500 mb-4"></i>
-                        <h3 class="text-2xl font-bold text-white">Gama PRO</h3>
-                        <p class="text-xs text-gray-400 mt-2 uppercase tracking-widest">Industrial Heavy Duty</p>
-                    </div>
+            <!-- TABLA PRECIOS -->
+            <div class="space-y-3 mb-6 bg-black/20 p-4 rounded-lg border border-gray-700">
+                <div class="flex justify-between items-center border-b border-gray-600 pb-2">
+                    <span class="text-sm text-gray-300">Básico (1 Batería)</span>
+                    <span class="text-xl font-bold text-white">$2,800</span>
                 </div>
-                <div class="bg-red-900/10 border-l-4 border-red-600 p-4 rounded-r-lg">
-                    <p class="text-gray-400 text-sm italic">
-                        "Garantía 1 Año. Para Hostales y Altos Consumos. Instalación especializada no incluida en el precio base."
-                    </p>
+                <div class="flex justify-between items-center text-yellow-400">
+                    <span class="text-sm font-bold">Ampliado (3 Baterías)</span>
+                    <span class="text-xl font-black">$3,850</span>
                 </div>
             </div>
 
-            <div class="lg:w-2/3 grid md:grid-cols-2 gap-6">
-                
-                <!-- SRNE 5kW PRO -->
-                <div class="bg-[#0f172a] border border-gray-600 rounded-xl p-6 flex flex-col relative">
-                    <div class="absolute top-4 right-4 bg-orange-700 text-white text-[9px] px-2 py-1 rounded font-bold">3 UNIDADES</div>
-                    
-                    <h4 class="text-2xl font-bold text-white mb-2">SRNE 5kW PRO</h4>
-                    <div class="text-3xl font-black text-white mb-1">$4,685</div>
-                    <p class="text-[10px] text-yellow-500 font-bold mb-6 uppercase">+ $500 Instalación</p>
+            <details class="mb-4 bg-black/20 rounded border border-gray-600 group">
+                <summary class="cursor-pointer p-3 font-bold text-gray-300 flex justify-between items-center text-xs uppercase hover:text-white">
+                    <span><i class="fas fa-list-ul mr-2"></i> Componentes</span>
+                    <i class="fas fa-chevron-down text-xs transition-transform group-open:rotate-180"></i>
+                </summary>
+                <ul class="p-3 pt-0 text-xs text-gray-400 space-y-1 list-disc pl-4">
+                    <li>Inversor SRNE 3kW</li>
+                    <li>Paneles: 2x 610W ASTRA</li>
+                    <li>Batería: 25.6V 100Ah (1 o 3 según precio)</li>
+                    <li>Montaje y protecciones incluidos</li>
+                </ul>
+            </details>
 
-                    <details open class="mb-4 bg-black/20 rounded border border-gray-700 group">
-                        <summary class="cursor-pointer p-3 font-bold text-gray-300 flex justify-between items-center text-xs uppercase hover:text-white">
-                            <span><i class="fas fa-cogs mr-2"></i> Kit Incluye</span>
-                        </summary>
-                        <ul class="p-3 pt-0 text-xs text-gray-300 space-y-1 list-disc pl-4">
-                            <li>1x Inversor SRNE 5kW Híbrido</li>
-                            <li>1x Batería <strong>10 kWh</strong> (Rack Industrial)</li>
-                            <li>6x Paneles DAH Solar 620W</li>
-                            <li>Combiner Box, Cables y Protecciones</li>
-                        </ul>
-                    </details>
+            <button onclick="openLeadModal('Kit ASTRA 3kW')" class="mt-auto w-full bg-gray-600 hover:bg-gray-500 text-white font-bold py-3 rounded transition">Agendar Instalación</button>
+        </div>
 
-                    <button onclick="openLeadModal('Kit SRNE 5kW PRO')" class="mt-auto w-full bg-orange-700 hover:bg-orange-600 text-white font-bold py-3 rounded transition">Reservar Cupo</button>
+        <!-- KIT ASTRA 5kW (CORREGIDO Y AJUSTADO) -->
+        <div id="astra5" class="bg-[#1e293b] border-2 border-yellow-500 rounded-xl p-6 flex flex-col relative shadow-2xl h-full scroll-mt-32 transform md:-translate-y-2">
+            <div class="absolute top-0 right-0 bg-yellow-500 text-black text-[10px] font-bold px-3 py-1 rounded-bl uppercase">Aire Acondicionado</div>
+            
+            <div class="mb-4">
+                <h4 class="text-2xl font-bold text-white mb-1">Kit 5kW</h4>
+                <p class="text-xs text-yellow-500 font-bold mb-1">Casa Completa</p>
+                <!-- Psicología de Precio -->
+                <p class="text-xs text-gray-400 line-through">Gasto anual planta: $3,600 USD</p>
+            </div>
+            
+            <div class="space-y-3 mb-6 bg-black/20 p-4 rounded-lg border border-gray-600">
+                <div class="flex justify-between items-center border-b border-gray-600 pb-2">
+                    <span class="text-sm text-gray-300">Básico (2 Baterías)</span>
+                    <span class="text-xl font-bold text-white">$4,500</span>
                 </div>
-
-                <!-- SRNE 6.5kW SPLIT PHASE -->
-                <div class="bg-[#0f172a] border-2 border-red-600 rounded-xl p-6 flex flex-col relative">
-                    <div class="bg-red-600 text-white text-center py-1 text-xs font-black uppercase absolute top-0 left-0 w-full rounded-t-lg">🚨 ÚLTIMA UNIDAD</div>
-                    
-                    <h4 class="text-2xl font-bold text-white mt-6 mb-1">SRNE 6.5kW XP</h4>
-                    <p class="text-xs text-red-400 font-bold mb-2">Split Phase (110V/220V Nativo)</p>
-                    <div class="text-3xl font-black text-white mb-1">$6,985</div>
-                    <p class="text-[10px] text-yellow-500 font-bold mb-6 uppercase">+ $750 Instalación</p>
-
-                    <details open class="mb-4 bg-black/20 rounded border border-red-900/50 group">
-                        <summary class="cursor-pointer p-3 font-bold text-gray-300 flex justify-between items-center text-xs uppercase hover:text-white">
-                            <span><i class="fas fa-check-double mr-2"></i> Kit Completo (14.3 kWh)</span>
-                        </summary>
-                        <ul class="p-3 pt-0 text-xs text-gray-300 space-y-1 font-mono list-disc pl-4">
-                            <li>1x Inversor SRNE 6.5kW (110/220V)</li>
-                            <li>1x Batería SRNE 51.2V <strong>280Ah (14.3 kWh)</strong></li>
-                            <li>12x Paneles DAH Solar 620W (7440Wp)</li>
-                            <li>Combiner 2in2out, 200m Cable, Tierras</li>
-                        </ul>
-                    </details>
-
-                    <button onclick="openLeadModal('Kit SRNE 6.5kW Split Phase')" class="mt-auto w-full bg-red-600 hover:bg-red-500 text-white font-bold py-3 rounded transition animate-pulse">¡COMPRAR AHORA!</button>
+                <div class="flex justify-between items-center text-yellow-400">
+                    <span class="text-sm font-bold">Ampliado (6 Baterías)</span>
+                    <span class="text-xl font-black">$7,200</span>
                 </div>
+            </div>
 
+            <details class="mb-4 bg-black/20 rounded border border-gray-600 group">
+                <summary class="cursor-pointer p-3 font-bold text-gray-300 flex justify-between items-center text-xs uppercase hover:text-white">
+                    <span><i class="fas fa-list-ul mr-2"></i> Componentes</span>
+                    <i class="fas fa-chevron-down text-xs transition-transform group-open:rotate-180"></i>
+                </summary>
+                <ul class="p-3 pt-0 text-xs text-gray-400 space-y-1 list-disc pl-4">
+                    <li>Inversor SRNE 5kW</li>
+                    <li>Paneles: 4x 610W / 9x 610W</li>
+                    <li>Baterías: 25.6V 100Ah (2 o 6 uds)</li>
+                    <li>Montaje y protecciones incluidos</li>
+                </ul>
+            </details>
+
+            <button onclick="openLeadModal('Kit ASTRA 5kW')" class="mt-auto w-full bg-gradient-to-r from-yellow-500 to-yellow-600 text-black font-bold py-3 rounded hover:shadow-lg transition">LO QUIERO INSTALADO</button>
+        </div>
+
+    </div>
+</div>
+
+<!-- ==============================================================
+     CATEGORÍA 4: INDUSTRIAL PRO (SRNE) - ARREGLADO
+     ============================================================== -->
+<div class="flex flex-col lg:flex-row gap-8 mb-12">
+    
+    <!-- COLUMNA IZQUIERDA: PRESENTACIÓN (ICONO FÁBRICA) -->
+    <div class="lg:w-1/3 flex flex-col">
+        <div class="relative h-auto flex-1 bg-gray-900 rounded-2xl overflow-hidden mb-6 border border-gray-700 flex flex-col items-center justify-center p-8 text-center min-h-[300px]">
+            <i class="fas fa-industry text-6xl text-red-500 mb-6"></i>
+            <h3 class="text-3xl font-bold text-white mb-2">Gama PRO</h3>
+            <p class="text-xs text-gray-400 uppercase tracking-widest mb-4">Industrial Heavy Duty</p>
+            <div class="bg-red-900/20 text-red-400 px-3 py-1 rounded-full text-xs font-bold border border-red-500/30">
+                Alto Consumo
             </div>
         </div>
+        
+        <div class="bg-red-900/10 border-l-4 border-red-600 p-5 rounded-r-lg">
+            <p class="text-gray-400 text-sm italic leading-relaxed">
+                "Garantía 1 Año. Para Hostales y Altos Consumos. Instalación especializada no incluida en el precio base."
+            </p>
+        </div>
+    </div>
+
+    <!-- COLUMNA DERECHA: PRODUCTOS (GRID) -->
+    <div class="lg:w-2/3 grid md:grid-cols-2 gap-6">
+        
+        <!-- SRNE 5kW PRO -->
+        <div id="pro5" class="bg-[#0f172a] border border-gray-600 rounded-xl p-6 flex flex-col relative h-full scroll-mt-32 hover:border-red-500/50 transition">
+            <div class="absolute top-4 right-4 bg-orange-700 text-white text-[9px] px-2 py-1 rounded font-bold">3 UNIDADES</div>
+            
+            <div class="mb-4">
+                <h4 class="text-2xl font-bold text-white mb-2">SRNE 5kW PRO</h4>
+                <div class="text-3xl font-black text-white mb-1">$4,685</div>
+                <p class="text-[10px] text-yellow-500 font-bold uppercase">+ $500 Instalación</p>
+            </div>
+
+            <details open class="mb-4 bg-black/20 rounded border border-gray-700 group">
+                <summary class="cursor-pointer p-3 font-bold text-gray-300 flex justify-between items-center text-xs uppercase hover:text-white">
+                    <span><i class="fas fa-cogs mr-2"></i> Kit Incluye</span>
+                </summary>
+                <ul class="p-3 pt-0 text-xs text-gray-300 space-y-1 list-disc pl-4">
+                    <li>1x Inversor SRNE 5kW Híbrido</li>
+                    <li>1x Batería <strong>10 kWh</strong> (Rack Industrial)</li>
+                    <li>6x Paneles DAH Solar 620W</li>
+                    <li>Combiner Box, Cables y Protecciones</li>
+                </ul>
+            </details>
+
+            <button onclick="openLeadModal('Kit SRNE 5kW PRO')" class="mt-auto w-full bg-orange-700 hover:bg-orange-600 text-white font-bold py-3 rounded transition">Reservar Cupo</button>
+        </div>
+
+        <!-- SRNE 6.5kW SPLIT PHASE -->
+        <div id="pro6" class="bg-[#0f172a] border-2 border-red-600 rounded-xl p-6 flex flex-col relative h-full scroll-mt-32 shadow-[0_0_30px_rgba(220,38,38,0.1)]">
+            <div class="bg-red-600 text-white text-center py-1 text-xs font-black uppercase absolute top-0 left-0 w-full rounded-t-lg">🚨 ÚLTIMA UNIDAD</div>
+            
+            <div class="mt-6 mb-4">
+                <h4 class="text-2xl font-bold text-white mb-1">SRNE 6.5kW XP</h4>
+                <p class="text-xs text-red-400 font-bold mb-2">Split Phase (110V/220V Nativo)</p>
+                <div class="text-3xl font-black text-white mb-1">$6,985</div>
+                <p class="text-[10px] text-yellow-500 font-bold uppercase">+ $750 Instalación</p>
+            </div>
+
+            <details open class="mb-4 bg-black/20 rounded border border-red-900/50 group">
+                <summary class="cursor-pointer p-3 font-bold text-gray-300 flex justify-between items-center text-xs uppercase hover:text-white">
+                    <span><i class="fas fa-check-double mr-2"></i> Kit Completo (14.3 kWh)</span>
+                </summary>
+                <ul class="p-3 pt-0 text-xs text-gray-300 space-y-1 font-mono list-disc pl-4">
+                    <li>1x Inversor SRNE 6.5kW (110/220V)</li>
+                    <li>1x Batería SRNE 51.2V <strong>280Ah (14.3 kWh)</strong></li>
+                    <li>12x Paneles DAH Solar 620W (7440Wp)</li>
+                    <li>Combiner 2in2out, 200m Cable, Tierras</li>
+                </ul>
+            </details>
+
+            <button onclick="openLeadModal('Kit SRNE 6.5kW Split Phase')" class="mt-auto w-full bg-red-600 hover:bg-red-500 text-white font-bold py-3 rounded transition animate-pulse">¡COMPRAR AHORA!</button>
+        </div>
+
+    </div>
+</div>
 
     </div>
 </section>
@@ -573,6 +773,12 @@
                         </div>
                     </div>
                 </div>
+                <!-- AGREGA ESTO JUSTO DEBAJO DEL MAPA -->
+    <div class="text-center mt-4 bg-green-900/20 border border-green-500/30 rounded-lg p-3 animate-pulse">
+        <p class="font-mono text-green-400 text-sm md:text-base font-bold">
+            ⚡ 1,450,200 kWh generados por nuestros clientes este mes.
+        </p>
+    </div>
             </div>
     </div>
 </section>
@@ -714,6 +920,58 @@
             </div>
         </div>
     </section>
+
+    <!-- FAQ: PREGUNTAS FRECUENTES (MATAMIEDOS) -->
+<section class="py-16 bg-[#0b1120] border-t border-gray-800">
+    <div class="max-w-4xl mx-auto px-4">
+        <h2 class="text-3xl font-bold text-white text-center mb-10">Preguntas Frecuentes</h2>
+        
+        <div class="space-y-4">
+            <!-- Pregunta 1 -->
+            <details class="group bg-gray-900 border border-gray-700 rounded-xl overflow-hidden">
+                <summary class="flex justify-between items-center p-5 cursor-pointer font-bold text-white hover:bg-gray-800 transition">
+                    ¿Qué pasa si el equipo falla? (Garantía)
+                    <span class="transform group-open:rotate-180 transition-transform"><i class="fas fa-chevron-down"></i></span>
+                </summary>
+                <div class="p-5 pt-0 text-gray-400 text-sm border-t border-gray-800 mt-2">
+                    Tenemos taller físico en La Habana. Si es defecto de fábrica, <strong>te cambiamos el equipo</strong> o la pieza al momento. No tienes que esperar envíos a China. Te damos certificado de garantía firmado.
+                </div>
+            </details>
+
+            <!-- Pregunta 2 -->
+            <details class="group bg-gray-900 border border-gray-700 rounded-xl overflow-hidden">
+                <summary class="flex justify-between items-center p-5 cursor-pointer font-bold text-white hover:bg-gray-800 transition">
+                    ¿Cómo puedo pagar?
+                    <span class="transform group-open:rotate-180 transition-transform"><i class="fas fa-chevron-down"></i></span>
+                </summary>
+                <div class="p-5 pt-0 text-gray-400 text-sm border-t border-gray-800 mt-2">
+                    Aceptamos <strong>USD en efectivo</strong>, Euros, y <strong>Zelle</strong> (ideal si paga un familiar desde el exterior). También aceptamos pagos mixtos.
+                </div>
+            </details>
+
+            <!-- Pregunta 3 -->
+            <details class="group bg-gray-900 border border-gray-700 rounded-xl overflow-hidden">
+                <summary class="flex justify-between items-center p-5 cursor-pointer font-bold text-white hover:bg-gray-800 transition">
+                    ¿Instalan en provincias?
+                    <span class="transform group-open:rotate-180 transition-transform"><i class="fas fa-chevron-down"></i></span>
+                </summary>
+                <div class="p-5 pt-0 text-gray-400 text-sm border-t border-gray-800 mt-2">
+                    Nuestra brigada principal está en La Habana, pero viajamos a Artemisa, Mayabeque y Matanzas con un costo extra de transporte. Para otras provincias, podemos enviarte el kit listo para que lo instale tu electricista local.
+                </div>
+            </details>
+             <!-- Pregunta 4 -->
+             <details class="group bg-gray-900 border border-gray-700 rounded-xl overflow-hidden">
+                <summary class="flex justify-between items-center p-5 cursor-pointer font-bold text-white hover:bg-gray-800 transition">
+                    ¿El sistema es automático?
+                    <span class="transform group-open:rotate-180 transition-transform"><i class="fas fa-chevron-down"></i></span>
+                </summary>
+                <div class="p-5 pt-0 text-gray-400 text-sm border-t border-gray-800 mt-2">
+                    Sí. 100% Automático. Cuando se va la luz, el inversor cambia a baterías en <strong>milisegundos</strong> (tu TV ni se apaga). Cuando regresa la luz, carga las baterías solo. Tú no tocas nada.
+                </div>
+            </details>
+        </div>
+    </div>
+</section>
 
     <!-- LEAD MAGNET (CAPTURA DE LEADS) -->
     <section class="py-20 relative overflow-hidden">
@@ -1024,29 +1282,22 @@
         }, 300);
     }
 
-    function submitLead() {
-        const nameInput = document.getElementById('clientName');
-        const error = document.getElementById('nameError');
-        const name = nameInput.value.trim();
+    // Reemplaza tus botones de "Solicitar Oferta" o "Cotizar" con esto:
+// <button onclick="sendDirectWhatsapp('Kit 5kW', 'Tengo un Split y refrigerador')" ...>
 
-        if (!name) {
-            error.classList.remove('hidden');
-            nameInput.classList.add('border-red-500');
-            nameInput.focus();
-            return;
-        }
-
-        // Construir mensaje de WhatsApp
-        // Ejemplo: "Hola, soy Juan. Quisiera consultar disponibilidad del Kit 5kW..."
-        const message = `Hola, soy ${name}. Quisiera consultar disponibilidad y detalles sobre: *${selectedProduct}*.`;
-        const phoneNumber = "5358183649"; // TU NÚMERO
-        
-        const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-        
-        // Cerrar modal y abrir WhatsApp
-        closeLeadModal();
-        window.open(url, '_blank');
+function sendDirectWhatsapp(product, context = '') {
+    // Mensaje psicológico: Ya asume el cierre
+    let text = `Hola SolarCuba 👋. Estoy interesado en el *${product}*.`;
+    
+    if(context) {
+        text += ` Mi necesidad principal es: ${context}.`;
     }
+    
+    text += ` ¿Me confirman si hay stock disponible para esta semana?`;
+    
+    const phone = "5358183649";
+    window.open(`https://wa.me/${phone}?text=${encodeURIComponent(text)}`, '_blank');
+}
 
     // Cerrar con Enter en el input
     document.getElementById('clientName').addEventListener("keypress", function(event) {
@@ -1095,6 +1346,42 @@
         </div>
     </div>
 </div>
+<!-- POPUP DE VENTA RECIENTE (FOMO) -->
+<div id="sales-popup" class="fixed bottom-24 left-4 z-40 bg-gray-900 border border-green-500/50 p-4 rounded-xl shadow-2xl transform translate-y-32 opacity-0 transition-all duration-700 flex items-center gap-3 max-w-[300px]">
+    <div class="bg-green-100 rounded-full p-2">
+        <i class="fas fa-check text-green-600"></i>
+    </div>
+    <div>
+        <p class="text-xs text-gray-400">Hace 2 minutos</p>
+        <p class="text-sm font-bold text-white"><span id="buyer-name">Roberto</span> de <span id="buyer-loc">Playa</span></p>
+        <p class="text-xs text-green-400 font-bold">Compró Kit MUST 2kW</p>
+    </div>
+</div>
 
+<script>
+    const names = ['Carlos', 'Alejandro', 'Marta', 'Yamisleydis', 'El Hostal Azul', 'Jorge', 'Dianelis'];
+    const locs = ['Plaza', 'Miramar', 'Guanabo', 'Vedado', 'Cárdenas', 'Boyeros', 'La Lisa'];
+    const items = ['Kit MUST 2kW', 'Panel 600W', 'Kit 5kW con Aire', 'Inversor Híbrido'];
+
+    function showPopup() {
+        // Datos aleatorios
+        document.getElementById('buyer-name').innerText = names[Math.floor(Math.random() * names.length)];
+        document.getElementById('buyer-loc').innerText = locs[Math.floor(Math.random() * locs.length)];
+        // Mostrar
+        const popup = document.getElementById('sales-popup');
+        popup.classList.remove('translate-y-32', 'opacity-0');
+        
+        // Ocultar después de 5 segundos
+        setTimeout(() => {
+            popup.classList.add('translate-y-32', 'opacity-0');
+        }, 5000);
+    }
+
+    // Mostrar el primer popup a los 10 segundos, luego cada 40s
+    setTimeout(() => {
+        showPopup();
+        setInterval(showPopup, 40000);
+    }, 10000);
+</script>
 </body>
 </html>
