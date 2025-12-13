@@ -7178,92 +7178,93 @@ function getDailyEventsCount(blockNum, allMessages) {
     document.addEventListener('DOMContentLoaded', initCardTimers);
 </script>
 <script>
-    // DATA MINING: Proyección basada en logs reales UNE (Sept-Dic)
-    // Score: Nivel de reincidencia (1-100)
+    // BASE DE DATOS DE FRAGILIDAD (Datos Extraídos: Nov 16 - Dic 02 2025)
+    // Score: Basado en frecuencia de reportes físicos (roturas) vs operativos.
+    
     const fragilityData = {
         "Arroyo Naranjo": { 
             score: 98, 
-            class: "bg-red-900/60 border-red-500",
-            title: "Zona de Colapso Frecuente",
-            reason: "Infraestructura crítica. Reportes constantes de 'Primario Partido' y 'Transformador Dañado' en Managua, Mantilla y Víbora Park.", 
-            evidence: "14 Sep: Avería primaria en Ctra. Managua. 09 Sep: Transformador en Finca Moline. 05 Sep: Puente partido en Víbora Park." 
-        },
-        "Guanabacoa": { 
-            score: 95, 
-            class: "bg-red-900/50 border-red-500",
-            title: "Red Inestable",
-            reason: "Alta incidencia de averías en líneas de distribución. Zonas como El Mikito y Villa 1 sufren apagones de +24h por roturas.", 
-            evidence: "12 Sep: Avería primaria en Carretera Santa María. 09 Sep: Primario partido en Aranguren y Jesús María." 
+            class: "bg-red-950/80 border-red-500",
+            title: "ZONA CERO (INFRAESTRUCTURA)",
+            reason: "Municipio con mayor índice de roturas físicas. Reportes recurrentes de 'Puentes Primarios Partidos' y fallas en Managua y Frank País.", 
+            evidence: "01 Dic: Avería en Managua y La Lola. 28 Nov: Vía libre de emergencia en Víbora Park. 18 Nov: Emergencia en Guásimas." 
         },
         "Boyeros": { 
-            score: 92, 
-            class: "bg-red-900/40 border-red-500",
-            title: "Fallas de Distribución",
-            reason: "Récord de manipulaciones y disparos de circuito. Río Verde, Calabazar y Santiago de las Vegas son puntos negros.", 
-            evidence: "15 Sep: Disparo en Santiago de las Vegas. 13 Sep: Transformador en Calabazar. 08 Sep: Avería en Villena Revolución." 
+            score: 96, 
+            class: "bg-red-900/80 border-red-500",
+            title: "TRANSFORMADORES CRÍTICOS",
+            reason: "Alta tasa de 'Transformadores Dañados' y disparos de circuito que no se sostienen. Zonas: Mulgoba, Calabazar y Sierra Maestra.", 
+            evidence: "02 Dic: Transformador en El Trébol. 28 Nov: Secundario partido en Sierra Maestra. 19 Nov: Transformador en Mulgoba." 
         },
         "Habana del Este": { 
-            score: 88, 
-            class: "bg-orange-900/40 border-orange-500",
-            title: "Víctima del DAF",
-            reason: "Alamar sufre constantemente de Disparo Automático por Frecuencia. La luz se va sin previo aviso y tarda en volver.", 
-            evidence: "16 Sep: DAF en Zonas 6-11 de Alamar. 14 Sep: Avería en Cojímar. 06 Sep: Soterrado Panamericanos." 
+            score: 94, 
+            class: "bg-red-900/60 border-red-500",
+            title: "SUBESTACIÓN INESTABLE",
+            reason: "Alamar sufrió una avería grave en su Subestación el 30 de Noviembre, obligando a transferir cargas a Guanabacoa. Zona muy vulnerable.", 
+            evidence: "30 Nov: Avería en Subestación Alamar. 27 Nov: Primario partido en Santa María Loma. 28 Nov: Transformador en Zona 9." 
         },
         "Playa": { 
+            score: 89, 
+            class: "bg-orange-900/60 border-orange-500",
+            title: "RED SOBRECARGADA",
+            reason: "Averías primarias constantes en Santa Fe y Kholy. El sistema subterráneo presenta fallas complejas de reparar.", 
+            evidence: "27 Nov: Puente partido en Santa Fe (17 y 296). 26 Nov: Avería primaria en Kholy (Calle 40). 20 Nov: Transformador en 47 e/ 22." 
+        },
+        "Guanabacoa": { 
             score: 85, 
-            class: "bg-orange-900/40 border-orange-500",
-            title: "Fragilidad Residencial",
-            reason: "Aunque es zona residencial, Santa Fe y Buena Vista tienen transformadores viejos que explotan con la carga.", 
-            evidence: "14 Sep: Primario partido en 238 y 5ta. 08 Sep: Transformador en 32 y 3ra. 04 Sep: Avería en La Ceiba." 
+            class: "bg-orange-900/50 border-orange-500",
+            title: "LÍNEAS PRIMARIAS",
+            reason: "Reportes de cables partidos en Vía Blanca y Carretera Monumental. Zonas como Nalón y La Hata con interrupciones largas.", 
+            evidence: "29 Nov: Primario partido en Máximo Gómez. 26 Nov: Avería primaria en Carretera Monumental. 20 Nov: Vía libre en Nalón." 
         },
         "San Miguel": { 
-            score: 80, 
-            class: "bg-orange-900/30 border-orange-500",
-            title: "Circuitos Sobrecargados",
-            reason: "Disparos continuos en Rocafort y Juanelo. La red no aguanta la demanda en horarios pico.", 
-            evidence: "15 Sep: Disparo en Las Granjas. 11 Sep: Cable fallo en San Matías." 
-        },
-        "10 de Octubre": { 
-            score: 75, 
-            class: "bg-yellow-900/30 border-yellow-600",
-            title: "Averías Puntuales",
-            reason: "Problemas recurrentes en Lawton y Luyanó. Transformadores que salen de servicio por sobrecalentamiento.", 
-            evidence: "13 Sep: Transformador en Fomento y Pérez. 08 Sep: Avería en Manuel Pruna." 
+            score: 82, 
+            class: "bg-orange-900/40 border-orange-500",
+            title: "DISPAROS DE CIRCUITO",
+            reason: "Inestabilidad en Reparto Jacomino y Monterrey. Disparos frecuentes y transformadores que salen de servicio.", 
+            evidence: "01 Dic: Avería primaria en Ctra del Pitirre. 21 Nov: Transformador en Jacomino. 19 Nov: Primario partido en Blumer Ramos." 
         },
         "La Lisa": { 
+            score: 78, 
+            class: "bg-yellow-900/40 border-yellow-600",
+            title: "VÍAS LIBRES DE EMERGENCIA",
+            reason: "Múltiples reportes de 'Vías Libres' para reparaciones urgentes en San Agustín y Arroyo Arenas.", 
+            evidence: "29 Nov: Disparo en San Agustín. 27 Nov: Transformador en 230 e/ 31. 21 Nov: Avería primaria en 89/220." 
+        },
+        "Marianao": { 
+            score: 75, 
+            class: "bg-yellow-900/40 border-yellow-600",
+            title: "CIRCUITOS VIEJOS",
+            reason: "Fallas en Pogolotti y Zamora. Postes partidos reportados a finales de noviembre.", 
+            evidence: "02 Dic: Avería secundaria en dirección 126. 27 Nov: Disparo en Subestación Sama. 17 Nov: Transformador en Pogolotti." 
+        },
+        "10 de Octubre": { 
             score: 70, 
             class: "bg-yellow-900/30 border-yellow-600",
-            title: "Disparos por Viento",
-            reason: "Zonas como Punta Brava y Arroyo Arenas son muy sensibles a cualquier cambio de clima.", 
-            evidence: "16 Sep: Primario en Alturas de la Lisa. 14 Sep: Manipulación en Arroyo Arenas." 
-        },
-        "Cotorro": { 
-            score: 65, 
-            class: "bg-gray-800 border-gray-600",
-            title: "Riesgo Moderado",
-            reason: "Menos frecuencia que otros, pero cuando falla Alberro o Lotería, la reparación es lenta.", 
-            evidence: "15 Sep: Disparo en Lotería. 09 Sep: Avería en 105 y La Torre." 
+            title: "TRABAJOS OPERATIVOS",
+            reason: "La mayoría de las afectaciones son por mantenimiento o poda, aunque Lawton y Luyanó presentan puentes partidos.", 
+            evidence: "30 Nov: Trabajos en Lawton/Luyanó. 25 Nov: Puente partido compartido con Cerro. 22 Nov: Disparo en Santo Suárez." 
         },
         "Plaza": { 
+            score: 65, 
+            class: "bg-gray-800 border-gray-600",
+            title: "MANIPULACIONES",
+            reason: "Zona priorizada. Las afectaciones suelen ser 'Trabajos Operativos' o disparos breves, no roturas catastróficas frecuentes.", 
+            evidence: "01 Dec: Transformador en Calzada/Vedado. 29 Nov: Trabajos en calle 25. 23 Nov: Disparo en Hospitales." 
+        },
+        "Cerro": { 
             score: 60, 
             class: "bg-gray-800 border-gray-600",
-            title: "Manipulaciones",
-            reason: "La mayoría de cortes son por 'Manipulaciones' operativas, no tanto por roturas graves.", 
-            evidence: "12 Sep: Manipulación en Nuevo Vedado. 09 Sep: Transformador en Línea y G." 
+            title: "VÍCTIMA DEL DAF",
+            reason: "Afectado principalmente por Disparo Automático por Frecuencia (DAF) en zona Ataré/Latino.", 
+            evidence: "30 Nov: DAF en Cristina y Ataré. 25 Nov: Puente partido en Vento. 18 Nov: Puente en Santa Catalina." 
         },
         "Centro Habana": { 
             score: 55, 
             class: "bg-gray-800 border-gray-600",
-            title: "Soterrado Viejo",
-            reason: "El problema aquí es el cableado soterrado. Si falla, hay que abrir la calle.", 
-            evidence: "12 Sep: Cable fallo en Villegas. 04 Sep: Avería en Pueblo Nuevo." 
-        },
-         "Marianao": { 
-            score: 72, 
-            class: "bg-yellow-900/30 border-yellow-600",
-            title: "Disparos Frecuentes",
-            reason: "Zamora y Pocito sufren constantes disparos de circuito que no se sostienen.", 
-            evidence: "16 Sep: Transformador en Zamora. 12 Sep: Disparo en Husillo." 
+            title: "RED SOTERRADA",
+            reason: "Problemas de cables fallos en zonas de Dragones y Manrique, pero menos frecuentes que en la periferia.", 
+            evidence: "19 Nov: Trabajo operativo. 17 Nov: Cable fallo en Manrique. 16 Nov: Avería en San Miguel." 
         }
     };
 
@@ -7273,58 +7274,94 @@ function getDailyEventsCount(blockNum, allMessages) {
 
         grid.innerHTML = '';
 
-        // Ordenar: Los más rotos primero
+        // Ordenar por Score de mayor a menor
         const sorted = Object.entries(fragilityData).sort((a, b) => b[1].score - a[1].score);
 
         sorted.forEach(([muni, data]) => {
+            // Calcular intensidad del color de la barra visualmente
+            let barColor = 'bg-gray-600';
+            if(data.score >= 90) barColor = 'bg-red-600';
+            else if(data.score >= 80) barColor = 'bg-orange-500';
+            else if(data.score >= 70) barColor = 'bg-yellow-500';
+
             const html = `
-                <div class="${data.class} border rounded-xl p-3 cursor-pointer hover:scale-[1.02] transition-all duration-300 group relative overflow-hidden" onclick="showMuniDetail('${muni}')">
-                    <div class="absolute right-0 top-0 p-2 opacity-10 group-hover:opacity-20 transition">
-                        <i class="fas fa-bolt text-4xl"></i>
+                <div class="${data.class} border rounded-xl p-3 cursor-pointer hover:scale-[1.03] transition-all duration-200 group relative overflow-hidden active:scale-95" onclick="showMuniDetail('${muni}')">
+                    
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-[10px] md:text-[11px] font-bold uppercase tracking-wide text-white truncate w-24">${muni}</span>
+                        <span class="text-[10px] font-mono text-gray-400 font-bold">${data.score}%</span>
                     </div>
-                    <div class="flex justify-between items-start mb-2">
-                        <span class="text-xs font-black uppercase tracking-wide text-white">${muni}</span>
-                        <span class="text-[10px] font-bold bg-black/30 px-1.5 py-0.5 rounded text-gray-300">${data.score}%</span>
+                    
+                    <div class="h-1.5 w-full bg-black/50 rounded-full overflow-hidden mb-2">
+                        <div class="h-full ${barColor} shadow-[0_0_10px_rgba(255,255,255,0.2)]" style="width: ${data.score}%"></div>
                     </div>
-                    <div class="h-1 w-full bg-black/40 rounded-full overflow-hidden">
-                        <div class="h-full bg-white/80" style="width: ${data.score}%"></div>
+                    
+                    <div class="flex items-center gap-1 text-[9px] text-gray-400 opacity-80 group-hover:opacity-100 transition">
+                        <i class="fas fa-exclamation-circle ${data.score > 85 ? 'text-red-500' : 'text-gray-500'}"></i>
+                        <span class="truncate">${data.title}</span>
                     </div>
-                    <p class="text-[9px] text-gray-400 mt-2 truncate group-hover:text-white transition">
-                        ${data.title}
-                    </p>
+
+                    <!-- Efecto de Hover Brillante -->
+                    <div class="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition pointer-events-none"></div>
                 </div>
             `;
             grid.innerHTML += html;
         });
 
-        // Cargar el primero por defecto
+        // Cargar el primero (El más crítico) por defecto
         showMuniDetail(sorted[0][0]);
     }
 
     window.showMuniDetail = function(muni) {
         const data = fragilityData[muni];
+        if (!data) return;
+
         const titleEl = document.getElementById('max-risk-zone');
         const copyEl = document.getElementById('dynamic-copy');
         const evidenceEl = document.getElementById('evidence-text');
+        const badgeEl = document.getElementById('risk-badge');
 
-        // Animación de entrada
-        titleEl.parentElement.parentElement.classList.remove('animate-slide-in');
-        void titleEl.offsetWidth; // Trigger reflow
-        titleEl.parentElement.parentElement.classList.add('animate-slide-in');
+        // Efecto visual de cambio (Fade out/in rápido)
+        const container = titleEl.parentElement.parentElement;
+        container.style.opacity = '0.7';
+        setTimeout(() => container.style.opacity = '1', 200);
 
+        // Actualizar datos
         titleEl.innerText = muni;
-        titleEl.className = `text-2xl font-black ${data.score > 80 ? 'text-red-500' : 'text-yellow-400'}`;
         
+        // Colores dinámicos del título
+        if (data.score >= 90) titleEl.className = "text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-300 leading-none";
+        else if (data.score >= 75) titleEl.className = "text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-yellow-300 leading-none";
+        else titleEl.className = "text-3xl font-black text-white leading-none";
+
+        // Actualizar Badge
+        if (data.score >= 90) {
+            badgeEl.innerText = "RIESGO EXTREMO";
+            badgeEl.className = "absolute top-0 right-0 bg-red-600 text-white text-[10px] font-black px-4 py-1 rounded-bl-xl uppercase tracking-wider z-20 shadow-lg shadow-red-900/50 animate-pulse";
+        } else if (data.score >= 70) {
+            badgeEl.innerText = "RIESGO ALTO";
+            badgeEl.className = "absolute top-0 right-0 bg-orange-600 text-white text-[10px] font-black px-4 py-1 rounded-bl-xl uppercase tracking-wider z-20";
+        } else {
+            badgeEl.innerText = "RIESGO MODERADO";
+            badgeEl.className = "absolute top-0 right-0 bg-gray-700 text-white text-[10px] font-black px-4 py-1 rounded-bl-xl uppercase tracking-wider z-20";
+        }
+
+        // Copywriting
         copyEl.innerHTML = `
-            <span class="font-bold text-white uppercase text-xs mb-2 block border-b border-gray-700 pb-1">${data.title}</span>
-            ${data.reason}
+            <span class="font-bold text-gray-300 uppercase text-xs mb-2 block border-b border-gray-700 pb-1">${data.title}</span>
+            <span class="text-gray-300">${data.reason}</span>
             <br><br>
-            <span class="text-red-300 text-xs font-bold">⚠️ Riesgo Real:</span> En esta zona, un apagón por rotura suele durar <strong class="text-white underline">3 veces más</strong> que uno programado.
+            <div class="flex items-center gap-2 text-xs">
+                <span class="text-red-400 font-bold"><i class="fas fa-clock"></i> Tiempo de Respuesta:</span> 
+                <span class="text-white">Lento (>24h por logística)</span>
+            </div>
         `;
         
-        evidenceEl.innerHTML = `"${data.evidence}"`;
+        // Evidencia
+        evidenceEl.innerHTML = `<span class="text-yellow-500 font-bold">LOGS UNE:</span> "${data.evidence}"`;
     }
 
+    // Iniciar
     document.addEventListener('DOMContentLoaded', initFragilityMap);
 </script>
 
