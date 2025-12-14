@@ -3803,121 +3803,522 @@ function filterKits(tipo) {
 </script>
 
 
-<!-- SECCIÓN: LOTE ESTRATÉGICO FEBRERO (ESCASEZ + TRIFÁSICA) -->
-<section class="py-20 bg-gradient-to-b from-[#0f172a] to-[#1e1b4b] border-t border-purple-500/30 relative overflow-hidden">
+<!-- SECCIÓN: LOTE 128 (STOCK POR PRODUCTO) -->
+<section id="lote-futuro" class="py-20 bg-[#0b1120] relative overflow-hidden border-t border-purple-500/30">
     
-    <!-- Fondo decorativo industrial -->
-    <div class="absolute right-0 top-0 w-1/3 h-full bg-purple-500/5 -skew-x-12 transform origin-top-right pointer-events-none"></div>
-
-    <div class="max-w-6xl mx-auto px-4 relative z-10">
+    <!-- Fondo decorativo -->
+    <div class="absolute inset-0 opacity-5 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+    
+    <div class="max-w-7xl mx-auto px-4 relative z-10">
         
-        <div class="text-center mb-12">
-            <span class="inline-block py-1 px-3 rounded-full bg-purple-500/20 border border-purple-400 text-purple-300 text-xs font-bold uppercase tracking-widest mb-4 animate-pulse">
-                🚢 Próximo Desembarco: Febrero 2026
-            </span>
-            <h2 class="text-3xl md:text-5xl font-bold text-white mb-6">
-                Lista de Prioridad: <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400">Lote 128</span>
+        <!-- HEADER -->
+        <div class="text-center mb-10">
+            <div class="inline-flex items-center gap-2 bg-purple-900/50 border border-purple-400 text-purple-300 px-6 py-2 rounded-full text-xs font-bold uppercase tracking-widest mb-4 animate-pulse">
+                <i class="fas fa-ship"></i> Llegada Confirmada: Febrero 2026
+            </div>
+            <h2 class="text-3xl md:text-5xl font-black text-white mb-4">
+                ASIGNACIÓN DE CUPOS: <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500">LOTE #128</span>
             </h2>
-            <p class="text-gray-300 max-w-3xl mx-auto text-sm leading-relaxed">
-                Entrarán al país exactamente <strong>128 Kits de Alta Potencia</strong>. 
-                Debido a la crisis energética, la demanda supera la oferta. 
-                <span class="text-white font-bold">No saldrán a la venta pública.</span> Se ofrecerán exclusivamente a nuestra Lista de Espera por orden de llegada.
-            </p>
+            
+            <div class="max-w-3xl mx-auto bg-gray-900/80 border border-gray-700 p-4 rounded-xl text-left md:text-center shadow-lg">
+                <p class="text-gray-300 text-sm leading-relaxed">
+                    <i class="fas fa-info-circle text-yellow-500 mr-2"></i><strong>Funcionamiento:</strong> 
+                    Este contenedor trae <strong>128 equipos específicos</strong>. Al reservar, congelas una unidad con tu nombre. 
+                    Si el contador de un modelo llega a 0, pasará automáticamente a <span class="text-red-400 font-bold">Lista de Espera</span> (solo accesible si alguien cancela).
+                </p>
+            </div>
         </div>
 
-        <div class="grid lg:grid-cols-2 gap-12 items-center">
-            
-            <!-- COLUMNA 1: LA VENTAJA ÚNICA (TRIFÁSICA) -->
-            <div class="bg-gray-900/80 border-2 border-yellow-500 rounded-2xl p-8 shadow-[0_0_60px_rgba(234,179,8,0.15)] relative overflow-hidden group">
+        <div class="grid lg:grid-cols-12 gap-8">
+
+            <!-- COLUMNA 1: RESUMEN GLOBAL Y NOTIFICACIONES -->
+            <div class="lg:col-span-4 space-y-6">
                 
-                <!-- Etiqueta de Monopolio -->
-                <div class="absolute top-0 right-0 bg-yellow-500 text-black text-[10px] font-black px-4 py-2 rounded-bl-xl uppercase tracking-wider z-20">
-                    🏆 Exclusivo en Cuba
-                </div>
-
-                <div class="relative z-10">
-                    <div class="flex items-center gap-3 mb-4">
-                        <i class="fas fa-industry text-4xl text-yellow-500"></i>
-                        <h3 class="text-2xl font-bold text-white">Solución TRIFÁSICA <br><span class="text-sm text-gray-400 font-normal">380V / Industrial</span></h3>
-                    </div>
+                <!-- CONTADOR GLOBAL -->
+                <div class="bg-[#1e293b] border-2 border-purple-500/50 rounded-2xl p-6 text-center relative overflow-hidden shadow-[0_0_30px_rgba(168,85,247,0.2)]">
+                    <p class="text-gray-400 text-xs uppercase tracking-widest mb-2">Total Cupos en Contenedor</p>
+                    <div class="text-6xl font-black text-white mb-2 tracking-tighter" id="global-counter">128</div>
+                    <p class="text-[10px] text-purple-300 mb-4">Disponibilidad General</p>
                     
-                    <p class="text-gray-300 text-sm mb-6 border-l-2 border-yellow-500 pl-4">
-                        Mientras otros solo importan equipos residenciales básicos, nosotros traemos la potencia real.
-                        <br><br>
-                        <strong>¿Tienes Panadería, Fábrica o Motores Trifásicos?</strong> 
-                        Somos los únicos con la tecnología para mantener tu negocio produciendo.
-                    </p>
-
-                    <ul class="space-y-3 mb-8">
-                        <li class="flex items-center text-xs text-white">
-                            <i class="fas fa-check-circle text-yellow-500 mr-2"></i> Inversores Industriales Híbridos.
-                        </li>
-                        <li class="flex items-center text-xs text-white">
-                            <i class="fas fa-check-circle text-yellow-500 mr-2"></i> Balanceo de Cargas Automático.
-                        </li>
-                        <li class="flex items-center text-xs text-white">
-                            <i class="fas fa-check-circle text-yellow-500 mr-2"></i> Capacidad Expandible sin límites.
-                        </li>
-                    </ul>
-
-                    <button onclick="openOrderForm('Interés Lista Espera: TRIFÁSICA')" class="w-full bg-yellow-500 hover:bg-yellow-400 text-black font-bold py-4 rounded-xl transition transform hover:scale-[1.02] shadow-lg flex items-center justify-center gap-2">
-                        <span>Anotarme en Lista Trifásica</span>
-                        <i class="fas fa-arrow-right"></i>
-                    </button>
-                    <p class="text-[10px] text-gray-500 text-center mt-3">
-                        *Sin anticipo. Te avisamos primero cuando llegue.
-                    </p>
+                    <!-- Barra visual global -->
+                    <div class="w-full bg-gray-800 h-3 rounded-full overflow-hidden border border-gray-600">
+                        <div class="bg-gradient-to-r from-purple-500 to-pink-500 h-full transition-all duration-1000" id="global-progress" style="width: 100%"></div>
+                    </div>
                 </div>
+
+                <!-- FEED DE RESERVAS -->
+                <div class="bg-black/30 border border-gray-700 rounded-xl p-4 h-[400px] flex flex-col">
+                    <div class="flex items-center justify-between mb-4 border-b border-gray-700 pb-2">
+                        <span class="text-xs font-bold text-white"><i class="fas fa-satellite-dish text-green-400 mr-2"></i>Transacciones en Vivo</span>
+                        <span class="text-[9px] text-gray-500 animate-pulse">● Online</span>
+                    </div>
+                    <div id="reservation-feed" class="flex-1 overflow-hidden relative space-y-3">
+                        <!-- JS inserta aquí -->
+                    </div>
+                </div>
+
             </div>
 
+            <!-- COLUMNA 2: CATÁLOGO POR MODELO (DERECHA) -->
+            <div class="lg:col-span-8">
+                <div class="grid md:grid-cols-2 gap-4">
 
-            <!-- COLUMNA 2: LA ESCASEZ VISUAL (LOS 128 CUPOS) -->
-            <div>
-                <div class="bg-gray-800/50 rounded-xl p-6 border border-gray-700">
-                    <div class="flex justify-between items-end mb-4">
-                        <div>
-                            <h4 class="text-white font-bold text-sm">Estado del Contenedor</h4>
-                            <p class="text-[10px] text-gray-400">Actualizado: Hoy</p>
+                    <!-- KIT 1: 5kW PRO -->
+                    <div class="bg-gray-900/50 border border-gray-700 hover:border-purple-500 rounded-xl p-5 relative flex flex-col transition group">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="text-white font-bold text-lg">Kit 5kW PRO</h4>
+                            <!-- STOCK INDIVIDUAL -->
+                            <div class="text-right">
+                                <span class="text-2xl font-black text-white" id="stock-5kw">--</span>
+                                <p class="text-[9px] text-gray-400 uppercase">Restantes</p>
+                            </div>
                         </div>
-                        <div class="text-right">
-                            <span class="text-3xl font-black text-white">42</span>
-                            <span class="text-xs text-gray-400 uppercase">Cupos Libres</span>
+                        
+                        <!-- Barra Stock Individual -->
+                        <div class="w-full bg-gray-800 h-1.5 rounded-full overflow-hidden mb-4">
+                            <div id="bar-5kw" class="bg-purple-500 h-full transition-all duration-500" style="width: 100%"></div>
                         </div>
+
+                        <div class="text-xs text-gray-400 mb-3 font-mono">Residencial • 110V/120V</div>
+                        <ul class="space-y-1 mb-4 text-xs text-gray-300 flex-1">
+                            <li>• Inversor SRNE 5kW</li>
+                            <li>• Bat: 1x 100Ah LiFePO4 (5.12kWh)</li>
+                            <li>• 6 Paneles DAH 620W</li>
+                        </ul>
+                        <button id="btn-5kw" onclick="processClick('5kw', 'Kit 5kW PRO')" class="w-full bg-gray-800 hover:bg-purple-600 text-white text-xs font-bold py-3 rounded-lg transition border border-gray-600 hover:border-purple-500 shadow-lg">
+                            Reservar Cupo (Gratis)
+                        </button>
                     </div>
 
-                    <!-- VISUALIZACIÓN DE LOS 128 CUPOS (GRID) -->
-                    <!-- Simulación visual: Rojos (Ocupados), Amarillos (Reservados), Verdes (Libres) -->
-                    <div class="grid grid-cols-10 gap-1.5 mb-6" id="gridCupos">
-                        <!-- Se llena con JS para no escribir 128 divs -->
+                    <!-- KIT 2: 6.5kW SPLIT -->
+                    <div class="bg-gray-900/50 border border-gray-700 hover:border-blue-500 rounded-xl p-5 relative flex flex-col transition group">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="text-white font-bold text-lg">Kit 6.5kW Split</h4>
+                            <div class="text-right">
+                                <span class="text-2xl font-black text-white" id="stock-6kw">--</span>
+                                <p class="text-[9px] text-gray-400 uppercase">Restantes</p>
+                            </div>
+                        </div>
+
+                        <div class="w-full bg-gray-800 h-1.5 rounded-full overflow-hidden mb-4">
+                            <div id="bar-6kw" class="bg-blue-500 h-full transition-all duration-500" style="width: 100%"></div>
+                        </div>
+
+                        <div class="text-xs text-gray-400 mb-3 font-mono">Familiar • 110V/220V</div>
+                        <ul class="space-y-1 mb-4 text-xs text-gray-300 flex-1">
+                            <li>• Inversor SRNE 6.5kW (Split Phase)</li>
+                            <li>• Bat: 1x 205Ah LiFePO4 (10kWh)</li>
+                            <li>• 12 Paneles DAH 620W</li>
+                        </ul>
+                        <button id="btn-6kw" onclick="processClick('6kw', 'Kit 6.5kW Split')" class="w-full bg-gray-800 hover:bg-blue-600 text-white text-xs font-bold py-3 rounded-lg transition border border-gray-600 hover:border-blue-500 shadow-lg">
+                            Reservar Cupo (Gratis)
+                        </button>
                     </div>
 
-                    <div class="flex justify-between text-[9px] text-gray-400 font-mono uppercase">
-                        <span class="flex items-center gap-1"><div class="w-2 h-2 bg-red-900 rounded-sm"></div> Corporativo</span>
-                        <span class="flex items-center gap-1"><div class="w-2 h-2 bg-yellow-600 rounded-sm"></div> Reservado</span>
-                        <span class="flex items-center gap-1"><div class="w-2 h-2 bg-green-500 rounded-sm shadow-[0_0_5px_#22c55e]"></div> Disponible</span>
-                    </div>
-                </div>
+                    <!-- KIT 3: 10kW MAX -->
+                    <div class="bg-gray-900/50 border border-gray-700 hover:border-yellow-500 rounded-xl p-5 relative flex flex-col transition group">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="text-white font-bold text-lg">Kit 10kW MAX</h4>
+                            <div class="text-right">
+                                <span class="text-2xl font-black text-white" id="stock-10kw">--</span>
+                                <p class="text-[9px] text-gray-400 uppercase">Restantes</p>
+                            </div>
+                        </div>
 
-                <div class="mt-6 bg-blue-900/20 border border-blue-500/30 p-4 rounded-xl flex items-start gap-3">
-                    <i class="fas fa-info-circle text-blue-400 mt-1"></i>
-                    <div>
-                        <h5 class="text-blue-300 text-xs font-bold mb-1">¿Cómo funciona la Lista de Prioridad?</h5>
-                        <p class="text-gray-400 text-[11px] leading-relaxed">
-                            No te pedimos dinero hoy. Solo tus datos. Cuando el barco atraque, <strong>te llamamos antes de publicar los equipos</strong>. Tienes 24h para confirmar. Si no, pasamos al siguiente de la lista. <span class="text-white underline">Cero Riesgo para ti.</span>
+                        <div class="w-full bg-gray-800 h-1.5 rounded-full overflow-hidden mb-4">
+                            <div id="bar-10kw" class="bg-yellow-500 h-full transition-all duration-500" style="width: 100%"></div>
+                        </div>
+
+                        <div class="text-xs text-gray-400 mb-3 font-mono">Potencia Total • 110V/220V</div>
+                        <ul class="space-y-1 mb-4 text-xs text-gray-300 flex-1">
+                            <li>• Inversor SRNE 10kW</li>
+                            <li>• Bat: Rack 20kWh (Industrial)</li>
+                            <li>• 16 Paneles DAH 620W</li>
+                        </ul>
+                        <button id="btn-10kw" onclick="processClick('10kw', 'Kit 10kW MAX')" class="w-full bg-gray-800 hover:bg-yellow-600 text-black text-xs font-bold py-3 rounded-lg transition border border-gray-600 hover:border-yellow-500 shadow-lg">
+                            Reservar Cupo (Gratis)
+                        </button>
+                    </div>
+
+                    <!-- KIT 4: TRIFÁSICA -->
+                    <div class="bg-gradient-to-br from-yellow-900/20 to-gray-900 border-2 border-yellow-600 rounded-xl p-5 relative flex flex-col transition shadow-[0_0_20px_rgba(202,138,4,0.1)]">
+                        <div class="absolute top-0 right-0 bg-yellow-600 text-black text-[10px] font-black px-3 py-1 rounded-bl">INDUSTRIAL</div>
+                        
+                        <div class="flex justify-between items-start mb-2 mt-4">
+                            <h4 class="text-white font-bold text-lg">Solución Trifásica</h4>
+                            <div class="text-right">
+                                <span class="text-2xl font-black text-white" id="stock-tri">--</span>
+                                <p class="text-[9px] text-gray-400 uppercase">Restantes</p>
+                            </div>
+                        </div>
+
+                        <div class="w-full bg-gray-800 h-1.5 rounded-full overflow-hidden mb-4">
+                            <div id="bar-tri" class="bg-yellow-600 h-full transition-all duration-500" style="width: 100%"></div>
+                        </div>
+
+                        <div class="text-xs text-gray-400 mb-3 font-mono">380V / 440V • Fábricas/Negocios</div>
+                        <p class="text-xs text-gray-300 mb-4 flex-1">
+                            Inversores híbridos trifásicos SRNE. Proyectos a medida para motores y cargas inductivas pesadas.
                         </p>
+                        <button id="btn-tri" onclick="processClick('tri', 'Solución Trifásica')" class="w-full bg-yellow-600 hover:bg-yellow-500 text-black text-xs font-bold py-3 rounded-lg transition shadow-lg transform active:scale-95">
+                            Solicitar Estudio Trifásico
+                        </button>
                     </div>
-                </div>
 
-                <div class="mt-4 text-center">
-                    <button onclick="openOrderForm('Interés Lista Espera: ESTÁNDAR')" class="text-gray-400 hover:text-white text-xs underline decoration-dotted transition">
-                        No necesito trifásica, solo quiero un cupo residencial normal
-                    </button>
                 </div>
             </div>
 
         </div>
     </div>
 </section>
+
+<!-- SCRIPT DE INVENTARIO GRANULAR -->
+<script>
+(function() {
+    // 1. CONFIGURACIÓN DEL STOCK INICIAL (Total 128)
+    const DEFAULTS = {
+        '5kw': 50,
+        '6kw': 40,
+        '10kw': 23,
+        'tri': 15
+    };
+    
+    // Configuración Base
+    const STORAGE_KEY = 'solar_lote128_db_v2';
+    const LAST_TIME_KEY = 'solar_lote128_time';
+    
+    // Nombres y Lugares para las notificaciones
+    const NAMES = ["Hostal Vedado", "MIPYME El Sol", "Cafetería Juana", "Roberto M.", "Carlos T.", "Finca La Fe", "Taller 23", "Familia Pérez", "Lazaro G.", "Yusimí", "Panadería 10Oct"];
+    const LOCS = ["Playa", "Vedado", "Guanabacoa", "Boyeros", "Cotorro", "Marianao", "La Lisa", "10 de Octubre", "Habana Vieja", "Centro Habana"];
+
+    // 2. SISTEMA DE PERSISTENCIA
+    let stockDB = {};
+
+    function initDB() {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) {
+            stockDB = JSON.parse(saved);
+        } else {
+            stockDB = {...DEFAULTS};
+            saveDB();
+        }
+        
+        // Simular bajada por tiempo si el usuario no entró en mucho rato
+        const lastTime = localStorage.getItem(LAST_TIME_KEY);
+        const now = Date.now();
+        if (lastTime) {
+            const hoursPassed = (now - parseInt(lastTime)) / (1000 * 60 * 60);
+            if (hoursPassed > 2) {
+                // Si pasaron más de 2 horas, bajar aleatoriamente algo
+                reduceRandomStock();
+            }
+        }
+        localStorage.setItem(LAST_TIME_KEY, now);
+    }
+
+    function saveDB() {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(stockDB));
+    }
+
+    function reduceRandomStock() {
+        const keys = Object.keys(stockDB);
+        const randomKey = keys[Math.floor(Math.random() * keys.length)];
+        if (stockDB[randomKey] > 2) {
+            stockDB[randomKey]--;
+            saveDB();
+        }
+    }
+
+    // 3. ACTUALIZAR INTERFAZ (UI)
+    function updateUI() {
+        let totalGlobal = 0;
+        const totalMax = 128; // Base para la barra global
+
+        for (const [key, val] of Object.entries(stockDB)) {
+            // Actualizar número individual
+            const counter = document.getElementById(`stock-${key}`);
+            if (counter) counter.innerText = val;
+            
+            // Actualizar barra individual
+            const bar = document.getElementById(`bar-${key}`);
+            const max = DEFAULTS[key]; 
+            const pct = (val / max) * 100;
+            if (bar) {
+                bar.style.width = `${pct}%`;
+                // Color rojo si queda poco
+                if (pct < 20) bar.className = "bg-red-500 h-full transition-all duration-500";
+            }
+
+            // Botón Agotado
+            const btn = document.getElementById(`btn-${key}`);
+            if (val <= 0 && btn) {
+                btn.innerText = "Unirme a Lista de Espera (Prioridad Cancelación)";
+                btn.classList.remove('bg-gray-800', 'bg-yellow-600');
+                btn.classList.add('bg-red-900/40', 'border-red-500', 'text-red-200');
+                btn.onclick = function() { processClick(key, 'LISTA ESPERA'); };
+            }
+
+            totalGlobal += val;
+        }
+
+        // Actualizar Globales
+        const globalCounter = document.getElementById('global-counter');
+        const globalProgress = document.getElementById('global-progress');
+        
+        if (globalCounter) globalCounter.innerText = totalGlobal;
+        if (globalProgress) {
+            const globalPct = (totalGlobal / totalMax) * 100;
+            globalProgress.style.width = `${globalPct}%`;
+        }
+    }
+
+    // 4. GENERADOR DE EVENTOS (Venta Simulada)
+    function triggerSale() {
+        // Elegir un producto al azar para "vender"
+        const keys = Object.keys(stockDB);
+        // Filtrar los que tienen stock
+        const availableKeys = keys.filter(k => stockDB[k] > 0);
+        
+        if (availableKeys.length === 0) return; // Todo agotado
+
+        const key = availableKeys[Math.floor(Math.random() * availableKeys.length)];
+        
+        // Bajar stock real
+        stockDB[key]--;
+        saveDB();
+        updateUI();
+
+        // Crear Notificación
+        const name = NAMES[Math.floor(Math.random() * NAMES.length)];
+        const loc = LOCS[Math.floor(Math.random() * LOCS.length)];
+        const productName = getProductName(key);
+        const time = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+
+        const feed = document.getElementById('reservation-feed');
+        if (feed) {
+            const html = `
+                <div class="flex items-start gap-3 p-3 bg-[#1e293b] border border-gray-700 rounded-lg animate-slide-in shadow-md">
+                    <div class="bg-green-500/10 p-2 rounded-full text-green-500 shrink-0">
+                        <i class="fas fa-shopping-bag text-xs"></i>
+                    </div>
+                    <div>
+                        <p class="text-xs text-white">
+                            <span class="font-bold text-yellow-500">${name}</span> (${loc})
+                        </p>
+                        <p class="text-[10px] text-gray-400">Reservó: <strong>${productName}</strong></p>
+                        <p class="text-[9px] text-gray-600 text-right mt-1">${time}</p>
+                    </div>
+                </div>
+            `;
+            feed.insertAdjacentHTML('afterbegin', html);
+            if (feed.children.length > 3) feed.lastElementChild.remove();
+        }
+    }
+
+    function getProductName(key) {
+        if(key === '5kw') return "Kit 5kW Residencial";
+        if(key === '6kw') return "Kit 6.5kW Split";
+        if(key === '10kw') return "Kit 10kW MAX";
+        if(key === 'tri') return "Solución Trifásica";
+        return "Kit Solar";
+    }
+
+    // 5. BUCLE DE TIEMPO REAL
+    function startLoop() {
+        // Evento inicial rápido
+        setTimeout(triggerSale, 4000);
+
+        // Ciclo infinito con tiempo aleatorio (entre 1 min y 4 min)
+        // Esto es lento para que sea creíble
+        const loop = () => {
+            const delay = Math.floor(Math.random() * (240000 - 60000 + 1) + 60000);
+            setTimeout(() => {
+                triggerSale();
+                loop();
+            }, delay);
+        };
+        loop();
+    }
+
+    // INICIAR
+    document.addEventListener('DOMContentLoaded', () => {
+        initDB();
+        updateUI();
+        startLoop();
+    });
+
+})();
+
+// 6. FUNCIÓN PÚBLICA PARA LOS BOTONES
+function processClick(key, label) {
+    let msg = "";
+    if (label === 'LISTA ESPERA') {
+        msg = `Hola, veo que el modelo ${key.toUpperCase()} del Lote 128 está agotado. Por favor, anótenme en la LISTA DE ESPERA por si se libera un cupo.`;
+    } else {
+        // Generar Ticket
+        const ticket = 'RES-' + Math.floor(Math.random() * 10000);
+        msg = `Hola, quiero reservar mi cupo para el *${label}* (Lote Febrero 128). Mi Ticket es: ${ticket}`;
+    }
+    window.open(`https://wa.me/5358183649?text=${encodeURIComponent(msg)}`, '_blank');
+}
+</script>
+
+<!-- MODAL DE PRE-ORDEN (IGUAL QUE ANTES, YA LO TIENES, NO LO DUPLIQUES SI YA ESTÁ) -->
+<!-- Solo asegúrate de que la función openPreOrder(kitName) actualice el texto del modal -->
+
+<!-- SCRIPT DE INTELIGENCIA DE STOCK (EL CEREBRO) -->
+<script>
+(function() {
+    // 1. CONFIGURACIÓN
+    const START_STOCK = 42; // Stock inicial "teórico"
+    const STORAGE_KEY = 'solar_lote128_stock';
+    const LAST_VISIT_KEY = 'solar_last_visit_lote';
+    
+    // Base de datos de "Compradores Falsos" para la prueba social
+    const FAKE_BUYERS = [
+        { name: "MIPYME 'El Buen Pan'", loc: "Playa", item: "Solución Trifásica" },
+        { name: "Hostal Casa Granda", loc: "Vedado", item: "Kit 10kW MAX" },
+        { name: "Roberto M.", loc: "Guanabacoa", item: "Kit 5kW PRO" },
+        { name: "Cafetería 23 y 12", loc: "Vedado", item: "Kit 6.5kW Split" },
+        { name: "Finca La Esperanza", loc: "Boyeros", item: "Kit 10kW" },
+        { name: "Yusimí R.", loc: "Cotorro", item: "Kit 5kW" },
+        { name: "Taller de Autos", loc: "Marianao", item: "Solución Trifásica" },
+        { name: "Dr. Ernesto", loc: "Miramar", item: "Kit 6.5kW Split" }
+    ];
+
+    // 2. LOGICA DE PERSISTENCIA (El stock baja con el tiempo real)
+    function getStock() {
+        const now = Date.now();
+        let storedStock = localStorage.getItem(STORAGE_KEY);
+        let lastVisit = localStorage.getItem(LAST_VISIT_KEY);
+        
+        // Si es la primera vez, iniciamos
+        if (!storedStock) {
+            localStorage.setItem(STORAGE_KEY, START_STOCK);
+            localStorage.setItem(LAST_VISIT_KEY, now);
+            return START_STOCK;
+        }
+
+        // Si ya visitó, calculamos "pérdida" basada en el tiempo que no estuvo
+        // Reducimos 1 cupo cada 3 horas aprox para que sea creíble
+        const hoursPassed = (now - parseInt(lastVisit || now)) / (1000 * 60 * 60);
+        let current = parseInt(storedStock);
+
+        if (hoursPassed > 3) {
+            const reduction = Math.floor(hoursPassed / 3);
+            current = Math.max(3, current - reduction); // Nunca bajar de 3
+            localStorage.setItem(STORAGE_KEY, current);
+            localStorage.setItem(LAST_VISIT_KEY, now);
+        }
+        
+        return current;
+    }
+
+    // 3. ACTUALIZAR UI
+    function updateStockUI(val) {
+        const counter = document.getElementById('live-stock-counter');
+        const progress = document.getElementById('stock-progress');
+        const warning = document.getElementById('stock-warning');
+        
+        if(counter) {
+            // Animación de conteo hacia abajo
+            counter.innerText = val;
+            
+            // Barra de progreso
+            const percent = (val / 60) * 100; // 60 era el total imaginario
+            if(progress) progress.style.width = `${percent}%`;
+
+            // Color de pánico si queda poco
+            if(val < 10) {
+                counter.classList.add('text-red-500');
+                if(progress) progress.classList.replace('from-purple-500', 'from-red-600');
+                if(warning) {
+                    warning.innerHTML = "🚨 STOCK CRÍTICO: Se agota hoy";
+                    warning.classList.add('scale-110');
+                }
+            }
+        }
+    }
+
+    // 4. GENERADOR DE NOTIFICACIONES (El "Toast" en el feed)
+    function addNotification() {
+        const feed = document.getElementById('reservation-feed');
+        if(!feed) return;
+
+        const buyer = FAKE_BUYERS[Math.floor(Math.random() * FAKE_BUYERS.length)];
+        const time = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+
+        const itemHTML = `
+            <div class="flex items-start gap-3 p-3 bg-gray-800/50 rounded-lg border border-gray-700 animate-slide-in">
+                <div class="bg-green-900/50 p-2 rounded-full border border-green-500/30">
+                    <i class="fas fa-file-signature text-green-400 text-xs"></i>
+                </div>
+                <div>
+                    <p class="text-xs text-white font-bold leading-tight">
+                        <span class="text-yellow-400">${buyer.name}</span> (${buyer.loc})
+                    </p>
+                    <p class="text-[10px] text-gray-400">Reservó cupo: ${buyer.item}</p>
+                    <p class="text-[9px] text-gray-500 text-right mt-1">${time}</p>
+                </div>
+            </div>
+        `;
+
+        feed.insertAdjacentHTML('afterbegin', itemHTML);
+        
+        // Mantener solo 4 elementos en el feed para no saturar memoria
+        if(feed.children.length > 4) {
+            feed.lastElementChild.remove();
+        }
+
+        // 5. EFECTO DOMINÓ: Si sale una notificación, bajamos el stock visualmente
+        let current = parseInt(localStorage.getItem(STORAGE_KEY));
+        if (current > 3 && Math.random() > 0.5) { // 50% chance de que la notificación baje el stock real
+            current--;
+            localStorage.setItem(STORAGE_KEY, current);
+            updateStockUI(current);
+        }
+    }
+
+    // 6. INICIALIZACIÓN
+    document.addEventListener('DOMContentLoaded', () => {
+        let stock = getStock();
+        updateStockUI(stock);
+
+        // Disparar notificaciones aleatorias
+        // Primera notificación a los 5 segundos
+        setTimeout(addNotification, 5000);
+
+        // Luego intervalos aleatorios entre 20s y 60s
+        setInterval(() => {
+            addNotification();
+        }, Math.floor(Math.random() * (60000 - 20000 + 1) + 20000));
+    });
+
+})();
+
+// Función global para el botón de reserva (conecta con tu modal existente)
+function openPreOrder(kitName) {
+    // Si tienes un modal de "Pedido" ya hecho, úsalo pero cambia el título
+    // O usa el modal de pre-orden que te di en la respuesta anterior
+    if(typeof openOrderForm === 'function') {
+        openOrderForm(kitName + " [RESERVA LOTE 128]");
+    } else {
+        // Fallback a WhatsApp directo si no hay modal
+        const text = `Hola, quiero reservar un cupo para el *${kitName}* del Lote 128.`;
+        window.open(`https://wa.me/5358183649?text=${encodeURIComponent(text)}`, '_blank');
+    }
+}
+</script>
+
+<style>
+@keyframes slideInLeft {
+    from { opacity: 0; transform: translateX(-20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+.animate-slide-in {
+    animation: slideInLeft 0.5s ease-out forwards;
+}
+</style>
 
 <!-- SCRIPT PARA GENERAR LOS 128 CUADRADITOS (VISUAL) -->
 <script>
@@ -7649,176 +8050,186 @@ document.addEventListener('DOMContentLoaded', initUltimateUrgency);
 
     })();
 </script>
-<!-- SCRIPT V11: MONITOR + CINTA DE NOTICIAS (FIXED) -->
+
+<!-- SCRIPT V13: HÍBRIDO REAL (JSON + TELEGRAM EN VIVO + RESPALDO) -->
 <script>
 (function() {
-    // ==========================================
-    // 1. DATOS DE RESPALDO (TU BASE DE DATOS)
-    // ==========================================
-    // Actualizados con el reporte del 13 Dic
-    const BACKUP_DATA = {
-        deficit: 1915,       
-        ayer: 1917,          
+    // 1. CONFIGURACIÓN
+    const LOCAL_JSON_URL = './daily_data.json'; 
+    const TELEGRAM_URL = 'https://t.me/s/EmpresaElectricaDeLaHabana';
+    const PROXY_URL = 'https://api.allorigins.win/get?url=';
+
+    // 2. DATOS DE EMERGENCIA (Por si todo falla - 13 Dic)
+    const INTERNAL_BACKUP = {
+        deficit: 1915,
         estado: "DÉFICIT CRÍTICO",
-        hora_reporte: "13 Dic - 08:00 AM",
-        // Estos son los mensajes que saldrán en la CINTA
-        mensajes: [
+        hora: "Reporte 13 Dic",
+        noticias: [
             "⚠️ PRONÓSTICO 13 DIC: Déficit de 1915 MW en horario pico.",
             "📉 AYER: Afectación las 24 horas con máximo de 1917 MW.",
             "🏭 AVERÍAS: Felton 2, Mariel 5 y 8, Santa Cruz 2 y 3.",
-            "⛽ COMBUSTIBLE: 993 MW fuera de servicio por falta de diesel.",
+            "⛽ COMBUSTIBLE: 993 MW fuera de servicio.",
             "📍 HABANA: Afectaciones severas en Bloques 1, 2, 3 y 4."
         ]
     };
 
-    const TELEGRAM_URL = 'https://t.me/s/EmpresaElectricaDeLaHabana';
-    // Usamos allorigins que suele ser más rápido para texto simple
-    const PROXY_URL = 'https://api.allorigins.win/get?url=';
-
     // ==========================================
-    // 2. INICIO
+    // 3. INICIO DEL SISTEMA
     // ==========================================
     async function initSystem() {
-        const tickerEl = document.getElementById('ticker-content');
-        if(tickerEl) tickerEl.innerHTML = '<span class="text-yellow-500">⏳ Conectando satélite...</span>';
+        const ticker = document.getElementById('ticker-content');
+        if(ticker) ticker.innerHTML = '<span class="text-yellow-500 animate-pulse">📡 Buscando datos...</span>';
 
+        // PASO 1: Intentar leer archivo JSON Local (El que tú subes)
         try {
-            console.log("📡 Intentando conectar Telegram...");
+            console.log("📂 Intentando cargar daily_data.json...");
+            const resp = await fetch(LOCAL_JSON_URL + '?t=' + Date.now());
+            if (resp.ok) {
+                const data = await resp.json();
+                console.log("✅ Datos cargados desde JSON Local.");
+                updateUI(data.deficit_estimado, data.noticias_cinta, data.fecha, data.estado_general);
+                return; // ¡Éxito! No hace falta Telegram.
+            }
+        } catch (e) {
+            console.log("⚠️ No hay JSON manual. Pasando a Modo Automático (Telegram)...");
+        }
+
+        // PASO 2: Intentar conectar a Telegram en Vivo (Código V11 Recuperado)
+        try {
+            console.log("📡 Conectando a Telegram...");
             const response = await fetch(PROXY_URL + encodeURIComponent(TELEGRAM_URL));
             const data = await response.json();
             
             if (data.contents && data.contents.includes('tgme_widget_message_text')) {
-                console.log("✅ Conexión ÉXITOSA. Procesando...");
-                parseTelegram(data.contents);
+                console.log("✅ Conexión Telegram ÉXITOSA.");
+                parseTelegramLive(data.contents);
             } else {
-                throw new Error("Data vacía");
+                throw new Error("Telegram vacío");
             }
         } catch (e) {
-            console.warn("⚠️ Fallo conexión. Usando RESPALDO.", e);
-            loadBackup();
+            console.warn("❌ Falló Telegram. Usando respaldo interno.", e);
+            // PASO 3: Usar Respaldo Interno (Hardcoded)
+            useInternalBackup();
         }
     }
 
     // ==========================================
-    // 3. PROCESAMIENTO
+    // 4. LOGICA TELEGRAM (RECUPERADA DE V11)
     // ==========================================
-    function parseTelegram(html) {
+    function parseTelegramLive(html) {
         const parser = new DOMParser();
         const doc = parser.parseFromString(html, "text/html");
         const messages = Array.from(doc.querySelectorAll('.tgme_widget_message_text'));
 
-        if (messages.length === 0) { loadBackup(); return; }
+        if (messages.length === 0) { useInternalBackup(); return; }
 
         let foundDeficit = 0;
         let recentNews = [];
 
-        // Extraer textos
+        // Leer de abajo hacia arriba (lo más nuevo)
         messages.reverse().forEach(msg => {
             const text = msg.innerText.trim();
-            if (text.length > 20) recentNews.push(text); // Guardar para ticker
+            if (text.length > 20) recentNews.push(text);
 
-            // Buscar Déficit
+            // Buscar el número de déficit
             if (foundDeficit === 0) {
                 const match = text.match(/(?:afectación|déficit).*?(\d{3,4})\s*MW/i);
                 if (match) foundDeficit = parseInt(match[1]);
             }
         });
 
-        // Si encontramos datos nuevos, actualizamos todo
+        // Decidir qué mostrar
         if (recentNews.length > 0) {
-            // Usamos el déficit encontrado o el del backup si no se halló
-            const finalDeficit = foundDeficit > 0 ? foundDeficit : BACKUP_DATA.deficit;
-            updateAllUI(finalDeficit, recentNews, "En Vivo 🔴");
+            // Si no encontró número, usa el del backup pero muestra las noticias nuevas
+            const finalDeficit = foundDeficit > 0 ? foundDeficit : INTERNAL_BACKUP.deficit;
+            
+            // Determinar estado según déficit
+            let estado = "MODERADO";
+            if(finalDeficit > 800) estado = "MUY ALTO";
+            if(finalDeficit > 1500) estado = "CRÍTICO (Riesgo Colapso)";
+
+            const hora = "En Vivo 🔴";
+            
+            updateUI(finalDeficit, recentNews, hora, estado);
         } else {
-            loadBackup();
+            useInternalBackup();
         }
     }
 
-    function loadBackup() {
-        console.log("📂 Cargando datos manuales...");
-        updateAllUI(BACKUP_DATA.deficit, BACKUP_DATA.mensajes, BACKUP_DATA.hora_reporte);
+    function useInternalBackup() {
+        updateUI(INTERNAL_BACKUP.deficit, INTERNAL_BACKUP.noticias, INTERNAL_BACKUP.hora, INTERNAL_BACKUP.estado);
     }
 
     // ==========================================
-    // 4. ACTUALIZADOR VISUAL (CINTA + DASHBOARD)
+    // 5. ACTUALIZADOR DE LA PANTALLA (UI)
     // ==========================================
-    function updateAllUI(mw, newsArray, timeLabel) {
+    function updateUI(mw, newsArray, timeLabel, estadoLabel) {
         
-        // A) ACTUALIZAR LA CINTA DE NOTICIAS (LO QUE TÚ MIRAS)
+        // A) CINTA DE NOTICIAS (TICKER)
         const ticker = document.getElementById('ticker-content');
         if (ticker) {
-            let tickerHTML = "";
-            // Recorremos las noticias y las añadimos a la cinta
-            newsArray.slice(0, 8).forEach(msg => { // Máx 8 noticias para no saturar
-                // Limpiar saltos de línea
-                const cleanMsg = msg.replace(/\n/g, ' ').substring(0, 120); 
-                tickerHTML += `
-                    <span class="inline-flex items-center text-white font-bold text-sm mx-8">
-                        <i class="fas fa-bolt text-yellow-500 mr-2"></i> ${cleanMsg}
-                    </span>
-                    <span class="text-gray-600 text-lg">///</span>
-                `;
+            let html = "";
+            newsArray.slice(0, 8).forEach(msg => {
+                const cleanMsg = msg.replace(/\n/g, ' ').substring(0, 100);
+                html += `<span class="inline-flex items-center text-white font-bold text-sm mx-8"><i class="fas fa-bolt text-yellow-500 mr-2"></i> ${cleanMsg}</span><span class="text-gray-600">///</span>`;
             });
-            ticker.innerHTML = tickerHTML;
+            ticker.innerHTML = html;
         }
 
-        // B) ACTUALIZAR EL RESTO DE LA WEB (Dashboard)
+        // B) NÚMEROS GRANDES
         updateNumber('live-deficit', mw);
         updateNumber('nav-deficit', mw + " MW");
         updateNumber('dash-deficit', mw);
-        
-        // Estado
+        updateNumber('exit-deficit', mw + " MW");
+
+        // C) ESTADO Y HORA
         const statusEl = document.getElementById('system-status');
         if(statusEl) {
-            if(mw > 1500) {
-                statusEl.innerText = "CRÍTICO (Riesgo Colapso)";
-                statusEl.className = "text-red-500 font-black animate-pulse";
-            } else {
-                statusEl.innerText = "MUY ALTO";
-                statusEl.className = "text-orange-500 font-bold";
-            }
+            statusEl.innerText = estadoLabel || "DÉFICIT ALTO";
+            // Color rojo si es crítico
+            if(mw > 1000) statusEl.className = "text-red-500 font-black animate-pulse";
+            else statusEl.className = "text-orange-500 font-bold";
         }
 
-        // Hora
         const timeEl = document.getElementById('last-update-time');
         if(timeEl) timeEl.innerText = timeLabel;
-        
-        // Feed del Dashboard
+
+        // D) FEED DEL DASHBOARD (LISTA)
         const feed = document.getElementById('telegram-feed');
         if(feed) {
             feed.innerHTML = '';
             newsArray.slice(0, 10).forEach(txt => {
                  feed.innerHTML += `
-                    <div class="bg-gray-800/40 p-3 rounded border-b border-gray-700 mb-2">
-                        <div class="text-xs text-gray-300 font-mono"><i class="fas fa-terminal text-green-500 mr-2"></i>${txt.substring(0, 150)}...</div>
+                    <div class="bg-gray-800/40 p-3 rounded border-b border-gray-700 mb-2 hover:bg-gray-800 transition">
+                        <div class="text-xs text-gray-300 font-mono leading-relaxed">
+                            <i class="fas fa-angle-right text-green-500 mr-2"></i>${txt.substring(0, 140)}...
+                        </div>
                     </div>`;
             });
         }
         
-        // Calculadora
+        // E) ACTUALIZAR CALCULADORA
         if(window.calculateLoss) { 
-            window.currentMW = mw; // Actualizar variable global para calc
+            window.currentMW = mw;
             window.calculateLoss(); 
         }
     }
 
-    // Helper para animar números
+    // Helper animación
     function updateNumber(id, val) { 
         const el = document.getElementById(id); 
         if(el) { el.innerText = val; el.classList.remove('animate-pulse'); void el.offsetWidth; el.classList.add('animate-pulse'); }
     }
 
-    // ==========================================
-    // 5. INICIAR
-    // ==========================================
+    // Ejecutar al inicio y cada 5 min
     document.addEventListener('DOMContentLoaded', () => {
         initSystem();
-        // Reintentar cada 5 minutos
         setInterval(initSystem, 300000);
     });
 
 })();
 </script>
+
 <!-- BARRA FLOTANTE MÓVIL (Solo visible en pantallas pequeñas) -->
 <div id="sticky-bar" class="fixed bottom-0 left-0 w-full bg-[#1e293b] border-t border-gray-700 p-3 z-50 flex items-center justify-between transform translate-y-full transition-transform duration-300 md:hidden shadow-[0_-5px_20px_rgba(0,0,0,0.5)]">
     <div class="flex flex-col">
