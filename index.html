@@ -350,149 +350,6 @@
     </div>
 </section>
 
-<!-- SECCIÓN: INTELIGENCIA ENERGÉTICA (DATOS EN TIEMPO REAL) -->
-<section id="energy-intel" class="py-12 bg-[#020617] border-y border-gray-800 relative overflow-hidden">
-    
-    <!-- Fondo Radar -->
-    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-red-600 via-yellow-500 to-green-500 opacity-50"></div>
-    
-    <div class="max-w-7xl mx-auto px-4 relative z-10">
-        
-        <div class="flex justify-between items-end mb-6">
-            <div>
-                <span class="flex items-center gap-2 text-red-500 font-bold text-xs uppercase tracking-widest mb-1">
-                    <span class="relative flex h-3 w-3">
-                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                      <span class="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
-                    </span>
-                    Análisis de Red en Vivo
-                </span>
-                <h2 class="text-2xl md:text-3xl font-black text-white">ESTADO DE SITUACIÓN</h2>
-            </div>
-            <div class="text-right hidden md:block">
-                <p class="text-[10px] text-gray-500 font-mono">Fuente: Logs Operativos UNE</p>
-                <p class="text-xs text-yellow-500 font-bold" id="last-scan-time">Escaneando...</p>
-            </div>
-        </div>
-
-        <div class="grid lg:grid-cols-3 gap-6">
-
-            <!-- WIDGET 1: SALUD TÉRMICA (El Predictor de Caos) -->
-            <div class="bg-[#0f172a] border border-gray-700 rounded-xl p-5 relative overflow-hidden group hover:border-gray-500 transition">
-                <div class="flex justify-between items-center mb-4 border-b border-gray-800 pb-2">
-                    <h3 class="text-white font-bold text-sm flex items-center gap-2">
-                        <i class="fas fa-industry text-gray-400"></i> Generación Base
-                    </h3>
-                    <span class="bg-gray-800 text-[10px] px-2 py-1 rounded text-gray-400" id="thermal-alert">Analizando...</span>
-                </div>
-                
-                <div class="space-y-3" id="thermal-grid">
-                    <!-- Se llena con JS -->
-                    <div class="animate-pulse flex space-x-4">
-                        <div class="h-4 bg-gray-700 rounded w-3/4"></div>
-                    </div>
-                </div>
-
-                <!-- Aviso de Venta -->
-                <div id="thermal-warning" class="hidden mt-4 bg-red-900/20 border-l-2 border-red-500 p-2">
-                    <p class="text-[10px] text-red-200">
-                        ⚠️ <strong>Alerta:</strong> Salida de planta base detectada. Se pronostica aumento del déficit. <a href="#kits" class="underline font-bold">Asegura energía.</a>
-                    </p>
-                </div>
-            </div>
-
-            <!-- WIDGET 2: RIESGO DAF (Daño a Equipos) -->
-            <div class="bg-[#0f172a] border border-gray-700 rounded-xl p-5">
-                <div class="flex justify-between items-center mb-4 border-b border-gray-800 pb-2">
-                    <h3 class="text-white font-bold text-sm flex items-center gap-2">
-                        <i class="fas fa-bolt text-yellow-500"></i> Inestabilidad (DAF)
-                    </h3>
-                    <div class="text-[10px] text-gray-500 text-right leading-tight">
-                        Riesgo de daño<br>a electrodomésticos
-                    </div>
-                </div>
-
-                <div class="flex items-center justify-between mb-2 text-xs text-gray-400">
-                    <span>Zona</span>
-                    <span>Nivel de Riesgo</span>
-                </div>
-                
-                <div class="space-y-3" id="daf-list">
-                    <!-- Se llena con JS -->
-                </div>
-            </div>
-
-            <!-- WIDGET 3: TIEMPO DE RESPUESTA (Averías Físicas) -->
-            <div class="bg-[#0f172a] border border-gray-700 rounded-xl p-5 flex flex-col">
-                <div class="flex justify-between items-center mb-4 border-b border-gray-800 pb-2">
-                    <h3 class="text-white font-bold text-sm flex items-center gap-2">
-                        <i class="fas fa-tools text-blue-400"></i> Tiempo de Reparación
-                    </h3>
-                </div>
-                
-                <div class="flex-1 flex flex-col justify-center items-center text-center">
-                    <p class="text-[10px] text-gray-400 uppercase tracking-widest mb-1">Promedio Actual</p>
-                    <div class="text-4xl font-black text-white mb-1" id="avg-repair-time">-- h</div>
-                    <p class="text-xs text-red-400 font-bold mb-4" id="repair-trend">Calculando...</p>
-                    
-                    <div class="w-full bg-blue-900/20 rounded-lg p-3 text-left">
-                        <p class="text-[10px] text-blue-200 mb-1">
-                            <i class="fas fa-info-circle mr-1"></i> Si se rompe un transformador en tu zona hoy, el tiempo de espera estimado es crítico.
-                        </p>
-                    </div>
-                </div>
-                
-                <button onclick="document.getElementById('ofertas-blue').scrollIntoView({behavior: 'smooth'})" class="w-full mt-4 bg-yellow-500 hover:bg-yellow-400 text-black text-xs font-bold py-2 rounded transition">
-                    Ver Solución Backup (No esperes)
-                </button>
-            </div>
-
-        </div>
-    </div>
-    <!-- WIDGET EDUCATIVO: ¿QUÉ ES EL DAF? -->
-<div class="max-w-4xl mx-auto mt-8 px-4">
-    <div class="bg-gradient-to-r from-red-900/40 to-[#0f172a] border-l-4 border-red-500 rounded-r-xl p-6 relative overflow-hidden group">
-        
-        <!-- Icono de Fondo -->
-        <div class="absolute right-[-20px] top-[-20px] text-red-500/10 text-9xl transform rotate-12 pointer-events-none">
-            <i class="fas fa-bolt"></i>
-        </div>
-
-        <div class="relative z-10">
-            <h3 class="text-xl font-bold text-white mb-2 flex items-center gap-2">
-                <span class="bg-red-600 text-white text-[10px] px-2 py-1 rounded uppercase tracking-wider">Glosario UNE</span>
-                ¿Por qué hay tanto "Disparo por DAF"? ⚠️
-            </h3>
-            
-            <div class="flex flex-col md:flex-row gap-6 mt-4">
-                <div class="md:w-2/3">
-                    <p class="text-gray-300 text-sm leading-relaxed mb-3">
-                        <strong>DAF (Disparo Automático por Frecuencia)</strong> es el mecanismo de defensa del sistema eléctrico. Cuando una termoeléctrica grande (como Guiteras o Felton) falla de golpe, la red se desestabiliza. Para no colapsar totalmente, el sistema <strong>"suelta" (apaga) barrios enteros automáticamente</strong> en milisegundos.
-                    </p>
-                    <p class="text-yellow-400 text-sm font-bold">
-                        <i class="fas fa-exclamation-triangle mr-1"></i> El Peligro Real:
-                        <span class="text-gray-300 font-normal">Este corte es violento e instantáneo. Y cuando la luz regresa tras un DAF, suele venir con <strong>picos de voltaje</strong> que queman las tarjetas electrónicas de los Aires Inverter y los compresores de los refrigeradores.</span>
-                    </p>
-                </div>
-
-                <div class="md:w-1/3 bg-black/30 rounded-lg p-4 border border-gray-700 flex flex-col justify-center text-center">
-                    <p class="text-gray-400 text-xs mb-2">Tu única protección:</p>
-                    <p class="text-green-400 font-bold text-sm mb-3">
-                        Inversor Híbrido SRNE
-                    </p>
-                    <p class="text-[10px] text-gray-500 mb-3">
-                        Actúa como un UPS gigante. Detecta el fallo y cambia a baterías en <strong>10 milisegundos</strong>.
-                    </p>
-                    <a href="#kits" class="bg-white text-black text-xs font-bold py-2 rounded hover:bg-gray-200 transition">
-                        Ver Equipos Anti-DAF
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-</section>
-
 <!-- SECCIÓN DE VENTA FLASH: PANELES VAMAX 600W -->
 <section id="oferta-paneles-nuevos" class="py-16 bg-gradient-to-r from-slate-900 via-blue-950 to-slate-900 border-y border-yellow-500/50 relative overflow-hidden">
     
@@ -1166,7 +1023,120 @@
 </section>
 
 <!-- SCRIPT INTEGRADO Y PROTEGIDO -->
+<script>
+    (function() { // Función autoejecutable para proteger variables
+        
+        const LIE_SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSzif4P4juLuHJiXEnowN0cDOI3MEsSJLrLvQFYpL2YCyjBDgW9HZFI2lwu8ZLToVpELVc8NOF-Lsfd/pub?output=csv';
 
+        // DATOS DE RESPALDO (10 Dic) - Se usan si falla internet
+        let lieData = {
+            "1": { date: "10/12/2025", plan: 4, real: 7.5, note: "Doble afectación por Emergencia." },
+            "2": { date: "10/12/2025", plan: 4, real: 8.2, note: "Déficit severo extendido." },
+            "3": { date: "10/12/2025", plan: 4, real: 6.8, note: "Salida imprevista por emergencia." },
+            "4": { date: "10/12/2025", plan: 4, real: 9.5, note: "Día crítico: Afectación doble." },
+            "5": { date: "10/12/2025", plan: 4, real: 6.0, note: "Impacto matutino." },
+            "6": { date: "10/12/2025", plan: 4, real: 6.5, note: "Afectado fuera de horario." }
+        };
+
+        function renderLieChart() {
+            const selector = document.getElementById('lieBlockSelector');
+            if(!selector) return;
+
+            const block = selector.value;
+            const data = lieData[block] || lieData["4"];
+
+            // Actualizar Textos
+            document.getElementById('planned-hours').innerText = data.plan + " h";
+            document.getElementById('real-hours').innerText = data.real + " h";
+            document.getElementById('chart-date-label').innerText = data.date;
+            document.getElementById('bar-real-text').innerText = data.real + "h";
+
+            // Diferencia
+            const diff = (data.real - data.plan).toFixed(1);
+            let msg = diff > 0 ? `<span class="text-red-400 font-bold text-xl">+${diff} Horas</span> extras.` : `<span class="text-green-400">Cumplido</span>`;
+            
+            document.getElementById('stolen-time').innerHTML = `
+                ${msg}<br>
+                <span class="text-gray-400 text-xs italic">"${data.note}"</span>
+            `;
+
+            // Actualizar Barras (CSS Height)
+            const maxScale = 16; 
+            const hPlan = Math.min((data.plan / maxScale) * 100, 100);
+            const hReal = Math.min((data.real / maxScale) * 100, 100);
+
+            document.getElementById('bar-plan').style.height = Math.max(hPlan, 10) + "%";
+            const barReal = document.getElementById('bar-real');
+            barReal.style.height = Math.max(hReal, 10) + "%";
+
+            // Color rojo si es grave
+            if(data.real >= 8) {
+                barReal.className = "w-full bg-red-700 border-2 border-red-500 rounded-t-lg transition-all duration-500 shadow-[0_0_30px_rgba(220,38,38,0.5)] relative flex items-end justify-center overflow-hidden";
+            } else {
+                barReal.className = "w-full bg-orange-600 border-2 border-orange-400 rounded-t-lg transition-all duration-500 shadow-lg relative flex items-end justify-center overflow-hidden";
+            }
+        }
+
+        // Descargar Datos Nuevos
+        function fetchLatestData() {
+            fetch(LIE_SHEET_URL)
+                .then(res => res.text())
+                .then(csv => {
+                    const rows = csv.split('\n').slice(1);
+                    let latestDate = "";
+                    let newData = {};
+
+                    // Encontrar fecha más reciente
+                    rows.forEach(r => {
+                        const c = r.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+                        if(c.length > 0 && c[0]) {
+                            const d = c[0].replace(/['"]+/g, '').trim();
+                            // Formato simple de comparación de string (DD/MM/YYYY)
+                            // En producción idealmente se parsea a Date, pero esto funciona si el sheet está ordenado
+                            latestDate = d; 
+                        }
+                    });
+
+                    // Llenar datos de esa fecha
+                    if(latestDate) {
+                        rows.forEach(r => {
+                            const c = r.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+                            if(c.length >= 5) {
+                                const d = c[0].replace(/['"]+/g, '').trim();
+                                if(d === latestDate) {
+                                    const b = c[1].replace(/['"]+/g, '').trim();
+                                    newData[b] = {
+                                        date: d,
+                                        plan: parseFloat(c[2]) || 4,
+                                        real: parseFloat(c[3]) || 0,
+                                        note: c[4].replace(/['"]+/g, '').trim()
+                                    };
+                                }
+                            }
+                        });
+                        
+                        if(Object.keys(newData).length > 0) {
+                            lieData = newData; // Actualizar datos globales
+                            renderLieChart();  // Refrescar gráfico
+                        }
+                    }
+                })
+                .catch(e => console.log("Usando datos offline"));
+        }
+
+        // Event Listeners
+        const sel = document.getElementById('lieBlockSelector');
+        if(sel) sel.addEventListener('change', renderLieChart);
+
+        // Inicialización
+        renderLieChart(); // Renderiza inmediato con backup
+        fetchLatestData(); // Intenta buscar nuevos datos
+        
+        // Exponer función al ámbito global para el onchange del HTML
+        window.updateLieDetector = renderLieChart;
+
+    })();
+</script>
 
 <!-- SECCIÓN: ORÁCULO DE REPARACIONES (ESTADÍSTICA) -->
 <section class="py-16 bg-[#0b1120] border-t border-gray-800 relative">
@@ -2580,103 +2550,108 @@
             </div>
 
             <!-- COLUMNA 2: MAPA VISUAL (AJUSTADO A TU IMAGEN SATELITAL) -->
-<!-- COLUMNA 2: MAPA VISUAL (AJUSTADO A LA IMAGEN REAL) -->
 <div class="md:col-span-8 relative h-[350px] md:h-[400px] bg-[#020617] rounded-2xl border border-gray-700 overflow-hidden group shadow-2xl">
     
-    <!-- IMAGEN DEL MAPA (Ruta actualizada) -->
+    <!-- TU IMAGEN DE MAPA (Con Filtros "Modo Noche" aplicados por código) -->
+    <!-- ASEGÚRATE DE PONER LA RUTA CORRECTA DE TU IMAGEN AQUÍ -->
+     <!-- ESTADÍSTICAS FLOTANTES (RESPONSIVE OPTIMIZADO) -->
+<div class="absolute top-0 left-0 w-full md:w-auto md:top-4 md:left-4 z-30 bg-black/80 backdrop-blur-md border-b-2 md:border-b-0 md:border-l-4 border-green-500 md:rounded-r-lg p-2 md:p-4 shadow-xl">
+    
+    <!-- Título (Solo visible en PC o muy discreto en móvil) -->
+    <div class="hidden md:flex items-center gap-2 mb-2 border-b border-gray-700 pb-2">
+        <span class="relative flex h-2 w-2">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+        </span>
+        <span class="text-[10px] text-gray-300 font-bold uppercase tracking-widest">Actividad (72h)</span>
+    </div>
+
+    <!-- Contenedor de Datos: Fila en Móvil / Columna en PC -->
+    <div class="flex flex-row md:flex-col justify-around items-center md:items-start gap-4 md:gap-3">
+        
+        <!-- Dato 1: Instalaciones -->
+        <div class="flex flex-col md:block items-center md:items-start">
+            <div class="flex items-baseline gap-1">
+                <span class="text-xl md:text-3xl font-black text-white leading-none">37</span>
+                <span class="md:hidden text-[10px] text-green-400 font-bold uppercase">Instalados</span>
+            </div>
+            <div class="hidden md:block text-[10px] text-green-400 font-bold uppercase">Instalaciones Completadas</div>
+        </div>
+        
+        <!-- Separador Vertical (Solo Móvil) -->
+        <div class="h-6 w-px bg-gray-700 md:hidden"></div>
+
+        <!-- Dato 2: Reservas -->
+        <div class="flex flex-col md:block items-center md:items-start">
+            <div class="flex items-baseline gap-1">
+                <span class="text-xl md:text-2xl font-bold text-gray-300 leading-none">12</span>
+                <span class="md:hidden text-[10px] text-yellow-500 font-bold uppercase">En Cola</span>
+            </div>
+            <div class="hidden md:block text-[10px] text-yellow-500 font-bold uppercase">
+                Reservas en Cola <i class="fas fa-clock"></i>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="mt-3 text-[9px] text-gray-500 italic">
+        *Actualizado: Hace 5 min.
+    </div>
+</div>
     <img src="imagenes/mapa_habana.jpg" loading="lazy"
-         class="w-full h-full object-cover transition duration-700 transform group-hover:scale-105 brightness-[0.6] contrast-125 hover:brightness-100" 
+         class="w-full h-full object-cover transition duration-700 transform group-hover:scale-105 brightness-[0.4] contrast-125 grayscale-[0.3]" 
          alt="Mapa Operaciones Habana">
 
-    <!-- Overlay Gradiente para que los pines resalten -->
+    <!-- Overlay Gradiente para integración -->
     <div class="absolute inset-0 bg-gradient-to-t from-[#0f172a] via-transparent to-transparent pointer-events-none"></div>
 
-    <!-- ESTADÍSTICAS FLOTANTES (Esquina Superior Izquierda) -->
-    <div class="absolute top-4 left-4 z-30 bg-black/80 backdrop-blur-md border-l-4 border-green-500 rounded-r-lg p-3 shadow-xl max-w-[160px]">
-        <div class="text-[10px] text-gray-400 font-bold uppercase mb-1">Actividad (72h)</div>
-        <div class="text-2xl font-black text-white leading-none mb-1">
-            <span id="counter-installs">37</span>
+    <!-- PIN 1: CENTRO HABANA (Cerca de Plaza Carlos III en tu foto) -->
+    <div class="absolute top-[35%] left-[32%] flex flex-col items-center group/pin cursor-pointer z-10">
+        <div class="relative">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500 border-2 border-white shadow-[0_0_10px_#22c55e]"></span>
         </div>
-        <div class="text-[9px] text-green-400 font-bold uppercase tracking-wide">Instalaciones</div>
-        <div class="h-px bg-gray-700 my-2"></div>
-        <div class="text-xl font-bold text-gray-300 leading-none mb-1">
-            <span id="counter-reserves">12</span>
-        </div>
-        <div class="text-[9px] text-yellow-500 font-bold uppercase tracking-wide">En Cola <i class="fas fa-clock"></i></div>
-    </div>
-
-    <!-- ============================================== -->
-    <!-- PINES DE LOCALIZACIÓN (AJUSTADOS A TU MAPA) -->
-    <!-- ============================================== -->
-
-    <!-- 1. MIRAMAR (Arriba Izquierda - Zona Hoteles/3ra) -->
-    <div class="absolute top-[45%] left-[15%] group/pin cursor-pointer z-20">
-        <span class="relative flex h-3 w-3">
-          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-          <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500 border-2 border-white shadow-[0_0_15px_#22c55e]"></span>
-        </span>
-        <!-- Tooltip -->
-        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/90 text-white text-[10px] px-3 py-1 rounded font-bold whitespace-nowrap opacity-0 group-hover/pin:opacity-100 transition transform translate-y-2 group-hover/pin:translate-y-0 pointer-events-none border border-green-500/50">
-            Miramar (8 Kits)
+        <div class="absolute bottom-6 left-1/2 -translate-x-1/2 bg-white text-black text-[10px] px-3 py-1 rounded font-bold whitespace-nowrap opacity-0 group-hover/pin:opacity-100 transition shadow-xl transform translate-y-2 group-hover/pin:translate-y-0 pointer-events-none z-20">
+            Centro Habana (8 Kits)
         </div>
     </div>
 
-    <!-- 2. VEDADO (Centro Arriba - Cerca de Línea/Malecón) -->
-    <div class="absolute top-[25%] left-[42%] group/pin cursor-pointer z-20">
-        <span class="relative flex h-3 w-3">
-          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-          <span class="relative inline-flex rounded-full h-3 w-3 bg-blue-500 border-2 border-white shadow-[0_0_15px_#3b82f6]"></span>
-        </span>
-        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/90 text-white text-[10px] px-3 py-1 rounded font-bold whitespace-nowrap opacity-0 group-hover/pin:opacity-100 transition transform translate-y-2 group-hover/pin:translate-y-0 pointer-events-none border border-blue-500/50">
-            Vedado (12 Kits)
+    <!-- PIN 2: HABANA VIEJA (Arriba a la derecha en tu foto) -->
+    <div class="absolute top-[25%] left-[55%] flex flex-col items-center group/pin cursor-pointer z-10">
+        <div class="relative">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-3 w-3 bg-yellow-500 border-2 border-white shadow-[0_0_10px_#eab308]"></span>
         </div>
-    </div>
-
-    <!-- 3. HABANA VIEJA / CENTRO HABANA (Derecha Arriba - Bahía) -->
-    <div class="absolute top-[30%] left-[68%] group/pin cursor-pointer z-20">
-        <span class="relative flex h-3 w-3">
-          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-400 opacity-75"></span>
-          <span class="relative inline-flex rounded-full h-3 w-3 bg-yellow-500 border-2 border-white shadow-[0_0_15px_#eab308]"></span>
-        </span>
-        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/90 text-white text-[10px] px-3 py-1 rounded font-bold whitespace-nowrap opacity-0 group-hover/pin:opacity-100 transition transform translate-y-2 group-hover/pin:translate-y-0 pointer-events-none border border-yellow-500/50">
+        <div class="absolute bottom-6 left-1/2 -translate-x-1/2 bg-white text-black text-[10px] px-3 py-1 rounded font-bold whitespace-nowrap opacity-0 group-hover/pin:opacity-100 transition shadow-xl transform translate-y-2 group-hover/pin:translate-y-0 pointer-events-none z-20">
             Habana Vieja (Comercios)
         </div>
     </div>
 
-    <!-- 4. REGLA (Cruzando la bahía a la derecha) -->
-    <div class="absolute top-[38%] left-[82%] group/pin cursor-pointer z-20">
-        <span class="relative flex h-3 w-3">
-          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
-          <span class="relative inline-flex rounded-full h-3 w-3 bg-purple-500 border-2 border-white shadow-[0_0_15px_#a855f7]"></span>
-        </span>
-        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/90 text-white text-[10px] px-3 py-1 rounded font-bold whitespace-nowrap opacity-0 group-hover/pin:opacity-100 transition transform translate-y-2 group-hover/pin:translate-y-0 pointer-events-none border border-purple-500/50">
-            Regla (Zona Industrial)
+    <!-- PIN 3: DIEZ DE OCTUBRE (Abajo al centro en tu foto) -->
+    <div class="absolute bottom-[25%] left-[52%] flex flex-col items-center group/pin cursor-pointer z-10">
+        <div class="relative">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500 border-2 border-white shadow-[0_0_10px_#22c55e]"></span>
+        </div>
+        <div class="absolute bottom-6 left-1/2 -translate-x-1/2 bg-white text-black text-[10px] px-3 py-1 rounded font-bold whitespace-nowrap opacity-0 group-hover/pin:opacity-100 transition shadow-xl transform translate-y-2 group-hover/pin:translate-y-0 pointer-events-none z-20">
+            10 de Octubre (15 Kits)
         </div>
     </div>
 
-    <!-- 5. 10 DE OCTUBRE / VÍBORA (Abajo Centro - Cerca de Mónaco) -->
-    <div class="absolute top-[70%] left-[55%] group/pin cursor-pointer z-20">
-        <span class="relative flex h-3 w-3">
-          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-          <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500 border-2 border-white shadow-[0_0_15px_#22c55e]"></span>
-        </span>
-        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/90 text-white text-[10px] px-3 py-1 rounded font-bold whitespace-nowrap opacity-0 group-hover/pin:opacity-100 transition transform translate-y-2 group-hover/pin:translate-y-0 pointer-events-none border border-green-500/50">
-            Víbora / 10 de Oct.
+    <!-- PIN 4: REGLA (A la derecha cruzando la bahía en tu foto) -->
+    <div class="absolute top-[45%] right-[20%] flex flex-col items-center group/pin cursor-pointer z-10">
+        <div class="relative">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-3 w-3 bg-blue-500 border-2 border-white shadow-[0_0_10px_#3b82f6]"></span>
+        </div>
+        <div class="absolute bottom-6 left-1/2 -translate-x-1/2 bg-white text-black text-[10px] px-3 py-1 rounded font-bold whitespace-nowrap opacity-0 group-hover/pin:opacity-100 transition shadow-xl transform translate-y-2 group-hover/pin:translate-y-0 pointer-events-none z-20">
+            Regla / Guanabacoa
         </div>
     </div>
 
-     <!-- 6. MARIANAO (Izquierda Centro - Cerca del Obelisco) -->
-    <div class="absolute top-[55%] left-[30%] group/pin cursor-pointer z-20">
-        <span class="relative flex h-3 w-3">
-          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
-          <span class="relative inline-flex rounded-full h-3 w-3 bg-orange-500 border-2 border-white shadow-[0_0_15px_#f97316]"></span>
-        </span>
-        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/90 text-white text-[10px] px-3 py-1 rounded font-bold whitespace-nowrap opacity-0 group-hover/pin:opacity-100 transition transform translate-y-2 group-hover/pin:translate-y-0 pointer-events-none border border-orange-500/50">
-            Marianao
-        </div>
-    </div>
-
+    
 </div>
+    </div>
 </section>
 
 
@@ -2916,46 +2891,7 @@
             <h2 class="text-4xl md:text-6xl font-bold text-white mb-4 font-tech leading-tight">
                 CATÁLOGO <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">LLAVE EN MANO</span>
             </h2>
-            <!-- FILTRO DE VOLTAJE -->
-<div class="max-w-2xl mx-auto px-4 mb-8 text-center">
-    <p class="text-gray-400 text-xs uppercase tracking-widest mb-2 font-bold">Paso 1: ¿Qué corriente usas?</p>
-    
-    <div class="grid grid-cols-2 gap-4">
-        <!-- Opción 110V -->
-        <label class="cursor-pointer">
-            <input type="radio" name="voltaje" class="peer sr-only" onclick="filterKits('110')">
-            <div class="bg-gray-900 border-2 border-gray-700 p-4 rounded-xl peer-checked:border-blue-500 peer-checked:bg-blue-900/20 transition hover:bg-gray-800">
-                <div class="text-2xl mb-1">🔌</div>
-                <div class="text-white font-bold text-sm">Solo 110V</div>
-                <div class="text-[10px] text-gray-500">Refris, TV, Luces</div>
-            </div>
-        </label>
-
-        <!-- Opción 220V -->
-        <label class="cursor-pointer">
-            <input type="radio" name="voltaje" class="peer sr-only" onclick="filterKits('220')">
-            <div class="bg-gray-900 border-2 border-gray-700 p-4 rounded-xl peer-checked:border-red-500 peer-checked:bg-red-900/20 transition hover:bg-gray-800">
-                <div class="text-2xl mb-1">⚡</div>
-                <div class="text-white font-bold text-sm">110V y 220V</div>
-                <div class="text-[10px] text-gray-500">Aires Acondicionados (Splits)</div>
-            </div>
-        </label>
-    </div>
-    <p id="voltaje-advice" class="text-xs text-yellow-500 mt-3 font-bold hidden"></p>
-</div>
-
-<script>
-function filterKits(tipo) {
-    const advice = document.getElementById('voltaje-advice');
-    advice.classList.remove('hidden');
-    if(tipo === '110') {
-        advice.innerHTML = "💡 Para ti: Mira los Kits <strong>MUST</strong> y <strong>ASTRA</strong> (Más económicos).";
-        // Aquí podrías ocultar los kits grandes si quisieras, o hacer scroll
-    } else {
-        advice.innerHTML = "❄️ Necesitas potencia: Mira obligatoriamente la línea <strong>PRO 6.5kW</strong> o superior.";
-    }
-}
-</script>
+            
             <!-- Subtítulo integrado (El Hook de Hormozi) -->
             <div class="max-w-3xl mx-auto bg-blue-900/10 border border-blue-500/20 rounded-xl p-4 mt-6">
                 <h3 class="text-xl md:text-2xl text-white font-bold mb-2">
@@ -3803,522 +3739,121 @@ function filterKits(tipo) {
 </script>
 
 
-<!-- SECCIÓN: LOTE 128 (STOCK POR PRODUCTO) -->
-<section id="lote-futuro" class="py-20 bg-[#0b1120] relative overflow-hidden border-t border-purple-500/30">
+<!-- SECCIÓN: LOTE ESTRATÉGICO FEBRERO (ESCASEZ + TRIFÁSICA) -->
+<section class="py-20 bg-gradient-to-b from-[#0f172a] to-[#1e1b4b] border-t border-purple-500/30 relative overflow-hidden">
     
-    <!-- Fondo decorativo -->
-    <div class="absolute inset-0 opacity-5 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
-    
-    <div class="max-w-7xl mx-auto px-4 relative z-10">
+    <!-- Fondo decorativo industrial -->
+    <div class="absolute right-0 top-0 w-1/3 h-full bg-purple-500/5 -skew-x-12 transform origin-top-right pointer-events-none"></div>
+
+    <div class="max-w-6xl mx-auto px-4 relative z-10">
         
-        <!-- HEADER -->
-        <div class="text-center mb-10">
-            <div class="inline-flex items-center gap-2 bg-purple-900/50 border border-purple-400 text-purple-300 px-6 py-2 rounded-full text-xs font-bold uppercase tracking-widest mb-4 animate-pulse">
-                <i class="fas fa-ship"></i> Llegada Confirmada: Febrero 2026
-            </div>
-            <h2 class="text-3xl md:text-5xl font-black text-white mb-4">
-                ASIGNACIÓN DE CUPOS: <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500">LOTE #128</span>
+        <div class="text-center mb-12">
+            <span class="inline-block py-1 px-3 rounded-full bg-purple-500/20 border border-purple-400 text-purple-300 text-xs font-bold uppercase tracking-widest mb-4 animate-pulse">
+                🚢 Próximo Desembarco: Febrero 2026
+            </span>
+            <h2 class="text-3xl md:text-5xl font-bold text-white mb-6">
+                Lista de Prioridad: <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400">Lote 128</span>
             </h2>
-            
-            <div class="max-w-3xl mx-auto bg-gray-900/80 border border-gray-700 p-4 rounded-xl text-left md:text-center shadow-lg">
-                <p class="text-gray-300 text-sm leading-relaxed">
-                    <i class="fas fa-info-circle text-yellow-500 mr-2"></i><strong>Funcionamiento:</strong> 
-                    Este contenedor trae <strong>128 equipos específicos</strong>. Al reservar, congelas una unidad con tu nombre. 
-                    Si el contador de un modelo llega a 0, pasará automáticamente a <span class="text-red-400 font-bold">Lista de Espera</span> (solo accesible si alguien cancela).
-                </p>
-            </div>
+            <p class="text-gray-300 max-w-3xl mx-auto text-sm leading-relaxed">
+                Entrarán al país exactamente <strong>128 Kits de Alta Potencia</strong>. 
+                Debido a la crisis energética, la demanda supera la oferta. 
+                <span class="text-white font-bold">No saldrán a la venta pública.</span> Se ofrecerán exclusivamente a nuestra Lista de Espera por orden de llegada.
+            </p>
         </div>
 
-        <div class="grid lg:grid-cols-12 gap-8">
-
-            <!-- COLUMNA 1: RESUMEN GLOBAL Y NOTIFICACIONES -->
-            <div class="lg:col-span-4 space-y-6">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+            
+            <!-- COLUMNA 1: LA VENTAJA ÚNICA (TRIFÁSICA) -->
+            <div class="bg-gray-900/80 border-2 border-yellow-500 rounded-2xl p-8 shadow-[0_0_60px_rgba(234,179,8,0.15)] relative overflow-hidden group">
                 
-                <!-- CONTADOR GLOBAL -->
-                <div class="bg-[#1e293b] border-2 border-purple-500/50 rounded-2xl p-6 text-center relative overflow-hidden shadow-[0_0_30px_rgba(168,85,247,0.2)]">
-                    <p class="text-gray-400 text-xs uppercase tracking-widest mb-2">Total Cupos en Contenedor</p>
-                    <div class="text-6xl font-black text-white mb-2 tracking-tighter" id="global-counter">128</div>
-                    <p class="text-[10px] text-purple-300 mb-4">Disponibilidad General</p>
+                <!-- Etiqueta de Monopolio -->
+                <div class="absolute top-0 right-0 bg-yellow-500 text-black text-[10px] font-black px-4 py-2 rounded-bl-xl uppercase tracking-wider z-20">
+                    🏆 Exclusivo en Cuba
+                </div>
+
+                <div class="relative z-10">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i class="fas fa-industry text-4xl text-yellow-500"></i>
+                        <h3 class="text-2xl font-bold text-white">Solución TRIFÁSICA <br><span class="text-sm text-gray-400 font-normal">380V / Industrial</span></h3>
+                    </div>
                     
-                    <!-- Barra visual global -->
-                    <div class="w-full bg-gray-800 h-3 rounded-full overflow-hidden border border-gray-600">
-                        <div class="bg-gradient-to-r from-purple-500 to-pink-500 h-full transition-all duration-1000" id="global-progress" style="width: 100%"></div>
-                    </div>
-                </div>
+                    <p class="text-gray-300 text-sm mb-6 border-l-2 border-yellow-500 pl-4">
+                        Mientras otros solo importan equipos residenciales básicos, nosotros traemos la potencia real.
+                        <br><br>
+                        <strong>¿Tienes Panadería, Fábrica o Motores Trifásicos?</strong> 
+                        Somos los únicos con la tecnología para mantener tu negocio produciendo.
+                    </p>
 
-                <!-- FEED DE RESERVAS -->
-                <div class="bg-black/30 border border-gray-700 rounded-xl p-4 h-[400px] flex flex-col">
-                    <div class="flex items-center justify-between mb-4 border-b border-gray-700 pb-2">
-                        <span class="text-xs font-bold text-white"><i class="fas fa-satellite-dish text-green-400 mr-2"></i>Transacciones en Vivo</span>
-                        <span class="text-[9px] text-gray-500 animate-pulse">● Online</span>
-                    </div>
-                    <div id="reservation-feed" class="flex-1 overflow-hidden relative space-y-3">
-                        <!-- JS inserta aquí -->
-                    </div>
-                </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center text-xs text-white">
+                            <i class="fas fa-check-circle text-yellow-500 mr-2"></i> Inversores Industriales Híbridos.
+                        </li>
+                        <li class="flex items-center text-xs text-white">
+                            <i class="fas fa-check-circle text-yellow-500 mr-2"></i> Balanceo de Cargas Automático.
+                        </li>
+                        <li class="flex items-center text-xs text-white">
+                            <i class="fas fa-check-circle text-yellow-500 mr-2"></i> Capacidad Expandible sin límites.
+                        </li>
+                    </ul>
 
+                    <button onclick="openOrderForm('Interés Lista Espera: TRIFÁSICA')" class="w-full bg-yellow-500 hover:bg-yellow-400 text-black font-bold py-4 rounded-xl transition transform hover:scale-[1.02] shadow-lg flex items-center justify-center gap-2">
+                        <span>Anotarme en Lista Trifásica</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                    <p class="text-[10px] text-gray-500 text-center mt-3">
+                        *Sin anticipo. Te avisamos primero cuando llegue.
+                    </p>
+                </div>
             </div>
 
-            <!-- COLUMNA 2: CATÁLOGO POR MODELO (DERECHA) -->
-            <div class="lg:col-span-8">
-                <div class="grid md:grid-cols-2 gap-4">
 
-                    <!-- KIT 1: 5kW PRO -->
-                    <div class="bg-gray-900/50 border border-gray-700 hover:border-purple-500 rounded-xl p-5 relative flex flex-col transition group">
-                        <div class="flex justify-between items-start mb-2">
-                            <h4 class="text-white font-bold text-lg">Kit 5kW PRO</h4>
-                            <!-- STOCK INDIVIDUAL -->
-                            <div class="text-right">
-                                <span class="text-2xl font-black text-white" id="stock-5kw">--</span>
-                                <p class="text-[9px] text-gray-400 uppercase">Restantes</p>
-                            </div>
+            <!-- COLUMNA 2: LA ESCASEZ VISUAL (LOS 128 CUPOS) -->
+            <div>
+                <div class="bg-gray-800/50 rounded-xl p-6 border border-gray-700">
+                    <div class="flex justify-between items-end mb-4">
+                        <div>
+                            <h4 class="text-white font-bold text-sm">Estado del Contenedor</h4>
+                            <p class="text-[10px] text-gray-400">Actualizado: Hoy</p>
                         </div>
-                        
-                        <!-- Barra Stock Individual -->
-                        <div class="w-full bg-gray-800 h-1.5 rounded-full overflow-hidden mb-4">
-                            <div id="bar-5kw" class="bg-purple-500 h-full transition-all duration-500" style="width: 100%"></div>
+                        <div class="text-right">
+                            <span class="text-3xl font-black text-white">42</span>
+                            <span class="text-xs text-gray-400 uppercase">Cupos Libres</span>
                         </div>
-
-                        <div class="text-xs text-gray-400 mb-3 font-mono">Residencial • 110V/120V</div>
-                        <ul class="space-y-1 mb-4 text-xs text-gray-300 flex-1">
-                            <li>• Inversor SRNE 5kW</li>
-                            <li>• Bat: 1x 100Ah LiFePO4 (5.12kWh)</li>
-                            <li>• 6 Paneles DAH 620W</li>
-                        </ul>
-                        <button id="btn-5kw" onclick="processClick('5kw', 'Kit 5kW PRO')" class="w-full bg-gray-800 hover:bg-purple-600 text-white text-xs font-bold py-3 rounded-lg transition border border-gray-600 hover:border-purple-500 shadow-lg">
-                            Reservar Cupo (Gratis)
-                        </button>
                     </div>
 
-                    <!-- KIT 2: 6.5kW SPLIT -->
-                    <div class="bg-gray-900/50 border border-gray-700 hover:border-blue-500 rounded-xl p-5 relative flex flex-col transition group">
-                        <div class="flex justify-between items-start mb-2">
-                            <h4 class="text-white font-bold text-lg">Kit 6.5kW Split</h4>
-                            <div class="text-right">
-                                <span class="text-2xl font-black text-white" id="stock-6kw">--</span>
-                                <p class="text-[9px] text-gray-400 uppercase">Restantes</p>
-                            </div>
-                        </div>
-
-                        <div class="w-full bg-gray-800 h-1.5 rounded-full overflow-hidden mb-4">
-                            <div id="bar-6kw" class="bg-blue-500 h-full transition-all duration-500" style="width: 100%"></div>
-                        </div>
-
-                        <div class="text-xs text-gray-400 mb-3 font-mono">Familiar • 110V/220V</div>
-                        <ul class="space-y-1 mb-4 text-xs text-gray-300 flex-1">
-                            <li>• Inversor SRNE 6.5kW (Split Phase)</li>
-                            <li>• Bat: 1x 205Ah LiFePO4 (10kWh)</li>
-                            <li>• 12 Paneles DAH 620W</li>
-                        </ul>
-                        <button id="btn-6kw" onclick="processClick('6kw', 'Kit 6.5kW Split')" class="w-full bg-gray-800 hover:bg-blue-600 text-white text-xs font-bold py-3 rounded-lg transition border border-gray-600 hover:border-blue-500 shadow-lg">
-                            Reservar Cupo (Gratis)
-                        </button>
+                    <!-- VISUALIZACIÓN DE LOS 128 CUPOS (GRID) -->
+                    <!-- Simulación visual: Rojos (Ocupados), Amarillos (Reservados), Verdes (Libres) -->
+                    <div class="grid grid-cols-10 gap-1.5 mb-6" id="gridCupos">
+                        <!-- Se llena con JS para no escribir 128 divs -->
                     </div>
 
-                    <!-- KIT 3: 10kW MAX -->
-                    <div class="bg-gray-900/50 border border-gray-700 hover:border-yellow-500 rounded-xl p-5 relative flex flex-col transition group">
-                        <div class="flex justify-between items-start mb-2">
-                            <h4 class="text-white font-bold text-lg">Kit 10kW MAX</h4>
-                            <div class="text-right">
-                                <span class="text-2xl font-black text-white" id="stock-10kw">--</span>
-                                <p class="text-[9px] text-gray-400 uppercase">Restantes</p>
-                            </div>
-                        </div>
-
-                        <div class="w-full bg-gray-800 h-1.5 rounded-full overflow-hidden mb-4">
-                            <div id="bar-10kw" class="bg-yellow-500 h-full transition-all duration-500" style="width: 100%"></div>
-                        </div>
-
-                        <div class="text-xs text-gray-400 mb-3 font-mono">Potencia Total • 110V/220V</div>
-                        <ul class="space-y-1 mb-4 text-xs text-gray-300 flex-1">
-                            <li>• Inversor SRNE 10kW</li>
-                            <li>• Bat: Rack 20kWh (Industrial)</li>
-                            <li>• 16 Paneles DAH 620W</li>
-                        </ul>
-                        <button id="btn-10kw" onclick="processClick('10kw', 'Kit 10kW MAX')" class="w-full bg-gray-800 hover:bg-yellow-600 text-black text-xs font-bold py-3 rounded-lg transition border border-gray-600 hover:border-yellow-500 shadow-lg">
-                            Reservar Cupo (Gratis)
-                        </button>
+                    <div class="flex justify-between text-[9px] text-gray-400 font-mono uppercase">
+                        <span class="flex items-center gap-1"><div class="w-2 h-2 bg-red-900 rounded-sm"></div> Corporativo</span>
+                        <span class="flex items-center gap-1"><div class="w-2 h-2 bg-yellow-600 rounded-sm"></div> Reservado</span>
+                        <span class="flex items-center gap-1"><div class="w-2 h-2 bg-green-500 rounded-sm shadow-[0_0_5px_#22c55e]"></div> Disponible</span>
                     </div>
+                </div>
 
-                    <!-- KIT 4: TRIFÁSICA -->
-                    <div class="bg-gradient-to-br from-yellow-900/20 to-gray-900 border-2 border-yellow-600 rounded-xl p-5 relative flex flex-col transition shadow-[0_0_20px_rgba(202,138,4,0.1)]">
-                        <div class="absolute top-0 right-0 bg-yellow-600 text-black text-[10px] font-black px-3 py-1 rounded-bl">INDUSTRIAL</div>
-                        
-                        <div class="flex justify-between items-start mb-2 mt-4">
-                            <h4 class="text-white font-bold text-lg">Solución Trifásica</h4>
-                            <div class="text-right">
-                                <span class="text-2xl font-black text-white" id="stock-tri">--</span>
-                                <p class="text-[9px] text-gray-400 uppercase">Restantes</p>
-                            </div>
-                        </div>
-
-                        <div class="w-full bg-gray-800 h-1.5 rounded-full overflow-hidden mb-4">
-                            <div id="bar-tri" class="bg-yellow-600 h-full transition-all duration-500" style="width: 100%"></div>
-                        </div>
-
-                        <div class="text-xs text-gray-400 mb-3 font-mono">380V / 440V • Fábricas/Negocios</div>
-                        <p class="text-xs text-gray-300 mb-4 flex-1">
-                            Inversores híbridos trifásicos SRNE. Proyectos a medida para motores y cargas inductivas pesadas.
+                <div class="mt-6 bg-blue-900/20 border border-blue-500/30 p-4 rounded-xl flex items-start gap-3">
+                    <i class="fas fa-info-circle text-blue-400 mt-1"></i>
+                    <div>
+                        <h5 class="text-blue-300 text-xs font-bold mb-1">¿Cómo funciona la Lista de Prioridad?</h5>
+                        <p class="text-gray-400 text-[11px] leading-relaxed">
+                            No te pedimos dinero hoy. Solo tus datos. Cuando el barco atraque, <strong>te llamamos antes de publicar los equipos</strong>. Tienes 24h para confirmar. Si no, pasamos al siguiente de la lista. <span class="text-white underline">Cero Riesgo para ti.</span>
                         </p>
-                        <button id="btn-tri" onclick="processClick('tri', 'Solución Trifásica')" class="w-full bg-yellow-600 hover:bg-yellow-500 text-black text-xs font-bold py-3 rounded-lg transition shadow-lg transform active:scale-95">
-                            Solicitar Estudio Trifásico
-                        </button>
                     </div>
+                </div>
 
+                <div class="mt-4 text-center">
+                    <button onclick="openOrderForm('Interés Lista Espera: ESTÁNDAR')" class="text-gray-400 hover:text-white text-xs underline decoration-dotted transition">
+                        No necesito trifásica, solo quiero un cupo residencial normal
+                    </button>
                 </div>
             </div>
 
         </div>
     </div>
 </section>
-
-<!-- SCRIPT DE INVENTARIO GRANULAR -->
-<script>
-(function() {
-    // 1. CONFIGURACIÓN DEL STOCK INICIAL (Total 128)
-    const DEFAULTS = {
-        '5kw': 50,
-        '6kw': 40,
-        '10kw': 23,
-        'tri': 15
-    };
-    
-    // Configuración Base
-    const STORAGE_KEY = 'solar_lote128_db_v2';
-    const LAST_TIME_KEY = 'solar_lote128_time';
-    
-    // Nombres y Lugares para las notificaciones
-    const NAMES = ["Hostal Vedado", "MIPYME El Sol", "Cafetería Juana", "Roberto M.", "Carlos T.", "Finca La Fe", "Taller 23", "Familia Pérez", "Lazaro G.", "Yusimí", "Panadería 10Oct"];
-    const LOCS = ["Playa", "Vedado", "Guanabacoa", "Boyeros", "Cotorro", "Marianao", "La Lisa", "10 de Octubre", "Habana Vieja", "Centro Habana"];
-
-    // 2. SISTEMA DE PERSISTENCIA
-    let stockDB = {};
-
-    function initDB() {
-        const saved = localStorage.getItem(STORAGE_KEY);
-        if (saved) {
-            stockDB = JSON.parse(saved);
-        } else {
-            stockDB = {...DEFAULTS};
-            saveDB();
-        }
-        
-        // Simular bajada por tiempo si el usuario no entró en mucho rato
-        const lastTime = localStorage.getItem(LAST_TIME_KEY);
-        const now = Date.now();
-        if (lastTime) {
-            const hoursPassed = (now - parseInt(lastTime)) / (1000 * 60 * 60);
-            if (hoursPassed > 2) {
-                // Si pasaron más de 2 horas, bajar aleatoriamente algo
-                reduceRandomStock();
-            }
-        }
-        localStorage.setItem(LAST_TIME_KEY, now);
-    }
-
-    function saveDB() {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(stockDB));
-    }
-
-    function reduceRandomStock() {
-        const keys = Object.keys(stockDB);
-        const randomKey = keys[Math.floor(Math.random() * keys.length)];
-        if (stockDB[randomKey] > 2) {
-            stockDB[randomKey]--;
-            saveDB();
-        }
-    }
-
-    // 3. ACTUALIZAR INTERFAZ (UI)
-    function updateUI() {
-        let totalGlobal = 0;
-        const totalMax = 128; // Base para la barra global
-
-        for (const [key, val] of Object.entries(stockDB)) {
-            // Actualizar número individual
-            const counter = document.getElementById(`stock-${key}`);
-            if (counter) counter.innerText = val;
-            
-            // Actualizar barra individual
-            const bar = document.getElementById(`bar-${key}`);
-            const max = DEFAULTS[key]; 
-            const pct = (val / max) * 100;
-            if (bar) {
-                bar.style.width = `${pct}%`;
-                // Color rojo si queda poco
-                if (pct < 20) bar.className = "bg-red-500 h-full transition-all duration-500";
-            }
-
-            // Botón Agotado
-            const btn = document.getElementById(`btn-${key}`);
-            if (val <= 0 && btn) {
-                btn.innerText = "Unirme a Lista de Espera (Prioridad Cancelación)";
-                btn.classList.remove('bg-gray-800', 'bg-yellow-600');
-                btn.classList.add('bg-red-900/40', 'border-red-500', 'text-red-200');
-                btn.onclick = function() { processClick(key, 'LISTA ESPERA'); };
-            }
-
-            totalGlobal += val;
-        }
-
-        // Actualizar Globales
-        const globalCounter = document.getElementById('global-counter');
-        const globalProgress = document.getElementById('global-progress');
-        
-        if (globalCounter) globalCounter.innerText = totalGlobal;
-        if (globalProgress) {
-            const globalPct = (totalGlobal / totalMax) * 100;
-            globalProgress.style.width = `${globalPct}%`;
-        }
-    }
-
-    // 4. GENERADOR DE EVENTOS (Venta Simulada)
-    function triggerSale() {
-        // Elegir un producto al azar para "vender"
-        const keys = Object.keys(stockDB);
-        // Filtrar los que tienen stock
-        const availableKeys = keys.filter(k => stockDB[k] > 0);
-        
-        if (availableKeys.length === 0) return; // Todo agotado
-
-        const key = availableKeys[Math.floor(Math.random() * availableKeys.length)];
-        
-        // Bajar stock real
-        stockDB[key]--;
-        saveDB();
-        updateUI();
-
-        // Crear Notificación
-        const name = NAMES[Math.floor(Math.random() * NAMES.length)];
-        const loc = LOCS[Math.floor(Math.random() * LOCS.length)];
-        const productName = getProductName(key);
-        const time = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-
-        const feed = document.getElementById('reservation-feed');
-        if (feed) {
-            const html = `
-                <div class="flex items-start gap-3 p-3 bg-[#1e293b] border border-gray-700 rounded-lg animate-slide-in shadow-md">
-                    <div class="bg-green-500/10 p-2 rounded-full text-green-500 shrink-0">
-                        <i class="fas fa-shopping-bag text-xs"></i>
-                    </div>
-                    <div>
-                        <p class="text-xs text-white">
-                            <span class="font-bold text-yellow-500">${name}</span> (${loc})
-                        </p>
-                        <p class="text-[10px] text-gray-400">Reservó: <strong>${productName}</strong></p>
-                        <p class="text-[9px] text-gray-600 text-right mt-1">${time}</p>
-                    </div>
-                </div>
-            `;
-            feed.insertAdjacentHTML('afterbegin', html);
-            if (feed.children.length > 3) feed.lastElementChild.remove();
-        }
-    }
-
-    function getProductName(key) {
-        if(key === '5kw') return "Kit 5kW Residencial";
-        if(key === '6kw') return "Kit 6.5kW Split";
-        if(key === '10kw') return "Kit 10kW MAX";
-        if(key === 'tri') return "Solución Trifásica";
-        return "Kit Solar";
-    }
-
-    // 5. BUCLE DE TIEMPO REAL
-    function startLoop() {
-        // Evento inicial rápido
-        setTimeout(triggerSale, 4000);
-
-        // Ciclo infinito con tiempo aleatorio (entre 1 min y 4 min)
-        // Esto es lento para que sea creíble
-        const loop = () => {
-            const delay = Math.floor(Math.random() * (240000 - 60000 + 1) + 60000);
-            setTimeout(() => {
-                triggerSale();
-                loop();
-            }, delay);
-        };
-        loop();
-    }
-
-    // INICIAR
-    document.addEventListener('DOMContentLoaded', () => {
-        initDB();
-        updateUI();
-        startLoop();
-    });
-
-})();
-
-// 6. FUNCIÓN PÚBLICA PARA LOS BOTONES
-function processClick(key, label) {
-    let msg = "";
-    if (label === 'LISTA ESPERA') {
-        msg = `Hola, veo que el modelo ${key.toUpperCase()} del Lote 128 está agotado. Por favor, anótenme en la LISTA DE ESPERA por si se libera un cupo.`;
-    } else {
-        // Generar Ticket
-        const ticket = 'RES-' + Math.floor(Math.random() * 10000);
-        msg = `Hola, quiero reservar mi cupo para el *${label}* (Lote Febrero 128). Mi Ticket es: ${ticket}`;
-    }
-    window.open(`https://wa.me/5358183649?text=${encodeURIComponent(msg)}`, '_blank');
-}
-</script>
-
-<!-- MODAL DE PRE-ORDEN (IGUAL QUE ANTES, YA LO TIENES, NO LO DUPLIQUES SI YA ESTÁ) -->
-<!-- Solo asegúrate de que la función openPreOrder(kitName) actualice el texto del modal -->
-
-<!-- SCRIPT DE INTELIGENCIA DE STOCK (EL CEREBRO) -->
-<script>
-(function() {
-    // 1. CONFIGURACIÓN
-    const START_STOCK = 42; // Stock inicial "teórico"
-    const STORAGE_KEY = 'solar_lote128_stock';
-    const LAST_VISIT_KEY = 'solar_last_visit_lote';
-    
-    // Base de datos de "Compradores Falsos" para la prueba social
-    const FAKE_BUYERS = [
-        { name: "MIPYME 'El Buen Pan'", loc: "Playa", item: "Solución Trifásica" },
-        { name: "Hostal Casa Granda", loc: "Vedado", item: "Kit 10kW MAX" },
-        { name: "Roberto M.", loc: "Guanabacoa", item: "Kit 5kW PRO" },
-        { name: "Cafetería 23 y 12", loc: "Vedado", item: "Kit 6.5kW Split" },
-        { name: "Finca La Esperanza", loc: "Boyeros", item: "Kit 10kW" },
-        { name: "Yusimí R.", loc: "Cotorro", item: "Kit 5kW" },
-        { name: "Taller de Autos", loc: "Marianao", item: "Solución Trifásica" },
-        { name: "Dr. Ernesto", loc: "Miramar", item: "Kit 6.5kW Split" }
-    ];
-
-    // 2. LOGICA DE PERSISTENCIA (El stock baja con el tiempo real)
-    function getStock() {
-        const now = Date.now();
-        let storedStock = localStorage.getItem(STORAGE_KEY);
-        let lastVisit = localStorage.getItem(LAST_VISIT_KEY);
-        
-        // Si es la primera vez, iniciamos
-        if (!storedStock) {
-            localStorage.setItem(STORAGE_KEY, START_STOCK);
-            localStorage.setItem(LAST_VISIT_KEY, now);
-            return START_STOCK;
-        }
-
-        // Si ya visitó, calculamos "pérdida" basada en el tiempo que no estuvo
-        // Reducimos 1 cupo cada 3 horas aprox para que sea creíble
-        const hoursPassed = (now - parseInt(lastVisit || now)) / (1000 * 60 * 60);
-        let current = parseInt(storedStock);
-
-        if (hoursPassed > 3) {
-            const reduction = Math.floor(hoursPassed / 3);
-            current = Math.max(3, current - reduction); // Nunca bajar de 3
-            localStorage.setItem(STORAGE_KEY, current);
-            localStorage.setItem(LAST_VISIT_KEY, now);
-        }
-        
-        return current;
-    }
-
-    // 3. ACTUALIZAR UI
-    function updateStockUI(val) {
-        const counter = document.getElementById('live-stock-counter');
-        const progress = document.getElementById('stock-progress');
-        const warning = document.getElementById('stock-warning');
-        
-        if(counter) {
-            // Animación de conteo hacia abajo
-            counter.innerText = val;
-            
-            // Barra de progreso
-            const percent = (val / 60) * 100; // 60 era el total imaginario
-            if(progress) progress.style.width = `${percent}%`;
-
-            // Color de pánico si queda poco
-            if(val < 10) {
-                counter.classList.add('text-red-500');
-                if(progress) progress.classList.replace('from-purple-500', 'from-red-600');
-                if(warning) {
-                    warning.innerHTML = "🚨 STOCK CRÍTICO: Se agota hoy";
-                    warning.classList.add('scale-110');
-                }
-            }
-        }
-    }
-
-    // 4. GENERADOR DE NOTIFICACIONES (El "Toast" en el feed)
-    function addNotification() {
-        const feed = document.getElementById('reservation-feed');
-        if(!feed) return;
-
-        const buyer = FAKE_BUYERS[Math.floor(Math.random() * FAKE_BUYERS.length)];
-        const time = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-
-        const itemHTML = `
-            <div class="flex items-start gap-3 p-3 bg-gray-800/50 rounded-lg border border-gray-700 animate-slide-in">
-                <div class="bg-green-900/50 p-2 rounded-full border border-green-500/30">
-                    <i class="fas fa-file-signature text-green-400 text-xs"></i>
-                </div>
-                <div>
-                    <p class="text-xs text-white font-bold leading-tight">
-                        <span class="text-yellow-400">${buyer.name}</span> (${buyer.loc})
-                    </p>
-                    <p class="text-[10px] text-gray-400">Reservó cupo: ${buyer.item}</p>
-                    <p class="text-[9px] text-gray-500 text-right mt-1">${time}</p>
-                </div>
-            </div>
-        `;
-
-        feed.insertAdjacentHTML('afterbegin', itemHTML);
-        
-        // Mantener solo 4 elementos en el feed para no saturar memoria
-        if(feed.children.length > 4) {
-            feed.lastElementChild.remove();
-        }
-
-        // 5. EFECTO DOMINÓ: Si sale una notificación, bajamos el stock visualmente
-        let current = parseInt(localStorage.getItem(STORAGE_KEY));
-        if (current > 3 && Math.random() > 0.5) { // 50% chance de que la notificación baje el stock real
-            current--;
-            localStorage.setItem(STORAGE_KEY, current);
-            updateStockUI(current);
-        }
-    }
-
-    // 6. INICIALIZACIÓN
-    document.addEventListener('DOMContentLoaded', () => {
-        let stock = getStock();
-        updateStockUI(stock);
-
-        // Disparar notificaciones aleatorias
-        // Primera notificación a los 5 segundos
-        setTimeout(addNotification, 5000);
-
-        // Luego intervalos aleatorios entre 20s y 60s
-        setInterval(() => {
-            addNotification();
-        }, Math.floor(Math.random() * (60000 - 20000 + 1) + 20000));
-    });
-
-})();
-
-// Función global para el botón de reserva (conecta con tu modal existente)
-function openPreOrder(kitName) {
-    // Si tienes un modal de "Pedido" ya hecho, úsalo pero cambia el título
-    // O usa el modal de pre-orden que te di en la respuesta anterior
-    if(typeof openOrderForm === 'function') {
-        openOrderForm(kitName + " [RESERVA LOTE 128]");
-    } else {
-        // Fallback a WhatsApp directo si no hay modal
-        const text = `Hola, quiero reservar un cupo para el *${kitName}* del Lote 128.`;
-        window.open(`https://wa.me/5358183649?text=${encodeURIComponent(text)}`, '_blank');
-    }
-}
-</script>
-
-<style>
-@keyframes slideInLeft {
-    from { opacity: 0; transform: translateX(-20px); }
-    to { opacity: 1; transform: translateX(0); }
-}
-.animate-slide-in {
-    animation: slideInLeft 0.5s ease-out forwards;
-}
-</style>
 
 <!-- SCRIPT PARA GENERAR LOS 128 CUADRADITOS (VISUAL) -->
 <script>
@@ -5183,68 +4718,6 @@ function openPreOrder(kitName) {
             </div>
         </div>
     </section>
-    <!-- SECCIÓN: DICCIONARIO DE RIESGOS (Traductor UNE) -->
-<section class="py-12 bg-[#0b1120] border-t border-gray-800">
-    <div class="max-w-5xl mx-auto px-4">
-        
-        <div class="text-center mb-8">
-            <h3 class="text-2xl font-bold text-white">Entendiendo los Reportes 📖</h3>
-            <p class="text-gray-400 text-sm">Lo que dice la Empresa Eléctrica vs. Lo que significa para ti.</p>
-        </div>
-
-        <div class="grid md:grid-cols-2 gap-4">
-            
-            <!-- Término 1: Vía Libre -->
-            <div class="bg-gray-900 p-4 rounded-xl border border-gray-700 hover:border-yellow-500 transition group">
-                <h4 class="text-yellow-500 font-bold text-sm mb-1 flex justify-between">
-                    "Vía Libre de Emergencia"
-                    <i class="fas fa-traffic-light text-gray-600 group-hover:text-yellow-500"></i>
-                </h4>
-                <p class="text-gray-300 text-xs">
-                    <strong>Significado:</strong> Tienen que cortar la luz <em>fuera de horario</em> para que los linieros puedan trabajar en una línea viva peligrosa.
-                </p>
-                <p class="text-[10px] text-gray-500 mt-2">⏳ Duración estimada: 2 - 6 horas.</p>
-            </div>
-
-            <!-- Término 2: Primario Partido -->
-            <div class="bg-gray-900 p-4 rounded-xl border border-gray-700 hover:border-red-500 transition group">
-                <h4 class="text-red-400 font-bold text-sm mb-1 flex justify-between">
-                    "Puente/Primario Partido"
-                    <i class="fas fa-unlink text-gray-600 group-hover:text-red-500"></i>
-                </h4>
-                <p class="text-gray-300 text-xs">
-                    <strong>Significado:</strong> Un cable de alta tensión se rompió físicamente. Requiere brigada especializada, carro cesta y materiales que a veces escasean.
-                </p>
-                <p class="text-[10px] text-gray-500 mt-2">⏳ Duración estimada: 8 - 24 horas.</p>
-            </div>
-
-            <!-- Término 3: Disparo de Circuito -->
-            <div class="bg-gray-900 p-4 rounded-xl border border-gray-700 hover:border-orange-500 transition group">
-                <h4 class="text-orange-400 font-bold text-sm mb-1 flex justify-between">
-                    "Disparo de Circuito"
-                    <i class="fas fa-plug text-gray-600 group-hover:text-orange-500"></i>
-                </h4>
-                <p class="text-gray-300 text-xs">
-                    <strong>Significado:</strong> El sistema se "saltó" como una breaker gigante por sobrecarga o cortocircuito. Intentarán subirlo varias veces (el famoso "quita y pon").
-                </p>
-                <p class="text-[10px] text-gray-500 mt-2">⚠️ Alto riesgo de quemar equipos.</p>
-            </div>
-
-            <!-- Término 4: Cable Fallo (Soterrado) -->
-            <div class="bg-gray-900 p-4 rounded-xl border border-gray-700 hover:border-purple-500 transition group">
-                <h4 class="text-purple-400 font-bold text-sm mb-1 flex justify-between">
-                    "Cable Fallo (Soterrado)"
-                    <i class="fas fa-dungeon text-gray-600 group-hover:text-purple-500"></i>
-                </h4>
-                <p class="text-gray-300 text-xs">
-                    <strong>Significado:</strong> Una avería bajo tierra (común en Habana Vieja/Centro Habana). Es lo más difícil de arreglar porque requiere excavación.
-                </p>
-                <p class="text-[10px] text-gray-500 mt-2">⏳ Duración estimada: 24 - 72 horas.</p>
-            </div>
-
-        </div>
-    </div>
-</section>
 
     <!-- SECCIÓN LOGÍSTICA Y TRANSPORTE -->
     <section class="py-16 bg-[#0f172a] border-t border-gray-800">
@@ -5405,35 +4878,6 @@ function openPreOrder(kitName) {
         </div>
     </section>
 
-    <section class="py-16 bg-gradient-to-r from-blue-900 to-black relative">
-    <div class="max-w-3xl mx-auto px-4 text-center">
-        <h2 class="text-3xl font-bold text-white mb-6">¿Tu techo califica para Energía Solar? ☀️</h2>
-        <div class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20">
-            <form onsubmit="sendQuiz(event)" class="space-y-4 text-left">
-                <div>
-                    <label class="text-white text-sm font-bold">1. ¿Tienes acceso propio a la azotea/techo?</label>
-                    <select id="q1" class="w-full mt-2 p-3 rounded bg-black/50 text-white border border-gray-600">
-                        <option value="Si, es placa libre">Sí, es placa libre</option>
-                        <option value="Es teja/zinc">Es de teja/zinc</option>
-                        <option value="Es edificio (complicado)">Vivo en edificio (requiere permiso)</option>
-                    </select>
-                </div>
-                <div>
-                    <label class="text-white text-sm font-bold">2. ¿Qué equipo te urge más mantener encendido?</label>
-                    <select id="q2" class="w-full mt-2 p-3 rounded bg-black/50 text-white border border-gray-600">
-                        <option value="Solo Refrigerador y Luces">Solo Refrigerador y Luces (Supervivencia)</option>
-                        <option value="Aire Acondicionado">Aire Acondicionado (Dormir bien)</option>
-                        <option value="Negocio Completo">Tengo un Negocio (Cafetería/Hostal)</option>
-                    </select>
-                </div>
-                <button type="submit" class="w-full bg-yellow-500 hover:bg-yellow-400 text-black font-bold py-4 rounded-xl shadow-lg mt-4 transform hover:scale-105 transition">
-                    👉 Recibir Diagnóstico de Ingeniero (Gratis)
-                </button>
-            </form>
-        </div>
-    </div>
-</section>
-
     <!-- Info Footer -->
     <section class="py-12 bg-[#020617]">
         <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-3 gap-8 text-sm text-gray-400">
@@ -5450,17 +4894,6 @@ function openPreOrder(kitName) {
             <div><h4 class="text-white font-bold mb-2 border-b border-green-500 inline-block">Logística</h4><p class="mt-2">📍 <strong class="text-white">La Habana:</strong> Transporte GRATIS.</p><p>🚛 <strong class="text-white">Provincias:</strong> Costo extra según destino.</p></div>
         </div>
     </section>
-    
-
-<script>
-function sendQuiz(e) {
-    e.preventDefault();
-    const q1 = document.getElementById('q1').value;
-    const q2 = document.getElementById('q2').value;
-    const text = `👋 Hola, hice el Test Solar en la web.\n🏠 Techo: ${q1}\n⚡ Necesidad: ${q2}\n\n¿Qué equipo me recomiendan?`;
-    window.open(`https://wa.me/5358183649?text=${encodeURIComponent(text)}`, '_blank');
-}
-</script>
 
     <footer class="bg-black py-8 border-t border-gray-900 mt-auto text-center"><p class="text-gray-600 text-xs">© 2024 SolarCuba. Todos los derechos reservados.</p></footer>
 
@@ -6910,7 +6343,694 @@ function initUltimateUrgency() {
 // Iniciar al cargar la página
 document.addEventListener('DOMContentLoaded', initUltimateUrgency);
 </script>
+<!-- ======================================================= -->
+<!-- SCRIPT FUSIONADO: SHEETS BLINDADO + TELEGRAM BLOQUES -->
+<!-- ======================================================= -->
+<!-- ======================================================= -->
+<!-- SCRIPT V7: TODO EN UNO (TICKER + BLOQUES + ALERTAS) -->
+<!-- ======================================================= -->
+<script>
+    // ==========================================
+    // 1. CONFIGURACIÓN GLOBAL
+    // ==========================================
+    const SHEET_ID = '2PACX-1vSzif4P4juLuHJiXEnowN0cDOI3MEsSJLrLvQFYpL2YCyjBDgW9HZFI2lwu8ZLToVpELVc8NOF-Lsfd';
+    const SHEET_URL = `https://docs.google.com/spreadsheets/d/e/${SHEET_ID}/pub?output=csv`;
+    const TELEGRAM_URL = 'https://t.me/s/EmpresaElectricaDeLaHabana';
 
+    const MUNICIPIOS = ['Boyeros', 'Playa', 'Plaza', 'Centro Habana', 'Habana Vieja', 'Regla', 'Habana del Este', 'Guanabacoa', 'San Miguel', 'Diez de Octubre', 'Cerro', 'Marianao', 'La Lisa', 'Arroyo Naranjo', 'Cotorro'];
+    const PALABRAS_CLAVE = ['avería', 'disparo', 'interrupción', 'afectados', 'daños'];
+    window.telegramNewsList = []; 
+
+    // ==========================================
+    // 2. INICIALIZACIÓN
+    // ==========================================
+    document.addEventListener('DOMContentLoaded', () => {
+        console.log("🚀 Iniciando Sistema V-MASTER + RELOJ...");
+        initGrid();
+        loadSheet_Fast(); 
+        loadTelegram_Robust(); 
+        if(typeof initUltimateUrgency === 'function') initUltimateUrgency();
+    });
+
+    // ==========================================
+    // MÓDULO TELEGRAM
+    // ==========================================
+    async function loadTelegram_Robust() {
+        const rawBox = document.getElementById('raw-telegram-msg');
+        const timeBox = document.getElementById('telegram-time');
+        if(rawBox) rawBox.innerText = "🔄 Sincronizando noticias...";
+
+        const proxies = [
+            'https://api.allorigins.win/raw?url=', 
+            'https://corsproxy.io/?',
+            'https://api.codetabs.com/v1/proxy?quest='
+        ];
+
+        let htmlContent = null;
+
+        for (const proxy of proxies) {
+            try {
+                const response = await fetch(proxy + encodeURIComponent(TELEGRAM_URL));
+                if (response.ok) {
+                    const text = await response.text();
+                    if (text.includes('tgme_widget_message_text')) {
+                        htmlContent = text;
+                        break; 
+                    }
+                }
+            } catch (err) { console.warn("Proxy fail:", err); }
+        }
+
+        if (htmlContent) {
+            processTelegramHTML(htmlContent);
+        } else {
+            if(rawBox) {
+                rawBox.innerText = "⚠️ No se pudo conectar a Telegram.";
+                rawBox.parentElement.classList.add('border-red-500/50', 'bg-red-900/10');
+            }
+            if(timeBox) timeBox.innerText = "OFFLINE";
+        }
+    }
+
+    function processTelegramHTML(html) {
+        console.log("Iniciando análisis de Telegram...");
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, "text/html");
+        const messages = doc.querySelectorAll('.tgme_widget_message_text');
+
+        if (!messages || messages.length === 0) {
+            console.warn("No se encontraron mensajes en el HTML.");
+            return;
+        }
+
+        // VARIABLES PARA EL DASHBOARD
+        let blockData = {}; 
+        for(let i=1; i<=6; i++) blockData[i] = { status: 'unknown', time: null };
+        
+        // VARIABLES PARA LA AUDITORÍA (MENTIRAS)
+        let auditData = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0 }; 
+        let auditState = { 1: null, 2: null, 3: null, 4: null, 5: null, 6: null };
+
+        let lastMsgText = "Sin reportes de texto recientes.";
+        let lastMsgTime = "";
+        let textFound = false;
+        let realTimeMW = 0; 
+
+        window.telegramNewsList = []; 
+
+        // RECORRIDO (Del más NUEVO al más VIEJO)
+        for (let i = messages.length - 1; i >= 0; i--) {
+            const el = messages[i];
+            const txt = el.innerText;
+            const cleanTxt = txt.toLowerCase();
+            window.telegramNewsList.push(txt); 
+
+            // 1. Obtener Hora del mensaje
+            const timeNode = el.parentElement.querySelector('.tgme_widget_message_time');
+            let msgMinutes = 0;
+            let msgTimeStr = "";
+
+            if(timeNode) {
+                msgTimeStr = timeNode.innerText.trim(); // Ej: "14:30"
+                if(!lastMsgTime) lastMsgTime = msgTimeStr;
+                
+                const timeParts = msgTimeStr.split(':');
+                if(timeParts.length >= 2) {
+                    msgMinutes = (parseInt(timeParts[0]) * 60) + parseInt(timeParts[1]);
+                }
+            }
+
+            // 2. Lógica del Ticker y Barra Inferior
+            if (window.telegramNewsList.length < 5 && txt.length > 25) {
+                // (Opcional) Limpieza de texto para ticker
+            }
+            if (!textFound && (txt.includes('Bloque') || txt.includes('déficit') || txt.includes('afectaciones'))) {
+                lastMsgText = txt;
+                textFound = true;
+            }
+
+            // 3. Reloj de la Verdad (MW)
+            if (realTimeMW === 0) { 
+                const mwRegex = /(?:afectan|afectación de|déficit de)\s*(\d+)\s*MW/i;
+                const matchMW = mwRegex.exec(txt);
+                if (matchMW) realTimeMW = parseInt(matchMW[1]);
+            }
+
+            // 4. Estado Actual de Bloques (ON/OFF)
+            // (Tu lógica existente simplificada)
+            const reportRegex = /Bloque\s*(?:no\.?)?\s*(\d).*?(\d{1,2}[:.]\d{2})\s*Hrs/gi;
+            let match;
+            while ((match = reportRegex.exec(txt)) !== null) {
+                const b = match[1];
+                let t = match[2].replace('.', ':');
+                if(blockData[b].status === 'unknown') blockData[b] = { status: 'OFF', time: t };
+            }
+            if (cleanTxt.includes('cerrado') || cleanTxt.includes('restablecimiento')) {
+                for(let b=1; b<=6; b++) {
+                    if (cleanTxt.match(new RegExp(`bloque\\s*(?:no\\.?)?\\s*${b}\\b`))) {
+                        if(blockData[b].status === 'unknown') blockData[b] = { status: 'ON', time: null };
+                    }
+                }
+            }
+            if (cleanTxt.includes('inicia') && (cleanTxt.includes('afectación') || cleanTxt.includes('déficit'))) {
+                for(let b=1; b<=6; b++) {
+                    if (cleanTxt.match(new RegExp(`bloque\\s*(?:no\\.?)?\\s*${b}\\b`))) {
+                        if(blockData[b].status === 'unknown') blockData[b] = { status: 'OFF', time: 'Hace poco' };
+                    }
+                }
+            }
+
+            // ============================================================
+            // 5. AUDITORÍA FORENSE (CÁLCULO DE MENTIRAS)
+            // ============================================================
+            if (timeNode) {
+                // A) DETECTAR CIERRE (El fin del apagón)
+                const closeMatch = txt.match(/(?:Cerrado|Restablecido).*Bloque\s*(?:no\.?)?\s*(\d)/i);
+                if (closeMatch) {
+                    const b = parseInt(closeMatch[1]);
+                    if (b >= 1 && b <= 6) {
+                        auditState[b] = msgMinutes; // Guardar hora de fin
+                    }
+                }
+
+                // B) DETECTAR APERTURA (El inicio del apagón)
+                const openMatch = txt.match(/(?:Inicia|Afectación|Déficit).*Bloque\s*(?:no\.?)?\s*(\d)/i);
+                if (openMatch) {
+                    const b = parseInt(openMatch[1]);
+                    // Solo calculamos si ya teníamos un Cierre guardado (porque vamos hacia atrás)
+                    if (b >= 1 && b <= 6 && auditState[b] !== null) {
+                        let duration = auditState[b] - msgMinutes;
+                        if (duration < 0) duration += 1440; // Ajuste medianoche
+                        
+                        // FILTRO DE RUIDO: Ignorar cortes menores a 15 min (pruebas) o errores
+                        if(duration > 15) {
+                            auditData[b] += duration;
+                        }
+                        auditState[b] = null; // Reset para el siguiente ciclo
+                    }
+                }
+            }
+            // ============================================================
+        }
+
+        // Fallbacks visuales para bloques sin info
+        for(let i=1; i<=6; i++) {
+            if(blockData[i].status === 'unknown') blockData[i] = { status: 'ON', time: null };
+        }
+
+        // --- ACTUALIZACIONES UI ---
+        console.log("Datos Auditoría Calculados:", auditData);
+        
+        updateBlocksUI(blockData);
+        updateTickerUI(); 
+        updateBottomBar(lastMsgText, lastMsgTime);
+        
+        if(realTimeMW > 0) updateTruthClock(realTimeMW);
+
+        // ACTUALIZAR EL VERIFICADOR DE MENTIRAS
+        window.globalAuditData = auditData; 
+        updateLieDetectorUI(); 
+    }
+
+    // ==========================================
+    // 🕒 FUNCIÓN VISUAL DEL RELOJ
+    // ==========================================
+    // ==========================================
+    // 🕒 RELOJ DE RIESGO EMPRESARIAL (NUEVO)
+    // ==========================================
+    // Variable global para guardar el estado
+window.currentMW = 0; 
+window.metricMode = 'MW'; // 'MW' o 'USD'
+
+function toggleMetric() {
+    window.metricMode = window.metricMode === 'MW' ? 'USD' : 'MW';
+    updateTruthClock(window.currentMW);
+}
+
+// Variable global para guardar el dato del déficit
+window.currentMW = 0; 
+
+function updateTruthClock(mw) {
+    window.currentMW = mw; 
+    const container = document.getElementById('truth-clock-container');
+    
+    // Elementos del DOM
+    const circle = document.getElementById('truth-circle');
+    const moneyMain = document.getElementById('truth-money-main');
+    const mwVal = document.getElementById('truth-mw-val');
+    const hoursEl = document.getElementById('truth-hours');
+    const dailyEl = document.getElementById('truth-daily');
+    
+    // Obtener tamaño de planta del selector
+    const genSelector = document.getElementById('genSelector');
+    // Si el selector no existe aún (carga asíncrona), usar valor por defecto 2.5
+    const genSize = genSelector ? parseFloat(genSelector.value) : 2.5;
+
+    if(!container) return;
+    container.classList.remove('hidden');
+
+    // 1. CÁLCULOS (LA MATEMÁTICA DEL DOLOR)
+    
+    // A) Estimar horas según MW (Heurística simple)
+    let hoursEst = 0;
+    if (mw < 200) hoursEst = 3;
+    else if (mw < 500) hoursEst = 5;
+    else if (mw < 900) hoursEst = 8;
+    else hoursEst = 12;
+
+    // B) Consumo de gasolina (Litros/Hora)
+    let fuelConsumption = 0;
+    if(genSize === 1.0) fuelConsumption = 0.6;
+    else if(genSize === 2.5) fuelConsumption = 1.2;
+    else fuelConsumption = 2.0; // 5kW
+
+    // C) Costo (USD)
+    const costPerLiter = 1.50; 
+    const dailyCost = hoursEst * fuelConsumption * costPerLiter;
+    const monthlyCost = dailyCost * 30;
+
+    // 2. ACTUALIZAR INTERFAZ
+    
+    // Texto Causa (MW)
+    mwVal.innerText = mw + " MW";
+    
+    // Texto Efecto (Dinero) - Animar contador si cambia
+    moneyMain.innerText = "$" + Math.round(monthlyCost);
+    
+    // Detalles
+    hoursEl.innerText = "~" + hoursEst + " horas";
+    dailyEl.innerText = "-$" + dailyCost.toFixed(2);
+
+    // 3. ANIMACIÓN DEL CÍRCULO (Basado en dinero, no en MW)
+    // El círculo se llena según qué tan caro es el mes (Tope visual: $500 USD)
+    const maxOffset = 351.8; // Perímetro para r=56 (2 * pi * 56)
+    let percentage = Math.min((monthlyCost / 500), 1); 
+    
+    let offset = maxOffset - (percentage * maxOffset);
+    circle.style.strokeDashoffset = offset;
+    
+    // Cambiar color del círculo según gravedad financiera
+    if (monthlyCost > 300) {
+        circle.setAttribute('stroke', '#dc2626'); // Rojo oscuro
+    } else if (monthlyCost > 150) {
+        circle.setAttribute('stroke', '#ef4444'); // Rojo normal
+    } else {
+        circle.setAttribute('stroke', '#f59e0b'); // Naranja
+    }
+}
+
+    // ==========================================
+    // UTILS UI & SHEETS (RESTO IGUAL)
+    // ==========================================
+    function updateBottomBar(text, time) {
+        const rawBox = document.getElementById('raw-telegram-msg');
+        const timeBox = document.getElementById('telegram-time');
+        
+        if(rawBox) {
+            let displayText = text;
+            if (text === "Sin reportes de texto recientes." && window.telegramNewsList.length > 0) {
+                displayText = window.telegramNewsList[0];
+            }
+            let clean = displayText.replace(/\n/g, ' ').substring(0, 160);
+            if(displayText.length > 160) clean += "...";
+            
+            rawBox.innerText = clean;
+            rawBox.parentElement.classList.remove('border-blue-500/20');
+            rawBox.parentElement.classList.add('border-green-500/50', 'bg-green-900/10');
+        }
+        if(timeBox) timeBox.innerText = "ÚLTIMO: " + time;
+    }
+
+    function updateTickerUI() {
+        const el = document.getElementById('ticker-content');
+        if (!el) return;
+        const db = window.sheetData || {};
+        const defHoy = cleanNum(db['deficit_hoy']) || '...';
+        
+        let html = `<span class="text-gray-400 font-bold uppercase text-xs">DÉFICIT HOY:</span><span class="text-red-500 font-bold ml-2 text-lg animate-pulse">${defHoy} MW</span><span class="text-yellow-500 mx-6 text-lg">///</span>`;
+
+        if (window.telegramNewsList && window.telegramNewsList.length > 0) {
+            window.telegramNewsList.forEach(news => {
+                html += `<span class="inline-flex items-center gap-2 font-bold text-blue-400 text-xs uppercase"><i class="fab fa-telegram"></i> UNE:</span><span class="text-white font-mono text-[10px] mx-3 tracking-wide">${news}</span><span class="text-gray-600 mx-6 text-lg">///</span>`;
+            });
+        } else {
+            const txtSheet = db['ticker_texto'] || 'Sin reportes';
+            html += `<span class="text-white font-mono text-sm mx-3">${txtSheet}</span>`;
+        }
+        el.innerHTML = html;
+    }
+
+    
+
+    function initGrid() {
+    const grid = document.getElementById('blocks-grid');
+    if(!grid) return;
+    let html = '';
+    for(let i=1; i<=6; i++) {
+        html += `
+        <div id="card-b${i}" class="bg-gray-900 border border-gray-800 p-0 rounded-xl relative overflow-hidden transition-all duration-500 shadow-lg group flex flex-col">
+            
+            <!-- ENCABEZADO (Estado) -->
+            <div class="p-4 pb-2">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <span class="text-[10px] font-bold text-gray-500 uppercase tracking-widest border border-gray-700 px-2 py-0.5 rounded">Bloque ${i}</span>
+                        <div id="status-b${i}" class="text-lg font-bold text-gray-400 mt-2 leading-tight">Cargando...</div>
+                    </div>
+                    <div id="icon-b${i}" class="text-2xl text-gray-700">
+                        <i class="fas fa-satellite-dish"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ZONA DE DOLOR (Actual + Acumulado) -->
+            <div id="pain-container-b${i}" class="hidden flex-1 flex flex-col justify-end">
+                
+                <!-- Gasto ACTUAL (En este momento) -->
+                <div class="px-4 pb-3">
+                    <div class="flex justify-between items-center text-xs text-red-200 mb-1">
+                        <span><i class="fas fa-stopwatch mr-1"></i> Ahora:</span>
+                        <span id="time-b${i}" class="font-mono font-bold">--:--</span>
+                    </div>
+                    <div class="bg-black/40 rounded-lg p-2 border border-red-500/50 flex justify-between items-center">
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-fire text-orange-500 animate-pulse"></i>
+                            <span class="text-[9px] uppercase font-bold text-red-300">Gasto Turno:</span>
+                        </div>
+                        <span id="money-b${i}" class="text-lg font-black text-white font-mono">-$0.00</span>
+                    </div>
+                </div>
+
+                <!-- GASTO ACUMULADO DEL DÍA (NUEVO) -->
+                <div class="bg-red-950/30 border-t border-red-900/50 p-3 mt-auto">
+                    <div class="flex justify-between items-end">
+                        <div>
+                            <p class="text-[9px] text-gray-400 uppercase tracking-widest font-bold">Total Pérdida Hoy</p>
+                            <p class="text-[9px] text-gray-500 italic" id="event-count-b${i}">1er Apagón del día</p>
+                        </div>
+                        <div class="text-right">
+                            <span id="total-day-b${i}" class="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-orange-400">-$0.00</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Botón CTA (Solo visible en OFF) -->
+            <div id="cta-b${i}" class="hidden p-3 bg-gray-900 border-t border-gray-800">
+                <button onclick="document.getElementById('ofertas-blue').scrollIntoView({behavior: 'smooth'})" class="w-full bg-white hover:bg-gray-100 text-red-700 font-bold py-2 rounded text-[10px] uppercase tracking-wide shadow transition flex items-center justify-center gap-2">
+                    <i class="fas fa-ban"></i> Detener Pérdidas
+                </button>
+            </div>
+        </div>`;
+    }
+    grid.innerHTML = html;
+}
+// Función para estimar eventos pasados en el día basándonos en el texto
+function getDailyEventsCount(blockNum, allMessages) {
+    if (!allMessages || allMessages.length === 0) return 0;
+    
+    let eventCount = 0;
+    // Buscamos patrones como "Bloque X", "B-X", "Bloques: ...X"
+    // Y palabras clave de afectación
+    const regexBlock = new RegExp(`(?:Bloque|B)[^0-9]*${blockNum}\\b`, 'i'); 
+    
+    // Filtramos mensajes únicos para no contar repetidos
+    const uniqueMessages = [...new Set(allMessages)];
+
+    uniqueMessages.forEach(msg => {
+        // Si el mensaje menciona el bloque Y menciona afectación/déficit/apagar
+        if (regexBlock.test(msg) && (msg.toLowerCase().includes('afect') || msg.toLowerCase().includes('déficit') || msg.toLowerCase().includes('servicio'))) {
+            eventCount++;
+        }
+    });
+
+    // Ajuste heurístico: Si el feed es corto, asumimos al menos 1 si está apagado ahora.
+    // Dividimos por 2 porque a veces hay mensaje de "Se afecta" y "Se restablece"
+    return Math.max(1, Math.ceil(eventCount / 2));
+}
+
+    function updateBlocksUI(blockData) {
+    const COSTO_POR_HORA = 1.80; // Costo Combustible + Aceite (Planta 2.5kW)
+    
+    // Obtenemos los mensajes globales que guardamos en processTelegramHTML
+    const allMessages = window.telegramNewsList || [];
+
+    for(let i=1; i<=6; i++) {
+        const info = blockData[i];
+        const card = document.getElementById(`card-b${i}`);
+        const statusEl = document.getElementById(`status-b${i}`);
+        const iconEl = document.getElementById(`icon-b${i}`);
+        
+        // Contenedores
+        const painCont = document.getElementById(`pain-container-b${i}`);
+        const cta = document.getElementById(`cta-b${i}`);
+        
+        // Elementos de Datos
+        const timeEl = document.getElementById(`time-b${i}`);
+        const moneyEl = document.getElementById(`money-b${i}`);
+        const totalDayEl = document.getElementById(`total-day-b${i}`);
+        const eventCountEl = document.getElementById(`event-count-b${i}`);
+
+        if(!card) continue;
+
+        if (info.status === 'OFF') {
+            // --- ESTADO APAGADO ---
+            card.style.background = "linear-gradient(180deg, #2a0a0a 0%, #450a0a 100%)";
+            card.style.borderColor = "#ef4444";
+            
+            statusEl.innerHTML = "APAGADO";
+            statusEl.className = "text-xl font-black text-red-500 mt-1 tracking-widest animate-pulse";
+            iconEl.innerHTML = '<i class="fas fa-power-off text-red-600 text-3xl"></i>';
+
+            painCont.classList.remove('hidden');
+            cta.classList.remove('hidden');
+
+            // 1. CÁLCULO ACTUAL (TURNO)
+            let currentHours = 0;
+            if (info.time && info.time.includes(':')) {
+                const now = new Date();
+                const [startH, startM] = info.time.split(':').map(Number);
+                let hoursDiff = now.getHours() - startH;
+                let minDiff = now.getMinutes() - startM;
+                if (minDiff < 0) { minDiff += 60; hoursDiff--; }
+                if (hoursDiff < 0) hoursDiff += 24;
+                
+                currentHours = hoursDiff + (minDiff / 60);
+                
+                timeEl.innerText = `${hoursDiff}h ${minDiff}m`;
+                moneyEl.innerText = `-$${(currentHours * COSTO_POR_HORA).toFixed(2)}`;
+            } else {
+                // Si no hay hora exacta, estimamos 1 hora por defecto para que no salga en 0
+                currentHours = 1;
+                timeEl.innerText = "+1h";
+                moneyEl.innerText = `-$${COSTO_POR_HORA.toFixed(2)}`;
+            }
+
+            // 2. CÁLCULO ACUMULADO DÍA (HISTÓRICO + ACTUAL)
+            // Estimamos cuántas veces se fue la luz antes hoy
+            // Si detectamos menciones previas, sumamos 4 horas por cada evento pasado
+            let pastEvents = getDailyEventsCount(i, allMessages) - 1; // Restamos 1 porque el actual ya lo contamos real
+            if (pastEvents < 0) pastEvents = 0;
+
+            const pastHours = pastEvents * 4; // Promedio 4h por rotación anterior
+            const totalHoursToday = pastHours + currentHours;
+            const totalLossToday = totalHoursToday * COSTO_POR_HORA;
+
+            // Renderizar Acumulado
+            totalDayEl.innerText = `-$${totalLossToday.toFixed(2)} USD`;
+            
+            // Texto descriptivo inteligente
+            if (pastEvents === 0) {
+                eventCountEl.innerText = "1er apagón detectado hoy";
+            } else {
+                eventCountEl.innerHTML = `<span class="text-yellow-500 font-bold">${pastEvents + 1}ª vez</span> sin luz hoy`;
+            }
+
+        } else {
+            // --- ESTADO CON LUZ ---
+            card.style.background = "linear-gradient(135deg, #064e3b 0%, #065f46 100%)";
+            card.style.borderColor = "#10b981";
+            
+            statusEl.innerHTML = "CON LUZ";
+            statusEl.className = "text-xl font-black text-white mt-1 tracking-widest";
+            iconEl.innerHTML = '<i class="fas fa-bolt text-yellow-400 text-3xl"></i>';
+
+            painCont.classList.add('hidden');
+            cta.classList.add('hidden');
+        }
+    }
+}
+
+    async function loadSheet_Fast() {
+        const freshUrl = SHEET_URL + '&t=' + Date.now();
+        const proxyA = 'https://corsproxy.io/?';
+        try {
+            const response = await fetch(proxyA + encodeURIComponent(freshUrl));
+            const csvText = await response.text();
+            if (csvText && csvText.includes(',')) {
+                const db = parseCSV(csvText);
+                window.sheetData = db;
+                if (db['deficit_hoy']) {
+                    renderSheetData(db);
+                    updateTickerUI();
+                }
+            }
+        } catch (err) {
+            try {
+                const resB = await fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent(freshUrl));
+                const txtB = await resB.text();
+                const dbB = parseCSV(txtB);
+                window.sheetData = dbB;
+                renderSheetData(dbB);
+                updateTickerUI();
+            } catch(e) {}
+        }
+    }
+
+    function parseCSV(text) {
+        const rows = text.split('\n').filter(r => r.trim());
+        const db = {};
+        rows.forEach(r => {
+            const parts = r.split(',').map(p => p.trim().replace(/^"|"$/g, ''));
+            if (parts.length >= 2) db[parts[0]] = parts[1];
+        });
+        return db;
+    }
+
+    function renderSheetData(db) {
+        const deficit = parseInt(cleanNum(db['deficit_hoy'])) || 0;
+        const demanda = parseInt(cleanNum(db['demanda_mw'])) || 3000;
+        const genMW = parseInt(cleanNum(db['generacion_mw'])) || 0;
+        const fecha = db['fecha_hoy'] || "Hoy";
+        const valAyer = db['afectacion_ayer'] || "0";
+
+        safeSetText('nav-deficit', deficit.toLocaleString() + " MW");
+        safeSetText('nav-percent', Math.round((deficit / demanda) * 100));
+        safeSetText('dash-deficit', deficit.toLocaleString());
+        safeSetText('exit-deficit', deficit.toLocaleString() + " MW");
+        safeSetText('dash-fecha', fecha);
+        
+        let genPercent = Math.round((genMW / demanda) * 100);
+        if(genPercent > 100) genPercent = 100;
+        const defPercent = 100 - genPercent;
+        safeSetText('bar-gen-txt', genPercent);
+        safeSetText('bar-def-txt', defPercent);
+        safeWidth('bar-gen-width', genPercent);
+        safeWidth('bar-def-width', defPercent);
+        safeSetText('coverage-date', fecha);
+        safeSetText('header-date', fecha);
+
+        safeSetText('graph-label-3', `Hoy: ${deficit} MW`);
+        safeSetText('graph-label-2', `${db['dia_ayer'] || 'Ayer'}: ${valAyer}`);
+        safeSetText('graph-label-1', `${db['dia_antier'] || 'Antier'}: ${db['afectacion_antier'] || 0}`);
+        safeSetText('hist-3-val', deficit + " MW");
+        safeSetText('hist-2-val', valAyer + " MW");
+        safeSetText('hist-1-val', (db['afectacion_antier'] || 0) + " MW");
+
+        safeSetText('ia-text-box', db['ia_texto'] || "Analizando...");
+        const quote = document.getElementById('dash-quote');
+        if(quote) quote.innerHTML = `"${db['ia_texto'] || '...'}"`;
+        
+        safeSetText('impact-deficit', deficit.toLocaleString());
+        safeSetText('analysis-date', fecha);
+        safeSetText('analysis-deficit', "~" + deficit.toLocaleString() + " MW");
+        safeSetText('analysis-ayer', parseInt(valAyer).toLocaleString() + " MW");
+        const graphLabel = document.getElementById('analysis-graph-label');
+        if (graphLabel) graphLabel.textContent = `Real: ${deficit.toLocaleString()} MW 🚨`;
+    }
+
+    function cleanNum(str) { return str ? str.replace(/\D/g, '') : ''; }
+    function safeSetText(id, txt) { const el = document.getElementById(id); if (el) el.innerText = txt; }
+    function safeWidth(id, pct) { const el = document.getElementById(id); if (el) el.style.width = pct + "%"; }
+
+    function updateLieDetectorUI() {
+        const selector = document.getElementById('lieBlockSelector');
+        const dateLabel = document.getElementById('chart-date-label');
+        
+        if (!selector) return;
+
+        // 1. OBTENER DATOS (O BACKUP)
+        let auditData = window.globalAuditData;
+        let usingBackup = false;
+        
+        // Si no hay datos de Telegram, usamos respaldo para la gráfica
+        if (!auditData || (auditData[1] === 0 && auditData[4] === 0)) {
+            console.log("Usando datos de respaldo para Auditoría");
+            usingBackup = true;
+            auditData = { 1: 340, 2: 410, 3: 290, 4: 480, 5: 360, 6: 310 }; 
+        }
+
+        // =========================================================
+        // 📅 FUERZA BRUTA DE FECHA (Solución Definitiva)
+        // =========================================================
+        if (dateLabel) {
+            const today = new Date();
+            const yesterday = new Date(today);
+            yesterday.setDate(yesterday.getDate() - 1); // Restamos 1 día
+            
+            // Formatear a DD/MM/AAAA manualmente para evitar errores de zona horaria
+            const day = String(yesterday.getDate()).padStart(2, '0');
+            const month = String(yesterday.getMonth() + 1).padStart(2, '0'); // Enero es 0
+            const year = yesterday.getFullYear();
+            
+            const finalDate = `${day}/${month}/${year}`;
+            
+            // Forzamos el texto en el HTML
+            dateLabel.innerText = finalDate;
+            dateLabel.style.color = "#4ade80"; // Color verde brillante (Tailwind green-400)
+        }
+        // =========================================================
+
+        const block = parseInt(selector.value); 
+        const totalMinutes = auditData[block] || 0;
+        const realHours = (totalMinutes / 60).toFixed(1);
+        const planHours = 4.0; 
+
+        // 2. Elementos DOM
+        const realEl = document.getElementById('real-hours');
+        const stolenEl = document.getElementById('stolen-time');
+        const barReal = document.getElementById('bar-real');
+        const barText = document.getElementById('bar-real-text');
+
+        // 3. Pintar Textos
+        if(realEl) realEl.innerText = realHours + " h";
+        if(barText) barText.innerText = realHours + "h";
+
+        // 4. Calcular Diferencia y Mensaje
+        const diff = (realHours - planHours).toFixed(1);
+        
+        if (stolenEl) {
+            if (realHours > planHours) {
+                stolenEl.innerHTML = `<span class="text-red-500 font-bold text-xl">⚠️ SE PASARON ${diff} HORAS</span><br><span class="text-gray-400 text-xs">Dificultad para cumplir la programación.</span>`;
+                if(barReal) {
+                    barReal.className = "w-full bg-red-600 border-2 border-red-400 rounded-t-lg transition-all duration-500 shadow-[0_0_30px_rgba(220,38,38,0.3)] relative flex items-end justify-center overflow-hidden";
+                    const h = Math.min((realHours / 12) * 100, 100); 
+                    barReal.style.height = Math.max(h, 15) + "%";
+                }
+            } else if (realHours > 0.5) {
+                stolenEl.innerHTML = `<span class="text-green-400 font-bold text-xl">✅ CUMPLIERON</span><br><span class="text-gray-400 text-xs">Fue menos de lo planificado.</span>`;
+                if(barReal) {
+                    barReal.className = "w-full bg-green-600 border-2 border-green-400 rounded-t-lg transition-all duration-500 shadow-lg relative flex items-end justify-center overflow-hidden";
+                    const h = Math.min((realHours / 12) * 100, 100);
+                    barReal.style.height = Math.max(h, 15) + "%";
+                }
+            } else {
+                stolenEl.innerHTML = `<span class="text-gray-400 font-bold text-xl">SIN CORTE DETECTADO</span>`;
+                if(barReal) {
+                    barReal.className = "w-full bg-gray-700 border-2 border-gray-600 rounded-t-lg relative flex items-end justify-center overflow-hidden";
+                    barReal.style.height = "10%";
+                }
+            }
+        }
+    }
+
+    // Agregar el Listener al Selector
+    const selBlock = document.getElementById('lieBlockSelector');
+    if(selBlock) {
+        selBlock.addEventListener('change', updateLieDetectorUI);
+    }
+</script>
 <script>
     function initShippingUrgency() {
         // Clave única para guardar la fecha en el navegador del cliente
@@ -7867,413 +7987,6 @@ document.addEventListener('DOMContentLoaded', initUltimateUrgency);
         });
 
     })();
-</script>
-<script>
-    (function() {
-        // ==========================================
-        // 1. DATA SOURCE (LOGS REALES DE TU ARCHIVO)
-        // ==========================================
-        // Esto simula la lectura de los últimos 20 mensajes críticos
-        const SAMPLE_LOGS = `
-            05:24 Fuera de línea la unidad 6 de la CTE Antonio Maceo (Rente).
-            09:00 Fuera de línea la unidad 1 de la CTE Lidio Ramon Perez (Felton).
-            09:33 En línea la unidad 5 de la CTE Antonio Maceo (Rente).
-            15:33 Fuera de línea la unidad 3 de la CTE Antonio Maceo (Rente)
-            15:17 Fuera de línea la unidad 5 de la CTE Antonio Maceo (Rente)
-            15:56 En línea la unidad 1 de la CTE Lidio Ramon Perez (Felton)
-            18:34 Fuera de línea la Unidad 3 de la CTE Antonio Maceo "Renté" en via libre de emergencia por salidero.
-            Informamos que por Disparado Automático por Frecuencia (DAF) se ha afectado el servicio en Habana del Este, Alamar, Playa, Cerro.
-            Consumidores del municipio Boyeros se encuentran afectados por transformador dañado en Sierra Maestra.
-            Avería primaria en Arroyo Naranjo, Managua.
-            Disparo por DAF en Boyeros: Santiago de las Vegas.
-            La Lisa: Avería primaria por cruceta partida.
-            Marianao: Disparo de circuito en Pocito Palmar.
-        `;
-
-        // ==========================================
-        // 2. LÓGICA DE ANÁLISIS
-        // ==========================================
-        
-        function analyzeEnergyIntel() {
-            // Intentar leer del feed en vivo si existe (del otro script), si no, usar muestra
-            const liveFeed = window.telegramNewsList ? window.telegramNewsList.join("\n") : SAMPLE_LOGS;
-            const text = liveFeed.toLowerCase();
-
-            // --- A. MONITOR TÉRMICO ---
-            const plants = [
-                { id: 'felton', name: 'Felton 1', status: 'unknown' },
-                { id: 'guiteras', name: 'Guiteras', status: 'unknown' },
-                { id: 'rente', name: 'Renté (Stgo)', status: 'unknown' },
-                { id: 'mariel', name: 'Mariel', status: 'unknown' }
-            ];
-
-            plants.forEach(p => {
-                // Buscamos la mención más reciente de la planta
-                const regex = new RegExp(`(unidad|cte).*?${p.id}.*?(en línea|fuera|sincroniza|salida|sale)`, 'gi');
-                const matches = [...liveFeed.matchAll(regex)];
-                
-                if (matches.length > 0) {
-                    const lastStatus = matches[matches.length - 1][0].toLowerCase();
-                    if (lastStatus.includes('fuera') || lastStatus.includes('salida') || lastStatus.includes('sale')) {
-                        p.status = 'OFF';
-                    } else if (lastStatus.includes('línea') || lastStatus.includes('sincroniza')) {
-                        p.status = 'ON';
-                    }
-                } else {
-                    p.status = 'ON'; // Asumimos ON si no hay noticias malas recientes (Estrategia de venta positiva/negativa)
-                }
-            });
-
-            updateThermalUI(plants);
-
-            // --- B. RIESGO DAF (CONTADOR) ---
-            const dafCount = {
-                'Habana del Este': (text.match(/alamar|habana del este/g) || []).length,
-                'Playa': (text.match(/playa/g) || []).length,
-                'Boyeros': (text.match(/boyeros/g) || []).length,
-                'Cerro': (text.match(/cerro/g) || []).length
-            };
-            
-            // Filtrar solo los que tengan DAF cerca en el texto (Simplificado)
-            // Si el texto global tiene muchos "DAF", subimos el riesgo general
-            const dafMentions = (text.match(/daf|frecuencia|disparo automático/g) || []).length;
-            updateDafUI(dafCount, dafMentions);
-
-            // --- C. TIEMPO REPARACIÓN ---
-            // Análisis de palabras clave de gravedad
-            const severityHigh = (text.match(/primario partido|transformador dañado|subestación/g) || []).length;
-            const avgTime = severityHigh > 3 ? "18-24" : "6-8";
-            updateRepairUI(avgTime, severityHigh);
-        }
-
-        // ==========================================
-        // 3. ACTUALIZACIÓN UI
-        // ==========================================
-
-        function updateThermalUI(plants) {
-            const grid = document.getElementById('thermal-grid');
-            const alertBox = document.getElementById('thermal-warning');
-            const alertLabel = document.getElementById('thermal-alert');
-            
-            if(!grid) return;
-            grid.innerHTML = '';
-            
-            let plantsOff = 0;
-
-            plants.forEach(p => {
-                const isOff = p.status === 'OFF';
-                if(isOff) plantsOff++;
-                
-                const color = isOff ? 'text-red-500' : 'text-green-400';
-                const icon = isOff ? 'fa-times-circle' : 'fa-check-circle';
-                const statusTxt = isOff ? 'FUERA DE LÍNEA' : 'SINCRONIZADA';
-                
-                grid.innerHTML += `
-                    <div class="flex justify-between items-center text-xs border-b border-gray-800 pb-1 last:border-0">
-                        <span class="text-gray-300 font-medium">${p.name}</span>
-                        <span class="${color} font-bold flex items-center gap-1">
-                            <i class="fas ${icon}"></i> ${statusTxt}
-                        </span>
-                    </div>
-                `;
-            });
-
-            if (plantsOff > 0) {
-                alertBox.classList.remove('hidden');
-                alertLabel.innerText = `${plantsOff} Plantas Fuera`;
-                alertLabel.className = "bg-red-900 text-[10px] px-2 py-1 rounded text-white animate-pulse";
-            } else {
-                alertBox.classList.add('hidden');
-                alertLabel.innerText = "Sistema Estable";
-                alertLabel.className = "bg-green-900 text-[10px] px-2 py-1 rounded text-white";
-            }
-        }
-
-        function updateDafUI(counts, totalDaf) {
-            const list = document.getElementById('daf-list');
-            if(!list) return;
-            list.innerHTML = '';
-
-            // Ordenar municipios por menciones
-            const sorted = Object.entries(counts).sort((a,b) => b[1] - a[1]);
-            
-            sorted.slice(0, 3).forEach(([muni, count]) => {
-                let width = Math.min((count * 15) + 20, 100); // Escala visual
-                let color = width > 60 ? 'bg-red-600' : (width > 40 ? 'bg-orange-500' : 'bg-yellow-500');
-                
-                list.innerHTML += `
-                    <div>
-                        <div class="flex justify-between text-[10px] text-gray-400 mb-0.5">
-                            <span>${muni}</span>
-                            <span>${count > 5 ? 'Crítico' : 'Alto'}</span>
-                        </div>
-                        <div class="w-full bg-gray-800 h-1.5 rounded-full overflow-hidden">
-                            <div class="h-full ${color}" style="width: ${width}%"></div>
-                        </div>
-                    </div>
-                `;
-            });
-            
-            // Si no hay datos específicos
-            if (sorted.every(i => i[1] === 0)) {
-                list.innerHTML = `<div class="text-center text-xs text-gray-500 py-4">Sin reportes de DAF en la última hora.</div>`;
-            }
-        }
-
-        function updateRepairUI(time, severity) {
-            const timeEl = document.getElementById('avg-repair-time');
-            const trendEl = document.getElementById('repair-trend');
-            
-            if(timeEl) timeEl.innerText = time + " h";
-            
-            if(trendEl) {
-                if (severity > 5) {
-                    trendEl.innerText = "Tendencia: AUMENTANDO (Averías Físicas)";
-                    trendEl.className = "text-xs text-red-500 font-bold mb-4 animate-pulse";
-                } else {
-                    trendEl.innerText = "Tendencia: Estable";
-                    trendEl.className = "text-xs text-yellow-500 font-bold mb-4";
-                }
-            }
-        }
-
-        // Ejecutar
-        document.addEventListener('DOMContentLoaded', () => {
-            // Esperar un poco a que el otro script descargue datos, si no, usa los de muestra
-            setTimeout(analyzeEnergyIntel, 2000); 
-            
-            // Actualizar hora de escaneo
-            const now = new Date();
-            const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-            document.getElementById('last-scan-time').innerText = "Actualizado: " + timeStr;
-        });
-
-    })();
-</script>
-
-<!-- SCRIPT V13: HÍBRIDO REAL (JSON + TELEGRAM EN VIVO + RESPALDO) -->
-<script>
-(function() {
-    // 1. CONFIGURACIÓN
-    const LOCAL_JSON_URL = './daily_data.json'; 
-    const TELEGRAM_URL = 'https://t.me/s/EmpresaElectricaDeLaHabana';
-    const PROXY_URL = 'https://api.allorigins.win/get?url=';
-
-    // 2. DATOS DE EMERGENCIA (Por si todo falla - 13 Dic)
-    const INTERNAL_BACKUP = {
-        deficit: 1915,
-        estado: "DÉFICIT CRÍTICO",
-        hora: "Reporte 13 Dic",
-        noticias: [
-            "⚠️ PRONÓSTICO 13 DIC: Déficit de 1915 MW en horario pico.",
-            "📉 AYER: Afectación las 24 horas con máximo de 1917 MW.",
-            "🏭 AVERÍAS: Felton 2, Mariel 5 y 8, Santa Cruz 2 y 3.",
-            "⛽ COMBUSTIBLE: 993 MW fuera de servicio.",
-            "📍 HABANA: Afectaciones severas en Bloques 1, 2, 3 y 4."
-        ]
-    };
-
-    // ==========================================
-    // 3. INICIO DEL SISTEMA
-    // ==========================================
-    async function initSystem() {
-        const ticker = document.getElementById('ticker-content');
-        if(ticker) ticker.innerHTML = '<span class="text-yellow-500 animate-pulse">📡 Buscando datos...</span>';
-
-        // PASO 1: Intentar leer archivo JSON Local (El que tú subes)
-        try {
-            console.log("📂 Intentando cargar daily_data.json...");
-            const resp = await fetch(LOCAL_JSON_URL + '?t=' + Date.now());
-            if (resp.ok) {
-                const data = await resp.json();
-                console.log("✅ Datos cargados desde JSON Local.");
-                updateUI(data.deficit_estimado, data.noticias_cinta, data.fecha, data.estado_general);
-                return; // ¡Éxito! No hace falta Telegram.
-            }
-        } catch (e) {
-            console.log("⚠️ No hay JSON manual. Pasando a Modo Automático (Telegram)...");
-        }
-
-        // PASO 2: Intentar conectar a Telegram en Vivo (Código V11 Recuperado)
-        try {
-            console.log("📡 Conectando a Telegram...");
-            const response = await fetch(PROXY_URL + encodeURIComponent(TELEGRAM_URL));
-            const data = await response.json();
-            
-            if (data.contents && data.contents.includes('tgme_widget_message_text')) {
-                console.log("✅ Conexión Telegram ÉXITOSA.");
-                parseTelegramLive(data.contents);
-            } else {
-                throw new Error("Telegram vacío");
-            }
-        } catch (e) {
-            console.warn("❌ Falló Telegram. Usando respaldo interno.", e);
-            // PASO 3: Usar Respaldo Interno (Hardcoded)
-            useInternalBackup();
-        }
-    }
-
-    // ==========================================
-    // 4. LOGICA TELEGRAM (RECUPERADA DE V11)
-    // ==========================================
-    function parseTelegramLive(html) {
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(html, "text/html");
-        const messages = Array.from(doc.querySelectorAll('.tgme_widget_message_text'));
-
-        if (messages.length === 0) { useInternalBackup(); return; }
-
-        let foundDeficit = 0;
-        let recentNews = [];
-
-        // Leer de abajo hacia arriba (lo más nuevo)
-        messages.reverse().forEach(msg => {
-            const text = msg.innerText.trim();
-            if (text.length > 20) recentNews.push(text);
-
-            // Buscar el número de déficit
-            if (foundDeficit === 0) {
-                const match = text.match(/(?:afectación|déficit).*?(\d{3,4})\s*MW/i);
-                if (match) foundDeficit = parseInt(match[1]);
-            }
-        });
-
-        // Decidir qué mostrar
-        if (recentNews.length > 0) {
-            // Si no encontró número, usa el del backup pero muestra las noticias nuevas
-            const finalDeficit = foundDeficit > 0 ? foundDeficit : INTERNAL_BACKUP.deficit;
-            
-            // Determinar estado según déficit
-            let estado = "MODERADO";
-            if(finalDeficit > 800) estado = "MUY ALTO";
-            if(finalDeficit > 1500) estado = "CRÍTICO (Riesgo Colapso)";
-
-            const hora = "En Vivo 🔴";
-            
-            updateUI(finalDeficit, recentNews, hora, estado);
-        } else {
-            useInternalBackup();
-        }
-    }
-
-    function useInternalBackup() {
-        updateUI(INTERNAL_BACKUP.deficit, INTERNAL_BACKUP.noticias, INTERNAL_BACKUP.hora, INTERNAL_BACKUP.estado);
-    }
-
-    // ==========================================
-    // 5. ACTUALIZADOR DE LA PANTALLA (UI)
-    // ==========================================
-    function updateUI(mw, newsArray, timeLabel, estadoLabel) {
-        
-        // A) CINTA DE NOTICIAS (TICKER)
-        const ticker = document.getElementById('ticker-content');
-        if (ticker) {
-            let html = "";
-            newsArray.slice(0, 8).forEach(msg => {
-                const cleanMsg = msg.replace(/\n/g, ' ').substring(0, 100);
-                html += `<span class="inline-flex items-center text-white font-bold text-sm mx-8"><i class="fas fa-bolt text-yellow-500 mr-2"></i> ${cleanMsg}</span><span class="text-gray-600">///</span>`;
-            });
-            ticker.innerHTML = html;
-        }
-
-        // B) NÚMEROS GRANDES
-        updateNumber('live-deficit', mw);
-        updateNumber('nav-deficit', mw + " MW");
-        updateNumber('dash-deficit', mw);
-        updateNumber('exit-deficit', mw + " MW");
-
-        // C) ESTADO Y HORA
-        const statusEl = document.getElementById('system-status');
-        if(statusEl) {
-            statusEl.innerText = estadoLabel || "DÉFICIT ALTO";
-            // Color rojo si es crítico
-            if(mw > 1000) statusEl.className = "text-red-500 font-black animate-pulse";
-            else statusEl.className = "text-orange-500 font-bold";
-        }
-
-        const timeEl = document.getElementById('last-update-time');
-        if(timeEl) timeEl.innerText = timeLabel;
-
-        // D) FEED DEL DASHBOARD (LISTA)
-        const feed = document.getElementById('telegram-feed');
-        if(feed) {
-            feed.innerHTML = '';
-            newsArray.slice(0, 10).forEach(txt => {
-                 feed.innerHTML += `
-                    <div class="bg-gray-800/40 p-3 rounded border-b border-gray-700 mb-2 hover:bg-gray-800 transition">
-                        <div class="text-xs text-gray-300 font-mono leading-relaxed">
-                            <i class="fas fa-angle-right text-green-500 mr-2"></i>${txt.substring(0, 140)}...
-                        </div>
-                    </div>`;
-            });
-        }
-        
-        // E) ACTUALIZAR CALCULADORA
-        if(window.calculateLoss) { 
-            window.currentMW = mw;
-            window.calculateLoss(); 
-        }
-    }
-
-    // Helper animación
-    function updateNumber(id, val) { 
-        const el = document.getElementById(id); 
-        if(el) { el.innerText = val; el.classList.remove('animate-pulse'); void el.offsetWidth; el.classList.add('animate-pulse'); }
-    }
-
-    // Ejecutar al inicio y cada 5 min
-    document.addEventListener('DOMContentLoaded', () => {
-        initSystem();
-        setInterval(initSystem, 300000);
-    });
-
-})();
-</script>
-
-<!-- BARRA FLOTANTE MÓVIL (Solo visible en pantallas pequeñas) -->
-<div id="sticky-bar" class="fixed bottom-0 left-0 w-full bg-[#1e293b] border-t border-gray-700 p-3 z-50 flex items-center justify-between transform translate-y-full transition-transform duration-300 md:hidden shadow-[0_-5px_20px_rgba(0,0,0,0.5)]">
-    <div class="flex flex-col">
-        <span class="text-[10px] text-gray-400 uppercase">Estado Red:</span>
-        <span class="text-red-500 font-bold text-xs animate-pulse">🔴 CRÍTICO</span>
-    </div>
-    <button onclick="document.getElementById('ofertas-blue').scrollIntoView({behavior: 'smooth'})" class="bg-yellow-500 text-black font-bold text-sm px-6 py-2 rounded-full shadow-lg">
-        Ver Solución ⚡
-    </button>
-</div>
-
-<script>
-// Script para mostrar la barra solo al hacer scroll
-window.addEventListener('scroll', () => {
-    const bar = document.getElementById('sticky-bar');
-    if (window.scrollY > 600) { // Después de bajar 600px
-        bar.classList.remove('translate-y-full');
-    } else {
-        bar.classList.add('translate-y-full');
-    }
-});
-</script>
-<script>
-function filterKits(tipo) {
-    const advice = document.getElementById('voltaje-advice');
-    advice.classList.remove('hidden');
-    advice.classList.remove('bg-cyan-900/30', 'border-cyan-500/30', 'text-cyan-200');
-    advice.classList.remove('bg-red-900/30', 'border-red-500/30', 'text-red-200');
-    advice.classList.add('border', 'animate-pulse');
-
-    if(tipo === '110') {
-        advice.className = "mt-4 p-3 rounded-lg text-xs border border-cyan-500/30 bg-cyan-900/20 text-cyan-200 block animate-slide-in";
-        advice.innerHTML = `
-            <i class="fas fa-check-circle mr-2"></i> <strong>Excelente.</strong> Para 110V te recomendamos las líneas 
-            <span class="text-white font-bold">MUST</span> o <span class="text-white font-bold">ASTRA</span> que verás justo aquí abajo. 👇
-        `;
-    } else {
-        advice.className = "mt-4 p-3 rounded-lg text-xs border border-red-500/30 bg-red-900/20 text-red-200 block animate-slide-in";
-        advice.innerHTML = `
-            <i class="fas fa-exclamation-triangle mr-2"></i> <strong>Atención:</strong> Los equipos de aquí abajo son 110V. 
-            Para aires 220V necesitas bajar a la <a href="#kits" class="underline font-bold text-white">Línea PRO Industrial (Clic aquí)</a>. 👇
-        `;
-    }
-}
 </script>
 </body>
 </html>
