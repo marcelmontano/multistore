@@ -2580,108 +2580,103 @@
             </div>
 
             <!-- COLUMNA 2: MAPA VISUAL (AJUSTADO A TU IMAGEN SATELITAL) -->
+<!-- COLUMNA 2: MAPA VISUAL (AJUSTADO A LA IMAGEN REAL) -->
 <div class="md:col-span-8 relative h-[350px] md:h-[400px] bg-[#020617] rounded-2xl border border-gray-700 overflow-hidden group shadow-2xl">
     
-    <!-- TU IMAGEN DE MAPA (Con Filtros "Modo Noche" aplicados por código) -->
-    <!-- ASEGÚRATE DE PONER LA RUTA CORRECTA DE TU IMAGEN AQUÍ -->
-     <!-- ESTADÍSTICAS FLOTANTES (RESPONSIVE OPTIMIZADO) -->
-<div class="absolute top-0 left-0 w-full md:w-auto md:top-4 md:left-4 z-30 bg-black/80 backdrop-blur-md border-b-2 md:border-b-0 md:border-l-4 border-green-500 md:rounded-r-lg p-2 md:p-4 shadow-xl">
-    
-    <!-- Título (Solo visible en PC o muy discreto en móvil) -->
-    <div class="hidden md:flex items-center gap-2 mb-2 border-b border-gray-700 pb-2">
-        <span class="relative flex h-2 w-2">
-          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-          <span class="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
-        </span>
-        <span class="text-[10px] text-gray-300 font-bold uppercase tracking-widest">Actividad (72h)</span>
-    </div>
-
-    <!-- Contenedor de Datos: Fila en Móvil / Columna en PC -->
-    <div class="flex flex-row md:flex-col justify-around items-center md:items-start gap-4 md:gap-3">
-        
-        <!-- Dato 1: Instalaciones -->
-        <div class="flex flex-col md:block items-center md:items-start">
-            <div class="flex items-baseline gap-1">
-                <span class="text-xl md:text-3xl font-black text-white leading-none">37</span>
-                <span class="md:hidden text-[10px] text-green-400 font-bold uppercase">Instalados</span>
-            </div>
-            <div class="hidden md:block text-[10px] text-green-400 font-bold uppercase">Instalaciones Completadas</div>
-        </div>
-        
-        <!-- Separador Vertical (Solo Móvil) -->
-        <div class="h-6 w-px bg-gray-700 md:hidden"></div>
-
-        <!-- Dato 2: Reservas -->
-        <div class="flex flex-col md:block items-center md:items-start">
-            <div class="flex items-baseline gap-1">
-                <span class="text-xl md:text-2xl font-bold text-gray-300 leading-none">12</span>
-                <span class="md:hidden text-[10px] text-yellow-500 font-bold uppercase">En Cola</span>
-            </div>
-            <div class="hidden md:block text-[10px] text-yellow-500 font-bold uppercase">
-                Reservas en Cola <i class="fas fa-clock"></i>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="mt-3 text-[9px] text-gray-500 italic">
-        *Actualizado: Hace 5 min.
-    </div>
-</div>
+    <!-- IMAGEN DEL MAPA (Ruta actualizada) -->
     <img src="imagenes/mapa_habana.jpg" loading="lazy"
-         class="w-full h-full object-cover transition duration-700 transform group-hover:scale-105 brightness-[0.4] contrast-125 grayscale-[0.3]" 
+         class="w-full h-full object-cover transition duration-700 transform group-hover:scale-105 brightness-[0.6] contrast-125 hover:brightness-100" 
          alt="Mapa Operaciones Habana">
 
-    <!-- Overlay Gradiente para integración -->
+    <!-- Overlay Gradiente para que los pines resalten -->
     <div class="absolute inset-0 bg-gradient-to-t from-[#0f172a] via-transparent to-transparent pointer-events-none"></div>
 
-    <!-- PIN 1: CENTRO HABANA (Cerca de Plaza Carlos III en tu foto) -->
-    <div class="absolute top-[35%] left-[32%] flex flex-col items-center group/pin cursor-pointer z-10">
-        <div class="relative">
-            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-            <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500 border-2 border-white shadow-[0_0_10px_#22c55e]"></span>
+    <!-- ESTADÍSTICAS FLOTANTES (Esquina Superior Izquierda) -->
+    <div class="absolute top-4 left-4 z-30 bg-black/80 backdrop-blur-md border-l-4 border-green-500 rounded-r-lg p-3 shadow-xl max-w-[160px]">
+        <div class="text-[10px] text-gray-400 font-bold uppercase mb-1">Actividad (72h)</div>
+        <div class="text-2xl font-black text-white leading-none mb-1">
+            <span id="counter-installs">37</span>
         </div>
-        <div class="absolute bottom-6 left-1/2 -translate-x-1/2 bg-white text-black text-[10px] px-3 py-1 rounded font-bold whitespace-nowrap opacity-0 group-hover/pin:opacity-100 transition shadow-xl transform translate-y-2 group-hover/pin:translate-y-0 pointer-events-none z-20">
-            Centro Habana (8 Kits)
+        <div class="text-[9px] text-green-400 font-bold uppercase tracking-wide">Instalaciones</div>
+        <div class="h-px bg-gray-700 my-2"></div>
+        <div class="text-xl font-bold text-gray-300 leading-none mb-1">
+            <span id="counter-reserves">12</span>
+        </div>
+        <div class="text-[9px] text-yellow-500 font-bold uppercase tracking-wide">En Cola <i class="fas fa-clock"></i></div>
+    </div>
+
+    <!-- ============================================== -->
+    <!-- PINES DE LOCALIZACIÓN (AJUSTADOS A TU MAPA) -->
+    <!-- ============================================== -->
+
+    <!-- 1. MIRAMAR (Arriba Izquierda - Zona Hoteles/3ra) -->
+    <div class="absolute top-[45%] left-[15%] group/pin cursor-pointer z-20">
+        <span class="relative flex h-3 w-3">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500 border-2 border-white shadow-[0_0_15px_#22c55e]"></span>
+        </span>
+        <!-- Tooltip -->
+        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/90 text-white text-[10px] px-3 py-1 rounded font-bold whitespace-nowrap opacity-0 group-hover/pin:opacity-100 transition transform translate-y-2 group-hover/pin:translate-y-0 pointer-events-none border border-green-500/50">
+            Miramar (8 Kits)
         </div>
     </div>
 
-    <!-- PIN 2: HABANA VIEJA (Arriba a la derecha en tu foto) -->
-    <div class="absolute top-[25%] left-[55%] flex flex-col items-center group/pin cursor-pointer z-10">
-        <div class="relative">
-            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-400 opacity-75"></span>
-            <span class="relative inline-flex rounded-full h-3 w-3 bg-yellow-500 border-2 border-white shadow-[0_0_10px_#eab308]"></span>
+    <!-- 2. VEDADO (Centro Arriba - Cerca de Línea/Malecón) -->
+    <div class="absolute top-[25%] left-[42%] group/pin cursor-pointer z-20">
+        <span class="relative flex h-3 w-3">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-3 w-3 bg-blue-500 border-2 border-white shadow-[0_0_15px_#3b82f6]"></span>
+        </span>
+        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/90 text-white text-[10px] px-3 py-1 rounded font-bold whitespace-nowrap opacity-0 group-hover/pin:opacity-100 transition transform translate-y-2 group-hover/pin:translate-y-0 pointer-events-none border border-blue-500/50">
+            Vedado (12 Kits)
         </div>
-        <div class="absolute bottom-6 left-1/2 -translate-x-1/2 bg-white text-black text-[10px] px-3 py-1 rounded font-bold whitespace-nowrap opacity-0 group-hover/pin:opacity-100 transition shadow-xl transform translate-y-2 group-hover/pin:translate-y-0 pointer-events-none z-20">
+    </div>
+
+    <!-- 3. HABANA VIEJA / CENTRO HABANA (Derecha Arriba - Bahía) -->
+    <div class="absolute top-[30%] left-[68%] group/pin cursor-pointer z-20">
+        <span class="relative flex h-3 w-3">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-3 w-3 bg-yellow-500 border-2 border-white shadow-[0_0_15px_#eab308]"></span>
+        </span>
+        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/90 text-white text-[10px] px-3 py-1 rounded font-bold whitespace-nowrap opacity-0 group-hover/pin:opacity-100 transition transform translate-y-2 group-hover/pin:translate-y-0 pointer-events-none border border-yellow-500/50">
             Habana Vieja (Comercios)
         </div>
     </div>
 
-    <!-- PIN 3: DIEZ DE OCTUBRE (Abajo al centro en tu foto) -->
-    <div class="absolute bottom-[25%] left-[52%] flex flex-col items-center group/pin cursor-pointer z-10">
-        <div class="relative">
-            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-            <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500 border-2 border-white shadow-[0_0_10px_#22c55e]"></span>
-        </div>
-        <div class="absolute bottom-6 left-1/2 -translate-x-1/2 bg-white text-black text-[10px] px-3 py-1 rounded font-bold whitespace-nowrap opacity-0 group-hover/pin:opacity-100 transition shadow-xl transform translate-y-2 group-hover/pin:translate-y-0 pointer-events-none z-20">
-            10 de Octubre (15 Kits)
-        </div>
-    </div>
-
-    <!-- PIN 4: REGLA (A la derecha cruzando la bahía en tu foto) -->
-    <div class="absolute top-[45%] right-[20%] flex flex-col items-center group/pin cursor-pointer z-10">
-        <div class="relative">
-            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-            <span class="relative inline-flex rounded-full h-3 w-3 bg-blue-500 border-2 border-white shadow-[0_0_10px_#3b82f6]"></span>
-        </div>
-        <div class="absolute bottom-6 left-1/2 -translate-x-1/2 bg-white text-black text-[10px] px-3 py-1 rounded font-bold whitespace-nowrap opacity-0 group-hover/pin:opacity-100 transition shadow-xl transform translate-y-2 group-hover/pin:translate-y-0 pointer-events-none z-20">
-            Regla / Guanabacoa
+    <!-- 4. REGLA (Cruzando la bahía a la derecha) -->
+    <div class="absolute top-[38%] left-[82%] group/pin cursor-pointer z-20">
+        <span class="relative flex h-3 w-3">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-3 w-3 bg-purple-500 border-2 border-white shadow-[0_0_15px_#a855f7]"></span>
+        </span>
+        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/90 text-white text-[10px] px-3 py-1 rounded font-bold whitespace-nowrap opacity-0 group-hover/pin:opacity-100 transition transform translate-y-2 group-hover/pin:translate-y-0 pointer-events-none border border-purple-500/50">
+            Regla (Zona Industrial)
         </div>
     </div>
 
-    
+    <!-- 5. 10 DE OCTUBRE / VÍBORA (Abajo Centro - Cerca de Mónaco) -->
+    <div class="absolute top-[70%] left-[55%] group/pin cursor-pointer z-20">
+        <span class="relative flex h-3 w-3">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500 border-2 border-white shadow-[0_0_15px_#22c55e]"></span>
+        </span>
+        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/90 text-white text-[10px] px-3 py-1 rounded font-bold whitespace-nowrap opacity-0 group-hover/pin:opacity-100 transition transform translate-y-2 group-hover/pin:translate-y-0 pointer-events-none border border-green-500/50">
+            Víbora / 10 de Oct.
+        </div>
+    </div>
+
+     <!-- 6. MARIANAO (Izquierda Centro - Cerca del Obelisco) -->
+    <div class="absolute top-[55%] left-[30%] group/pin cursor-pointer z-20">
+        <span class="relative flex h-3 w-3">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-3 w-3 bg-orange-500 border-2 border-white shadow-[0_0_15px_#f97316]"></span>
+        </span>
+        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/90 text-white text-[10px] px-3 py-1 rounded font-bold whitespace-nowrap opacity-0 group-hover/pin:opacity-100 transition transform translate-y-2 group-hover/pin:translate-y-0 pointer-events-none border border-orange-500/50">
+            Marianao
+        </div>
+    </div>
+
 </div>
-    </div>
 </section>
 
 
@@ -2921,7 +2916,46 @@
             <h2 class="text-4xl md:text-6xl font-bold text-white mb-4 font-tech leading-tight">
                 CATÁLOGO <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">LLAVE EN MANO</span>
             </h2>
-            
+            <!-- FILTRO DE VOLTAJE -->
+<div class="max-w-2xl mx-auto px-4 mb-8 text-center">
+    <p class="text-gray-400 text-xs uppercase tracking-widest mb-2 font-bold">Paso 1: ¿Qué corriente usas?</p>
+    
+    <div class="grid grid-cols-2 gap-4">
+        <!-- Opción 110V -->
+        <label class="cursor-pointer">
+            <input type="radio" name="voltaje" class="peer sr-only" onclick="filterKits('110')">
+            <div class="bg-gray-900 border-2 border-gray-700 p-4 rounded-xl peer-checked:border-blue-500 peer-checked:bg-blue-900/20 transition hover:bg-gray-800">
+                <div class="text-2xl mb-1">🔌</div>
+                <div class="text-white font-bold text-sm">Solo 110V</div>
+                <div class="text-[10px] text-gray-500">Refris, TV, Luces</div>
+            </div>
+        </label>
+
+        <!-- Opción 220V -->
+        <label class="cursor-pointer">
+            <input type="radio" name="voltaje" class="peer sr-only" onclick="filterKits('220')">
+            <div class="bg-gray-900 border-2 border-gray-700 p-4 rounded-xl peer-checked:border-red-500 peer-checked:bg-red-900/20 transition hover:bg-gray-800">
+                <div class="text-2xl mb-1">⚡</div>
+                <div class="text-white font-bold text-sm">110V y 220V</div>
+                <div class="text-[10px] text-gray-500">Aires Acondicionados (Splits)</div>
+            </div>
+        </label>
+    </div>
+    <p id="voltaje-advice" class="text-xs text-yellow-500 mt-3 font-bold hidden"></p>
+</div>
+
+<script>
+function filterKits(tipo) {
+    const advice = document.getElementById('voltaje-advice');
+    advice.classList.remove('hidden');
+    if(tipo === '110') {
+        advice.innerHTML = "💡 Para ti: Mira los Kits <strong>MUST</strong> y <strong>ASTRA</strong> (Más económicos).";
+        // Aquí podrías ocultar los kits grandes si quisieras, o hacer scroll
+    } else {
+        advice.innerHTML = "❄️ Necesitas potencia: Mira obligatoriamente la línea <strong>PRO 6.5kW</strong> o superior.";
+    }
+}
+</script>
             <!-- Subtítulo integrado (El Hook de Hormozi) -->
             <div class="max-w-3xl mx-auto bg-blue-900/10 border border-blue-500/20 rounded-xl p-4 mt-6">
                 <h3 class="text-xl md:text-2xl text-white font-bold mb-2">
@@ -7806,6 +7840,29 @@ window.addEventListener('scroll', () => {
         bar.classList.add('translate-y-full');
     }
 });
+</script>
+<script>
+function filterKits(tipo) {
+    const advice = document.getElementById('voltaje-advice');
+    advice.classList.remove('hidden');
+    advice.classList.remove('bg-cyan-900/30', 'border-cyan-500/30', 'text-cyan-200');
+    advice.classList.remove('bg-red-900/30', 'border-red-500/30', 'text-red-200');
+    advice.classList.add('border', 'animate-pulse');
+
+    if(tipo === '110') {
+        advice.className = "mt-4 p-3 rounded-lg text-xs border border-cyan-500/30 bg-cyan-900/20 text-cyan-200 block animate-slide-in";
+        advice.innerHTML = `
+            <i class="fas fa-check-circle mr-2"></i> <strong>Excelente.</strong> Para 110V te recomendamos las líneas 
+            <span class="text-white font-bold">MUST</span> o <span class="text-white font-bold">ASTRA</span> que verás justo aquí abajo. 👇
+        `;
+    } else {
+        advice.className = "mt-4 p-3 rounded-lg text-xs border border-red-500/30 bg-red-900/20 text-red-200 block animate-slide-in";
+        advice.innerHTML = `
+            <i class="fas fa-exclamation-triangle mr-2"></i> <strong>Atención:</strong> Los equipos de aquí abajo son 110V. 
+            Para aires 220V necesitas bajar a la <a href="#kits" class="underline font-bold text-white">Línea PRO Industrial (Clic aquí)</a>. 👇
+        `;
+    }
+}
 </script>
 </body>
 </html>
