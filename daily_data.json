@@ -1,0 +1,17 @@
+{
+  "fecha": "13 de Diciembre",
+  "deficit_estimado": 1915,
+  "afectacion_ayer": 1917,
+  "estado_general": "CRÍTICO",
+  "plantas_rotas": ["Felton 2", "Mariel 5", "Mariel 8", "Santa Cruz 2"],
+  "combustible_mw": 993,
+  "noticias_cinta": [
+    "⚠️ DÉFICIT PICO: 1915 MW pronosticado para hoy.",
+    "📉 AYER: Se afectó el servicio las 24 horas.",
+    "⛽ COMBUSTIBLE: 993 MW fuera por falta de diesel."
+  ],
+  "feed_telegram": [
+    "Resumen del día: Afectaciones severas en todos los bloques.",
+    "Nota Informativa: Déficit supera la capacidad de generación."
+  ]
+}
