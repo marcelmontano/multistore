@@ -3065,7 +3065,86 @@ function filterKits(tipo) {
 </div>
 
 
+
                 </div>
+                <!-- NUEVO PRODUCTO: MUST 6KW TITAN (PICKUP BARRIO OBRERO) -->
+<div class="col-span-1 lg:col-span-3 mt-8">
+    <div class="bg-gradient-to-r from-[#1e293b] via-[#0f172a] to-[#1e293b] rounded-2xl border-2 border-yellow-600 shadow-[0_0_40px_rgba(202,138,4,0.15)] relative overflow-hidden flex flex-col md:flex-row">
+        
+        <!-- Etiqueta de Recogida (CRÍTICO) -->
+        <div class="absolute top-0 right-0 bg-red-600 text-white text-xs font-black px-4 py-2 rounded-bl-xl z-20 uppercase tracking-wide flex items-center gap-2">
+            <i class="fas fa-map-marker-alt"></i> Recogida en San Miguel
+        </div>
+
+        <!-- Columna Izq: Imagen y Datos -->
+        <div class="md:w-2/5 p-6 border-r border-gray-700 bg-black/20 flex flex-col justify-center items-center relative">
+            <div class="text-yellow-500 font-black text-2xl mb-2 tracking-tighter">MUST 6kW TITAN</div>
+            <div class="bg-yellow-600/20 text-yellow-400 text-[10px] font-bold px-3 py-1 rounded-full border border-yellow-600/50 mb-4">
+                MODELO: HBP3300 TLV + LP20-48280
+            </div>
+            
+            <!-- Usamos la imagen del MUST 3kW como referencia o un placeholder genérico de equipo grande -->
+            <div class="relative w-full max-w-[250px] aspect-square flex items-center justify-center bg-gray-800 rounded-lg border border-gray-600 mb-4 group cursor-zoom-in" onclick="viewComponent('https://i.imgur.com/acNYH1t.jpeg', 'Sistema MUST 6kW 14kWh')">
+                <i class="fas fa-server text-6xl text-gray-600 group-hover:text-white transition"></i>
+                <div class="absolute bottom-2 text-xs text-gray-400">Click para ver equipo</div>
+            </div>
+
+            <div class="w-full text-center">
+                <p class="text-xs text-gray-400 mb-1">Garantía Limitada:</p>
+                <div class="inline-flex items-center gap-2 bg-gray-800 px-3 py-1 rounded text-xs text-white border border-gray-600">
+                    <i class="fas fa-shield-alt text-yellow-500"></i> 3 Meses
+                </div>
+            </div>
+        </div>
+
+        <!-- Columna Der: Especificaciones y Precio -->
+        <div class="md:w-3/5 p-6 flex flex-col justify-between">
+            <div>
+                <h3 class="text-white font-bold text-lg mb-2">Especificaciones Monstruosas</h3>
+                <p class="text-gray-400 text-xs mb-4">
+                    Este equipo triplica la batería de los kits convencionales. Ideal para mantener <strong>aires acondicionados</strong> y la casa completa durante apagones largos.
+                </p>
+
+                <div class="grid grid-cols-2 gap-3 mb-6">
+                    <div class="bg-gray-800 p-3 rounded-lg border border-gray-700">
+                        <p class="text-[10px] text-gray-500 uppercase">Potencia Inversor</p>
+                        <p class="text-white font-bold">6,000 W</p>
+                        <p class="text-[9px] text-yellow-500">120V / 240V Split Phase</p>
+                    </div>
+                    <div class="bg-gray-800 p-3 rounded-lg border border-gray-700 relative overflow-hidden">
+                        <div class="absolute right-0 top-0 bg-green-600 text-white text-[9px] px-2 py-0.5 rounded-bl">GIGANTE</div>
+                        <p class="text-[10px] text-gray-500 uppercase">Batería LiFePO4</p>
+                        <p class="text-green-400 font-bold text-xl">14.3 kWh</p>
+                        <p class="text-[9px] text-gray-400">Modelo LP20-48280</p>
+                    </div>
+                </div>
+
+                <!-- Aviso de Logística -->
+                <div class="bg-red-900/10 border border-red-500/30 p-3 rounded-lg flex gap-3 items-start mb-4">
+                    <i class="fas fa-truck-loading text-red-400 mt-1"></i>
+                    <div>
+                        <p class="text-red-300 font-bold text-xs uppercase">Sin Servicio de Mensajería</p>
+                        <p class="text-[10px] text-gray-400">
+                            El cliente debe recoger el equipo en almacén: <strong>Barrio Obrero, San Miguel del Padrón</strong>. 
+                            Peso total aprox: 120kg.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-between border-t border-gray-700 pt-4 mt-2">
+                <div class="flex flex-col">
+                    <span class="text-3xl font-black text-white">$3,350</span>
+                    <span class="text-[10px] text-gray-500">USD / EUR / Zelle</span>
+                </div>
+                <button onclick="openOrderForm('MUST 6kW 14.3kWh (San Miguel)')" class="bg-yellow-500 hover:bg-yellow-400 text-black font-bold py-3 px-6 rounded-xl shadow-lg transition transform hover:scale-105 flex items-center gap-2">
+                    <span>Reservar para Recoger</span>
+                    <i class="fas fa-dolly"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
                 
         
             </div>
@@ -4590,6 +4669,7 @@ function openPreOrder(kitName) {
 <option value="must1">MUST 1kW (110V) - Bat 1.28 kWh</option>
 <option value="must2">MUST 2kW (110V) - Bat 2.56 kWh</option>
 <option value="must3">MUST 3kW (110V) - Bat 3.07 kWh</option>
+<option value="must6kw" class="text-yellow-400 font-bold">★ MUST 6kW Titan (120/240V) - Bat 14.33 kWh</option>
     
     <!-- ASTRA -->
     <option value="astra3">Astra 3kW (110V) - Bat 2.56 kWh</option>
@@ -5684,6 +5764,9 @@ function sendQuiz(e) {
         <option value="Estación MUST 1kW - $700">Estación MUST 1kW (Bat 1280Wh) - $700</option>
         <option value="Estación MUST 2kW - $950">Estación MUST 2kW (Bat 2560Wh) - $950</option>
         <option value="Estación MUST 3kW - $2350">Estación MUST 3kW (Bat 7000Wh) - $2,350</option>
+        <optgroup label="🏭 LIQUIDACIÓN ALMACÉN (San Miguel)">
+    <option value="MUST 6kW 14.3kWh (San Miguel) - $3350">MUST 6kW + Batería 14.3kWh - $3,350 (Recogida)</option>
+</optgroup>
     </optgroup>
     <optgroup label="🔵 LÍNEA RESIDENCIAL ASTRA (Llave en Mano)">
         <option value="Kit Astra 3kW - $2800">Kit Astra 3kW (Básico) - $2,800</option>
@@ -6187,6 +6270,8 @@ function sendQuiz(e) {
     'must1': { inverter: 1000, battKwh: 1.28, voltage: 110, priceKit: 700, priceInstall: 0 },
     'must2': { inverter: 2000, battKwh: 2.56, voltage: 110, priceKit: 950, priceInstall: 0 },
     'must3': { inverter: 3000, battKwh: 7000, voltage: 110, priceKit: 2350, priceInstall: 0 }, // Ajustado a 3072Wh
+    // Agrega esto dentro del objeto 'kits'
+'must6kw': { inverter: 6000, battKwh: 14.336, voltage: 220, priceKit: 3350, priceInstall: 0 },
 
     // --- ASTRA ---
     'astra3': { inverter: 3000, battKwh: 2.56, voltage: 110, priceKit: 2800, priceInstall: 0 },
