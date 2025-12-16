@@ -3083,18 +3083,15 @@ function filterKits(tipo) {
                 MODELO: HBP3300 TLV + LP20-48280
             </div>
             
-            <!-- Usamos la imagen del MUST 3kW como referencia o un placeholder genérico de equipo grande -->
-            <div class="relative w-full max-w-[250px] aspect-square flex items-center justify-center bg-gray-800 rounded-lg border border-gray-600 mb-4 group cursor-zoom-in" onclick="viewComponent('https://i.imgur.com/acNYH1t.jpeg', 'Sistema MUST 6kW 14kWh')">
-                <i class="fas fa-server text-6xl text-gray-600 group-hover:text-white transition"></i>
-                <div class="absolute bottom-2 text-xs text-gray-400">Click para ver equipo</div>
-            </div>
-
-            <div class="w-full text-center">
-                <p class="text-xs text-gray-400 mb-1">Garantía Limitada:</p>
-                <div class="inline-flex items-center gap-2 bg-gray-800 px-3 py-1 rounded text-xs text-white border border-gray-600">
-                    <i class="fas fa-shield-alt text-yellow-500"></i> 3 Meses
-                </div>
-            </div>
+            <div class="relative w-full max-w-[250px] aspect-square flex items-center justify-center bg-gray-800 rounded-lg border border-gray-600 mb-4 group cursor-zoom-in overflow-hidden" onclick="viewComponent('https://i.imgur.com/acNYH1t.jpeg', 'Sistema MUST 6kW 14kWh')">
+    <!-- Aquí está la corrección: Usamos la etiqueta IMG en lugar del icono -->
+    <img src="https://i.imgur.com/0WsGAcf.png" loading="lazy" class="w-full h-full object-contain p-2 hover:scale-110 transition duration-500" alt="Sistema MUST 6kW">
+    
+    <!-- Etiqueta flotante al pasar el mouse -->
+    <div class="absolute bottom-0 left-0 w-full bg-black/60 text-white text-[10px] text-center py-1 opacity-0 group-hover:opacity-100 transition">
+        <i class="fas fa-search-plus mr-1"></i> Ver Detalle
+    </div>
+</div>
         </div>
 
         <!-- Columna Der: Especificaciones y Precio -->
