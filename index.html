@@ -172,6 +172,71 @@
 </style>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- ======================================================= -->
+<!-- BLOQUE DE LIMPIEZA PROFESIONAL (MODO VENTAS PURO) -->
+<!-- ======================================================= -->
+<style>
+    /* 1. OCULTAR SECCIONES DE RUIDO / NOTICIAS / NEGATIVIDAD */
+    #ticker-content,          /* Cinta de noticias */
+    #energy-intel,            /* Radar de situación */
+    #fragility-map,           /* Mapa de zonas rotas */
+    #lie-detector,            /* Gráfico de cumplimiento */
+    #dashboard-sen,           /* Dashboard complejo */
+    #agenda-apagones,         /* Agenda predictiva */
+    #live-monitor,            /* Monitor de Telegram */
+    #toast-container,         /* Notificaciones emergentes (Popups) */
+    .whatsapp-float,          /* Botón flotante (a veces tapa el de compra móvil) */
+    #local-push               /* Alertas push de averías */
+    {
+        display: none !important;
+    }
+
+    /* 2. CALMAR LAS ANIMACIONES (Para que se vea serio, no una feria) */
+    .animate-pulse, 
+    .voltage-alert,
+    .emergency-active {
+        animation: none !important;
+        box-shadow: none !important;
+    }
+
+    /* 3. AJUSTE DE ESPACIOS (Para que no queden huecos blancos) */
+    section {
+        border-top: 1px solid rgba(255,255,255,0.05) !important;
+        border-bottom: 0 !important;
+        padding-top: 40px !important;
+        padding-bottom: 40px !important;
+    }
+
+    /* 4. MANTENER SOLO LO IMPORTANTE (Reforzar visibilidad) */
+    #liquidacion-pro,    /* La oferta de stock limitado */
+    #ofertas-blue,       /* El catálogo MUST/ASTRA */
+    #kits,               /* El catálogo PRO */
+    #simulador,          /* La calculadora (útil para cerrar ventas) */
+    #contacto            /* Chatbot y contacto */
+    {
+        display: block !important;
+    }
+    
+    /* Fondo más limpio y profesional (Gris oscuro solido, menos gradientes locos) */
+    body {
+        background: #0f172a !important; 
+    }
+</style>
+
+<script>
+    // DESACTIVAR SCRIPTS DE RUIDO PARA AHORRAR RECURSOS DEL NAVEGADOR
+    window.addEventListener('DOMContentLoaded', () => {
+        // Detener la búsqueda de telegram
+        if(typeof initSystem === 'function') { initSystem = function(){}; } 
+        // Detener notificaciones falsas
+        if(typeof startSocialProof === 'function') { startSocialProof = function(){}; }
+        // Detener actualización de mapas
+        if(typeof initFragilityMap === 'function') { initFragilityMap = function(){}; }
+        
+        console.log("Modo Ventas Puro: Activado. Ruido eliminado.");
+    });
+</script>
+<!-- ======================================================= -->
 
 </head>
 <body class="antialiased selection:bg-yellow-500 selection:text-black pb-20 md:pb-0">
@@ -271,10 +336,10 @@
         <!-- GRID DE LOS 2 MODELOS EN LIQUIDACIÓN -->
         <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
 
-            <!-- KIT 5KW PRO (Quedan 2) -->
+            <!-- KIT 5KW PRO (Stock Actualizado: 5) -->
             <div class="bg-[#1e293b] rounded-2xl border-2 border-gray-600 p-6 relative overflow-hidden shadow-2xl hover:border-yellow-500 transition duration-300 group">
-                <div class="absolute top-4 right-4 bg-yellow-600 text-white text-xs font-bold px-3 py-1 rounded">
-                    STOCK: 2 UNIDADES
+                <div class="absolute top-4 right-4 bg-green-600 text-white text-xs font-bold px-3 py-1 rounded animate-pulse">
+                    STOCK: 5 UNIDADES
                 </div>
                 
                 <h3 class="text-2xl font-black text-white mb-2">KIT 5kW PRO (SRNE)</h3>
@@ -300,16 +365,16 @@
                     </div>
                 </div>
 
-                <a href="https://wa.me/5358183649?text=Hola,%20quiero%20reservar%20uno%20de%20los%202%20Kits%205kW%20PRO%20con%20el%20ENVÍO%20GRATIS." 
+                <a href="https://wa.me/5358183649?text=Hola,%20quiero%20reservar%20uno%20de%20los%20Kits%205kW%20PRO%20con%20el%20ENVÍO%20GRATIS." 
                    class="block w-full bg-yellow-500 hover:bg-yellow-400 text-black font-bold py-4 rounded-xl text-center mt-4 transition transform hover:scale-[1.02] shadow-lg">
-                   RESERVAR CON TRANSPORTE
+                   RESERVAR AHORA
                 </a>
             </div>
 
-            <!-- KIT 6.5KW PRO (Queda 1) -->
+            <!-- KIT 6.5KW PRO (Stock Actualizado: 8) -->
             <div class="bg-gradient-to-b from-[#1e293b] to-[#0f172a] rounded-2xl border-2 border-red-600 p-6 relative overflow-hidden shadow-[0_0_50px_rgba(220,38,38,0.2)]">
-                <div class="absolute top-0 left-0 w-full bg-red-600 text-white text-center text-xs font-bold py-1 uppercase tracking-widest animate-pulse">
-                    🔥 ÚLTIMA PIEZA EN ALMACÉN
+                <div class="absolute top-0 left-0 w-full bg-red-600 text-white text-center text-xs font-bold py-1 uppercase tracking-widest">
+                    🔥 DISPONIBILIDAD INMEDIATA: 8 UNIDADES
                 </div>
                 
                 <div class="mt-6">
@@ -337,22 +402,13 @@
                     </div>
                 </div>
 
-                <a href="https://wa.me/5358183649?text=URGENTE:%20Quiero%20la%20ÚLTIMA%20unidad%20del%20Kit%206.5kW%20antes%20de%20que%20cobre%20el%20envío." 
+                <a href="https://wa.me/5358183649?text=Hola,%20necesito%20un%20Kit%206.5kW%20Split%20Phase." 
                    class="block w-full bg-red-600 hover:bg-red-500 text-white font-bold py-4 rounded-xl text-center mt-4 transition transform hover:scale-[1.02] shadow-lg">
-                   RECLAMAR ÚLTIMA UNIDAD
+                   COMPRAR UNIDAD
                 </a>
             </div>
 
-        </div>
-        
-        <div class="text-center mt-8">
-            <p class="text-xs text-gray-500">
-                * El resto de productos (Must, Astra, Paneles sueltos) siguen disponibles en la sección inferior. <br>
-                Esta oferta de transporte gratuito para la serie Pro <strong>vence</strong> en 24 horas.
-            </p>
-            <i class="fas fa-arrow-down text-gray-600 mt-2 animate-bounce"></i>
-        </div>
-    </div>
+        </div>>
 </section>
 
 <!-- SECCIÓN: INTELIGENCIA ENERGÉTICA (DATOS EN TIEMPO REAL) -->
@@ -2949,20 +3005,27 @@ function filterKits(tipo) {
                             <div class="text-center group/icon"><div class="w-10 h-10 mx-auto bg-gray-700 rounded-full flex items-center justify-center mb-1 bg-green-900/50 border border-green-500/50"><i class="fas fa-snowflake text-green-400"></i></div><p class="text-[9px] text-green-400 font-bold">Refri*</p></div>
                         </div>
                         
-                        <div class="mt-auto pt-6 w-full">
-                            <p class="text-[9px] text-gray-500 text-center mb-3">*Refrigerador recomendado a partir del modelo 2kW.</p>
-                            <div class="flex flex-wrap justify-center gap-3">
-                                <span class="bg-black/30 px-3 py-1 rounded-full text-[10px] text-cyan-300 border border-cyan-500/30"><i class="fas fa-truck mr-1"></i> Envío Gratis Habana</span>
-                                <span class="bg-black/30 px-3 py-1 rounded-full text-[10px] text-yellow-300 border border-yellow-500/30"><i class="fas fa-shield-alt mr-1"></i> Garantía 6 Meses</span>
-                            </div>
-                        </div>
+                        <!-- Busca esto al final de la columna izquierda de MUST -->
+<div class="mt-auto pt-6 w-full">
+    <p class="text-[9px] text-gray-500 text-center mb-3">*Refrigerador recomendado a partir del modelo 2kW.</p>
+    <div class="flex flex-wrap justify-center gap-3">
+        <span class="bg-black/30 px-3 py-1 rounded-full text-[10px] text-cyan-300 border border-cyan-500/30"><i class="fas fa-truck mr-1"></i> Envío Gratis Habana</span>
+        <!-- CAMBIO AQUI: Garantía 3 Meses -->
+        <span class="bg-black/30 px-3 py-1 rounded-full text-[10px] text-yellow-300 border border-yellow-500/30"><i class="fas fa-shield-alt mr-1"></i> Garantía 3 Meses</span>
+    </div>
+</div>
                     </div>
 
                     <!-- COLUMNA DERECHA: ESCALERA DE OFERTAS (CORREGIDA: Altura Automática + Textos Unidos) -->
 <div class="lg:w-7/12 p-4 md:p-6 bg-[#0f172a]/50 flex flex-col h-full gap-4">
     
-    <!-- OPCIÓN 1: 1kW (Se estira con flex-1) -->
-    <div class="flex-1 bg-gray-800 rounded-xl p-5 border border-gray-700 hover:border-gray-500 transition flex flex-col sm:flex-row items-center gap-4 group justify-between">
+    <!-- OPCIÓN 1: 1kW (PRECIO ACTUALIZADO) -->
+    <div class="flex-1 bg-gray-800 rounded-xl p-5 border border-gray-700 hover:border-gray-500 transition flex flex-col sm:flex-row items-center gap-4 group justify-between relative overflow-hidden">
+        <!-- Etiqueta de Nuevo Precio -->
+        <div class="absolute top-0 right-0 bg-red-600 text-white text-[9px] font-bold px-2 py-1 rounded-bl uppercase animate-pulse">
+            Precio Rebajado
+        </div>
+
         <div class="flex-1 text-center sm:text-left">
             <div class="flex items-center justify-center sm:justify-start gap-2 mb-2">
                 <h4 class="text-xl font-bold text-white">MUST 1kW Lite</h4>
@@ -2979,8 +3042,11 @@ function filterKits(tipo) {
         </div>
         
         <div class="flex flex-col items-center sm:items-end gap-2 min-w-[120px]">
-            <span class="text-3xl font-bold text-white">$700</span>
-            <button onclick="openOrderForm('Estación MUST 1kW - $700')" class="bg-white hover:bg-gray-200 text-black font-bold py-3 px-8 rounded-lg text-xs w-full transition shadow-lg hover:scale-105">
+            <div class="flex flex-col items-end">
+                <span class="text-xs text-gray-500 line-through">$700</span>
+                <span class="text-3xl font-bold text-white">$650</span>
+            </div>
+            <button onclick="openOrderForm('Estación MUST 1kW - $650')" class="bg-white hover:bg-gray-200 text-black font-bold py-3 px-8 rounded-lg text-xs w-full transition shadow-lg hover:scale-105">
                 Comprar
             </button>
         </div>
@@ -3835,21 +3901,43 @@ function filterKits(tipo) {
     
     <div class="max-w-7xl mx-auto px-4 relative z-10">
         
-        <!-- HEADER -->
+        <!-- HEADER ACTUALIZADO -->
         <div class="text-center mb-10">
             <div class="inline-flex items-center gap-2 bg-purple-900/50 border border-purple-400 text-purple-300 px-6 py-2 rounded-full text-xs font-bold uppercase tracking-widest mb-4 animate-pulse">
-                <i class="fas fa-ship"></i> Llegada Confirmada: Febrero 2026
+                <i class="fas fa-ship"></i> Llegada Estimada: Finales Enero / Febrero
             </div>
             <h2 class="text-3xl md:text-5xl font-black text-white mb-4">
-                ASIGNACIÓN DE CUPOS: <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500">LOTE #128</span>
+                DOBLE STOCK: <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500">LOTE #128</span>
             </h2>
             
-            <div class="max-w-3xl mx-auto bg-gray-900/80 border border-gray-700 p-4 rounded-xl text-left md:text-center shadow-lg">
-                <p class="text-gray-300 text-sm leading-relaxed">
-                    <i class="fas fa-info-circle text-yellow-500 mr-2"></i><strong>Funcionamiento:</strong> 
-                    Este contenedor trae <strong>128 equipos específicos</strong>. Al reservar, congelas una unidad con tu nombre. 
-                    Si el contador de un modelo llega a 0, pasará automáticamente a <span class="text-red-400 font-bold">Lista de Espera</span> (solo accesible si alguien cancela).
-                </p>
+            <div class="max-w-4xl mx-auto bg-gray-900/80 border border-gray-700 p-6 rounded-xl text-left shadow-lg relative overflow-hidden">
+                <!-- Efecto brillo -->
+                <div class="absolute top-0 right-0 w-32 h-32 bg-purple-500/10 rounded-full blur-2xl"></div>
+                
+                <h4 class="text-white font-bold mb-3 flex items-center gap-2"><i class="fas fa-bullhorn text-yellow-500"></i> Novedades Confirmadas:</h4>
+                
+                <div class="grid md:grid-cols-2 gap-4 text-sm text-gray-300">
+                    <div class="flex items-start gap-2">
+                        <i class="fas fa-check-circle text-green-500 mt-1"></i>
+                        <p><strong>Doble de Cantidad:</strong> Aumentamos el inventario para satisfacer la demanda.</p>
+                    </div>
+                    <div class="flex items-start gap-2">
+                        <i class="fas fa-tools text-blue-400 mt-1"></i>
+                        <p><strong>Componentes Sueltos:</strong> Podrás comprar solo Paneles, Inversores o Baterías para armar tu propio kit.</p>
+                    </div>
+                    <div class="flex items-start gap-2">
+                        <i class="fas fa-industry text-orange-500 mt-1"></i>
+                        <p><strong>Kits Trifásicos (Exclusivo):</strong> Solución única en el mercado para negocios con 380V/440V.</p>
+                    </div>
+                    <div class="flex items-start gap-2">
+                        <i class="fas fa-medal text-purple-400 mt-1"></i>
+                        <p><strong>Marca Líder:</strong> Traemos la mejor tecnología probada en el mercado cubano.</p>
+                    </div>
+                </div>
+                
+                <div class="mt-4 pt-4 border-t border-gray-700 text-center">
+                    <p class="text-xs text-gray-400 italic">⚠️ Recomendación: Retenga a sus clientes y guarde contactos. Venimos con más fuerza.</p>
+                </div>
             </div>
         </div>
 
@@ -5758,7 +5846,7 @@ function sendQuiz(e) {
         <option value="Panel DAH Individual - $145">Panel Solar DAH 580W - $145/u</option>
     </optgroup>
     <optgroup label="⚡ FAMILIA MUST (Portátiles / Plug & Play)">
-        <option value="Estación MUST 1kW - $700">Estación MUST 1kW (Bat 1280Wh) - $700</option>
+        <option value="Estación MUST 1kW - $650">Estación MUST 1kW (Bat 1280Wh) - $650</option>
         <option value="Estación MUST 2kW - $950">Estación MUST 2kW (Bat 2560Wh) - $950</option>
         <option value="Estación MUST 3kW - $2350">Estación MUST 3kW (Bat 7000Wh) - $2,350</option>
         <optgroup label="🏭 LIQUIDACIÓN ALMACÉN (San Miguel)">
@@ -6264,7 +6352,7 @@ function sendQuiz(e) {
         
     const kits = {
     // --- FAMILIA MUST (Datos Exactos) ---
-    'must1': { inverter: 1000, battKwh: 1.28, voltage: 110, priceKit: 700, priceInstall: 0 },
+    'must1': { inverter: 1000, battKwh: 1.28, voltage: 110, priceKit: 650, priceInstall: 0 },
     'must2': { inverter: 2000, battKwh: 2.56, voltage: 110, priceKit: 950, priceInstall: 0 },
     'must3': { inverter: 3000, battKwh: 7000, voltage: 110, priceKit: 2350, priceInstall: 0 }, // Ajustado a 3072Wh
     // Agrega esto dentro del objeto 'kits'
